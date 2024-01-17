@@ -1,0 +1,12 @@
+/* Global classes  */
+a{
+    text-decoration: none;
+    color: black;
+}
+/* Form classes  */
+.loginForm{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
