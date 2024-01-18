@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { User } from'.././user';
 
 @Component({
   selector: 'app-login',
@@ -10,18 +11,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-       username: string=''
-       password: string=''
+       Username: string='';
+       Password: string='';
        constructor(private http: HttpClient){}
-       onSubmit(){
-             const loginData = { username: this.username, password: this.password };
-              this.http.post('', loginData)
-              .subscribe((response: any) => {
-                if (response.success) {
-                  console.log('Login successful');
-                } else {
-                  console.error('Login failed', response.message);
-                }
-              });
+            onSubmit(){
+              
+            const user: User = {
+              username: this.Username,
+              password: this.Password
+            }
+               console.log(`Username is: ${user.username}, Password is: ${user.password}`);
             }
 }
