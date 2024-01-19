@@ -21,8 +21,8 @@ h4{
     font-family: 'Poppins', sans-serif;
     padding: 25px;
     width: fit-content;
-    box-shadow: 2px 0px 10px rgba(128, 128, 128, 0.5);
-    height: 100vh;
+    box-shadow: 2px 2px 12px rgba(128, 128, 128, 0.308);
+    height: 140vh;
 }
 .logoContainer{
     display: flex;

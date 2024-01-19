@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+/* GLobal Classes  */
+*{
+    margin: 0px;
+    padding: 0px;
+}
+:root {
+    --blue: #1e90ff;
+    --white: #ffffff;
+    --offwhite: #dfb845;
+}
+ul{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+    font-size: 1.1rem;
+}
+h4{
+    font-size: 20px;
+    font-weight: 700;
+}
+/* header classes start  */
+header{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 2px 2px 12px  rgba(128, 128, 128, 0.308);
+}
+.search_box{
+    padding: 15px;
+    border: solid 1px #ffffffc4;
+    background-color: #d3d0d046;
+    border-radius: 15px;
+    width: 20%;
+}
+input{
+    border: none;
+    margin-left: 10px;
+    background: transparent;
+}
+.header_col2{
+    display: flex;
+    justify-content: space-between;
+    width: 13%;
+}
+.bell_icon{
+   width: 10%;
+   text-align: center;
+   margin-top: 15px;
+}
+.header_col3{
+    display: flex;
+    width: 60%;
+}
+.header_col3 div{
+    align-self: center;
+}
+.img_container img{
+    width: 80%;
+    border-radius: 50%;
+}

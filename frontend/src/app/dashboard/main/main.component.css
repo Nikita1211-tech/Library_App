@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+img{
+    width: 50%;
+}
+button{
+    border: none;
+    background-color: #fb3452;
+    color: white;
+}
+a{
+    text-decoration: none;
+    color: #fb3452;
+}
+h5{
+    /* font-size: 22px; */
+}
+.mainContainer{
+    font-family: 'Poppins', sans-serif;
+}
+.Container{
+    display: flex;
+    color: white;
+    padding: 20px;
+}
+.image_slider_container{
+    flex: 2;
+}
+.slider{
+    display: flex;
+    background-color: #fb3452;
+    padding: 20px;
+    border-radius: 20px;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.graph_container{
+    flex: 2;
+}
+.book_frame{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 16%;
+}
+.book_frame img{
+    width: 90%;
+}
+.book_list{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.writer_name{
+    color: #0000006c;
+}
+.price{
+    color: #fb3452;
+    font-weight: 600;
+}
+.book_section{
+    padding: 20px;
+}
+.book_section_row2{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.table_section{
+    padding: 20px;
+}
