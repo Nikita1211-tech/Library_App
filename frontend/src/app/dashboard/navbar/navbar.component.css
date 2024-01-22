@@ -17,6 +17,7 @@ h4{
 /* Navbar Classses starts  */
 .navbarContainer{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     font-family: 'Poppins', sans-serif;
     padding: 25px;

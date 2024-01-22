@@ -2,126 +2,285 @@
 /* Global classes  */
 a{
     text-decoration: none;
-    color: white;
+    color: #FB3453;
+}
+h2{
+    font-size: 3rem;
+    font-weight: 500;
 }
 h4{
-    font-size: 2rem;
+    font-weight: 600;
+    font-size: 2.5rem;
 }
-p{
+h5{
+    font-weight: 600;
+}
+/* p{
     font-size: 1.2rem;
-}
+} */
 /* Form classes  */
 .background_container{
-    background-image: url('../../assets/images/bk_img1.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    height: min(100vh,90%);
 }
 .loginForm{
-    height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    line-height: 3rem;
+}
+.loginForm_col1{
+    background-color: #FB3453;
+    padding: 90px;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
 }
-.form_container{
-    background-color: rgba(5, 22, 78, 0.555);
-    padding: 50px;
-    border-radius: 40px;
-    box-shadow: 10px 10px 100px grey;
+.star{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
 }
-.pass{
-    text-align: right;
+/* .star img{
+    width: ;
+} */
+.admin_profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.admin_profile img{
+   width: 50px;
+   border-radius: 50%;
+}
+.admin_profile div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}   
+.admin_profile div p{
+    margin: 0px;
+}    
+.loginForm_col2{
+    padding: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 60%;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+label{
+    font-weight: bold;
 }
 input{
     padding: 15px;
-    background: transparent;
-    box-shadow: 1px 1px 20px grey;
-    color: white;
+    background-color: #EAEAEA;
+    border: none;
+    border-radius: 10px;
 }
-::placeholder{
-    color: White;
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
-button{
+.form_input{
+    display: flex;
+    justify-content: space-between;
+}
+.form_input div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.button{
     width: 100%;
+    background-color: #FB3453;
+    color: white;
+    border: none;
     padding: 15px;
-    border-radius: 15px;
-    font-size: 1.2rem;
-    background: transparent;
-    border-color: white;
-    box-shadow: 1px 1px 20px grey;
+    border-radius: 10px;
 }
-/* Media Queries   */
-@media only screen and (max-width: 992px) {
-    h4{
-        font-size: 1.4rem;
-    }
-    p{
-        font-size: 0.7rem;
-    }
+.register{
+    display: flex;
+    justify-content: center;
+}
+input[type="checkbox"]{
+    accent-color: #FB3453;
+    border: none;
+    outline: 0.2rem solid #FB3453;
+    width: 16px;
+    height: 14px;
+    cursor: pointer;
+}
+/* Media Queries  */
+@media (max-width: 576px){
     .loginForm{
-        line-height: 2rem;
+        display: flex;
+        flex-direction: column;
     }
-    .form_container{
-        padding: 40px;
-        border-radius: 30px;
+    .admin{
+        display: none;
     }
-    input{
-        padding: 8px;
+    .loginForm_col1{
+        width: 100%;
     }
-    button{
-        padding: 8px;
-        font-size: 1rem;
+    .loginForm_col2{
+        width: 100%;
     }
 }
-@media only screen and (max-width: 768px) {
+@media (max-width: 685px){
+    h2{
+        font-size:  6px;
+        font-weight: 300;
+    }
     h4{
-        font-size: 1rem;
-    }
-    p{
-        font-size: 0.4rem;
-    }
-    .loginForm{
-        line-height: 1.5rem;
-    }
-    .form_container{
-        padding: 30px;
-        border-radius: 20px;
-    }
-    input{
-        padding: 5px;
-    }
-    button{
-        padding: 5px;
+        font-weight: 600;
         font-size: 0.8rem;
     }
-    
-}
-@media only screen and (max-width: 576px) {
-    h4{
-        font-size: 0.6rem;
+    h5{
+        font-weight: 600;
     }
     p{
-        font-size: 0.4rem;
+        font-size: 0.5rem;
     }
-    .loginForm{
-        line-height: 1rem;
+    label{
+        font-size: 0.5rem;
     }
-    .form_container{
-        padding: 20px;
-        border-radius: 10px;
+    form{
+        gap: 10px;
     }
     input{
-        padding: 4px;
+        padding: 6px;
     }
-    button{
-        padding: 3px;
-        font-size: 0.6rem;
+    .button{
+        padding: 8px;
+    }
+    .loginForm_col1{
+        padding: 15px;
+    }
+    .loginForm_col2{
+        padding: 15px;
+        gap: 10px;
+    }
+    .star img{
+        width: 10%;
     }
     ::placeholder{
         font-size: 0.6rem;
+    }
+}
+@media (max-width: 768px) { 
+    h2{
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    h4{
+        font-weight: 600;
+        font-size: 1.6rem;
+    }
+    h5{
+        font-weight: 600;
+    }
+    p{
+        font-size: 0.6rem;
+    }
+    label{
+        font-size: 0.6rem;
+    }
+    form{
+        gap: 15px;
+    }
+    input{
+        padding: 8px;
+    }
+    .button{
+        padding: 10px;
+    }
+    .loginForm_col1{
+        padding: 50px;
+    }
+    .loginForm_col2{
+        padding: 50px;
+        gap: 15px;
+    }
+    .star img{
+        width: 10%;
+    }
+    ::placeholder{
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 992px) {
+    h2{
+        font-size: 2.2rem;
+        font-weight: 500;
+    }
+    h4{
+        font-weight: 600;
+        font-size: 1.8rem;
+    }
+    h5{
+        font-weight: 600;
+    }
+    p{
+        font-size: 0.8rem;
+    }
+    label{
+        font-size: 0.8rem;
+    }
+    .loginForm_col2{
+        gap: 15px;
+    }
+    form{
+        gap: 15px;
+    }
+    input{
+        padding: 8px;
+    }
+    .button{
+        padding: 10px;
+    }
+    .star img{
+        width: 10%;
+    }
+    ::placeholder{
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 1200px) { 
+    h2{
+        font-size: 2.4rem;
+        font-weight: 500;
+    }
+    h4{
+        font-weight: 600;
+        font-size: 2rem;
+    }
+    h5{
+        font-weight: 600;
+    }
+    p{
+        font-size: 0.8rem;
+    }
+    .loginForm_col2{
+        gap: 20px;
+    }
+    form{
+        gap: 20px;
+    }
+    input{
+        padding: 10px;
+    }
+    .star img{
+        width: 10%;
+    }
+    .loginForm_col1{
+        padding: 60px;
+    }
+    .loginForm_col2{
+        padding: 60px;
     }
 }

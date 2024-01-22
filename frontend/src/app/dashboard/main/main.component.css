@@ -71,3 +71,8 @@ h5{
 .table_section{
     padding: 20px;
 }
+/* Media queries  */
+.book_section_row2{
+    flex-wrap: wrap;
+    
+}

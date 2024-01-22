@@ -1,10 +1,17 @@
-var express = require("express");
-const {Login, Register, Detail, Auth} = require("../controllers/authControllers");
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-router.get("/login", Login);
-router.post("/login", Auth);
-router.get("/register", Register);
-router.post("/register", Detail);
- 
+const AuthController = require('../controllers/authControllers');
+const ErrorHandler = require('../middlewares/error.middleware');
+const AuthGuard = require('../middlewares/auth.middleware');
+const schema = require('../../validations/auth.validation');
+const validate = require('../../utils/validator.util'); 
+
+router.post('/register', validate(schema.register), ErrorHandler(AuthController.register));
+router.post('/login',    validate(schema.login),    ErrorHandler(AuthController.login));
+router.get('/user',      AuthGuard,                 ErrorHandler(AuthController.getUser));
+router.get('/logout',    AuthGuard,                 ErrorHandler(AuthController.logout));
+
+router.all('*',  (req, res) => res.status(400).json({ message: 'Bad Request.'}))
+
 module.exports = router;
