@@ -4,58 +4,41 @@
     margin: 0px;
     padding: 0px;
 }
-ul{
-    text-decoration: none;
-}
-li{
-    list-style: none;
-    font-size: 1.1rem;
+a{
+    cursor: pointer;
 }
 h4{
-    font-weight: 600;
+    font-weight: 400;
 }
 /* Navbar Classses starts  */
 .navbarContainer{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
     font-family: 'Poppins', sans-serif;
-    padding: 25px;
+    padding: 30px;
     width: fit-content;
-    box-shadow: 2px 2px 12px rgba(128, 128, 128, 0.308);
-    height: 140vh;
-}
-.logoContainer{
-    display: flex;
-    width: 100%;
-}
-.menuContainer{
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     height: 70vh;
     justify-content: space-between;
 }
-figcaption{
-    margin: 0px 10px;
-    align-self: center;
+.menuContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 40px;
+}
+.logoContainer{
+    display: flex;
+    gap: 10px;
 }
 .menu{
     display: flex;
-    margin: 50px 0px;
-    cursor: pointer;
+    gap: 15px;
+}
+.menu img{
+    width: 20px;
+    align-self: center;
 }
 .menu:hover{
     color: #fb3452;
-}
-/* .menu img{
-    width: 2%;
-} */
-.menu li{
-    margin: 0px 10px;
-}
-.setting{
-    background-color: #fb345211;
-    padding: 20px;
-    color: #fb3452;
-    border-radius: 5px;
 }

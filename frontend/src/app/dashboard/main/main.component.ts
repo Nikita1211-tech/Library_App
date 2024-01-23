@@ -44,7 +44,8 @@ export class MainComponent {
            bookName: "The Road Not Taken",
            writerName: "Rovert frost",
            price: "$5000"
-        }
+        },
+
       )
     }
 }

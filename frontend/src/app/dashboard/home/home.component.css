@@ -1,8 +1,18 @@
 .sidebar{
-    display: flex;
     width: 100%;
+    display: flex;
+    /* background-color: red; */
+}
+.navbar{
+    flex-grow: 1;
+    width: 100%;
+    max-width: 270px;
+    align-items: flex-start;
+    box-shadow: 2px 2px 12px  rgba(128, 128, 128, 0.308);
 }
 .content{
+    flex-grow: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
