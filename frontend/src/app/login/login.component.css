@@ -20,11 +20,12 @@ h5{
 } */
 /* Form classes  */
 .background_container{
-    height: min(100vh,90%);
+    min-height: 100vh;
 }
 .loginForm{
     display: flex;
     font-family: 'Poppins', sans-serif;
+    height: 100vh;
 }
 .loginForm_col1{
     background-color: #FB3453;
@@ -63,6 +64,8 @@ h5{
 .loginForm_col2{
     padding: 90px;
     display: flex;
+    min-height: 100vh;
+    justify-content: center;
     flex-direction: column;
     gap: 60px;
     width: 60%;

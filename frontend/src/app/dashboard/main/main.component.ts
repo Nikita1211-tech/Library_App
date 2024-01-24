@@ -3,6 +3,7 @@ import { HeaderComponent } from '../header/header.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Writer } from '../../main';
 import { NgFor } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -13,33 +14,38 @@ import { NgFor } from '@angular/common';
 })
 export class MainComponent {
     books: Writer[]=[];
-    constructor(){
+    constructor(private router:Router){
       this.books.push(
         {
+           book_id: "BOOK123",
            img: "./../../../assets/images/book_2.png",
            bookName: "The Road Not Taken",
            writerName: "Rovert frost",
            price: "$5000"
         },
         {
+          book_id: "BOOK124",
            img: "./../../../assets/images/book_1.png",
            bookName: "The Road Not Taken",
            writerName: "Rovert frost",
            price: "$5000"
         },
         {
+            book_id: "BOOK125",
             img: "./../../../assets/images/book_3.png", 
             bookName: "The Road Not Taken",
             writerName: "Rovert frost",
             price: "$5000"
         },
-        {
+        { 
+            book_id: "BOOK126",
             img: "./../../../assets/images/book_1.png",
             bookName: "The Road Not Taken",
             writerName: "Rovert frost",
             price: "$5000"
         },
         {
+          book_id: "BOOK127",
            img: "./../../../assets/images/book_2.png",
            bookName: "The Road Not Taken",
            writerName: "Rovert frost",
@@ -47,5 +53,8 @@ export class MainComponent {
         },
 
       )
+    }
+    redirecttobookdescription(book_id: String){
+      this.router.navigate(['/book', book_id]);
     }
 }

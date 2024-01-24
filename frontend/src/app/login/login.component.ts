@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@a
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -13,16 +13,21 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-       Username: string='';
-       Password: string='';
-       constructor( private http: HttpClient, private router: Router){}
-      onSubmit(){
-        this.http.post<any>('http://localhost:3000/api/users/login', { email: this.Username, password: this.Password })
-        .subscribe(response=>{
+  Username: string = '';
+  Password: string = '';
+
+  constructor(private http: HttpClient, private router: Router) {}
+
+  onSubmit() {
+    this.http.post<any>('http://localhost:3000/api/users/login', { email: this.Username, password: this.Password })
+      .subscribe(
+        (response) => {
           localStorage.setItem('token', response.token);
           this.router.navigate(['/home']);
-        }), (error: any) =>{
+        },
+        (error: any) => {
           console.error("Login Failed", error);
         }
-      }
+      );
+  }
 }

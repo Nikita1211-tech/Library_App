@@ -57,8 +57,8 @@
             <a href=""><p>View All</p></a>
         </div>
         <div class="book_section_row2">
-              <div class="book_frame" *ngFor="let book of books">
-                <img src={{book.img}} alt="Card image cap">
+              <div class="book_frame" *ngFor="let book of books" onclick="redirecttobookdescription(book.book_id)">
+                <a href="/book"><img src={{book.img}} alt="Card image cap"></a>
                 <div class="">
                   <h5 class="">{{book.bookName}}</h5>
                   <p class="writer_name">{{book.writerName}}</p>

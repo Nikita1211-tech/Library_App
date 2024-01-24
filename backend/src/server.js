@@ -2,7 +2,8 @@ const express= require("express");
 const cors = require('cors');
 const app = express();
 const authRoutes = require("./routes/authRoutes");
-const User = require("./model/userModel");
+require("./model/userModel");
+require("./model/bookModel");
 const protectedrouter = require("./routes/protected");
 
 require("./dbconfig");
@@ -11,7 +12,6 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/users", authRoutes);
-app.use("/protected", protectedrouter);
 // app.use(Conn);
 // Test server connection 
 app.listen(3000, () => {
