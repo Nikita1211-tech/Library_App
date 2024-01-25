@@ -1,33 +1,127 @@
-<div>
-    <div>
-         <div>
-              <div>
-                  <img src="" alt="">
-                  <p>Total Readers</p>
-                  <div>
-                    <h4>21.000</h4>
-                    <p></p>
+<div class="readerContainer">
+    <div class="readerContainer_sec1">
+         <div class="readerConatiner_row1">
+              <div class="reader_info bk_shadow">
+                  <img src="./../../../assets/images/reader.png" alt="">
+                  <h6>Total Readers</h6>
+                  <div class="graph">
+                    <h5>21.000</h5>
+                    <div class="graph_info">
+                        <img src="./../../../assets/images/line.png" alt="">
+                        <h3>20%</h3>
+                    </div>
                   </div>
               </div>
-              <div>
-                   <img src="" alt="">
-                   <p>Active Readers</p>
-                   <div>
-                    <h4>210</h4>
-                    <p></p>
+              <div class="reader_info bk_shadow bk_clr">
+                   <img src="./../../../assets/images/active_reader.png" alt="">
+                   <h6>Active Readers</h6>
+                   <div class="graph">
+                    <h5>210</h5>
+                    <div class="graph_info graph_line">
+                        <img src="./../../../assets/images/linegraph.png" alt="">
+                        <p>20%</p>
+                    </div>
                    </div>
               </div>
          </div>
-         <div>
-
+         <div class="readerConatiner_row2 bk_shadow">
+            <div class="view">
+                <h4>Reader List</h4>
+                <a href="">View All</a>
+            </div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Reader Id</th>
+                    <th scope="col">Reader Name</th>
+                    <th scope="col">Joining Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Mark</td>
+                    <div class="reader_name">
+                     <img src="./../../../assets/images/pass_img.jpg" alt="">   
+                     <td>Otto</td>
+                    </div>
+                    <td>22</td>
+                    <td>Active</td>
+                    <td>22</td>
+                  </tr>
+                  <tr>
+                    <td>Jacob</td>
+                    <div class="reader_name">
+                        <img src="./../../../assets/images/pass_img.jpg" alt="">   
+                        <td>Otto</td>
+                       </div>
+                    <td>23</td>
+                    <td>Active</td>
+                    <td>22</td>
+                  </tr>
+                  <tr>
+                    <td>Larry</td>
+                    <div class="reader_name">
+                        <img src="./../../../assets/images/pass_img.jpg" alt="">   
+                        <td>Otto</td>
+                       </div>
+                    <td>24</td>
+                    <td>Active</td>
+                    <td>22</td>
+                  </tr>
+                  <tr>
+                    <td>Larry</td>
+                    <div class="reader_name">
+                        <img src="./../../../assets/images/pass_img.jpg" alt="">   
+                        <td>Otto</td>
+                       </div>
+                    <td>24</td>
+                    <td>Active</td>
+                    <td>22</td>
+                  </tr>
+                </tbody>
+              </table>
          </div>
     </div>
-    <div>
-        <div>
-
+    <div class="readerContainer_sec2">
+        <div class="bk_shadow">
+            <div class="view">
+                <h4>New Reader Added</h4>
+                <p>Subscribe</p>
+            </div>
+            <div class="chart-container">
+                <canvas  id="MyChart" >{{ chart }}</canvas>
+            </div>
         </div>
-        <div>
-
+        <div class="bk_shadow">
+            <div class="view">
+                <h4>Subscribed Viewers</h4>
+                <a href="">View All</a>
+            </div>
+            <div class="cardContainer">
+                <div class="sub_detail">
+                    <img class="" src="./../../../assets/images/pass_img.jpg" alt="Card image cap">
+                    <div class="">
+                      <h6 class="">Grayson Prince</h6>
+                      <p class="sub_date">Due on 5 nov</p>
+                    </div>
+                </div>
+                <div class="sub_detail">
+                    <img class="" src="./../../../assets/images/pass_img.jpg" alt="Card image cap">
+                    <div class="">
+                      <h6 class="">Grayson Prince</h6>
+                      <p class="sub_date">Due on 5 nov</p>
+                    </div>
+                </div>
+                <div class="sub_detail">
+                    <img class="" src="./../../../assets/images/pass_img.jpg" alt="Card image cap">
+                    <div class="">
+                      <h6 class="">Grayson Prince</h6>
+                      <p class="sub_date">Due on 5 nov</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -5,7 +5,6 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookComponent } from './dashboard/book/book.component';
-
 @Component({
   selector: 'app-root',
   standalone: true,
