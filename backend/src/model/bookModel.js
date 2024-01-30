@@ -3,23 +3,45 @@ const { sequelize } = require("../dbconfig");
 
 
 const Book = sequelize.define('Book',{
+    id: {
+        type: DataTypes.NUMBER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
+    },
     img:{
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
     },
-    BookName: {
+    bookName: {
       type: DataTypes.STRING,
       allowNull: false,
     }, 
-    WriterName: {
+    writerName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    Price: {
+    sellingprice: {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    costprice: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    publishyear: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    booksummary: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    author: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    }
 })
 Book.sync({ force: false }).then(() => {
     console.log('Book table synced');

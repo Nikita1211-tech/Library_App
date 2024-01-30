@@ -3,68 +3,26 @@ import { HeaderComponent } from '../header/header.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Writer } from '../../main';
 import { NgFor } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Chart from 'chart.js/auto';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [HeaderComponent, NavbarComponent, NgFor],
+  imports: [HeaderComponent, NavbarComponent, NgFor, RouterLink],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
 export class MainComponent implements OnInit {
     books: Writer[]=[];
     public chart: any;
+    constructor(private router:Router, private http: HttpClient){}
     
-    ngOnInit(): void {
-      this.createChart();
-    }
-    
-    constructor(private router:Router){
-      this.books.push(
-        {
-           book_id: "BOOK123",
-           img: "./../../../assets/images/book_2.png",
-           bookName: "The Road Not Taken",
-           writerName: "Rovert frost",
-           price: "$5000"
-        },
-        {
-          book_id: "BOOK124",
-           img: "./../../../assets/images/book_1.png",
-           bookName: "The Road Not Taken",
-           writerName: "Rovert frost",
-           price: "$5000"
-        },
-        {
-            book_id: "BOOK125",
-            img: "./../../../assets/images/book_3.png", 
-            bookName: "The Road Not Taken",
-            writerName: "Rovert frost",
-            price: "$5000"
-        },
-        { 
-            book_id: "BOOK126",
-            img: "./../../../assets/images/book_1.png",
-            bookName: "The Road Not Taken",
-            writerName: "Rovert frost",
-            price: "$5000"
-        },
-        {
-          book_id: "BOOK127",
-           img: "./../../../assets/images/book_2.png",
-           bookName: "The Road Not Taken",
-           writerName: "Rovert frost",
-           price: "$5000"
-        },
-
-      )
-    }
-    
-    redirecttobookdescription(book_id: String){
-      this.router.navigate(['/book', book_id]);
-    }
+    // redirecttobookdescription(id: number){
+    //   this.router.navigate(['/bookdescription', id]);
+    // }
     createChart(){
       Chart.defaults.font.family = "'Poppins', sans-serif",
       this.chart = new Chart("MyChart", {
@@ -76,6 +34,7 @@ export class MainComponent implements OnInit {
               label: "Subscribe",
               data: ['100', '75', '25', '60', '35','80', '85'],
               backgroundColor: '#FB3453',
+              tension: 0.5
             }  
           ]
         },
@@ -94,6 +53,20 @@ export class MainComponent implements OnInit {
             },
           }
         },
+      });
+    }
+    apiURL = 'http://localhost:3000/api/users';
+ 
+    getBooks(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiURL}/books`);
+    }
+    
+    
+    ngOnInit(): void {
+      this.createChart();
+      this.getBooks().subscribe((books) => {
+        this.books = books;
+        console.log(books)
       });
     }
 }

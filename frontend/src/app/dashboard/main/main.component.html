@@ -55,7 +55,7 @@
                 <p>Read</p>
               </div>
             </div>
-            <div class="chart- container">
+            <div class="chart-container">
                 <canvas  id="MyChart" >{{ chart }}</canvas>
             </div>
         </div>
@@ -66,8 +66,8 @@
             <a href=""><p>View All</p></a>
         </div>
         <div class="book_section_row2">
-              <div class="book_frame" *ngFor="let book of books" onclick="redirecttobookdescription(book.book_id)">
-                <a href="/book"><img src={{book.img}} alt="Card image cap"></a>
+              <div class="book_frame" *ngFor="let book of books">
+                <a  [routerLink]="['/bookdescription/', book.id]"><img [src]="book.img" alt="Card image cap"></a>
                 <div class="">
                   <h5 class="">{{book.bookName}}</h5>
                   <p class="writer_name">{{book.writerName}}</p>

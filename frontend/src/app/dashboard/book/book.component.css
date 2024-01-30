@@ -14,6 +14,7 @@ a{
     display: flex;
     flex-direction: column;
     gap: 40px;
+    overflow-x: hidden;
 }
 .bookContainer{
     padding: 20px;
@@ -27,7 +28,7 @@ a{
 }
 .bookContainer_row2{
     display: flex;
-    justify-content: space-between;
+    gap: 50px;
     overflow-x: auto;
 }
 .bookDes{
@@ -36,8 +37,68 @@ a{
     gap: 10px;
 }
 /* media queries starts  */
-@media (max-width: 1400px) { 
+@media (max-width: 417px) { 
+    .bk_shadow{
+        padding: 5px;
+    }
+    .bookContainer_row2{
+        gap: 8px;
+    }
+    .bookDes{
+        width: 40%;
+    }
     .bookDes img{
-        width: auto;
+        width: 60px;
+    }
+    h4{
+        font-size: 16px;
+    }
+}
+@media (max-width: 576px) { 
+    .bk_shadow{
+        padding: 8px;
+    }
+    .bookContainer_row2{
+        gap: 10px;
+    }
+    .bookDes{
+        width: 60%;
+    }
+    .bookDes img{
+        width: 80px;
+    }
+    h4{
+        font-size: 16px;
+    }
+}
+@media (max-width: 768px) { 
+    .bookDes {
+        width: 70%;
+    }
+    h4{
+        font-size: 16px;
+    }
+}
+@media (max-width: 992px) { 
+    .bk_shadow{
+        padding: 10px;
+    }
+    .bookContainer_row2{
+        gap: 20px;
+    }
+    .bookDes{
+        width: 80%;
+    }
+    .bookDes img{
+        width: 130px;
+    }
+    h4{
+        font-size: 18px;
+    }
+    p{
+        font-size: 15px;
+    }
+    a{
+        font-size: 12px;
     }
 }

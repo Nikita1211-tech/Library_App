@@ -8,6 +8,7 @@ import { ReaderComponent } from './dashboard/reader/reader.component';
 import { ReportsComponent } from './dashboard/reports/reports.component';
 import { AuthGuard } from './auth.guard';
 import { AppComponent } from './app.component';
+import { BookdescriptionComponent } from './dashboard/bookdescription/bookdescription.component';
 
 // app-routing.module.ts
 export const routes: Routes = [
@@ -16,5 +17,7 @@ export const routes: Routes = [
   { path: 'main', component: MainComponent, canActivate: [AuthGuard]},
   { path: 'reader', component: ReaderComponent, canActivate: [AuthGuard] },
   { path: 'book', component: BookComponent, canActivate: [AuthGuard] },
-  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] }
+  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
+  // { path: 'bookdescription', component: BookdescriptionComponent, canActivate: [AuthGuard] },
+  { path: 'bookdescription/:id', component: BookdescriptionComponent, canActivate: [AuthGuard]  },
 ];

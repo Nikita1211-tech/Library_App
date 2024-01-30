@@ -1,6 +1,7 @@
 const mysql = require('mysql2');
 const jwt = require("jsonwebtoken");
 const User = require('../model/userModel');
+const Book = require('../model/bookModel');
 // const Conn = require('../dbconfig');
 require('dotenv')
 const Login = (req,res) => {
@@ -39,4 +40,32 @@ const Detail = (req,res) => {
     var password  = req.body.password;
     console.log(`Username: ${username}, Password: ${password}`)
 }
-module.exports = {Login, Auth, Logout, Register, Detail}
+const bookList = async(req,res) => {
+  try {
+    const books = await Book.findAll();
+    res.json(books);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+const bookDesc = async(req,res) => {
+  const bookId = req.params.book_id;
+  try {
+    const book = await Book.findOne({
+      where: {
+        id: bookId,
+      },
+    });
+
+    if (book) {
+      res.json(book);
+    } else {
+      res.status(404).json({ message: 'Book not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+module.exports = {Login, Auth, Logout, Register, Detail, bookList, bookDesc}

@@ -1,5 +1,5 @@
 export interface Writer{
-    book_id: String;
+    id: Number;
     img: String;
     bookName: String;
     writerName: String;

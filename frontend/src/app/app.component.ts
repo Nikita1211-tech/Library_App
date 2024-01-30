@@ -7,10 +7,11 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { BookComponent } from './dashboard/book/book.component';
 import { HeaderComponent } from './dashboard/header/header.component';
 import { NavbarComponent } from './dashboard/navbar/navbar.component';
+import { BookdescriptionComponent } from './dashboard/bookdescription/bookdescription.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLinkActive, LoginComponent, HeaderComponent, NavbarComponent, NgIf, HttpClientModule, FormsModule,ReactiveFormsModule,BookComponent],
+  imports: [CommonModule, RouterOutlet, RouterLinkActive, LoginComponent, HeaderComponent, NavbarComponent, NgIf, HttpClientModule, FormsModule,ReactiveFormsModule,BookComponent, BookdescriptionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
