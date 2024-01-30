@@ -9,17 +9,12 @@ import { ReportsComponent } from './dashboard/reports/reports.component';
 import { AuthGuard } from './auth.guard';
 import { AppComponent } from './app.component';
 
+// app-routing.module.ts
 export const routes: Routes = [
-  { path: '', component: LoginComponent, pathMatch: 'full' },
-  {
-    path: '',
-    component: AppComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: 'main', component: MainComponent },
-      { path: 'reader', component: ReaderComponent },
-      { path: 'book', component: BookComponent },
-      { path: 'reports', component: ReportsComponent }
-    ]
-  }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'main', component: MainComponent, canActivate: [AuthGuard]},
+  { path: 'reader', component: ReaderComponent, canActivate: [AuthGuard] },
+  { path: 'book', component: BookComponent, canActivate: [AuthGuard] },
+  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] }
 ];
