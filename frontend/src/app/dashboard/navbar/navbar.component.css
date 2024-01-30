@@ -5,6 +5,8 @@
     padding: 0px;
 }
 a{
+    text-decoration: none;
+    color: black;
     cursor: pointer;
 }
 h4{
@@ -24,7 +26,7 @@ h4{
 .menuContainer{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 250px;
     gap: 40px;
 }
 .logoContainer{
@@ -34,6 +36,14 @@ h4{
 .menu{
     display: flex;
     gap: 15px;
+    align-items: center;
+    padding: 10px;
+}
+.responsivenavbarContainer{
+    display: none;
+}
+.toggleBtn {
+    display: none;
 }
 .menu img{
     width: 20px;
@@ -41,4 +51,16 @@ h4{
 }
 .menu:hover{
     color: #fb3452;
+}
+@media only screen and (max-width: 968px){
+    .navbarContainer{
+        display: none;
+    }
+    .responsivenavbarContainer{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        height: 70vh;
+        justify-content: space-between;
+    }
 }

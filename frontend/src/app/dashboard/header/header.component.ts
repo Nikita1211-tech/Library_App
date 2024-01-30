@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,5 +10,9 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
+  constructor(private http: HttpClient, private router: Router) {}
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 }

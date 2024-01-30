@@ -23,7 +23,7 @@ export class LoginComponent {
       .subscribe(
         (response) => {
           localStorage.setItem('token', response.token);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/main']);
         },
         (error: any) => {
           console.error("Login Failed", error);

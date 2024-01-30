@@ -11,38 +11,55 @@ a{
 h5{
     font-size: 20px;
 }
+.bk_shadow{
+    box-shadow: 2px 2px 12px  rgba(180, 179, 179, 0.432);
+    border-radius: 15px;
+    padding: 20px;
+}
+/* Global classes ends  */
+/* Conatiner classes starts */
 .mainContainer{
     font-family: 'Poppins', sans-serif;
-    
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 .Container{
     display: flex;
     color: white;
-    justify-content: space-between;
-    padding: 20px;
+    gap: 20px;
 }
 .image_slider_container{
-    /* width: 58%; */
+    flex: 1;
 }
 .slider{
     display: flex;
     background-color: #fb3452;
-    padding: 20px;
+    padding: 50px;
     border-radius: 20px;
+    justify-content: space-between;
 }
 .slider img{
-    width: 50%;
+    width: 40%;
 }
 .content{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.graph_container{
-    /* width: 38%; */
+.graphContainer{
+    flex: 0.5;
 }
-
+.graphDetails{
+    display: flex;
+    justify-content: space-between;
+    color: black;
+}
+.graphTags{
+    display: flex;
+    gap: 10px;
+}
 .book_list{
     display: flex;
     width: 100%;
@@ -56,7 +73,9 @@ h5{
     font-weight: 600;
 }
 .book_section{
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 .book_section_row2{
     display: flex;
@@ -73,10 +92,53 @@ h5{
     width: 100%;
 }
 .table_section{
-    padding: 20px;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
 }
 table{
-    width: 100%;
+    border-radius: 10px;
+    border: solid 1px #EAEAEA;
+    border-collapse: separate;
+    border-spacing: 20%;
+    height: 90%;
+}
+td,th{
+    border-style: none;
+    text-align: center;
+}
+.table_head{
+    display: flex;
+    justify-content: space-between;
+}
+.table_button{
+    display: flex;
+    gap: 20px;
+    background-color: #fb34521e;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0px 20px;
+    background: linear-gradient(
+        to right,
+        #fb3452 0%,
+        #fb3452 15%,
+        #fb345223 15%,
+        #fb345223 100%
+      );
+}
+.btn{
+   border-radius: 10px;
+   background-color: #fb3452;
+}
+.reader_name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.reader_name img{
+    width: 50px;
+    border-radius: 50%;
 }
 /* Media queries  */
 @media (max-width: 576px) {

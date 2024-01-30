@@ -4,15 +4,6 @@
     margin: 0px;
     padding: 0px;
 }
-:root {
-    --blue: #1e90ff;
-    --white: #ffffff;
-    --offwhite: #dfb845;
-}
-/* h4{
-    font-size: 20px;
-    font-weight: 700;
-} */
 /* header classes start  */
 header{
     font-family: 'Poppins', sans-serif;
@@ -28,6 +19,9 @@ header{
     border-radius: 15px;
     display: flex;
 }
+.ressearch_box{
+    display: none;
+}
 input{
     border: none;
     margin-left: 20px;
@@ -35,7 +29,6 @@ input{
 }
 .header_col2{
     display: flex; 
-    /* width: 12%; */
     gap: 16px;
 }
 .bell_icon{
@@ -84,4 +77,20 @@ button{
     display: block;
     right: 100%; /* Adjust this value as needed */
     left: auto;
+}
+/* Media Queries  */
+@media (max-width: 576px) {
+    header{
+        padding: 10px;
+    }
+   .search_box{
+    display: none;
+   }
+   .ressearch_box{
+    padding: 10px;
+    border: solid 1px #ffffffc4;
+    background-color: #d3d0d046;
+    border-radius: 5px;
+    display: flex;
+   }
 }

@@ -47,11 +47,20 @@
                 </div> 
             </div>
         </div>
-        <div class="graph_container">
-            <p>Hello</p>
+        <div class="graphContainer bk_shadow">
+            <div class="graphDetails">
+              <h4>Visit & Read</h4>
+              <div class="graphTags">
+                <p>Visit</p>
+                <p>Read</p>
+              </div>
+            </div>
+            <div class="chart- container">
+                <canvas  id="MyChart" >{{ chart }}</canvas>
+            </div>
         </div>
     </div>
-    <div class="book_section">
+    <div class="book_section bk_shadow">
         <div class="book_list">
             <h4>Book List</h4>
             <a href=""><p>View All</p></a>
@@ -67,50 +76,64 @@
               </div>
         </div>
     </div>
-    <div class="table_section">
-      <table class="table-hover">
+    <div class="table_section bk_shadow">
+      <div class="table_head">
+        <h4>Record</h4>
+        <div class="table_button">
+          <a href="" class="btn"><button>Digital</button></a>
+          <a href="">In-Person</a>
+        </div>
+      </div>
+      <table class="table">
         <thead>
           <tr>
-            <th scope="col">Book Id</th>
-            <th scope="col">Reader Name</th>
             <th scope="col">Reader Id</th>
-            <th scope="col">Book Name</th>
-            <th scope="col">Author</th>
-            <th scope="col">Duration</th>
+            <th scope="col">Reader Name</th>
+            <th scope="col">Joining Date</th>
             <th scope="col">Status</th>
-            <th scope="col">Fee</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1</th>
             <td>Mark</td>
-            <td>Otto</td>
-            <td>Mark</td> 
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>Mark</td>
-            <td>Otto</td>
+            <div class="reader_name">
+             <img src="./../../../assets/images/pass_img.jpg" alt="">   
+             <td>Otto</td>
+            </div>
+            <td>22</td>
+            <td>Active</td>
+            <td>22</td>
           </tr>
           <tr>
-            <th scope="row">2</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>Mark</td> 
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>Mark</td>
-            <td>Otto</td>
+            <td>Jacob</td>
+            <div class="reader_name">
+                <img src="./../../../assets/images/pass_img.jpg" alt="">   
+                <td>Otto</td>
+               </div>
+            <td>23</td>
+            <td>Active</td>
+            <td>22</td>
           </tr>
           <tr>
-            <th scope="row">3</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>Mark</td> 
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>Mark</td>
-            <td>Otto</td>
+            <td>Larry</td>
+            <div class="reader_name">
+                <img src="./../../../assets/images/pass_img.jpg" alt="">   
+                <td>Otto</td>
+               </div>
+            <td>24</td>
+            <td>Active</td>
+            <td>22</td>
+          </tr>
+          <tr>
+            <td>Larry</td>
+            <div class="reader_name">
+                <img src="./../../../assets/images/pass_img.jpg" alt="">   
+                <td>Otto</td>
+               </div>
+            <td>24</td>
+            <td>Active</td>
+            <td>22</td>
           </tr>
         </tbody>
       </table>

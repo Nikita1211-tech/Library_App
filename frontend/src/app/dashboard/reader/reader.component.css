@@ -31,9 +31,8 @@ td{
 /* ReaderContainer sec 1 classes starts  */
 .readerContainer{
     display: flex;
-    gap: 20px;
+    gap: 40px;
     font-family: 'Poppins', sans-serif;
-    padding: 20px;
     width: 100%;
     justify-content: space-between;
 }
@@ -41,7 +40,7 @@ td{
     display: flex;
     flex-direction: column;
     gap: 40px;
-    flex: 2;
+    flex: 1;
 }
 .readerConatiner_row1{
     display: flex;
@@ -56,10 +55,6 @@ td{
     padding: 12px;
     border-radius: 12px;
 }
-/* .reader_img{
-    display: flex;
-    flex-direction: column;
-} */
 .bk_shadow{
     box-shadow: 2px 2px 12px  rgba(128, 128, 128, 0.308);
     border-radius: 15px;
@@ -104,8 +99,7 @@ table{
     border-radius: 10px;
     border: solid 1px #EAEAEA;
     border-collapse: separate;
-    border-spacing: 20%;
-    height: 90%;
+    height: 50%;
 }
 td,th{
     border-style: none;
@@ -118,7 +112,7 @@ td,th{
     gap: 20px;
 }
 .reader_name img{
-    width: 50px;
+    width: 40px;
     border-radius: 50%;
 }
 /* ReaderContainer sec 2 classes ends  */
@@ -127,6 +121,9 @@ td,th{
     display: flex;
     flex-direction: column;
     gap: 40px;
+    flex: 1;
+}
+.graphWidth{
     flex: 1;
 }
 .cardContainer{
@@ -150,13 +147,6 @@ td,th{
 }
 /* Media queries  */
 @media (max-width: 420px) { 
-    /* h6{
-        font-size: 0.5rem;
-    }
-    h5{
-        font-size: rem;
-        background-color: #fb3452;
-    } */
     .reader_info img{
         width: 40%;
     }
@@ -165,10 +155,9 @@ td,th{
     }
   }
 @media (max-width: 500px) { 
-  /* .graph{
-    flex-direction: column;
-    align-items: flex-start;
-  } */
+  .reader_info{
+    padding: 8px;
+}
   .reader_name img{
      width: 30px;
   }
@@ -211,14 +200,9 @@ td,th{
         flex-direction: column;
         align-items: flex-start;
     }
-    /* .cardContainer{
-        height: 100%;
-    } */
-    .bk_shadow{
-        height: 100%;
-    }
     .sub_detail img{
-        width: 135px;
+        width: 100px;
+        padding: 10px 10px;
     }
  }
 @media (max-width: 1200px) { 
@@ -245,5 +229,9 @@ td,th{
     }
     td{
         font-size: 0.8rem;
+    }
+    .sub_detail img{
+        width: 110px;
+        padding: 10px 10px;
     }
 }
