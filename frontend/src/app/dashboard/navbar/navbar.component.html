@@ -1,3 +1,4 @@
+<button class="toggle"><i class="fa-solid fa-bars"></i></button>
 <div class="navbarContainer">
     <div class="menuContainer">
         <div class="logoContainer">
@@ -17,10 +18,17 @@
             </a>
         </div>
         <div>
-            <a href="/book"  class="menu">
+            <div class="menu">
                 <img src="./../../../assets/images/book_icon.png" alt="">
-                <p>Book Management</p>
-            </a> 
+                <div style="display: flex; justify-content: space-between; flex: 1;">
+                    <p>Book Management</p>
+                    <button (click)="dropdown()"><i class="fa-solid fa-caret-down" style="color: black;"></i></button>
+                </div>
+            </div>
+            <div class="toggle_btn" *ngIf="isDropdownOpen">
+                <a href="/addbook">Add</a>
+                <a href="/book">View</a>
+            </div>
         </div>
         <div>
             <a href="/reports" class="menu">

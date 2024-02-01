@@ -23,7 +23,8 @@
     flex-direction: column;
 }
 .mainContainer{
-    padding: 20px;
+    padding: 20px ;
+    background-color: #EAEAEA;
 }
 @media only screen and (max-width: 500px) {
     .navbar{

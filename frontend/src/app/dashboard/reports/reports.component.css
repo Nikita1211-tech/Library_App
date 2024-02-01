@@ -1,8 +1,10 @@
 /* Global classes starts  */
 .bk_shadow{
-    box-shadow: 2px 2px 12px  rgba(128, 128, 128, 0.308);
+    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
+    border: 1px solid #EAEAEA;
     border-radius: 15px;
     padding: 20px;
+    background-color: white;
 }
 /* Global classes ends  */
 /* Report container starts  */

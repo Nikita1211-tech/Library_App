@@ -68,10 +68,10 @@
         <div class="book_section_row2">
               <div class="book_frame" *ngFor="let book of books">
                 <a  [routerLink]="['/bookdescription/', book.id]"><img [src]="book.img" alt="Card image cap"></a>
-                <div class="">
+                <div class="book_detail">
                   <h5 class="">{{book.bookName}}</h5>
                   <p class="writer_name">{{book.writerName}}</p>
-                  <p class="price">{{book.price}}</p>
+                  <p class="price">${{book.sellingprice}}</p>
                 </div>
               </div>
         </div>
@@ -87,11 +87,14 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Reader Id</th>
+            <th scope="col">Book Id</th>
             <th scope="col">Reader Name</th>
-            <th scope="col">Joining Date</th>
+            <th scope="col">Reader Id</th>
+            <th scope="col">Book Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Duration</th>
             <th scope="col">Status</th>
-            <th scope="col">Action</th>
+            <th scope="col">Fee</th>
           </tr>
         </thead>
         <tbody>
@@ -101,6 +104,9 @@
              <img src="./../../../assets/images/pass_img.jpg" alt="">   
              <td>Otto</td>
             </div>
+            <td>22</td>
+            <td>Active</td>
+            <td>22</td>
             <td>22</td>
             <td>Active</td>
             <td>22</td>
@@ -114,14 +120,7 @@
             <td>23</td>
             <td>Active</td>
             <td>22</td>
-          </tr>
-          <tr>
-            <td>Larry</td>
-            <div class="reader_name">
-                <img src="./../../../assets/images/pass_img.jpg" alt="">   
-                <td>Otto</td>
-               </div>
-            <td>24</td>
+            <td>22</td>
             <td>Active</td>
             <td>22</td>
           </tr>
@@ -132,6 +131,22 @@
                 <td>Otto</td>
                </div>
             <td>24</td>
+            <td>Active</td>
+            <td>22</td>
+            <td>22</td>
+            <td>Active</td>
+            <td>22</td>
+          </tr>
+          <tr>
+            <td>Larry</td>
+            <div class="reader_name">
+                <img src="./../../../assets/images/pass_img.jpg" alt="">   
+                <td>Otto</td>
+               </div>
+            <td>24</td>
+            <td>Active</td>
+            <td>22</td>
+            <td>22</td>
             <td>Active</td>
             <td>22</td>
           </tr>

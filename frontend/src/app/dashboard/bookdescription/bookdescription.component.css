@@ -18,6 +18,13 @@ a{
 p, s{
     color: rgba(0, 0, 0, 0.486);
 }
+.bk_shadow{
+    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
+    border: 1px solid #EAEAEA;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+}
 /* Global Classes ends  */
 /* Book Description classes starts  */
 .bookdescription{

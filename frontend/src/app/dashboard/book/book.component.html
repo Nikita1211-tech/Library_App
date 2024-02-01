@@ -5,40 +5,10 @@
             <a href="">View All</a>
         </div>
         <div class="bookContainer_row2">
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book1.png" alt="">
+            <div class="bookDes" *ngFor="let book of books">
+                <img class="bookcat_img" [src]="book.bookcat_img" alt="">
                 <div class="">
-                    <p class="">Academic</p>
-                </div>
-            </div>
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book2.png" alt="">
-                <div class="">
-                    <p class="">Mythological</p>
-                </div>
-            </div>
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book3.png" alt="">
-                <div class="">
-                    <p class="">Spiritual</p>
-                </div>
-            </div>
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book4.png" alt="">
-                <div class="">
-                    <p class="">Motivational</p>
-                </div>
-            </div>
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book2.png" alt="">
-                <div class="">
-                    <p class="">Biographies</p>
-                </div>
-            </div>
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book1.png" alt="">
-                <div class="">
-                    <p class="">Fictional</p>
+                    <p class="">{{book.category}}</p>
                 </div>
             </div>
         </div>
@@ -49,40 +19,10 @@
             <a href="">View All</a>
         </div>
         <div class="bookContainer_row2">
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book7.png" alt="">
+            <div class="bookDes" *ngFor="let book of books">
+                <img class="" [src]="book.booktype_img" alt="">
                 <div class="">
-                    <p class="">Books</p>
-                </div>
-            </div>
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book6.png" alt="">
-                <div class="">
-                    <p class="">Magazine</p>
-                </div>
-            </div>
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book7.png" alt="">
-                <div class="">
-                    <p class="">General</p>
-                </div>
-            </div>
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book6.png" alt="">
-                <div class="">
-                    <p class="">Articles</p>
-                </div>
-            </div>
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book6.png" alt="">
-                <div class="">
-                    <p class="">NewsPaper</p>
-                </div>
-            </div>
-            <div class="bookDes">
-                <img class="" src="./../../../assets/images/book7.png" alt="">
-                <div class="">
-                    <p class="">Art & Design</p>
+                    <p class="">{{book.booktypename}}</p>
                 </div>
             </div>
         </div>

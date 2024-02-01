@@ -68,4 +68,5 @@ const bookDesc = async(req,res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+
 module.exports = {Login, Auth, Logout, Register, Detail, bookList, bookDesc}

@@ -20,9 +20,6 @@ export class MainComponent implements OnInit {
     public chart: any;
     constructor(private router:Router, private http: HttpClient){}
     
-    // redirecttobookdescription(id: number){
-    //   this.router.navigate(['/bookdescription', id]);
-    // }
     createChart(){
       Chart.defaults.font.family = "'Poppins', sans-serif",
       this.chart = new Chart("MyChart", {

@@ -3,5 +3,9 @@ export interface Writer{
     img: String;
     bookName: String;
     writerName: String;
-    price: String;
+    sellingprice: String;
+    category: String;
+    bookcat_img: String;
+    booktype_img: String;
+    booktypename: String;
 }

@@ -9,7 +9,7 @@ const Book = sequelize.define('Book',{
         autoIncrement: true,
         allowNull: false,
     },
-    img:{
+    img: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
@@ -39,6 +39,24 @@ const Book = sequelize.define('Book',{
         allowNull: false,
     },
     author: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    bookcat_img: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
+    category: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    booktype_img: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
+    booktypename: {
         type: DataTypes.STRING,
         allowNull: false,
     }

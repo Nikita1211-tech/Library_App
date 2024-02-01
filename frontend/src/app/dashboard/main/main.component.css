@@ -12,9 +12,11 @@ h5{
     font-size: 20px;
 }
 .bk_shadow{
-    box-shadow: 2px 2px 12px  rgba(180, 179, 179, 0.432);
+    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
+    border: 1px solid #EAEAEA;
     border-radius: 15px;
     padding: 20px;
+    background-color: white;
 }
 /* Global classes ends  */
 /* Conatiner classes starts */
@@ -30,19 +32,22 @@ h5{
     display: flex;
     color: white;
     gap: 20px;
+    height: 100%;
 }
 .image_slider_container{
     flex: 1;
+    height: 100%;
 }
 .slider{
     display: flex;
     background-color: #fb3452;
     padding: 50px;
+    height: 100%;
     border-radius: 20px;
     justify-content: space-between;
 }
 .slider img{
-    width: 40%;
+    width: 50%;
 }
 .content{
     display: flex;
@@ -82,16 +87,22 @@ h5{
     display: flex;
     justify-content: space-between;
     overflow-x: auto;
-    gap: 20px;
+    overflow-y: hidden;
     height: 100%;
 }
-.book_frame {
+.book_frame{
     width: 15%;
-    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: space-between;
 }
 .book_frame img{
     width: 100%;
     height: 80%;
+}
+.book_detail{
+    height: 20%;
 }
 .table_section{
    display: flex;
@@ -104,10 +115,12 @@ table{
     border-collapse: separate;
     border-spacing: 20%;
     height: 90%;
+    padding: 20px;
 }
 td,th{
     border-style: none;
-    text-align: center;
+    text-align: left;
+    vertical-align: center;
 }
 .table_head{
     display: flex;
@@ -134,8 +147,7 @@ td,th{
 }
 .reader_name{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
     gap: 20px;
 }
 .reader_name img{
@@ -204,7 +216,7 @@ td,th{
      font-size: 10px;
    }
    .book_frame {
-    width: 25%; 
+    height: 100%; 
     }
     .book_frame img{
         height: 20%; 
@@ -217,4 +229,15 @@ td,th{
     p{
       font-size: 14px;
     }
- }
+}
+@media (max-width: 1400px) { 
+    h5{
+     font-size: 16px;
+    }
+    p{
+      font-size: 14px;
+    }
+    .book_frame {
+        height: 100%; 
+    }
+}

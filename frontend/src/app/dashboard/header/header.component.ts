@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,8 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private authenticationservice: AuthService) {}
   logout(): void {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.authenticationservice.logout();
   }
 }
