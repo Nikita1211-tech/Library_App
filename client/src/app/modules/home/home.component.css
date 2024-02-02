@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+button{
+    border: none;
+    background-color: #fb3452;
+    color: white;
+}
+a{
+    text-decoration: none;
+    color: #fb3452;
+}
+h4{
+    font-size: 30px;
+    font-weight: 200;
+    margin: 0px;
+}
+h5{
+    font-size: 20px;
+}
+.bk-shadow{
+    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
+    border: 1px solid #EAEAEA;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+}
+/* Global classes ends  */
+/* Conatiner classes starts */
+.main-container{
+    font-family: 'Poppins', sans-serif;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    overflow: hidden;
+}
+.container{
+    display: flex;
+    color: white;
+    gap: 20px;
+    height: 100%;
+}
+.image-slider-container{
+    flex: 1;
+    height: 100%;
+}
+.slider{
+    display: flex;
+    background-color: #fb3452;
+    padding: 30px;
+    height: 100%;
+    border-radius: 20px;
+    justify-content: space-between;
+}
+.slider img{
+    width: 45%;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.graph-container{
+    flex: 0.5;
+}
+.graph-details{
+    display: flex;
+    justify-content: space-between;
+    color: black;
+}
+.graph-tags{
+    display: flex;
+    gap: 10px;
+}
+.book_list{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.writer-name{
+    color: #0000006c;
+}
+.price{
+    color: #fb3452;
+    font-weight: 600;
+}
+.book-section{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.book-section-row2{
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 100%;
+}
+.book-frame{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: space-between;
+}
+.book-frame img{
+    width: 100%;
+    height: 80%;
+}
+.book-detail{
+    height: 20%;
+}
+.table-section{
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+table{
+    border-radius: 10px;
+    border: solid 1px #EAEAEA;
+    border-collapse: separate;
+    border-spacing: 20%;
+    height: 90%;
+    padding: 20px;
+}
+td,th{
+    border-style: none;
+    text-align: left;
+    vertical-align: center;
+}
+.table-head{
+    display: flex;
+    justify-content: space-between;
+}
+.table-button{
+    display: flex;
+    gap: 20px;
+    background-color: #fb34521e;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0px 20px;
+    background: linear-gradient(
+        to right,
+        #fb3452 0%,
+        #fb3452 15%,
+        #fb345223 15%,
+        #fb345223 100%
+      );
+}
+.btn{
+   border-radius: 10px;
+   background-color: #fb3452;
+}
+.reader-name{
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+.reader-name img{
+    width: 50px;
+    border-radius: 50%;
+}
+/* Media queries  */
+@media (max-width: 400px) {
+    .book_frame {
+        height: 100%;
+    }
+    .book_frame img{
+        height: 90%; 
+    }
+   
+}
+@media (max-width: 576px) {
+    h5{
+        font-size: px;
+    }
+    p{
+      font-size: 6px;
+    }
+    th{
+        font-size: 12px
+    }
+    td{
+        font-size: 10px;
+    }
+    .book_frame {
+        width: 25%; 
+    }
+    .book_frame img{
+        height: 50%; 
+    }
+   
+}
+@media (max-width: 768px) {
+    h5{
+        font-size: 8px;
+    }
+    p{
+      font-size: 10px;
+    }
+    th{
+        font-size: 12px
+    }
+    td{
+        font-size: 10px;
+    }
+    .book_frame {
+        width: 25%; 
+    }
+    .book_frame img{
+        height: 50%; 
+    }
+}
+@media (max-width: 992px) { 
+   button{
+    width: 50%;
+   }
+   h5{
+    font-size: 12px;
+   }
+   p{
+     font-size: 10px;
+   }
+   .book_frame {
+    height: 100%; 
+    }
+    .book_frame img{
+        height: 20%; 
+    }
+}
+@media (max-width: 1200px) { 
+    h5{
+     font-size: 16px;
+    }
+    p{
+      font-size: 14px;
+    }
+}
+@media (max-width: 1400px) { 
+    h5{
+     font-size: 16px;
+    }
+    p{
+      font-size: 14px;
+    }
+    .book_frame {
+        height: 100%; 
+    }
+}

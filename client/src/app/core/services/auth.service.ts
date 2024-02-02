@@ -7,17 +7,26 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
+  private API_URL= environment.API_URL;
   constructor( private router: Router, private http: HttpClient) {}
-  login() {
-    this.http.post<String>(`${environment.API_URL}`, {})
+  login(email: string, password: string){
+    const obj = {
+      email: email,
+      password: password
+    };
+    this.http.post<{token: string}>(this.API_URL+'/login',obj)
       .subscribe(
-        // (response) => {
-        //   localStorage.setItem('token', response.token);
-        //   this.router.navigate(['/main']);
-        // },
-        // (error: String) => {
-        //   console.error("Login Failed", error);
-        // }
+        (response) => {
+          localStorage.setItem('token', response.token );
+          this.router.navigate(['/home']);
+        },
+        (error: String) => {
+          console.error("Login Failed", error);
+        }
       );
-}
+  }
+  logout(){
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+  }
 }

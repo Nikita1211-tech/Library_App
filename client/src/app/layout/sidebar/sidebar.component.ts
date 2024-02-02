@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-
+  isDropdownOpen = false;
+  // Dropdown Code 
+  dropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
 }
