@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 button{
     border: none;
-    background-color: #fb3452;
+    background-color: transparent;
     color: white;
 }
 a{
@@ -15,6 +15,9 @@ h4{
 }
 h5{
     font-size: 20px;
+}
+p{
+    text-align: justify;
 }
 .bk-shadow{
     box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
@@ -40,7 +43,7 @@ h5{
     height: 100%;
 }
 .image-slider-container{
-    flex: 1;
+    flex: 2;
     height: 100%;
 }
 .slider{
@@ -52,7 +55,7 @@ h5{
     justify-content: space-between;
 }
 .slider img{
-    width: 45%;
+    width: 50%;
 }
 .content{
     display: flex;
@@ -60,7 +63,7 @@ h5{
     justify-content: space-between;
 }
 .graph-container{
-    flex: 0.5;
+    flex: 1;
 }
 .graph-details{
     display: flex;
@@ -114,17 +117,20 @@ h5{
    flex-direction: column;
    gap: 20px;
 }
+.table-container{
+    overflow-x: auto;
+}
 table{
     border-radius: 10px;
     border: solid 1px #EAEAEA;
     border-collapse: separate;
-    border-spacing: 20%;
+    border-spacing: 10px 30px;
     height: 90%;
-    padding: 20px;
+    width: 100%;
 }
 td,th{
     border-style: none;
-    text-align: left;
+    text-align: center;
     vertical-align: center;
 }
 .table-head{
@@ -134,25 +140,17 @@ td,th{
 .table-button{
     display: flex;
     gap: 20px;
-    background-color: #fb34521e;
     align-items: center;
-    border-radius: 10px;
-    padding: 0px 20px;
-    background: linear-gradient(
-        to right,
-        #fb3452 0%,
-        #fb3452 15%,
-        #fb345223 15%,
-        #fb345223 100%
-      );
 }
-.btn{
-   border-radius: 10px;
-   background-color: #fb3452;
+.table-button a {
+    background-color: #fb34521e;
+    border-radius: 5px;
+    padding: 10px 20px;
 }
 .reader-name{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 .reader-name img{
@@ -160,7 +158,19 @@ td,th{
     border-radius: 50%;
 }
 /* Media queries  */
-@media (max-width: 400px) {
+@media (max-width: 450px) {
+    .slider img{
+        display: none;
+    }
+    th{
+        font-size: 10px
+    }
+    td{
+        font-size: 8px;
+    }
+    .reader-name img{
+        display: none;
+    }
     .book_frame {
         height: 100%;
     }
@@ -171,16 +181,24 @@ td,th{
 }
 @media (max-width: 576px) {
     h5{
-        font-size: px;
+        font-size: 20px;
     }
     p{
       font-size: 6px;
+    }
+    .table-button a{
+        font-size: 8px;
+        padding: 8px ;
+        width: 100%;
     }
     th{
         font-size: 12px
     }
     td{
         font-size: 10px;
+    }
+    .reader-name img{
+        width: 20px;
     }
     .book_frame {
         width: 25%; 
@@ -201,8 +219,11 @@ td,th{
         font-size: 12px
     }
     td{
-        font-size: 10px;
+        font-size: 12px;
     }
+    /* .reader-name img{
+        width: 30px;
+    } */
     .book_frame {
         width: 25%; 
     }
@@ -212,14 +233,33 @@ td,th{
 }
 @media (max-width: 992px) { 
    button{
-    width: 50%;
+    width: 100%;
+    text-align: left;
+   }
+   h4{
+    font-size: 1.5rem;
    }
    h5{
     font-size: 12px;
    }
    p{
-     font-size: 10px;
+     font-size: 9px;
    }
+   .container{
+    flex-direction: column;
+   }
+   .slider{
+    padding: 25px;
+   }
+   .slider img{
+    width: 55%;
+   }
+   .content{
+       gap: 24px;
+   }
+   .line-chart{
+    height: 100%;
+    }
    .book_frame {
     height: 100%; 
     }
@@ -228,8 +268,23 @@ td,th{
     }
 }
 @media (max-width: 1200px) { 
+    /* h4{
+        font-size: 1.2rem;
+    }
     h5{
-     font-size: 16px;
+     font-size: 10px;
+    }
+    p{
+      font-size: 8px;
+    } */
+    /* .container{
+        flex-direction: column;
+    } */
+    .slider{
+        height: 100%;
+    }
+    .line-chart{
+        height: 100%;
     }
     p{
       font-size: 14px;
@@ -241,6 +296,12 @@ td,th{
     }
     p{
       font-size: 14px;
+    }
+    .slider{
+        height: 100%;
+    }
+    .content{
+        gap: 45px;
     }
     .book_frame {
         height: 100%; 
