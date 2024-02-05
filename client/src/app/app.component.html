@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div *ngIf="!isloginpage()" class="sidebar">
   <div class="navbar">
       <app-sidebar></app-sidebar>
   </div>
@@ -8,4 +8,7 @@
           <router-outlet></router-outlet>
       </div>
   </div>
+</div>
+<div *ngIf="isloginpage()">
+    <router-outlet></router-outlet>
 </div>
