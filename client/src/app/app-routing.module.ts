@@ -21,7 +21,7 @@ const routes: Routes = [
     component: HomeComponent, 
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) 
   },
-  { path: 'reader', loadChildren: () => import('./reader/reader.module').then(m => m.ReaderModule) },
+  { path: 'reader', loadChildren: () => import('./modules/reader/reader.module').then(m => m.ReaderModule) },
   { path: 'modules/reader', loadChildren: () => import('./modules/reader/reader.module').then(m => m.ReaderModule) }
 ];
 
