@@ -18,21 +18,15 @@ h5{
 p{
     text-align: justify;
 }
-@font-face {
-    font-family: 'Poppins';
-    src: url('./../../../assets/font-family/Poppins/Poppins-Regular.ttf');
-}
 /* p{
     font-size: 1.2rem;
 } */
 /* Form classes  */
 .loginform{
-    font-family: 'Poppins';
     height: 90vh;
 }
 .loginform-conatiner{
     display: flex;
-    font-family: 'Poppins', sans-serif;
     gap: 40px;
     height: 100%;
 }

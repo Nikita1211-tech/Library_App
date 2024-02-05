@@ -99,7 +99,7 @@ p{
     height: 100%;
 }
 .book-frame{
-    width: 15%;
+    width: 18%;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -107,7 +107,7 @@ p{
 }
 .book-frame img{
     width: 100%;
-    height: 80%;
+    height: 400px;
 }
 .book-detail{
     height: 20%;
@@ -260,11 +260,11 @@ td,th{
    .line-chart{
     height: 100%;
     }
-   .book_frame {
+   /* .book_frame {
     height: 100%; 
-    }
-    .book_frame img{
-        height: 20%; 
+    } */
+    .book-frame img{
+        height: 150px;
     }
 }
 @media (max-width: 1200px) { 
@@ -305,5 +305,9 @@ td,th{
     }
     .book_frame {
         height: 100%; 
+    }
+    .book-frame img{
+        width: 100%;
+        height: 300px;
     }
 }

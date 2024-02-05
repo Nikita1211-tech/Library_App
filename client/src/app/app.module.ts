@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './modules/home/home.component';
 import { AppLayoutComponent } from './layout/app-layout/app-layout.component';
+import { NgFor } from '@angular/common';
+import { ReportsComponent } from './modules/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,7 @@ import { AppLayoutComponent } from './layout/app-layout/app-layout.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

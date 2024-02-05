@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './modules/login/login.component';
+import { AuthGuard } from './core/guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,10 +20,21 @@ const routes: Routes = [
   },
   { path: 'home',
     component: HomeComponent, 
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) 
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
+    canActivate: [AuthGuard]
   },
-  { path: 'reader', loadChildren: () => import('./modules/reader/reader.module').then(m => m.ReaderModule) },
-  { path: 'modules/reader', loadChildren: () => import('./modules/reader/reader.module').then(m => m.ReaderModule) }
+  { path: 'reader', 
+    loadChildren: () => import('./modules/reader/reader.module').then(m => m.ReaderModule),
+    canActivate: [AuthGuard]
+  },
+  { path: 'book', 
+    loadChildren: () => import('./modules/book/book.module').then(m => m.BookModule),
+    canActivate: [AuthGuard] 
+  },
+  { path: 'reports', 
+    loadChildren: () => import('./modules/reports/reports.module').then(m => m.ReportsModule),
+    canActivate: [AuthGuard] 
+  }
 ];
 
 @NgModule({
