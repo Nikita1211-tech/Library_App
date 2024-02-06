@@ -29,12 +29,20 @@
     padding: 20px 20px 0px 20px;
     background-color: #eaeaea2b;
 }
-@media only screen and (max-width: 500px) {
+.login{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+@media only screen and (max-width: 576px) {
     .navbar{
         display: none;
     }
     .mainContainer{
         padding: 10px;
+    }
+    .login{
+        flex-direction: column;
     }
 }
 @media only screen and (max-width: 1200px) {

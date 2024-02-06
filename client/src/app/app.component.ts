@@ -12,4 +12,7 @@ export class AppComponent {
   isloginpage(): boolean {
     return this.router.url === '/login';
   }
+  isregisterpage(): boolean {
+    return this.router.url === '/register';
+  }
 }

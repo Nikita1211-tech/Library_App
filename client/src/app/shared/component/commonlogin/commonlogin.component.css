@@ -1,0 +1,73 @@
+/* .loginform-conatiner{
+    width: 100%;
+    height: 100%;
+} */
+h2{
+    font-size: 62px;
+    font-weight: 100;
+    margin: 0px;
+    padding: 0px;
+}
+.loginform{
+    height: 90vh;
+}
+.loginform-conatiner{
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    height: 100%;
+}
+.loginform-col1{
+    padding: 40px;
+    background-color: #FB3453;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    height: 100%;
+}
+.star-icon{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+/* .star img{
+    width: ;
+} */
+.admin-profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.admin-profile img{
+   width: 50px;
+   border-radius: 50%;
+}
+.admin-profile div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}   
+.admin-profile div p{
+    margin: 0px;
+}  
+/* Media Queries  */
+@media (max-width:576px){
+    h2{
+        font-size: 25px;
+        font-weight: 500;
+    }
+    p{
+        font-size: 14px;
+    }
+    .admin-profile{
+        display: none;
+    }
+    .admin p{
+        display: none;
+    }
+    .star-icon img{
+        width: 15px;
+    }
+}

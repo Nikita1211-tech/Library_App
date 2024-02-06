@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { HeaderComponent } from '../../layout/header/header.component';
-import { SidebarComponent } from '../../layout/sidebar/sidebar.component';
+import { HeaderComponent } from '../../../layout/header/header.component';
+import { SidebarComponent } from '../../../layout/sidebar/sidebar.component';
 
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { piechartlabels } from '../../data/constants/piechart-constants';
+import { piechartlabels } from '../../../data/constants/piechart-constants';
 
 @Component({
   selector: 'app-reports',

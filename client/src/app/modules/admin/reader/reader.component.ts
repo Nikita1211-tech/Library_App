@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { grapphconstants } from '../../data/constants/graph-constants';
+import { grapphconstants } from '../../../data/constants/graph-constants';
 
 @Component({
   selector: 'app-reader',

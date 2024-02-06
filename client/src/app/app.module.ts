@@ -5,13 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { LoginComponent } from './modules/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './modules/home/home.component';
 import { AppLayoutComponent } from './layout/app-layout/app-layout.component';
-import { NgFor } from '@angular/common';
-import { ReportsComponent } from './modules/reports/reports.component';
+import { LoginComponent } from './shared/login/login.component';
+import { CommonloginComponent } from './shared/component/commonlogin/commonlogin.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +18,7 @@ import { ReportsComponent } from './modules/reports/reports.component';
     HeaderComponent,
     LoginComponent,
     AppLayoutComponent,
+    CommonloginComponent,
   ],
   imports: [
     BrowserModule,

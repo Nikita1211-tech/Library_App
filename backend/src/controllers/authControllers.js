@@ -1,18 +1,37 @@
 const mysql = require('mysql2');
 const jwt = require("jsonwebtoken");
-const User = require('../model/userModel');
+const Users = require('../model/userModel');
 const Book = require('../model/bookModel');
 // const Conn = require('../dbconfig');
 require('dotenv')
 const Login = (req,res) => {
    console.log("Hello");
 }
+const Logout = (req,res) => {
+  res.clearCookie('jwt', { httpOnly: true, secure: true });
+  res.status(200).json({ message: 'Logout successful' });
+}
+const Register =  async(req,res) => {
+     try{
+         const user = await Users.create({
+         firstname: req.body.firstname,
+         lastname: req.body.lastname,
+         profilepic: req.body.profilepic,
+         email: req.body.email,
+         password: req.body.password
+      });
+      if(user){
+          return res.json({user})
+      }
+    } catch(error){
+      console.log(error);
+    }
+}
 const Auth = async (req,res) => {
     const { email, password } = req.body;
 
   try {
-    // Finds the user in the database
-    const user = await User.findOne({ where: { email } });
+    const user = await Users.findOne({ where: { email } });
 
     if (user && user.password === password) {
       const token = jwt.sign({ email }, process.env.JWT_SECRET);
@@ -26,13 +45,6 @@ const Auth = async (req,res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
-}
-const Logout = (req,res) => {
-  res.clearCookie('jwt', { httpOnly: true, secure: true });
-  res.status(200).json({ message: 'Logout successful' });
-}
-const Register = (req,res) => {
-    console.log("Register Success");
 }
 
 const Detail = (req,res) => {

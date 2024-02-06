@@ -81,15 +81,21 @@ button{
 .menu:hover{
     color: #fb3452;
 }
-@media only screen and (max-width: 576px){
-  .toggle{
-    display: flex;
-  }
-  .responsivenavbarContainer{
+/* User sidebar classes starts  */
+.user-sidebar{
     display: none;
-  }
 }
-@media only screen and (max-width: 1200px){
+/* Media Queries starts */
+
+@media(max-width: 576px){
+    .toggle{
+      display: flex;
+    }
+    .user-sidebar{
+      display: flex;
+    }
+}
+@media(max-width: 1200px){
     .navbarContainer{
         display: none;
     }
@@ -116,7 +122,7 @@ button{
         color: white;
         align-self: center;
     }
-    .setting{
+    /* .setting{
         
-    }
+    } */
 }

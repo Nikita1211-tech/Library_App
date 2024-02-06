@@ -1,6 +1,6 @@
 <div class="loginform">
     <div class="loginform-conatiner">
-        <div class="loginform-col1">
+        <!-- <div class="loginform-col1">
           <div>
             <h2>Welcome to our Library</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus aspernatur qui esse, consequatur enim in!</p>
@@ -22,7 +22,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="loginform-col2">
               <div class="logo">
                 <img src="./../../assets/images/logo.png" alt="">
@@ -30,7 +30,7 @@
               </div>
               <h4>Sign In</h4>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, ducimus? Velit et a modi nobis.</p>
-              <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form-control ">
+              <form [formGroup]="loginform" (ngSubmit)="onSubmit()" class="form-control ">
                 <div class="form-label">
                   <label for="mail">Email</label>
                   <input type="email" class="form-control" name="email" id="Username" formControlName="email" aria-describedby="emailHelp" placeholder="Email">

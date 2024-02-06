@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { book } from '../../data/intefaces/book';
+import { book } from '../../../data/interfaces/book.interface';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

@@ -4,6 +4,19 @@
     margin: 0px;
     padding: 0px;
 }
+h4{
+    font-size: 32px;
+}
+h5{
+    font-size: 20px;
+}
+h6{
+    font-size: 16px;
+    font-weight: 300;
+}
+a, button{
+    cursor: pointer;
+}
 /* header classes start  */
 header{
     font-family: 'Poppins', sans-serif;
@@ -18,9 +31,11 @@ header{
     background-color: #d3d0d046;
     border-radius: 15px;
     display: flex;
+    align-items: center;
 }
-.ressearch_box{
-    display: none;
+.search_box img{
+    width: 20px;
+    height: 20px;
 }
 input{
     border: none;
@@ -44,6 +59,21 @@ input{
     gap: 10px;
 }
 .header_col3 img{
+    width: 48px;
+    border-radius: 50%;
+}
+/* User header classes stsrts  */
+
+.user-header{
+    display: none;
+}
+.user-header-col1{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user-header-col1 img{
     width: 48px;
     border-radius: 50%;
 }
@@ -75,15 +105,20 @@ button{
 /* Show the dropdown content on hover */
 .dropdown:hover .dropdown-content {
     display: block;
-    right: 100%; /* Adjust this value as needed */
+    right: 100%;
     left: auto;
 }
 /* Media Queries  */
 @media (max-width: 576px) {
-    header{
-        padding: 10px;
+    .admin-header{
+        display: none;
     }
-   .search_box{
+    .user-header{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+   /* .search_box{
     display: none;
    }
    .ressearch_box{
@@ -92,5 +127,5 @@ button{
     background-color: #d3d0d046;
     border-radius: 5px;
     display: flex;
-   }
+   } */
 }
