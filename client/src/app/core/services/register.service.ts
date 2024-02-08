@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { register } from '../../data/interfaces/register.interface';
 
 @Injectable({
@@ -10,15 +10,14 @@ import { register } from '../../data/interfaces/register.interface';
 export class RegisterService {
   private API_URL= environment.API_URL;
   constructor( private router: Router, private http: HttpClient) {}
-  register(register: register): void{
+  register(register: register, errorCallback: (error: any) => void): void{
     this.http.post(this.API_URL+'/register', register)
       .subscribe(
         (response) => {
-          console.log(register)
           this.router.navigate(['/home']);
         },
-        (error: String) => {
-          console.error("Login Failed", error);
+        (error) => {
+          errorCallback(error);
         }
       );
   }

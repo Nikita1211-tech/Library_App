@@ -12,19 +12,23 @@ const Logout = (req,res) => {
   res.status(200).json({ message: 'Logout successful' });
 }
 const Register =  async(req,res) => {
+    const user  = {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      profilepic: req.body.profilepic,
+      email: req.body.email,
+      password: req.body.password,
+    }
      try{
-         const user = await Users.create({
-         firstname: req.body.firstname,
-         lastname: req.body.lastname,
-         profilepic: req.body.profilepic,
-         email: req.body.email,
-         password: req.body.password
-      });
-      if(user){
-          return res.json({user})
-      }
+        const existinguser = await Users.findOne({ where: { email: user.email} })
+        if(existinguser != null){
+          return res.status(409).json({message: "User already exists"});
+        }
+         const newuser = await Users.create(user);
+         return res.status(201).json({message: "User created successfully"})
     } catch(error){
       console.log(error);
+      return res.status(500).json({message: error.message})
     }
 }
 const Auth = async (req,res) => {

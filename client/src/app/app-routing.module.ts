@@ -7,7 +7,7 @@ import { AuthGuard } from './core/guard/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/main',
     pathMatch: 'full'
   },
   { 
@@ -37,6 +37,9 @@ const routes: Routes = [
   },
   { path: 'register', 
     loadChildren: () => import('./modules/user/register/register.module').then(m => m.RegisterModule) 
+  },
+  { path: 'main', 
+    loadChildren: () => import('./modules/user/home/home.module').then(m => m.HomeModule) 
   }
 ];
 

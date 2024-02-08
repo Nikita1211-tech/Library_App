@@ -31,17 +31,18 @@ const Users = sequelize.define('Users',{
     },
     role:{
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      defaultValue: "User",
     }
 })
-const options = {
-  field: 'password',
-  rounds: 12,
-  compare: 'authenticate', 
-}
-useBcrypt(Users, options);
-Users.sync({ force: false }).then(() => {
-    console.log('User table synced');
-});
+// const options = {
+//   field: 'password',
+//   rounds: 12,
+//   compare: 'authenticate', 
+// }
+// useBcrypt(Users, options);
+// Users.sync({ force: false }).then(() => {
+//     console.log('User table synced');
+// });
   
 module.exports = Users;

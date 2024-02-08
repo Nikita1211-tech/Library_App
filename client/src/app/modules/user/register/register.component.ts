@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from '../../../core/services/register.service';
 import { register } from '../../../data/interfaces/register.interface';
+// import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +13,7 @@ import { register } from '../../../data/interfaces/register.interface';
 })
 export class RegisterComponent {
   registerform: FormGroup
-  constructor(private fb: FormBuilder, private register: RegisterService){
+  constructor(private fb: FormBuilder, private register: RegisterService, private router: Router){
     this.registerform = new FormGroup({
       firstname: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
@@ -28,7 +31,26 @@ export class RegisterComponent {
        email:  this.registerform.value.email,
        password: this.registerform.value.password,
        role: "User"
-   }
-   this.register.register(obj)
-  }
+   } 
+   this.register.register(obj, (error) => {
+     if(!error.error.message){
+      console.log(error.error.message);
+      this.router.navigate(['/home']);
+     }
+     else{
+      this.alertuser();
+     }
+   })
+ }
+ alertuser(): void{
+  Swal.fire({
+        title: 'Signup unsuccessful.',
+        text: 'User already exists',
+        icon: 'warning',
+        confirmButtonText: 'Okay',
+        timer: 2000
+      }).then((result) => {
+      });
+ }
 }
+

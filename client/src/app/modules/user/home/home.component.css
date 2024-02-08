@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+h3{
+    font-size: 60px;
+    font-family: 'PT Serif', serif;
+    font-weight: 200;
+}
+p{
+    text-align: justify;
+}
+/* Main Page class starts  */
+.mainPage{
+    display: flex;
+    height: 100vh;
+}
+.mainPage_col1{
+   flex: 2;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-color: #F1F3F6;
+}
+.mainPage_col1 img {
+   width: 30%;
+}
+.mainPage_col2{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+.mainPage_col2_content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.btnicon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btnicon img{
+    width: 28px;
+    height: 11px;
+}
+button{
+    border: none;
+    color: white;
+    background-color: #fb3453;
+    padding: 10px 40px;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+/* Main Page class ends  */
+/* Media Queries  */
+@media (max-width: 1200px) { 
+    h3{
+        font-size: 50px;
+    }
+    button{
+        font-size: 18px;
+        padding: 10px 30px;
+    }
+    .btnicon img{
+        width: 22px;
+        height: 8px;
+    }
+}
+@media (max-width: 992px) { 
+    h3{
+        font-size: 40px;
+    }
+    p{
+        font-size: 15px;
+    }
+    button{
+        font-size: 16px;
+        padding: 10px 20px;
+    }  
+    .btnicon img{
+        width: 19px;
+        height: 6px;
+    }
+}
+@media (max-width: 768px) { 
+    h3{
+        font-size: 30px;
+    }
+    p{
+        font-size: 13px;
+    }
+    .mainPage_col1{
+        padding: 10px;
+    }
+    .mainPage_col1 img {
+        width: 60%;
+    }
+    button{
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+    .btnicon img{
+        width: 18px;
+        height: 6px;
+    }
+}
+@media (max-width: 576px) { 
+    h3{
+        font-size: 40px;
+    }
+    p{
+        font-size: 13px;
+    }
+    .mainPage{
+        flex-direction: column;
+        height: 95vh;
+    }
+    .mainPage_col1{
+        padding: 10px;
+    }
+    .mainPage_col1 img {
+        width: 50%;
+    }
+    button{
+        font-size: 14px;
+        padding: 10px 40px;
+    }
+    .btnicon img{
+        width: 18px;
+        height: 6px;
+    }
+}

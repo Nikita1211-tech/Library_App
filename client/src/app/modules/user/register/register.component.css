@@ -69,3 +69,6 @@ input[type=submit]{
     font-family: 'Poppins';
     font-size: 15px;
 }
+.form-validation{
+    color: #fb3453;
+}
