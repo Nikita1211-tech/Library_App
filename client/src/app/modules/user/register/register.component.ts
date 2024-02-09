@@ -23,7 +23,7 @@ export class RegisterComponent {
       checkpassword: new FormControl('', [Validators.required])
     })
   }
-  onSubmit(): void{
+  onRegister(): void{
    const obj:register = {
        firstname:  this.registerform.value.firstname,
        lastname: this.registerform.value.lastname,
@@ -33,24 +33,21 @@ export class RegisterComponent {
        role: "User"
    } 
    this.register.register(obj, (error) => {
-     if(!error.error.message){
-      console.log(error.error.message);
-      this.router.navigate(['/home']);
-     }
-     else{
-      this.alertuser();
-     }
-   })
- }
- alertuser(): void{
-  Swal.fire({
+    if(error?.error?.message === "User already exists"){
+      Swal.fire({
         title: 'Signup unsuccessful.',
         text: 'User already exists',
         icon: 'warning',
         confirmButtonText: 'Okay',
         timer: 2000
       }).then((result) => {
+        this.router.navigate(['/register']);
       });
+    }
+    else{
+      this.router.navigate(['/home']);
+    }
+   })
  }
 }
 

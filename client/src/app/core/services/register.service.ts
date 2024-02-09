@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { register } from '../../data/interfaces/register.interface';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class RegisterService {
     this.http.post(this.API_URL+'/register', register)
       .subscribe(
         (response) => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/user-home']);
         },
         (error) => {
           errorCallback(error);

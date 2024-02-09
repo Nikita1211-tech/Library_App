@@ -1,54 +1,50 @@
 /* Global classes  */
 a{
     text-decoration: none;
+    font-size: 14px;
     color: #FB3453;
+    cursor: pointer;
 }
 h2{
     font-size: 3rem;
     font-weight: 500;
+    margin: 0px;
 }
 h4{
     font-weight: 600;
     font-size: 2.5rem;
+    margin: 0px;
 }
 h5{
     font-size: 25px;
     font-weight: 600;
+    margin: 0px;
 }
 p{
     text-align: justify;
+    font-size: 16px;
+    margin: 0px;
 }
 /* p{
     font-size: 1.2rem;
 } */
 /* Form classes  */
-.loginform{
-    height: 90vh;
-}
 .loginform-conatiner{
     display: flex;
-    gap: 40px;
-    width: 100%;
-    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    /* padding: 60px; */
 }
-.loginform-col1{
-    padding: 40px;
-    background-color: #FB3453;
-    color: white;
+.loginform-col2{
+    padding: 80px;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
-    height: 100%;
 }
-.star-icon{
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-/* .star img{
-    width: ;
-} */
 .admin-profile{
     display: flex;
     align-items: center;
@@ -65,20 +61,12 @@ p{
 }   
 .admin-profile div p{
     margin: 0px;
-}    
-.loginform-col2{
-    padding: 0px 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 22px;
-    flex: 2;
-    height: 100%;
 }
 form{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 50px;
+    height: fit-content;
 }
 label{
     font-weight: bold;
@@ -129,24 +117,8 @@ input[type="checkbox"]{
     width: 16px;
     height: 14px;
     cursor: pointer;
-}
+} 
 /* Media Queries  */
-@media (max-width: 576px){
-    h2{
-        font-size: 12px;
-        font-weight: 500;
-    }
-    .loginform-conatiner{
-        display: flex;
-        flex-direction: column;
-    }
-    .admin{
-        display: none;
-    }
-    .loginform-col2{
-        padding: 10px;
-    }
-}
 @media (max-width: 685px){
     h2{
         font-size:  6px;
@@ -192,13 +164,16 @@ input[type="checkbox"]{
     }
     h4{
         font-weight: 600;
-        font-size: 1.6rem;
+        font-size: 16px;
     }
     h5{
         font-weight: 600;
     }
     p{
         font-size: 0.6rem;
+    }
+    a{
+        font-size: 12px;
     }
     label{
         font-size: 0.6rem;
@@ -207,7 +182,7 @@ input[type="checkbox"]{
         gap: 15px;
     }
     input{
-        padding: 8px;
+        padding: 5px;
     }
     .button{
         padding: 10px;
@@ -227,8 +202,7 @@ input[type="checkbox"]{
 }
 @media (max-width: 992px) {
     h2{
-        font-size: 2.4rem;
-        font-weight: 500;
+        font-size: 10px;
     }
     h4{
         font-weight: 600;
@@ -264,27 +238,42 @@ input[type="checkbox"]{
     }
     h4{
         font-weight: 600;
-        font-size: 20px;
+        font-size: 25px;
     }
     h5{
         font-weight: 600;
     }
     p{
-        font-size: 0.7rem;
+        font-size: 12px;
     }
     .loginform{
         height: 90vh;
     }
     .loginform-col2{
-        gap: 13px;
+        padding: 60px;
     }
     form{
         gap: 20px;
     }
+    label, ::placeholder{
+        font-size: 14px;
+    }
     input{
         padding: 15px;
     }
-    .star-icon img{
-        width: 20px;
+}
+
+
+@media (max-width: 576px){
+    .loginform-conatiner{
+       padding: 30px;
+       height: 90vh;
+        /* padding: 60px; */
+    }
+    .loginform-col2{
+        width: 100%;
+        padding: 10px;
+        justify-content: normal;
+        gap: 60px;
     }
 }

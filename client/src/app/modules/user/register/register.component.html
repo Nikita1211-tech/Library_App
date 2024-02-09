@@ -7,7 +7,7 @@
               </div>
               <h4>Sign Up</h4>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, ducimus? Velit et a modi nobis.</p>
-              <form [formGroup]="registerform" (ngSubmit)="onSubmit()" class="form-control ">
+              <form [formGroup]="registerform" (ngSubmit)="onRegister()" class="form-control ">
                 <div style="display: flex; justify-content: space-between; width: 100%;">
 
                     <div class="form-label" style="width: 47%;">
@@ -51,7 +51,7 @@
                         <input style="width: 90%;" type="password" class="form-control" name="checkpassword" id="checkpassword" formControlName="checkpassword" aria-describedby="emailHelp" placeholder="Re Enter Password" required>
                     </div>
                 </div>
-                <input (click)="alertuser()" type="submit" [disabled]="!registerform.valid" value="Submit" name="Submit">
+                <input type="submit" [disabled]="!registerform.valid" value="Submit" name="Submit">
               </form>
         </div>
     </div>

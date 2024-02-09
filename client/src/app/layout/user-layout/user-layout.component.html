@@ -1,0 +1,7 @@
+<div *ngIf="!ismainpage()" class="login">
+    <app-commonlogin class="login-common-page"></app-commonlogin>
+    <router-outlet class="login-form-page"></router-outlet>
+</div>
+<div *ngIf="ismainpage()">
+    <router-outlet></router-outlet>
+</div>

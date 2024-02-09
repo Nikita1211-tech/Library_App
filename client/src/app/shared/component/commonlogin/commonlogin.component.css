@@ -3,13 +3,17 @@
     height: 100%;
 } */
 h2{
-    font-size: 62px;
+    font-size: 46px;
     font-weight: 100;
     margin: 0px;
     padding: 0px;
 }
+p{
+    text-align: justify;
+    font-size: 16px;
+}
 .loginform{
-    height: 90vh;
+    height: 100vh;
 }
 .loginform-conatiner{
     display: flex;
@@ -18,23 +22,22 @@ h2{
     height: 100%;
 }
 .loginform-col1{
-    padding: 40px;
+    padding: 80px;
     background-color: #FB3453;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
-    height: 100%;
 }
 .star-icon{
     display: flex;
     gap: 10px;
     margin-bottom: 15px;
 }
-/* .star img{
-    width: ;
-} */
+.star-icon img{
+    width: 25px;
+}
 .admin-profile{
     display: flex;
     align-items: center;
@@ -53,7 +56,7 @@ h2{
     margin: 0px;
 }  
 /* Media Queries  */
-@media (max-width:576px){
+/* @media (max-width:576px){
     h2{
         font-size: 25px;
         font-weight: 500;
@@ -69,5 +72,60 @@ h2{
     }
     .star-icon img{
         width: 15px;
+    }
+} */
+
+@media (max-width:1200px){
+    h2{
+        font-size: 40px;
+        font-weight: 500;
+    }
+    p{
+        font-size: 12px;
+    }
+    .loginform-col1{
+        padding: 60px;
+    }
+    .star-icon img{
+        width: 15px;
+    }
+}
+
+@media (max-width:768px){
+    h2{
+        font-size: 30px;
+    }
+    p{
+        font-size: 10px;
+    }
+    .loginform-col1{
+        padding: 50px;
+    }
+    .star-icon img{
+        width: 15px;
+    }
+    .admin-profile img{
+        width: 35px;
+    }
+}
+
+@media (max-width:576px){
+    h2{
+        font-size: 30px;
+    }
+    p{
+        font-size: 10px;
+    }
+    .loginform{
+       display: none;
+    }
+    .loginform-col1{
+        padding: 40px;
+    }
+    .star-icon{
+        display: none;
+    }
+    .admin-profile img{
+        width: 35px;
     }
 }

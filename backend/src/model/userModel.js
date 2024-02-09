@@ -41,8 +41,8 @@ const Users = sequelize.define('Users',{
 //   compare: 'authenticate', 
 // }
 // useBcrypt(Users, options);
-// Users.sync({ force: false }).then(() => {
-//     console.log('User table synced');
-// });
+Users.sync({ force: false }).then(() => {
+    console.log('User table synced');
+});
   
 module.exports = Users;

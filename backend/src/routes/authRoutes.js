@@ -1,5 +1,5 @@
 const express = require('express');
-const { Login, Auth, Logout, bookList, bookDesc, bookCategory, Register } = require('../controllers/authControllers');
+const { Login, Auth, Logout, bookList, bookDesc, bookCategory, Register, Reset } = require('../controllers/authControllers');
 const authenticateJWT = require("../middlewares/auth");
 const router = express.Router();
 // Login routes 
@@ -9,6 +9,7 @@ router.get('/main', authenticateJWT, (req,res) => {
 })
 // Register routes 
 router.post('/register',Register)
+router.post('/resetpassword', Reset)
 router.get('/logout', Logout);
 // Dashboard routes 
 router.get('/books', bookList);

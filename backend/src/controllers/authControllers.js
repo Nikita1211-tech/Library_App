@@ -2,6 +2,8 @@ const mysql = require('mysql2');
 const jwt = require("jsonwebtoken");
 const Users = require('../model/userModel');
 const Book = require('../model/bookModel');
+const tokengenerator = require('../services/tokengenerator.service');
+const otpgenerator = require('../services/otpgenerator.service');
 // const Conn = require('../dbconfig');
 require('dotenv')
 const Login = (req,res) => {
@@ -27,7 +29,6 @@ const Register =  async(req,res) => {
          const newuser = await Users.create(user);
          return res.status(201).json({message: "User created successfully"})
     } catch(error){
-      console.log(error);
       return res.status(500).json({message: error.message})
     }
 }
@@ -36,21 +37,30 @@ const Auth = async (req,res) => {
 
   try {
     const user = await Users.findOne({ where: { email } });
-
-    if (user && user.password === password) {
-      const token = jwt.sign({ email }, process.env.JWT_SECRET);
-      console.log(token);
-      res.cookie('jwt', token, { httpOnly: true, secure:true });
-      return res.json({ token });
+    if(!user) return res.status(401).json({message: "Email id doesnot exists"});
+    if(user.password === password){
+         const token = tokengenerator(Users.email);
+         res.cookie('jwt', token, { httpOnly: true, secure:true });
+         return res.json({ token });
     }
-    res.status(401).json({ message: 'Invalid credentials' });
-    console.log(user);
+    else return res.status(401).json({message: "Incorrect Password"});
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 }
-
+const Reset = async (req,res) => {
+   const { email } = req.body;
+   try{
+    const user = await Users.findOne({where: { email }});
+    if(user){
+        const otp = otpgenerator();
+        return res.json({otp});
+    } 
+    else return res.status(401).json({message: "Email id doesnot exists"});
+   } catch(error){
+     res.status(500).json({ message: error.message });
+   }
+}
 const Detail = (req,res) => {
     var username = req.body.username;
     var password  = req.body.password;
@@ -85,4 +95,4 @@ const bookDesc = async(req,res) => {
   }
 }
 
-module.exports = {Login, Auth, Logout, Register, Detail, bookList, bookDesc}
+module.exports = {Login, Auth, Logout, Register, Reset, Detail, bookList, bookDesc}
