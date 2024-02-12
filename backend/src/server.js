@@ -9,7 +9,6 @@ require("./dbconfig");
 require('dotenv').config();
 app.use(express.json());
 app.use(cors());
-
 app.use("/api/users", authRoutes);
 // Test server connection 
 app.listen(3000, () => {

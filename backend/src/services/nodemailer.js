@@ -1,0 +1,26 @@
+const nodemailer = require('nodemailer');
+
+function otpSender(email, otp) {
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+            user: "nicky121102@gmail.com",
+            pass: "uume tcag orsx dgoj",
+        },
+    });
+    async function main() {
+        const info = await transporter.sendMail({
+            from: 'nicky121102@gmail.com',
+            to: email,
+            subject: "OTP",
+            text: "Hello world?",
+            html: `Your OTP is ${otp}`,
+        });
+
+        console.log("Message sent: %s", info.messageId);
+    }
+    main().catch(console.error);
+}
+module.exports = otpSender;

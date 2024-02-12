@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, NUMBER, INTEGER } = require("sequelize");
 const { sequelize } = require("../dbconfig");
 
 const useBcrypt = require('sequelize-bcrypt');
@@ -33,14 +33,19 @@ const Users = sequelize.define('Users',{
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: "User",
-    }
+    },
+    otp: {
+      type: INTEGER,
+      required: true,
+      defaultValue: 0,
+    },
 })
-// const options = {
-//   field: 'password',
-//   rounds: 12,
-//   compare: 'authenticate', 
-// }
-// useBcrypt(Users, options);
+const options = {
+  field: 'password',
+  rounds: 12,
+  compare: 'authenticate', 
+}
+useBcrypt(Users, options);
 Users.sync({ force: false }).then(() => {
     console.log('User table synced');
 });

@@ -33,15 +33,45 @@ export class AuthService {
     const obj = {
       email: email,
     };
-    this.http.post<{otp: number}>(this.API_URL+'/resetpassword',obj)
+    this.http.post<{otp: number}>(this.API_URL+'/resetpassword', obj)
       .subscribe(
         (response) => {
-          const otp = response.otp;
-          console.log(otp);
+          console.log(response.otp)
         },
         (error) => {
           errorCallback(error);
         }
       );
+  }   
+  otp(email: string, otp: number,  errorCallback: (error: any) => void): void{
+      const obj = {
+        email: email,
+        otp: otp,
+      };
+      console.log(email)
+      console.log(otp)
+      this.http.post(this.API_URL+'/otp', obj)
+      .subscribe(
+        (response) => {
+          this.router.navigate(['/updatepassword']);
+        },
+        (error) => {
+          errorCallback(error);
+        }
+      )
+  }
+  updatePassword(password: string, errorCallback: (error: any) => void): void{
+    const obj = {
+      password: password,
+    }
+    this.http.post(this.API_URL+'/updatepassword', obj)
+    .subscribe(
+      (response) => {
+
+      },
+      (error) => {
+        errorCallback(error);
+      }
+    )
   }
 }
