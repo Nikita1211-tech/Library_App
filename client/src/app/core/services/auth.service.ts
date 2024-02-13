@@ -60,9 +60,9 @@ export class AuthService {
         }
       )
   }
-  updatePassword(password: string, errorCallback: (error: any) => void): void{
+  updatePassword(email:string, password: string, errorCallback: (error: any) => void): void{
     const obj = {
-      email: this.otp,
+      email: email,
       password: password,
     }
     console.log(obj.email);

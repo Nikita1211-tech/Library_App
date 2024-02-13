@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { RegisterService } from '../../../core/services/register.service';
 import { register } from '../../../data/interfaces/register.interface';
 // import { HttpErrorResponse } from '@angular/common/http';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
 @Component({
@@ -34,15 +34,15 @@ export class RegisterComponent {
    } 
    this.register.register(obj, (error) => {
     if(error?.error?.message === "User already exists"){
-      // Swal.fire({
-      //   title: 'Signup unsuccessful.',
-      //   text: 'User already exists',
-      //   icon: 'warning',
-      //   confirmButtonText: 'Okay',
-      //   timer: 2000
-      // }).then((result) => {
-      //   this.router.navigate(['/register']);
-      // });
+      Swal.fire({
+        title: 'Signup unsuccessful.',
+        text: 'User already exists',
+        icon: 'warning',
+        confirmButtonText: 'Okay',
+        timer: 2000
+      }).then((result) => {
+        this.router.navigate(['/register']);
+      });
     }
     else{
       this.router.navigate(['/home']);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,18 +21,18 @@ export class LoginComponent{
      const email = this.loginform.value.email
      const password = this.loginform.value.password
      this.auth.login(email, password, (error) => {
-      // if(error){
-      //   Swal.fire({
-      //     title: 'Login unsuccessful.',
-      //     text: error?.error?.message,
-      //     icon: 'error',
-      //     confirmButtonText: 'Okay',
-      //     confirmButtonColor: "#fb3453",
-      //     timer: 3000
-      //   }).then((result) => {
-      //     this.router.navigate(['/login']);
-      //   });
-      // }
+      if(error){
+        Swal.fire({
+          title: 'Login unsuccessful.',
+          text: error?.error?.message,
+          icon: 'error',
+          confirmButtonText: 'Okay',
+          confirmButtonColor: "#fb3453",
+          timer: 3000
+        }).then((result) => {
+          this.router.navigate(['/login']);
+        });
+      }
      });
   }
 }
