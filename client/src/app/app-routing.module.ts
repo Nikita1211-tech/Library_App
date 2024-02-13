@@ -9,14 +9,8 @@ import { UserLayoutComponent } from './layout/user-layout/user-layout.component'
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/main',
+    redirectTo: '/home',
     pathMatch: 'full'
-  },
-  
-  {
-    path: 'home',
-    component: HomeComponent,
-    loadChildren: () => import('./modules/admin/home/home.module').then(m => m.HomeModule),
   },
   // Admin Component routing starts 
   {
@@ -24,6 +18,10 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     canActivate: [AuthGuard],
     children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./modules/admin/home/home.module').then(m => m.HomeModule),
+      },
       {
         path: 'reader',
         loadChildren: () => import('./modules/admin/reader/reader.module').then(m => m.ReaderModule),
