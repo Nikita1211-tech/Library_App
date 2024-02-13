@@ -7,10 +7,18 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
 import { UserLayoutComponent } from './layout/user-layout/user-layout.component';
 
 const routes: Routes = [
+  // Landingpage route 
   { path: '', redirectTo: '/main', pathMatch: 'full' },
+  // Admin routes 
   { path: 'home', redirectTo: '/home', pathMatch: 'full' },
   { path: 'reader', redirectTo: '/reader', pathMatch: 'full' },
+  { path: 'book', redirectTo: '/book', pathMatch: 'full' },
+  { path: 'reports', redirectTo: '/reports', pathMatch: 'full' },
+  // Auth Routes 
   { path: 'login', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'logout', redirectTo: '/logout', pathMatch: 'full' },
+  { path: 'register', redirectTo: '/register', pathMatch: 'full' },
+  { path: 'forgotpassword', redirectTo: '/forgotpassword', pathMatch: 'full' },
   // Admin Component routing starts 
   {
     path: '',
