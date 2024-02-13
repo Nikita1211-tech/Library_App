@@ -7,11 +7,10 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
 import { UserLayoutComponent } from './layout/user-layout/user-layout.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
+  { path: 'home', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'reader', redirectTo: '/reader', pathMatch: 'full' },
+  { path: 'login', redirectTo: '/login', pathMatch: 'full' },
   // Admin Component routing starts 
   {
     path: '',
@@ -21,7 +20,6 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        redirectTo: '/home',
         loadChildren: () => import('./modules/admin/home/home.module').then(m => m.HomeModule),
       },
       {
