@@ -14,9 +14,10 @@ const routes: Routes = [
   },
   // Admin Component routing starts 
   {
-    path: '/admin',
+    path: '',
     component: AdminLayoutComponent,
     canActivate: [AuthGuard],
+    pathMatch: 'full',
     children: [
       {
         path: 'home',
