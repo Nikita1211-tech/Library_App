@@ -12,16 +12,18 @@ const routes: Routes = [
     redirectTo: '/main',
     pathMatch: 'full'
   },
+  
+  {
+    path: 'home',
+    component: HomeComponent,
+    loadChildren: () => import('./modules/admin/home/home.module').then(m => m.HomeModule),
+  },
   // Admin Component routing starts 
   {
     path: '',
     component: AdminLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      {
-        path: 'home',
-        loadChildren: () => import('./modules/admin/home/home.module').then(m => m.HomeModule),
-      },
       {
         path: 'reader',
         loadChildren: () => import('./modules/admin/reader/reader.module').then(m => m.ReaderModule),
