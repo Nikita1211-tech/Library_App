@@ -18,31 +18,31 @@
                         <input style="width: 90%;" type="text" class="form-control" name="lastname" id="last-name" formControlName="lastname" aria-describedby="emailHelp" placeholder="Enter your last name" required>
                     </div>
                 </div>
-                <div *ngIf="registerform.controls.firstname.invalid && (registerform.controls.firstname.dirty || registerform.controls.firstname.touched)">    
-                     <div class="form-validation" *ngIf="registerform.controls.firstname.errors?.required">First name is mandatory.</div>    
+                <div *ngIf="registerform.controls['firstname'].invalid && (registerform.controls['firstname'].dirty || registerform.controls['firstname'].touched)">    
+                     <div class="form-validation" *ngIf="registerform.controls['firstname'].errors?.['required']">First name is mandatory.</div>    
                 </div>
                 <div class="form-label">
                     <label for="emailid">Email Id</label>
                     <input type="mail" class="form-control" name="email" id="emailid" formControlName="email" aria-describedby="emailHelp" placeholder="Enter your Email Id" required>
                 </div>
-                <div *ngIf="registerform.controls.email.invalid && (registerform.controls.email.dirty || registerform.controls.email.touched)">    
-                    <div class="form-validation"  *ngIf="registerform.controls.email.errors?.required">Email Id  is mandatory.</div>    
-                    <div class="form-validation" *ngIf="registerform.controls.email.errors">Email must be a valid email address</div>
+                <div *ngIf="registerform.controls['email'].invalid && (registerform.controls['email'].dirty || registerform.controls['email'].touched)">    
+                    <div class="form-validation"  *ngIf="registerform.controls['email'].errors?.['required']">Email Id  is mandatory.</div>    
+                    <div class="form-validation" *ngIf="registerform.controls['email'].errors">Email must be a valid email address</div>
                 </div>
                 <div class="form-label ">
                     <label for="photo">Upload your photo</label>
                     <input type="file" class="form-control" name="profilepic" id="profilepic" formControlName="profilepic" required>
                 </div>
-                <div *ngIf="registerform.controls.profilepic.invalid && (registerform.controls.profilepic.dirty || registerform.controls.profilepic.touched)">    
-                    <div class="form-validation" *ngIf="registerform.controls.profilepic.errors?.required">Profile pic is mandatory.</div>    
+                <div *ngIf="registerform.controls['profilepic'].invalid && (registerform.controls['profilepic'].dirty || registerform.controls['profilepic'].touched)">    
+                    <div class="form-validation" *ngIf="registerform.controls['profilepic'].errors?.['required']">Profile pic is mandatory.</div>    
                 </div>
                 <div style="display: flex; justify-content: space-between; width: 100%;">
 
                     <div class="form-label" style="width: 47%;">
                         <label for="password">Create Password</label>
                         <input style="width: 90%;"type="password" class="form-control" name="password" id="password" formControlName="password" aria-describedby="emailHelp" placeholder="Enter Password" required>
-                        <div *ngIf="registerform.controls.password.invalid && (registerform.controls.password.dirty || registerform.controls.password.touched)">    
-                            <div class="form-validation" *ngIf="registerform.controls.password.errors?.required">Set password</div>    
+                        <div *ngIf="registerform.controls['password'].invalid && (registerform.controls['password'].dirty || registerform.controls['password'].touched)">    
+                            <div class="form-validation" *ngIf="registerform.controls['password'].errors?.['required']">Set password</div>    
                         </div>
                     </div>
                     <div class="form-label" style="width: 47%;">
@@ -50,7 +50,7 @@
                         <input style="width: 90%;" type="password" class="form-control" name="checkpassword" id="checkpassword" formControlName="checkpassword" aria-describedby="emailHelp" placeholder="Re Enter Password" required>
                     </div>
                 </div>
-                <input type="submit" [disabled]="!registerform.valid" value="Submit" name="Submit">
+                <input type="submit"  value="Submit" name="Submit">
               </form>
         </div>
     </div>
