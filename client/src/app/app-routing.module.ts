@@ -9,7 +9,7 @@ import { UserLayoutComponent } from './layout/user-layout/user-layout.component'
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/main',
     pathMatch: 'full'
   },
   // Admin Component routing starts 
