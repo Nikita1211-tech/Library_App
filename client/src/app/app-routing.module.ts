@@ -20,6 +20,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
+        redirectTo: '/home',
         loadChildren: () => import('./modules/admin/home/home.module').then(m => m.HomeModule),
       },
       {
