@@ -18,7 +18,7 @@ export class UpdatepasswordComponent {
   onUpdatePassword(): void{
     const password = this.updatePassword.value.password
     this.auth.updatePassword(password, (error) => {
-
+        
     });
   }
 }

@@ -6,13 +6,13 @@ function otpSender(email, otp) {
         port: 465,
         secure: true,
         auth: {
-            user: "nicky121102@gmail.com",
-            pass: "uume tcag orsx dgoj",
+            user: "nikita.codestore@gmail.com",
+            pass: "prdd tzek dvnt cvxd",
         },
     });
     async function main() {
         const info = await transporter.sendMail({
-            from: 'nicky121102@gmail.com',
+            from: 'nikita.codestore@gmail.com',
             to: email,
             subject: "OTP",
             text: "Hello world?",

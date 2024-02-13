@@ -62,12 +62,14 @@ export class AuthService {
   }
   updatePassword(password: string, errorCallback: (error: any) => void): void{
     const obj = {
+      email: this.otp,
       password: password,
     }
+    console.log(obj.email);
     this.http.post(this.API_URL+'/updatepassword', obj)
     .subscribe(
       (response) => {
-
+           
       },
       (error) => {
         errorCallback(error);

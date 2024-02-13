@@ -37,7 +37,6 @@ export class ForgotpasswordComponent {
   onReset(): void{
      const email = this.resetPassword.value.email
      this.auth.resetPassword(email, (error) => {})
-     
   }
   otp(): void{
     const email = this.resetPassword.value.email
@@ -49,3 +48,7 @@ export class ForgotpasswordComponent {
     console.log(otp);
   }
 }
+function onUpdatePassword(email: any) {
+  throw new Error('Function not implemented.');
+}
+
