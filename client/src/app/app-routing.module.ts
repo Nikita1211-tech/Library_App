@@ -11,7 +11,7 @@ const routes: Routes = [
   // Landingpage route 
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   // Admin routes 
-  { path: '/home', redirectTo: '/home', pathMatch: 'full' },
+  // { path: '/home', redirectTo: '/home', pathMatch: 'full' },
   // { path: 'reader', redirectTo: '/reader', pathMatch: 'full' },
   // { path: 'book', redirectTo: '/book', pathMatch: 'full' },
   // { path: 'reports', redirectTo: '/reports', pathMatch: 'full' },
@@ -25,7 +25,6 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     canActivate: [AuthGuard],
-    pathMatch: 'full',
     children: [
       {
         path: 'home',
