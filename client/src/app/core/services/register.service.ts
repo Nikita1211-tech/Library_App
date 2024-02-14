@@ -21,4 +21,20 @@ export class RegisterService {
         }
       );
   }
+  verifyuser(email: string, errorCallback: (error: any) => void): void{
+    const obj = {
+      email: email
+    };
+    this.http.post<{email: string}>(this.API_URL+'/resetpassword', obj)
+      .subscribe(
+        (response) => {
+          console.log(response)
+          localStorage.setItem('username', response.email)
+          this.router.navigate(['/otp']);
+        },
+        (error) => {
+          errorCallback(error);
+        }
+      );
+  } 
 }
