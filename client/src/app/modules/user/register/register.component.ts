@@ -46,6 +46,9 @@ export class RegisterComponent {
     //   console.error("Element with id 'otpPasswordForm' not found");
     // }
   }
+  showPasswordForm(): void {
+
+  }
   onRegister(): void{
    const obj:register = {
        username:  this.registerform.value.username,
@@ -70,6 +73,9 @@ export class RegisterComponent {
       this.router.navigate(['/home']);
     }
    })
+ }
+ otp(): void{
+  
  }
 }
 
