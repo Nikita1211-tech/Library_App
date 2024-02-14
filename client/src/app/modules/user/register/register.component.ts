@@ -75,7 +75,7 @@ export class RegisterComponent {
    })
  }
  otp(): void{
-  
+    
  }
 }
 

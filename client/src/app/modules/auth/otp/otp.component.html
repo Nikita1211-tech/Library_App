@@ -1,0 +1,23 @@
+<div class="loginform-conatiner">
+    <div class="loginform-col2">
+        <div class="logo">
+            <img src="./../../assets/images/logo.png" alt="">
+            <h5>Book Library</h5>
+        </div>
+        <h4>Forgot Password</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea inventore nisi odit quo fugit reprehenderit?</p>
+
+        <!-- OTP form  -->
+        <form [formGroup]="otpform" (ngSubmit)="otp()" class="form-control" id="otpForm">
+            <div class="form-label">
+                <label for="mail">Enter OTP</label>
+                <input type="text" class="form-control" name="otp" id="otp" formControlName="otp"
+                    aria-describedby="emailHelp" placeholder="Enter OTP">
+                <a (click)="otp()">Resend OTP</a>
+            </div>
+            <div>
+                <button type="submit" class="button">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

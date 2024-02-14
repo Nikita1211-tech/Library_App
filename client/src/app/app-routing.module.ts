@@ -71,6 +71,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/auth/forgotpassword/forgotpassword.module').then(m => m.ForgotpasswordModule) 
       },
       { 
+        path: 'otp', 
+        loadChildren: () => import('./modules/auth/otp/otp.module').then(m => m.OtpModule) 
+      },
+      { 
         path: 'user-home', 
         loadChildren: () => import('./modules/user/user-home/user-home.module').then(m => m.UserHomeModule) 
       }

@@ -31,25 +31,26 @@ export class AuthService {
   }
   resetPassword(email: string, errorCallback: (error: any) => void): void{
     const obj = {
-      email: email,
+      email: email
     };
-    this.http.post<{otp: number}>(this.API_URL+'/resetpassword', obj)
+    this.http.post<{email: string}>(this.API_URL+'/resetpassword', obj)
       .subscribe(
         (response) => {
-          console.log(response.otp)
+          console.log(response)
+          localStorage.setItem('username', response.email)
+          this.router.navigate(['/otp']);
+          return response;
         },
         (error) => {
           errorCallback(error);
         }
       );
   }   
-  otp(email: string, otp: number,  errorCallback: (error: any) => void): void{
+  otp(otp: number,  errorCallback: (error: any) => void): void{
+      var email = localStorage.getItem('email');
       const obj = {
-        email: email,
         otp: otp,
       };
-      console.log(email)
-      console.log(otp)
       this.http.post(this.API_URL+'/otp', obj)
       .subscribe(
         (response) => {

@@ -57,12 +57,11 @@ const Reset = async (req,res) => {
    try{
     const user = await Users.findOne({where: { email }});
     if(user){
-        const otp = otpgenerator();
+        const otp = 1234;
         await Users.update({otp: otp}, {where: {
           email: email
         }});
-        console.log(otp)
-        otpSender(email, otp);
+        return res.json({email});
     } 
     else return res.status(401).json({message: "Email id doesnot exists"});
    } catch(error){
@@ -72,13 +71,10 @@ const Reset = async (req,res) => {
 const Otp = async(req,res) => {
   const { email, otp } = req.body;
   try{
-    console.log(email);
-    console.log(otp)
     const user =  await Users.findOne({where: {
       email: email
     }});
-    console.log(user.email)
-    console.log(user.otp)
+    console.log(email)
     if(otp != user.otp){
       res.status(401).json({message: "OTP not matched"});
     }
