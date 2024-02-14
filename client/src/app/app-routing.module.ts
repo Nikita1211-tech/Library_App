@@ -60,7 +60,7 @@ const routes: Routes = [
       },
       {
         path: 'register',
-        loadChildren: () => import('./modules/user/register/register.module').then(m => m.RegisterModule)
+        loadChildren: () => import('./modules/auth/register/register.module').then(m => m.RegisterModule)
       },
       {
         path: 'main',
@@ -81,6 +81,10 @@ const routes: Routes = [
       { 
         path: 'updatepassword', 
         loadChildren: () => import('./modules/auth/updatepassword/updatepassword.module').then(m => m.UpdatepasswordModule) 
+      },
+      { 
+        path: 'verifyuser', 
+        loadChildren: () => import('./modules/auth/verifyuser/verifyuser.module').then(m => m.VerifyuserModule) 
       },
     ]
   },

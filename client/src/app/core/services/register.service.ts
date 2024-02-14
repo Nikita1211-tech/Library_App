@@ -25,12 +25,11 @@ export class RegisterService {
     const obj = {
       email: email
     };
-    this.http.post<{email: string}>(this.API_URL+'/resetpassword', obj)
+    this.http.post(this.API_URL+'/verifyuser', obj)
       .subscribe(
         (response) => {
-          console.log(response)
-          localStorage.setItem('username', response.email)
-          this.router.navigate(['/otp']);
+          console.log(response);
+          this.router.navigate(['/verifyuser']);
         },
         (error) => {
           errorCallback(error);

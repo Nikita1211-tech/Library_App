@@ -14,51 +14,18 @@ import { AuthService } from '../../../core/services/auth.service';
 })
 export class RegisterComponent {
   registerform: FormGroup
-  otpform: FormGroup
-  passwordform: FormGroup
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private router: Router){
     this.registerform = new FormGroup({
       username: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      // profilepic: new FormControl('', [Validators.required]),
-      // password: new FormControl('', [Validators.required]),
-      // checkpassword: new FormControl('', [Validators.required])
+      mail: new FormControl('', [Validators.required, Validators.email]),
     })
-    this.otpform = new FormGroup({
-      otp: new FormControl('', Validators.required),
-    })
-    this.passwordform = new FormGroup({
-      
-    })
-  }
-  showOtpForm(): void {
-    const registerForm = document.getElementById("registerForm");
-    const resetForm = document.getElementById("resetPasswordForm");
-    const updateForm = document.getElementById("updatePasswordForm");
-    // if(resetForm && updateForm){
-    //   resetForm.style.display = "none";
-    //   updateForm.style.display = "none";
-    // } else {
-    //   console.error("Element with id 'resetPasswordForm' not found");
-    // }
-    // if(otpForm) {
-    //   otpForm.style.display = "flex";
-    // } else {
-    //   console.error("Element with id 'otpPasswordForm' not found");
-    // }
-  }
-  showPasswordForm(): void {
-
   }
   onRegister(): void{
-   const obj:register = {
-       username:  this.registerform.value.username,
-       profilepic: this.registerform.value.profilepic,
-       email:  this.registerform.value.email,
-       password: this.registerform.value.password,
-       role: "User"
-   }
-   this.register.verifyuser(obj.email, (error)=>{
+   const username = this.registerform.value.username
+   const email = this.registerform.value.mail
+   console.log(username);
+   console.log(email);
+   this.register.verifyuser(email, (error)=>{
 
    })
   //  this.register.register(obj, (error) => {

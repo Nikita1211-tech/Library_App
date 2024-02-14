@@ -1,0 +1,41 @@
+<div class="loginform-conatiner">
+    <div class="loginform-col2">
+        <div class="logo">
+            <img src="./../../assets/images/logo.png" alt="">
+            <h5>Book Library</h5>
+        </div>
+        <h4>Sign Up</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, ducimus? Velit et a modi nobis.</p>
+        <form [formGroup]="registerform" (ngSubmit)="onRegister()" class="form-control" id="registerForm">
+            <div>
+                <div class="form-label">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" id="username"
+                        formControlName="username" aria-describedby="emailHelp" placeholder="Enter your User name"
+                        required>
+                </div>
+            </div>
+            <div
+                *ngIf="registerform.controls['username'].invalid && (registerform.controls['username'].dirty || registerform.controls['username'].touched)">
+                <div class="form-validation" *ngIf="registerform.controls['username'].errors?.['required']">User name
+                    is mandatory.</div>
+            </div>
+            <div>
+                <div class="form-label">
+                    <label for="mail">Email id</label>
+                    <input type="mail" class="form-control" name="mail" id="mail"
+                        formControlName="mail" aria-describedby="emailHelp" placeholder="Enter your User name"
+                        required>
+                </div>
+            </div>
+            <div
+                *ngIf="registerform.controls['mail'].invalid && (registerform.controls['mail'].dirty || registerform.controls['mail'].touched)">
+                <div class="form-validation" *ngIf="registerform.controls['mail'].errors?.['required']">Email Id is
+                    mandatory.</div>
+                <div class="form-validation" *ngIf="registerform.controls['mail'].errors">Email must be a valid email
+                    address</div>
+            </div>
+            <button type="submit" class="button">Next</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="loginform-conatiner">
+    <div class="loginform-col2">
+        <div class="logo">
+            <img src="./../../assets/images/logo.png" alt="">
+            <h5>Book Library</h5>
+        </div>
+        <h4>Sign Up</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, ducimus? Velit et a modi nobis.</p>
+        <form [formGroup]="otpform" (ngSubmit)="onRegister()" class="form-control" id="registerForm">
+            <div>
+                <div class="form-label">
+                    <label for="otp">OTP</label>
+                    <input type="text" class="form-control" name="otp" id="otp"
+                        formControlName="otp" aria-describedby="emailHelp" placeholder="Enter otp"
+                        required>
+                </div>
+            </div>
+            <div
+                *ngIf="registerform.controls['otp'].invalid && (registerform.controls['otp'].dirty || registerform.controls['otp'].touched)">
+                <div class="form-validation" *ngIf="registerform.controls['otp'].errors?.['required']">User name
+                    is mandatory.</div>
+            </div>
+            <button type="submit" class="button">Next</button>
+        </form>
+    </div>
+</div>

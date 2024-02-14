@@ -7,6 +7,7 @@ const tokengenerator = require('../services/tokengenerator.service');
 const otpgenerator = require('../services/otpgenerator.service');
 const { where } = require('sequelize');
 const otpSender = require('../services/nodemailer');
+const users =[]
 // const Conn = require('../dbconfig');
 require('dotenv')
 const Login = (req,res) => {
@@ -34,6 +35,24 @@ const Register =  async(req,res) => {
     } catch(error){
       return res.status(500).json({message: error.message})
     }
+}
+const Verifyuser = async(req,res) => {
+   const { email } = req.body;
+   const otp = 1234
+   users.push({email,otp});
+   res.status(200).json({message: "OTP received"});
+}
+const Verifyotp = async(req,res) => {
+  const{email,otp} = req.body;
+  const user = users.find(user => user.email === email);
+
+  if (!user || user.otp !== otp) {
+    res.status(400).json({ message: 'Invalid OTP' });
+  } else {
+    // Remove the used OTP from the database
+    users.splice(users.indexOf(user), 1);
+    res.json({ message: 'OTP verified successfully' });
+  }
 }
 const Auth = async (req,res) => {
     const { email } = req.body;
@@ -138,4 +157,4 @@ const bookDesc = async(req,res) => {
   }
 }
 
-module.exports = {Login, Auth, Logout, Register, Reset, updatePassword, Otp, Detail, bookList, bookDesc}
+module.exports = {Login, Auth, Logout, Register,Verifyuser, Verifyotp, Reset, updatePassword, Otp, Detail, bookList, bookDesc}
