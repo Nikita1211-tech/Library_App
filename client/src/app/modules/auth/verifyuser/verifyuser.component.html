@@ -6,7 +6,7 @@
         </div>
         <h4>Sign Up</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, ducimus? Velit et a modi nobis.</p>
-        <form [formGroup]="otpform" (ngSubmit)="onRegister()" class="form-control" id="registerForm">
+        <form [formGroup]="verifyform" (ngSubmit)="onVerify()" class="form-control" id="registerForm">
             <div>
                 <div class="form-label">
                     <label for="otp">OTP</label>
@@ -16,8 +16,8 @@
                 </div>
             </div>
             <div
-                *ngIf="registerform.controls['otp'].invalid && (registerform.controls['otp'].dirty || registerform.controls['otp'].touched)">
-                <div class="form-validation" *ngIf="registerform.controls['otp'].errors?.['required']">User name
+                *ngIf="verifyform.controls['otp'].invalid && (verifyform.controls['otp'].dirty || verifyform.controls['otp'].touched)">
+                <div class="form-validation" *ngIf="verifyform.controls['otp'].errors?.['required']">User name
                     is mandatory.</div>
             </div>
             <button type="submit" class="button">Next</button>
