@@ -41,6 +41,7 @@ const Verifyuser = async(req,res) => {
    const otp = 1234
    users.push({email,otp});
    res.status(200).json({message: "OTP received"});
+   return res.json({email});
 }
 const Verifyotp = async(req,res) => {
   const{email,otp} = req.body;

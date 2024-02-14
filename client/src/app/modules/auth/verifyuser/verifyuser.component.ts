@@ -18,6 +18,8 @@ export class VerifyuserComponent {
     })
   }
   onVerify(): void{
-         console.log("hello")
+    const otp = this.verifyform.value.otp;
+    const email = localStorage.getItem('registeruser')
+    this.register.verifyotp(email, otp, (error)=>{})
   }
 }

@@ -1,5 +1,5 @@
 const express = require('express');
-const { Login, Auth, Logout, bookList, bookDesc, bookCategory, Register, Reset, otp, Otp, updatePassword, Verifyuser } = require('../controllers/authControllers');
+const { Login, Auth, Logout, bookList, bookDesc, bookCategory, Register, Reset, otp, Otp, updatePassword, Verifyuser, Verifyotp } = require('../controllers/authControllers');
 const authenticateJWT = require("../middlewares/auth");
 const otpgenerator = require('../services/otpgenerator.service');
 const router = express.Router();
@@ -10,7 +10,8 @@ router.get('/main', authenticateJWT, (req,res) => {
 })
 // Auth routes 
 router.post('/register',Register);
-router.post('/verifyuser', Verifyuser)
+router.post('/verifyuser', Verifyuser);
+router.post('/verifyotp', Verifyotp);
 router.post('/resetpassword', Reset);
 router.post('/otp', Otp);
 router.post('/updatepassword', updatePassword);

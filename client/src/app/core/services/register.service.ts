@@ -25,10 +25,11 @@ export class RegisterService {
     const obj = {
       email: email
     };
-    this.http.post(this.API_URL+'/verifyuser', obj)
+    this.http.post<{email: string}>(this.API_URL+'/verifyuser', obj)
       .subscribe(
         (response) => {
           console.log(response);
+          localStorage.setItem('registeruser', response.email)
           this.router.navigate(['/verifyuser']);
         },
         (error) => {
@@ -36,4 +37,20 @@ export class RegisterService {
         }
       );
   } 
+  verifyotp(email:string|null, otp: number, errorCallback: (error: any) => void): void{
+    const obj = {
+      email: email,
+      otp: otp
+    }
+    this.http.post(this.API_URL+'/verifyotp', obj)
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.router.navigate(['/setpassword']);
+        },
+        (error) => {
+          errorCallback(error);
+        }
+      );
+  }
 }

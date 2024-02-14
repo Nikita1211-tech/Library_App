@@ -88,6 +88,7 @@ const routes: Routes = [
       },
     ]
   },
+  { path: 'modules/auth/setpassword', loadChildren: () => import('./modules/auth/setpassword/setpassword.module').then(m => m.SetpasswordModule) },
   // User Component routing ends 
 ]
 @NgModule({
