@@ -4,25 +4,23 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-otp',
-  templateUrl: './otp.component.html',
-  styleUrl: './otp.component.css'
+  selector: 'app-updatepassword',
+  templateUrl: './updatepassword.component.html',
+  styleUrl: './updatepassword.component.css'
 })
-export class OtpComponent {
-  
-  otpform: FormGroup
+export class UpdatepasswordComponent {
+  updatePasswordForm: FormGroup
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router){
-  this.otpform =  new FormGroup({
-    // email: new FormControl(''),
-    otp: new FormControl('', Validators.required),
+  this.updatePasswordForm =  new FormGroup({
+    password: new FormControl('', Validators.required),
+    confirmpassword: new FormControl('', Validators.required)
   });
  }
- 
- otp(): void{
-  const otp = this.otpform.value.otp
+ onUpdate(): void{
   const email = localStorage.getItem('username')
-  console.log(email)
-  this.auth.otp(email, otp, (error)=>{
+  const password = this.updatePasswordForm.value.password
+  const confirmpassword = this.updatePasswordForm.value.confirmpassword
+  this.auth.updatePassword(email, password, (error)=>{
    
     if(error){
       // Swal.fire({

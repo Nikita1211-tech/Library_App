@@ -46,9 +46,9 @@ export class AuthService {
         }
       );
   }   
-  otp(otp: number,  errorCallback: (error: any) => void): void{
-      var email = localStorage.getItem('email');
+  otp(email: string|null, otp: number,  errorCallback: (error: any) => void): void{
       const obj = {
+        email: email,
         otp: otp,
       };
       this.http.post(this.API_URL+'/otp', obj)
@@ -61,7 +61,7 @@ export class AuthService {
         }
       )
   }
-  updatePassword(email:string, password: string, errorCallback: (error: any) => void): void{
+  updatePassword(email:string|null, password: string, errorCallback: (error: any) => void): void{
     const obj = {
       email: email,
       password: password,

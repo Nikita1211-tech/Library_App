@@ -77,7 +77,11 @@ const routes: Routes = [
       { 
         path: 'user-home', 
         loadChildren: () => import('./modules/user/user-home/user-home.module').then(m => m.UserHomeModule) 
-      }
+      },
+      { 
+        path: 'updatepassword', 
+        loadChildren: () => import('./modules/auth/updatepassword/updatepassword.module').then(m => m.UpdatepasswordModule) 
+      },
     ]
   },
   // User Component routing ends 
