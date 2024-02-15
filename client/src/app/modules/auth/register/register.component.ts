@@ -25,6 +25,7 @@ export class RegisterComponent {
    const email = this.registerform.value.mail
    console.log(username);
    console.log(email);
+   localStorage.setItem('registeruser', email);
    this.register.verifyuser(email, (error)=>{
 
    })

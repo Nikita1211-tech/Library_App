@@ -29,7 +29,6 @@ export class RegisterService {
       .subscribe(
         (response) => {
           console.log(response);
-          localStorage.setItem('registeruser', response.email)
           this.router.navigate(['/verifyuser']);
         },
         (error) => {
