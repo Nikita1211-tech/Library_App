@@ -70,7 +70,7 @@ export class AuthService {
     this.http.post(this.API_URL+'/updatepassword', obj)
     .subscribe(
       (response) => {
-           
+           console.log(response)
       },
       (error) => {
         errorCallback(error);

@@ -83,8 +83,10 @@ const Auth = async (req,res) => {
     const { email } = req.body;
 
   try {
-    const user = await Users.findOne({ where: { email } });
-    const validPassword = await bcrypt.compare(req.body.password,user.password);
+    const user = await Users.findOne({ where: { email: email } });
+    console.log(user)
+    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    console.log(validPassword)
     if(!user) return res.status(401).json({message: "Email id doesnot exists"});
     if(validPassword){
          const token = tokengenerator(Users.email);
@@ -139,10 +141,10 @@ const updatePassword = async(req,res) => {
         email: email
       }});
       if(updatedpassword){
-        res.json("Password updated successfully")
+        res.status(200).json("Password updated successfully")
       }
       else{
-        res.json("Password not updated successfully")
+        res.status(400).json("Password not updated successfully")
       }
     } catch (error) {
       
