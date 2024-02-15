@@ -86,9 +86,12 @@ const routes: Routes = [
         path: 'verifyuser', 
         loadChildren: () => import('./modules/auth/verifyuser/verifyuser.module').then(m => m.VerifyuserModule) 
       },
+      { 
+        path: 'setpassword', 
+        loadChildren: () => import('./modules/auth/setpassword/setpassword.module').then(m => m.SetpasswordModule) 
+      },
     ]
   },
-  { path: 'modules/auth/setpassword', loadChildren: () => import('./modules/auth/setpassword/setpassword.module').then(m => m.SetpasswordModule) },
   // User Component routing ends 
 ]
 @NgModule({
