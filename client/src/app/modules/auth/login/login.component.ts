@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../../../core/services/auth.service';
 // import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { login } from '../../../data/interfaces/login.interface';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent{
       password: new FormControl(''),
     });
   }
+  
   onSubmit(): void{
      const email = this.loginform.value.email
      const password = this.loginform.value.password

@@ -38,7 +38,8 @@ const Register =  async(req,res) => {
 }
 const Verifyuser = async(req,res) => {
    const { email } = req.body;
-   const otp = 1234
+   const otp = otpgenerator()
+   otpSender(email,otp)
    users.push({email, otp});
    res.status(200).json({message: "OTP received"});
   //  return res.json({email});
@@ -103,7 +104,8 @@ const Reset = async (req,res) => {
    try{
     const user = await Users.findOne({where: { email }});
     if(user){
-        const otp = 1234;
+        const otp = otpgenerator();
+        otpSender(email, otp);
         await Users.update({otp: otp}, {where: {
           email: email
         }});

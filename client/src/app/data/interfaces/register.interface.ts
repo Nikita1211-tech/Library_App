@@ -3,5 +3,4 @@ export interface register{
     email: string,
     profilepic: string,
     password: string,
-    role: "User" | "Admin"
 }
