@@ -74,10 +74,13 @@ const Saveuser = async(req,res) => {
         });
       console.log(newuser);
       return res.status(201).json({message: "User created successfully"})
-    }then((user) => res.status(201).send(user)).catch((error) => {
-      console.log(error);
-      res.status(400).send(error);
-  });
+    }
+    else if(existinguser != null){
+      res.status(400).json({message: "User already exists"})
+    }
+    else{
+      res.status(500).json({message: "Internal Server error"})
+    }
 
 }
 const Auth = async (req,res) => {
