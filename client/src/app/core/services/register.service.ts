@@ -52,4 +52,22 @@ export class RegisterService {
         }
       );
   }
+  saveuser(email: string|null, username: string|null, contact: string|null, password: string, errorCallback: (error: any) => void): void{
+      const obj =  {
+        email: email,
+        username: username,
+        contact: contact,
+        password: password
+      }
+      this.http.post(this.API_URL+'/saveuser', obj)
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          errorCallback(error);
+        }
+      );
+  }
 }

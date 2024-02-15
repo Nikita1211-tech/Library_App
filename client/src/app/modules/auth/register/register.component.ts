@@ -18,14 +18,19 @@ export class RegisterComponent {
     this.registerform = new FormGroup({
       username: new FormControl('', [Validators.required]),
       mail: new FormControl('', [Validators.required, Validators.email]),
+      contact: new FormControl('', Validators.required)
     })
   }
   onRegister(): void{
    const username = this.registerform.value.username
    const email = this.registerform.value.mail
+   const contact = this.registerform.value.contact
    console.log(username);
    console.log(email);
+   console.log(contact);
    localStorage.setItem('registeruser', email);
+   localStorage.setItem('registerusername', username);
+   localStorage.setItem('number', contact);
    this.register.verifyuser(email, (error)=>{
 
    })

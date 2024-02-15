@@ -5,25 +5,24 @@ const useBcrypt = require('sequelize-bcrypt');
 const Users = sequelize.define('Users',{
     id:{
       type: DataTypes.INTEGER,
-      primaryKey: true
+      autoIncrement: true,
+      primaryKey: true,
+      defaultValue: 1    
     },
-    firstname:{
+    username:{
       type: DataTypes.STRING,
-      allowNull: false
-    },
-    lastname:{
-      type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     email:{
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
     },
-    profilepic:{
+    profilepic:
+    {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      allowNull: true,
+      defaultValue: "image.jpg"
     },
     password: {
       type: DataTypes.STRING,

@@ -20,7 +20,7 @@ require('dotenv').config();
         'https://library-frontend-xiss.onrender.com',
         'https://library-frontend-xiss.onrender.com/',
         'http://library-frontend-xiss.onrender.com',
-        'http://localhost:3000',
+        'http://localhost:4200',
         '*',
       ],
     }));

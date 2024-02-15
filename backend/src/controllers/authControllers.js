@@ -7,7 +7,7 @@ const tokengenerator = require('../services/tokengenerator.service');
 const otpgenerator = require('../services/otpgenerator.service');
 const { where } = require('sequelize');
 const otpSender = require('../services/nodemailer');
-const users =[]
+const users =[];
 // const Conn = require('../dbconfig');
 require('dotenv')
 const Login = (req,res) => {
@@ -39,21 +39,45 @@ const Register =  async(req,res) => {
 const Verifyuser = async(req,res) => {
    const { email } = req.body;
    const otp = 1234
-   users.push({email,otp});
+   users.push({email, otp});
    res.status(200).json({message: "OTP received"});
-   return res.json({email});
+  //  return res.json({email});
 }
 const Verifyotp = async(req,res) => {
-  const{email,otp} = req.body;
+  const{email, otp} = req.body;
   const user = users.find(user => user.email === email);
-  if (!user || user.otp !== otp) {
-    res.status(400).json({ message: 'Invalid OTP' });
+  if (user.otp == otp) {
+    users.splice(users.indexOf(user), 1);
+    res.status(200).json({ message: 'OTP verified successfully' });
     console.log(user);
   } else {
     // Remove the used OTP from the database
-    users.splice(users.indexOf(user), 1);
-    res.status(200).json({ message: 'OTP verified successfully' });
+    res.status(400).json({ message: 'Invalid OTP' });
   }
+}
+const Saveuser = async(req,res) => {
+  const user = {
+    email:  req.body.email,
+    username: req.body.username, 
+    contact: req.body.contact, 
+    password: req.body.password
+    }
+    const existinguser = await Users.findOne({ where: { email: user.email} })
+    console.log(existinguser)
+    if(existinguser == null){
+      const newuser = await Users.create( {
+        email:  req.body.email,
+        username: req.body.username, 
+        contact: req.body.contact, 
+        password: req.body.password
+        });
+      console.log(newuser);
+      return res.status(201).json({message: "User created successfully"})
+    }then((user) => res.status(201).send(user)).catch((error) => {
+      console.log(error);
+      res.status(400).send(error);
+  });
+
 }
 const Auth = async (req,res) => {
     const { email } = req.body;
@@ -158,4 +182,4 @@ const bookDesc = async(req,res) => {
   }
 }
 
-module.exports = {Login, Auth, Logout, Register,Verifyuser, Verifyotp, Reset, updatePassword, Otp, Detail, bookList, bookDesc}
+module.exports = {Login, Auth, Logout, Register,Verifyuser, Verifyotp, Saveuser, Reset, updatePassword, Otp, Detail, bookList, bookDesc}

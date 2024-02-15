@@ -1,5 +1,5 @@
 const express = require('express');
-const { Login, Auth, Logout, bookList, bookDesc, bookCategory, Register, Reset, otp, Otp, updatePassword, Verifyuser, Verifyotp } = require('../controllers/authControllers');
+const { Login, Auth, Logout, bookList, bookDesc, bookCategory, Register, Reset, otp, Otp, updatePassword, Verifyuser, Verifyotp, Saveuser } = require('../controllers/authControllers');
 const authenticateJWT = require("../middlewares/auth");
 const otpgenerator = require('../services/otpgenerator.service');
 const router = express.Router();
@@ -9,11 +9,12 @@ router.post('/login', Auth);
 //     res.json({ message: 'This is a protected route!', user: req.user });
 // })
 // Auth routes 
-router.post('/register',Register);
+// router.post('/register',Register);
 router.post('/verifyuser', Verifyuser);
 router.post('/verifyotp', Verifyotp);
 router.post('/resetpassword', Reset);
 router.post('/otp', Otp);
+router.post('/saveuser', Saveuser);
 router.post('/updatepassword', updatePassword);
 router.get('/logout', Logout);
 // Dashboard routes 
