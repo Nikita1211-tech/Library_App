@@ -1,18 +1,34 @@
+/* Global classes  */
 a{
-    color: #FB3453;
     text-decoration: none;
+    font-size: 14px;
+    color: #FB3453;
     cursor: pointer;
+}
+h2{
+    font-size: 3rem;
+    font-weight: 500;
+    margin: 0px;
 }
 h4{
     font-weight: 600;
-    font-size: 2.5rem;
+    font-size: 40px;
     margin: 0px;
 }
 h5{
-    font-size: 25px;
+    font-size: 35px;
     font-weight: 600;
     margin: 0px;
 }
+p{
+    text-align: justify;
+    font-size: 16px;
+    margin: 0px;
+}
+/* p{
+    font-size: 1.2rem;
+} */
+/* Form classes  */
 .loginform-conatiner{
     display: flex;
     flex-direction: column;
@@ -22,18 +38,36 @@ h5{
     /* padding: 60px; */
 }
 .loginform-col2{
-    padding: 80px;
+    padding: 60px;
     width: 60%;
     display: flex;
-    gap: 20px;
     flex-direction: column;
+    gap: 30px;
     justify-content: center;
     flex: 1;
+}
+.admin-profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.admin-profile img{
+   width: 50px;
+   border-radius: 50%;
+}
+.admin-profile div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}   
+.admin-profile div p{
+    margin: 0px;
 }
 form{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
+    height: fit-content;
 }
 label{
     font-weight: bold;
@@ -49,6 +83,10 @@ input{
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.logo img{
+    width: 50px;
 }
 .form-label{
     display: flex;
@@ -72,4 +110,208 @@ input{
     padding: 15px;
     border-radius: 10px;
     cursor: pointer;
+}
+.register{
+    display: flex;
+    justify-content: center;
+}
+input[type="checkbox"]{
+    accent-color: #FB3453;
+    border: 1px solid white;
+    border-radius: 5px;
+    outline: 1px solid #FB3453;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+} 
+/* Media Queries  */
+@media (max-width: 685px){
+    h2{
+        font-size:  6px;
+        font-weight: 300;
+    }
+    h4{
+        font-weight: 600;
+        font-size: 0.8rem;
+    }
+    h5{
+        font-weight: 600;
+    }
+    p{
+        font-size: 0.5rem;
+    }
+    label{
+        font-size: 0.5rem;
+    }
+    form{
+        gap: 10px;
+    }
+    .button{
+        padding: 8px;
+    }
+    .loginform-col1{
+        padding: 15px;
+    }
+    .loginform-col2{
+        padding: 15px;
+        gap: 10px;
+    }
+    .star-icon img{
+        width: 10%;
+    }
+    ::placeholder{
+        font-size: 0.6rem;
+    }
+}
+@media (max-width: 1200px) { 
+    h2{
+        font-size: 2.4rem;
+        font-weight: 500;
+    }
+    h4{
+        font-weight: 600;
+        font-size: 25px;
+    }
+    h5{
+        font-weight: 600;
+    }
+    p{
+        font-size: 12px;
+    }
+    .loginform-conatiner{
+        /* display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between; */
+        height: 100vh;
+        /* padding: 60px; */
+    }
+    .loginform{
+        height: 90vh;
+    }
+    .loginform-col2{
+        height: 100%;
+        padding: 60px;
+    }
+    .logo img{
+        width: 40px;
+    }
+    form{
+        gap: 20px;
+    }
+    label, ::placeholder{
+        font-size: 14px;
+    }
+    input{
+        padding: 12px;
+    }
+    .button{
+        padding: 12px;
+    }
+}
+@media (max-width: 992px) {
+    h2{
+        font-size: 2.1rem;
+        font-weight: 500;
+    }
+    h4{
+        font-weight: 600;
+        font-size: 25px;
+    }
+    h5{
+        font-weight: 600;
+    }
+    p{
+        font-size: 12px;
+    }
+    .loginform-conatiner{
+        /* display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between; */
+        height: 100vh;
+        /* padding: 60px; */
+    }
+    .loginform-col2{
+        height: 100%;
+        padding: 60px;
+    }
+    .logo img{
+        width: 30px;
+    }
+    /* form{
+        gap: 30px;
+    } */
+    label, ::placeholder{
+        font-size: 14px;
+    }
+    input{
+        padding: 12px;
+    }
+    .button{
+        padding: 12px;
+    }
+}
+@media (max-width: 768px) { 
+    h2{
+        font-size: 1.9rem;
+        font-weight: 500;
+    }
+    h4{
+        font-weight: 600;
+        font-size: 25px;
+    }
+    h5{
+        font-weight: 600;
+    }
+    p{
+        font-size: 12px;
+    }
+    .loginform-conatiner{
+        /* display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between; */
+        height: 100vh;
+        /* padding: 60px; */
+    }
+    .loginform-col2{
+        height: 80%;
+        padding: 60px;
+    }
+    .logo img{
+        width: 30px;
+    }
+    /* form{
+        gap: 30px;
+    } */
+    label, a, ::placeholder{
+        font-size: 12px;
+    }
+    input{
+        padding: 12px;
+    }
+    .button{
+        padding: 12px;
+    }
+}
+@media (max-width: 576px) and (min-width: 200px){
+    .loginform-conatiner{
+       padding: 20px;
+       height: 90vh;
+       overflow-x: hidden;
+        /* padding: 60px; */
+    }
+    .loginform-col2{
+        width: 100%;
+        /* padding: 0px; */
+        justify-content: flex-start;
+        gap: 20px;
+    }
+    /* .logo{
+       margin-bottom: 10px;
+    } */
+    .logo img{
+        width: 40px;
+    }
 }
