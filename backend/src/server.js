@@ -8,7 +8,11 @@ require("./model/bookModel");
 require("./dbconfig");
 require('dotenv').config();
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  origin: 'https://library-frontend-xiss.onrender.com',
+};
+
+app.use(cors(corsOptions));
 app.use("/api/users", authRoutes);
 // Test server connection 
 app.listen(3000, () => {
