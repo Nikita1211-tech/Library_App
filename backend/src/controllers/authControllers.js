@@ -46,9 +46,9 @@ const Verifyuser = async(req,res) => {
 const Verifyotp = async(req,res) => {
   const{email,otp} = req.body;
   const user = users.find(user => user.email === email);
-
   if (!user || user.otp !== otp) {
     res.status(400).json({ message: 'Invalid OTP' });
+    console.log(user);
   } else {
     // Remove the used OTP from the database
     users.splice(users.indexOf(user), 1);

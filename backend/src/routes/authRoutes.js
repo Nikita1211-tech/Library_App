@@ -5,9 +5,9 @@ const otpgenerator = require('../services/otpgenerator.service');
 const router = express.Router();
 // Login routes 
 router.post('/login', Auth);
-router.get('/main', authenticateJWT, (req,res) => {
-    res.json({ message: 'This is a protected route!', user: req.user });
-})
+// router.get('/main', authenticateJWT, (req,res) => {
+//     res.json({ message: 'This is a protected route!', user: req.user });
+// })
 // Auth routes 
 router.post('/register',Register);
 router.post('/verifyuser', Verifyuser);
