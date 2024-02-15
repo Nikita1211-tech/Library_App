@@ -35,6 +35,14 @@
                 <div class="form-validation" *ngIf="registerform.controls['mail'].errors">Email must be a valid email
                     address</div>
             </div>
+            <div>
+                <div class="form-label">
+                    <label for="mail">Email id</label>
+                    <input type="mail" class="form-control" name="mail" id="mail"
+                        formControlName="mail" aria-describedby="emailHelp" placeholder="Enter your email"
+                        required>
+                </div>
+            </div>
             <button type="submit" class="button">Next</button>
         </form>
     </div>

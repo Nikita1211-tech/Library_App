@@ -5,16 +5,27 @@ const authRoutes = require("./routes/authRoutes");
 require("./model/userModel");
 require("./model/bookModel");
 
-require("./dbconfig");
 require('dotenv').config();
+// const corsOptions = {
+  //   origin: [
+    //     'https://library-frontend-xiss.onrender.com',
+    //     'https://library-frontend-xiss.onrender.com/',
+    //     'http://library-frontend-xiss.onrender.com',
+    //     '*'
+    //   ],
+    // };
+    
+    app.use(cors( {
+      origin: [
+        'https://library-frontend-xiss.onrender.com',
+        'https://library-frontend-xiss.onrender.com/',
+        'http://library-frontend-xiss.onrender.com',
+        '*'
+      ],
+    }));
+    
+require("./dbconfig");
 app.use(express.json());
-const corsOptions = {
-  origin: [
-    'https://library-frontend-xiss.onrender.com'
-  ],
-};
-
-app.use(cors(corsOptions));
 app.use("/api/users", authRoutes);
 // Test server connection 
 app.listen(3000, () => {

@@ -52,7 +52,7 @@ const Verifyotp = async(req,res) => {
   } else {
     // Remove the used OTP from the database
     users.splice(users.indexOf(user), 1);
-    res.json({ message: 'OTP verified successfully' });
+    res.status(200).json({ message: 'OTP verified successfully' });
   }
 }
 const Auth = async (req,res) => {
