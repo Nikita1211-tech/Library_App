@@ -9,7 +9,9 @@ require("./dbconfig");
 require('dotenv').config();
 app.use(express.json());
 const corsOptions = {
-  origin: 'https://library-frontend-xiss.onrender.com',
+  origin: [
+    'https://library-frontend-xiss.onrender.com'
+  ],
 };
 
 app.use(cors(corsOptions));
