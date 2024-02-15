@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SetpasswordRoutingModule } from './setpassword-routing.module';
 import { SetpasswordComponent } from './setpassword.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { SetpasswordComponent } from './setpassword.component';
   ],
   imports: [
     CommonModule,
-    SetpasswordRoutingModule
+    SetpasswordRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class SetpasswordModule { }
