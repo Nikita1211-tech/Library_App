@@ -6,8 +6,7 @@ const Users = sequelize.define('Users',{
     id:{
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true,
-      defaultValue: 1    
+      primaryKey: true, 
     },
     username:{
       type: DataTypes.STRING,
@@ -17,12 +16,6 @@ const Users = sequelize.define('Users',{
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-    },
-    profilepic:
-    {
-      type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue: "image.jpg"
     },
     password: {
       type: DataTypes.STRING,
