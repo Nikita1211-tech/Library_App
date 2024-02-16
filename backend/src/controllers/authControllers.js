@@ -91,7 +91,7 @@ const Auth = async (req,res) => {
     console.log(user)
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     console.log(validPassword)
-    if(!user) return res.status(401).json({message: "Email id doesnot exists"});
+    if(user != null ) return res.status(401).json({message: "Email id doesnot exists"});
     if(validPassword){
          const token = tokengenerator(Users.email);
          res.cookie('jwt', token, { httpOnly: true, secure:true });
