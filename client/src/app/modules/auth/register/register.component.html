@@ -15,10 +15,10 @@
                         required>
                 </div>
             </div>
-            <div
-                *ngIf="registerform.controls['username'].invalid && (registerform.controls['username'].dirty || registerform.controls['username'].touched)">
-                <div class="form-validation" *ngIf="registerform.controls['username'].errors?.['required']">User name
-                    is mandatory.</div>
+            <div *ngIf="registerform.controls['username'].invalid && (registerform.controls['username'].dirty || registerform.controls['username'].touched)">
+                <div class="form-validation form-rules" *ngIf="registerform.controls['username'].errors?.['required']">User name
+                    is required.
+                </div>
             </div>
             <div>
                 <div class="form-label">
@@ -30,9 +30,9 @@
             </div>
             <div
                 *ngIf="registerform.controls['mail'].invalid && (registerform.controls['mail'].dirty || registerform.controls['mail'].touched)">
-                <div class="form-validation" *ngIf="registerform.controls['mail'].errors?.['required']">Email Id is
-                    mandatory.</div>
-                <div class="form-validation" *ngIf="registerform.controls['mail'].errors">Email must be a valid email
+                <div class="form-validation form-rules" *ngIf="registerform.controls['mail'].errors?.['required']">Email Id is
+                    required.</div>
+                <div class="form-validation form-rules" *ngIf="registerform.controls['mail'].errors">Email must be a valid email
                     address</div>
             </div>
             <div>
@@ -42,6 +42,13 @@
                         formControlName="contact" aria-describedby="emailHelp" placeholder="Enter your Contact no."
                         required>
                 </div>
+                <div
+                *ngIf="registerform.controls['contact'].invalid && (registerform.controls['contact'].dirty || registerform.controls['contact'].touched)">
+                <div class="form-validation form-rules" *ngIf="registerform.controls['contact'].errors?.['required']">Contact number is
+                    required.</div>
+                <div class="form-validation form-rules" *ngIf="registerform.controls['contact'].errors?.['pattern']">Please enter valid contact
+                    number</div>
+            </div>
             </div>
             <button type="submit" class="button">Send OTP</button>
         </form>

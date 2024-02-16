@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -14,8 +14,14 @@ export class UpdatepasswordComponent {
   this.updatePasswordForm =  new FormGroup({
     password: new FormControl('', Validators.required),
     confirmpassword: new FormControl('', Validators.required)
+  },
+  {
+    validators: this.passwordMatchValidator,
   });
  }
+ passwordMatchValidator(form: AbstractControl){
+  return form.get('password')?.value === form.get('confirmpassword')?.value ? null: { mismatch: true };
+}
  onUpdate(): void{
   const email = localStorage.getItem('username')
   const password = this.updatePasswordForm.value.password

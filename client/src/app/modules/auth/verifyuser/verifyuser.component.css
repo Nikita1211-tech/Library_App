@@ -124,6 +124,9 @@ input[type="checkbox"]{
     height: 12px;
     cursor: pointer;
 } 
+.form-issues{
+    color: #FB3453;
+}
 /* Media Queries  */
 @media (max-width: 685px){
     h2{

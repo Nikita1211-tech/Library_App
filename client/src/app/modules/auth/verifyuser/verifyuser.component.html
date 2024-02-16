@@ -17,8 +17,7 @@
             </div>
             <div
                 *ngIf="verifyform.controls['otp'].invalid && (verifyform.controls['otp'].dirty || verifyform.controls['otp'].touched)">
-                <div class="form-validation" *ngIf="verifyform.controls['otp'].errors?.['required']">User name
-                    is mandatory.</div>
+                <div class="form-validation form-rules" *ngIf="verifyform.controls['otp'].errors?.['required']">OTP is required</div>
             </div>
             <button type="submit" class="button">Set Password</button>
         </form>
