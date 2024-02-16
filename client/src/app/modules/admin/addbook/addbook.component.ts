@@ -30,6 +30,10 @@ export class AddbookComponent {
   ];
   addBookForm: FormGroup
   constructor(private fb: FormBuilder, private router: Router, private admin: AdminService){
+    this.getBooks().subscribe((books) => {
+      this.books = books
+      console.log(books)
+    })
   this.addBookForm =  new FormGroup({
     bookname: new FormControl('',[ Validators.required, Validators.minLength(8)]),
     bookimg: new FormControl('', [ Validators.required, Validators.minLength(8)]),
@@ -60,4 +64,8 @@ export class AddbookComponent {
   this.admin.addbook(bookname, bookimg, booksellingprice, bookcostprice, bookcategoryimg, bookwriter, booktypeimg, publishyear, booktype, bookcategories, summary
     ,(error) => {});
  }
+ getBooks(){
+  return this.admin.showbook()
+  // return this.http.get<any[]>(`${this.apiURL}/bookcategory`);
+}
 }

@@ -60,3 +60,59 @@ textarea{
 ::placeholder{
     font-size: 16px;
 }
+/* Table classes starts  */
+.table-section{
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+ }
+ /* .table-container{
+     overflow-x: auto;
+ } */
+ table{
+     border-radius: 10px;
+     border: solid 1px #EAEAEA;
+     border-collapse: separate;
+     padding: 10px;
+     border-spacing: 0px 10px;
+     height: 90%;
+     width: 100%;
+ }
+ tr{
+    width: 100%;
+ }
+ td,th{
+     border-style: none;
+     text-align: left;
+     vertical-align: center;
+ }
+ .table-head{
+     display: flex;
+     justify-content: space-between;
+ }
+ .table-button{
+     display: flex;
+     gap: 20px;
+     align-items: center;
+ }
+ .table-button a {
+     background-color: #fb34521e;
+     border-radius: 5px;
+     padding: 10px 20px;
+ }
+ .reader-name{
+     display: flex;
+     /* justify-content: center; */
+     align-items: center;
+     gap: 20px;
+     width: 100%;
+     height: 100%;
+ }
+ .reader-name img{
+     width: 60px;
+     height: 60px;
+     border-radius: 10px;
+     object-fit: cover;
+     object-position:  start;
+     border-radius: 50%;
+ }
