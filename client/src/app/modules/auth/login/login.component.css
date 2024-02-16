@@ -118,10 +118,10 @@ input{
 input[type="checkbox"]{
     accent-color: #FB3453;
     border: 1px solid white;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     outline: 1px solid #FB3453;
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
 } 
 /* Media Queries  */

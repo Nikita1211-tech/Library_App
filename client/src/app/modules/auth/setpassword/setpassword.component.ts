@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { RegisterService } from '../../../core/services/register.service';
 
@@ -31,7 +32,16 @@ export class SetpasswordComponent {
   const username = localStorage.getItem('registerusername')
   const contact = localStorage.getItem('number')
   this.register.saveuser(email, username, contact, password, (error) => {
-
+    if(error?.error?.message === "User already exists"){
+          Swal.fire({
+            title: 'Signup unsuccessful.',
+            text: 'User already exists',
+            icon: 'warning',
+            confirmButtonText: 'Okay',
+            confirmButtonColor: "#fb3453",
+            timer: 2000
+          })
+        }
   })
  }
 }
