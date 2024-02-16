@@ -18,7 +18,7 @@ export class RegisterComponent {
     this.registerform = new FormGroup({
       username: new FormControl('', [Validators.required]),
       mail: new FormControl('', [Validators.required, Validators.email]),
-      contact: new FormControl('', Validators.required)
+      contact: new FormControl('',[ Validators.required,  Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")])
     })
   }
   onRegister(): void{
