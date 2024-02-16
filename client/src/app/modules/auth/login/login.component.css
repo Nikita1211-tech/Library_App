@@ -115,15 +115,39 @@ input{
     display: flex;
     justify-content: center;
 }
-input[type="checkbox"]{
-    accent-color: #FB3453;
-    border: 1px solid white;
-    /* border-radius: 5px; */
-    outline: 1px solid #FB3453;
-    width: 14px;
-    height: 14px;
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Define width and height of the checkbox */
+    /* width: 10px;
+    height: 10px; */
+    border: 2px solid #FB3453;
+    /* Position the checkbox relative to its container */
+    position: relative;
+    accent-color: #fb3453;
+    /* Add some cursor feedback */
     cursor: pointer;
-} 
+}
+/* Add a custom checkbox pseudo-element */
+input[type="checkbox"]:after {
+    content: "\2713"; /* Unicode character for checkmark */
+    font-size: 20px; /* Adjust size as needed */
+    color: transparent; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Show the checkmark when the checkbox is checked */
+input[type="checkbox"]:checked:after {
+    color: white; /* Change the color of the checkmark */
+    background-color: #FB3453;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
 /* Media Queries  */
 @media (max-width: 685px){
     h2{
