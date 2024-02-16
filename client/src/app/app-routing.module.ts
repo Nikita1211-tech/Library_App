@@ -38,6 +38,14 @@ const routes: Routes = [
         path: 'book',
         loadChildren: () => import('./modules/admin/book/book.module').then(m => m.BookModule),
       },
+      { 
+        path: 'addbook', 
+        loadChildren: () => import('./modules/admin/addbook/addbook.module').then(m => m.AddbookModule) 
+      },
+      { 
+        path: 'editbook', 
+        loadChildren: () => import('./modules/admin/editbook/editbook.module').then(m => m.EditbookModule) 
+      },
       {
         path: 'reports',
         loadChildren: () => import('./modules/admin/reports/reports.module').then(m => m.ReportsModule),
@@ -75,7 +83,7 @@ const routes: Routes = [
         loadChildren: () => import('./modules/auth/otp/otp.module').then(m => m.OtpModule) 
       },
       { 
-        path: 'user-home', 
+        path: 'userhome', 
         loadChildren: () => import('./modules/user/user-home/user-home.module').then(m => m.UserHomeModule) 
       },
       { 
@@ -92,6 +100,8 @@ const routes: Routes = [
       },
     ]
   },
+  
+ 
   // User Component routing ends 
 ]
 @NgModule({

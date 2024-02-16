@@ -1,0 +1,59 @@
+<div class="background_container">
+  <div class="loginForm">
+      <div class="loginForm_col1">
+        <div>
+          <h2>Welcome to our Library</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus aspernatur qui esse, consequatur enim in!</p>
+        </div>
+        <div class="admin">
+          <div class="star">
+            <img src="./../../assets/images/Star.png" alt="">
+            <img src="./../../assets/images/Star.png" alt="">
+            <img src="./../../assets/images/Star.png" alt="">
+            <img src="./../../assets/images/Star.png" alt="">
+            <img src="./../../assets/images/Star.png" alt="">
+          </div>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, minus odit qui voluptatum neque magni.</p>
+          <div class="admin_profile">
+            <img src="./../../assets/images/pass_img.jpg" alt="">
+            <div>
+              <p>Halena Brauer</p>
+              <p>Founder & CEO</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="loginForm_col2">
+            <div class="logo">
+              <img src="./../../assets/images/logo.png" alt="">
+              <h5>Book Library</h5>
+            </div>
+            <h4>Sign In</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, ducimus? Velit et a modi nobis.</p>
+            <form (ngSubmit)="onSubmit()"  #customForm="ngForm">
+              <div class="mb-3">
+                <label for="mail">Email</label>
+                <input type="email" class="form-control" [(ngModel)] = "Username" name="email" id="Username" aria-describedby="emailHelp" placeholder="Email" #email= "ngModel" required email/>
+              </div>
+              <div class="error" *ngIf="email.touched">
+                <p *ngIf="email.errors?.['required']">Email is required</p>
+                <p *ngIf="email.errors?.['email']">Not a valid Email.Must contain &#64; </p>
+              </div>
+              <div class="mb-3">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" [(ngModel)] = "Password" name="password" id="password" placeholder="Password" required password/>
+              </div>
+              <div class="form_input">
+                <div>
+                  <input type="checkbox">
+                  <label for="">Remember me</label>
+                </div>
+                <!-- <div>
+                  <p>Forgot Password?</p>
+                </div> -->
+              </div>
+              <button type="submit" class="button">Log In</button>
+            </form>
+      </div>
+  </div>
+</div>

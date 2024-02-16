@@ -14,7 +14,7 @@ export class RegisterService {
     this.http.post(this.API_URL+'/register', register)
       .subscribe(
         (response) => {
-          this.router.navigate(['/user-home']);
+          this.router.navigate(['/userhome']);
         },
         (error) => {
           errorCallback(error);

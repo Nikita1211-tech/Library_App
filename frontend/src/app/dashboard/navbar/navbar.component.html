@@ -1,0 +1,82 @@
+<button class="toggle"><i class="fa-solid fa-bars"></i></button>
+<div class="navbarContainer">
+    <div class="menuContainer">
+        <div class="logoContainer">
+            <img src="./../../../assets/images/logo.png" alt="">
+            <h4>Book Library</h4>
+        </div>
+        <div>
+            <a href="/main" class="menu">
+                <img src="./../../../assets/images/dash_icon.png" alt="">
+                <p>Dashboard</p>
+            </a>
+        </div>
+        <div>
+            <a href="/reader" class="menu">
+                <img src="./../../../assets/images/reader_icon.png" alt="">
+                <p>Reader Management</p>
+            </a>
+        </div>
+        <div>
+            <div class="menu">
+                <img src="./../../../assets/images/book_icon.png" alt="">
+                <div style="display: flex; justify-content: space-between; flex: 1;">
+                    <p>Book Management</p>
+                    <button (click)="dropdown()"><i class="fa-solid fa-caret-down" style="color: black;"></i></button>
+                </div>
+            </div>
+            <div class="toggle_btn" *ngIf="isDropdownOpen">
+                <a href="/addbook">Add</a>
+                <a href="/book">View</a>
+            </div>
+        </div>
+        <div>
+            <a href="/reports" class="menu">
+                <img src="./../../../assets/images/report_icon.png" alt="">
+                <a href="/reports">Reports</a>
+            </a>
+        </div>
+    </div>
+    <div>
+        <div>
+            <a href="/settings" class="menu setting">
+                <img src="./../../../assets/images/settings_icon.png" alt="">
+                <a>Settings</a>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="responsivenavbarContainer">
+    <div class="menuContainer">
+        <div class="logoContainer">
+            <img src="./../../../assets/images/logo.png" alt="">
+        </div>
+        <div>
+            <a href="/main" class="menu">
+              <img src="./../../../assets/images/dash_icon.png" alt="">
+            </a>
+        </div>
+        <div>
+            <a href="/reader" class="menu">
+                <img src="./../../../assets/images/reader_icon.png" alt="">
+            </a>
+        </div>
+        <div>
+            <a href="/book" class="menu">
+              <img src="./../../../assets/images/book_icon.png" alt="">
+            </a>
+        </div>
+        <div>
+            <a href="/reports" class="menu">
+                <img src="./../../../assets/images/report_icon.png" alt="">
+            </a>
+        </div>
+    </div>
+    <div>
+        <div>
+            <a href="/settings" class="menu setting">
+                <img src="./../../../assets/images/settings_icon.png" alt="">
+            </a>
+        </div>
+    </div>
+</div>

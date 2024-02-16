@@ -29,7 +29,7 @@ button{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 70vh;
+    height: 96%;
     justify-content: space-between;
 }
 .menuContainer{

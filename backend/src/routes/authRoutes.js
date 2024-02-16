@@ -1,7 +1,8 @@
 const express = require('express');
-const { Login, Auth, Logout, bookList, bookDesc, bookCategory, Register, Reset, otp, Otp, updatePassword, Verifyuser, Verifyotp, Saveuser } = require('../controllers/authControllers');
+const { Login, Auth, Logout, Register, Reset, Otp, updatePassword, Verifyuser, Verifyotp, Saveuser } = require('../controllers/authControllers');
 const authenticateJWT = require("../middlewares/auth");
 const otpgenerator = require('../services/otpgenerator.service');
+const { Booklist, Bookdesc, Addbook } = require('../controllers/adminControllers');
 const router = express.Router();
 // Login routes 
 router.post('/login', Auth);
@@ -15,12 +16,13 @@ router.post('/verifyotp', Verifyotp);
 router.post('/resetpassword', Reset);
 router.post('/otp', Otp);
 router.post('/saveuser', Saveuser);
+router.post('/addbook', Addbook)
 router.post('/updatepassword', updatePassword);
 router.get('/logout', Logout);
 // Dashboard routes 
-router.get('/books', bookList);
-router.get('/bookdescription/:book_id', bookDesc);
-router.get('/bookcategory', bookList);
+router.get('/books', Booklist);
+router.get('/bookdescription/:book_id', Bookdesc);
+router.get('/bookcategory', Booklist);
 
 
 module.exports = router;

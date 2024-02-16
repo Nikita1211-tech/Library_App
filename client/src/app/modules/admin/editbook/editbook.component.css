@@ -1,0 +1,12 @@
+.book-name{
+    display: flex;
+    justify-content: space-between;
+}
+.book-image{
+    display: flex;
+    justify-content: space-between;
+}
+.book-price{
+    display: flex;
+    justify-content: space-between;
+}

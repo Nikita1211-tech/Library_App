@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { book } from '../../../data/interfaces/book.interface';
+import { Book } from '../../../data/interfaces/book.interface';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Chart from 'chart.js/auto';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  books: book[]=[];
+  books: Book[]=[];
   public chart: any;
   constructor(private router:Router, private http: HttpClient){}
   
@@ -31,7 +31,7 @@ export class HomeComponent {
         ]
       },
       options: {
-        aspectRatio:1.6,
+        aspectRatio:2,
         scales: {
           x: {
             grid: {

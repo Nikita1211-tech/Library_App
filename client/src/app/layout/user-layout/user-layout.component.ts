@@ -10,9 +10,8 @@ export class UserLayoutComponent {
   constructor(private router: Router){}
   ismainpage(): boolean {
     return this.router.url === '/main';
-  }
-  
-  // isregisterpage(): boolean {
-  //   return this.router.url === '/register';
-  // }
+}
+isuserpage(): boolean{
+  return this.router.url === '/userhome';
+}
 }

@@ -38,10 +38,6 @@ const Book = sequelize.define('Book',{
         type: DataTypes.STRING,
         allowNull: false,
     },
-    author: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     bookcat_img: {
         type: DataTypes.STRING,
         allowNull: false,

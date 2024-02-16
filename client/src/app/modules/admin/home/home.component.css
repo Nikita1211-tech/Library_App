@@ -1,7 +1,10 @@
 button{
     border: none;
-    background-color: transparent;
+    background-color: #f0738688;
     color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
 }
 a{
     text-decoration: none;
@@ -14,15 +17,17 @@ h4{
 }
 h5{
     font-size: 20px;
+    margin: 0px;
 }
 p{
     text-align: justify;
+    margin: 0px;
 }
 .bk-shadow{
     box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
     border: 1px solid #EAEAEA;
     border-radius: 15px;
-    padding: 20px;
+    padding: 10px 20px;
     background-color: white;
 }
 /* Global classes ends  */
@@ -32,7 +37,7 @@ p{
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 15px;
     overflow: hidden;
 }
 .container{
@@ -51,7 +56,8 @@ p{
     padding: 30px;
     height: 100%;
     border-radius: 20px;
-    justify-content: space-between;
+    gap: 40px;
+    flex: 1.5;
 }
 .slider img{
     width: 50%;
@@ -62,7 +68,9 @@ p{
     justify-content: space-between;
 }
 .graph-container{
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex: 0.9;
 }
 .graph-details{
     display: flex;
@@ -88,7 +96,7 @@ p{
 .book-section{
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 5px;
 }
 .book-section-row2{
     display: flex;
@@ -106,15 +114,20 @@ p{
 }
 .book-frame img{
     width: 100%;
-    height: 400px;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
 }
 .book-detail{
+    display: flex;
+    flex-direction: column;
     height: 20%;
+    gap: 10px;
 }
 .table-section{
    display: flex;
    flex-direction: column;
-   gap: 20px;
+   /* gap: 10px; */
 }
 .table-container{
     overflow-x: auto;
@@ -123,13 +136,14 @@ table{
     border-radius: 10px;
     border: solid 1px #EAEAEA;
     border-collapse: separate;
-    border-spacing: 10px 30px;
+    padding: 10px;
+    /* border-spacing: 10px 30px; */
     height: 90%;
     width: 100%;
 }
 td,th{
     border-style: none;
-    text-align: center;
+    text-align: left;
     vertical-align: center;
 }
 .table-head{
@@ -148,12 +162,12 @@ td,th{
 }
 .reader-name{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     gap: 20px;
 }
 .reader-name img{
-    width: 50px;
+    width: 45px;
     border-radius: 50%;
 }
 /* Media queries  */

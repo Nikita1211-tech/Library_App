@@ -1,0 +1,71 @@
+<!-- 
+<div class="table-container">
+    <table>
+       <thead>
+           <tr>
+               <th scope="col">Book Name</th>
+               <th scope="col">Book Image</th>
+               <th scope="col">Book Category Name</th>
+               <th scope="col">Book Category Image</th>
+               <th scope="col">Book Type Name</th>
+               <th scope="col">Book Type Image</th>
+               <th scope="col">Cost Price</th>
+               <th scope="col">Selling Price</th>
+               <th scope="col">Publish year</th>
+               <th scope="col">Writer Name</th>
+               <th scope="col">Book Summary</th>
+           </tr>
+       </thead>
+       <tbody>
+           <tr *ngFor="let book of books">
+               <td>{{book.bookName}}</td>
+               <div class="reader-name">
+                   <img [src]="book.bookcat_img" alt="">
+               </div>
+               <td>{{book.category}}</td>
+               <div class="reader-name">
+                   <img [src]="book.img" alt="">
+               </div>
+               <td>{{book.booktypename}}</td>
+               <div class="reader-name">
+                   <img [src]="book.booktype_img" alt="">
+               </div>
+               <td>{{book.costprice}}</td>
+               <td>{{book.sellingprice}}</td>
+               <td>{{book.publishyear}}</td>
+               <td>{{book.writerName}}</td>
+               <td>{{book.booksummary}}</td>
+           </tr>
+       </tbody>
+   </table>
+</div> -->
+<div>
+    <div class="book-name" *ngFor="let book of books">
+        <h4>Book Name</h4>
+        <p>{{book.bookName}}</p>
+        <h4>Book Category Name</h4>
+        <p>{{book.category}}</p>
+        <h4>Book Type Name</h4>
+        <p>{{book.booktypename}}</p>
+    </div>
+    <div class="book-image" *ngFor="let book of books">
+        <h4>Book Image</h4>
+        <img src="book.img" alt="">
+        <h4>Book Category Image</h4>
+        <img src="book.bookcat_img" alt="">
+        <h4>Book Type Image</h4>
+        <img src="book.booktype_img" alt="">
+    </div>
+    <div class="book-price" *ngFor="let book of books">
+        <h4>Cost Price</h4>
+        <p>{{book.costprice}}</p>
+        <h4>Selling Price</h4>
+        <p>{{book.sellingprice}}</p>
+        <h4>Publish Year</h4>
+        <p>{{book.publishyear}}</p>
+        <h4>Writer Name</h4>
+        <p>{{book.writerName}}</p>
+    </div>
+    <h4>Book Summary</h4>
+    <p>{{book.booksummary}}</p>
+</div>

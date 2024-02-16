@@ -18,7 +18,7 @@ export class AuthService {
       .subscribe(
         (response) => {
           localStorage.setItem('token', response.token );
-          this.router.navigate(['/user-home']);
+          this.router.navigate(['/userhome']);
         },
         (error) => {
           errorCallback(error);

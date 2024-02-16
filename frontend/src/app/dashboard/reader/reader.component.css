@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+a{
+    text-decoration: none;
+    color: #FB3453;
+    font-weight: bold;
+}
+p{
+    font-size: 0.9rem;
+}
+h3{
+    font-size: 1.3rem;
+}
+h4{
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+h5{
+    font-size: 2rem;
+    font-weight: bold;
+}
+h6{
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+th{
+    font-size: 1.1rem;
+}
+td{
+    font-size: 1rem;
+}
+/* ReaderContainer sec 1 classes starts  */
+.readerContainer{
+    display: flex;
+    gap: 40px;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    justify-content: space-between;
+}
+.readerContainer_sec1{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    flex: 1;
+}
+.readerConatiner_row1{
+    display: flex;
+    justify-content: space-between;
+}
+.reader_info{
+    width: 47%;
+    padding: 15px;
+}
+.reader_info img{
+    background-color: #fb345223;
+    padding: 12px;
+    border-radius: 12px;
+}
+.bk_shadow{
+    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
+    border: 1px solid #EAEAEA;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+}
+.graph{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.graph_info{
+    display: flex;
+    align-items: center;
+    background-color: #fb345225;
+    border-radius: 10px;
+    color: #fb3452;
+}
+.graph_info img{
+    background: transparent;
+}
+.graph_info h3{
+   margin: 10px 10px 10px 0px;
+}
+.bk_clr{
+    background-color: #FB3453;
+    color: white;
+}
+.bk_clr img{
+    background-color: #ffffff3a;
+}
+/* ReaderContainer table classes start  */
+.readerConatiner_row2{
+    padding: 15px;
+    height: 100%;
+}
+.view{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+table{
+    border-radius: 10px;
+    border: solid 1px #EAEAEA;
+    border-collapse: separate;
+    height: 50%;
+}
+td,th{
+    border-style: none;
+    text-align: center;
+}
+.reader_name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.reader_name img{
+    width: 40px;
+    border-radius: 50%;
+}
+/* ReaderContainer sec 2 classes ends  */
+/* ReaderContainer sec 2 classes starts  */
+.readerContainer_sec2{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    flex: 1;
+}
+.graphWidth{
+    flex: 1;
+}
+.cardContainer{
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+}
+.sub_detail{
+    text-align: center;
+    border: solid 1px #EAEAEA;
+    border-radius: 10px;
+}
+.sub_detail img{
+     border-radius: 50%;
+     margin: auto;
+     width: 200px;
+     padding: 20px 20px;
+}
+.sub_date{
+     color: #FB3453;
+}
+/* Media queries  */
+@media (max-width: 420px) { 
+    .reader_info img{
+        width: 40%;
+    }
+    .reader_name img{
+       display: none;
+    }
+  }
+@media (max-width: 500px) { 
+  .reader_info{
+    padding: 8px;
+}
+  .reader_name img{
+     width: 30px;
+  }
+}
+@media (max-width: 576px) { 
+  .readerContainer{
+    flex-direction: column;
+    gap: 20px;
+  }
+  .sub_detail img{
+    width: 150px;
+   }
+}
+@media (max-width: 992px) { 
+    p{
+        font-size: 0.7rem;
+    }
+    h3{
+        font-size: 1rem;
+    }
+    h4{
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    h5{
+        font-size: 1.7rem;
+        font-weight: bold;
+    }
+    h6{
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+    th{
+        font-size: 0.5rem;
+    }
+    td{
+        font-size: 0.5rem;
+    }
+    .graph{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .sub_detail img{
+        width: 100px;
+        padding: 10px 10px;
+    }
+ }
+@media (max-width: 1200px) { 
+    p{
+        font-size: 0.8rem;
+    }
+    h3{
+        font-size: 1.1rem;
+    }
+    h4{
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    h5{
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    h6{
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+    th{
+        font-size: 0.8rem;
+    }
+    td{
+        font-size: 0.8rem;
+    }
+    .sub_detail img{
+        width: 110px;
+        padding: 10px 10px;
+    }
+}

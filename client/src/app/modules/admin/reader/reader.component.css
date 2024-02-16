@@ -37,17 +37,17 @@ td{
 /* ReaderContainer sec 1 classes starts  */
 .reader-container{
     display: flex;
-    gap: 40px;
+    gap: 20px;
 }
 .readercontainer-sec1{
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 10px;
     width: 60%;
 }
 .readerconatiner-row1{
     display: flex;
-    gap: 20px;
+    gap: 10px;
 }
 .reader-info{
     width: 47%;
@@ -171,7 +171,7 @@ td,th{
     display: flex;
     overflow-x: auto;
     scrollbar-width:none;
-    gap: 10px;
+    gap: 5px;
 }
 .sub-detail{
     text-align: center;

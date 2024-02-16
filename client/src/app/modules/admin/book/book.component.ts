@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { book } from '../../../data/interfaces/book.interface';
+import { Book } from '../../../data/interfaces/book.interface';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrl: './book.component.css'
 })
 export class BookComponent {
-  books: book[]=[];
+  books: Book[]=[];
   public chart: any;
   constructor(private router:Router, private http: HttpClient){}
 
