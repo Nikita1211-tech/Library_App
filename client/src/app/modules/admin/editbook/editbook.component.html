@@ -9,7 +9,7 @@
                 </div>
                 <div>
                     <label for="bookimg">Book Image</label><br>
-                    <img [src]="books?.img" alt="Book Image" *ngIf="books?.img" style="max-width: 100%; max-height: 200px;">
+                    <img  alt="Book Image" style="max-width: 100%; max-height: 200px;">
                     <input class="form-control"  formControlName="bookimg" type="file" name="bookimg"
                         placeholder="Enter Book Image">
                 </div>
@@ -35,7 +35,7 @@
             <div class="form-elements">
                 <div>
                     <label for="bookcategoryimg">Book Category Image</label><br>
-                    <img [src]="books?.bookcat_img" alt="Book Image" *ngIf="books?.bookcat_img" style="max-width: 100%; max-height: 200px;">
+                    <img  alt="Book Image"  style="max-width: 100%; max-height: 200px;">
                     <input class="form-control"  formControlName="bookcategoryimg" type="file" name="bookcategoryimg"
                         placeholder="Enter Book Category Image">
 
@@ -56,7 +56,7 @@
                 </div>
                 <div>
                     <label for="booktypeimg">Book Type Image</label><br>
-                    <img [src]="books?.booktype_img" alt="Book Image" *ngIf="books?.booktype_img" style="max-width: 100%; max-height: 200px;">
+                    <img  alt="Book Image" style="max-width: 100%; max-height: 200px;">
                     <input class="form-control" (change)="onFileSelected($event)"  formControlName="booktypeimg" type="file" name="booktypeimg"
                         placeholder="Enter Book Type Image">
                 </div>

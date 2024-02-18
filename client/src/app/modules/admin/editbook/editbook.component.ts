@@ -43,9 +43,9 @@ export class EditbookComponent{
         bookwriter: books.writerName,
         publishyear: books.publishyear,
         summary: books.booksummary,
-        booktypeimg: books.booktype_img,
-        bookcategoryimg: books.bookcat_img,
-        img: books.bookcat_img
+        // booktypeimg: books.booktype_img,
+        // bookcategoryimg: books.bookcat_img,
+        // img: books.bookcat_img
       });
       })
     this.editBookForm = new FormGroup({

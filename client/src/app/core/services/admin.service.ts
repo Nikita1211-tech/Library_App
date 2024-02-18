@@ -46,7 +46,7 @@ addBook(formData: FormData, errorCallback: (error: any) => void): void {
       );
 }
 
-updateBook(id: Number, updatedData: FormData, errorCallback: (error: any) => void){
+updateBook(id: number, updatedData: FormData, errorCallback: (error: any) => void){
   this.http.post<any>(`${this.API_URL}/updatebook/${id}`, updatedData)
       .subscribe(
           (response) => {
