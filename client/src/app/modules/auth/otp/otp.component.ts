@@ -41,4 +41,9 @@ export class OtpComponent {
     }
 })
 }
+resendotp(): void{
+  const otp = this.otpform.value.otp;
+  const email = localStorage.getItem('registeruser')
+  this.auth.resendOtp(email, otp, (error) => {})
+}
 }
