@@ -23,4 +23,9 @@ export class VerifyuserComponent {
     console.log(email)
     this.register.verifyotp(email, otp, (error)=>{})
   }
+  resendotp(): void{
+    const otp = this.verifyform.value.otp;
+    const email = localStorage.getItem('registeruser')
+    this.auth.resendOtp(email, otp, (error) => {})
+  }
 }

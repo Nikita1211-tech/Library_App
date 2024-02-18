@@ -14,6 +14,7 @@
                         formControlName="otp" aria-describedby="emailHelp" placeholder="Enter otp"
                         required>
                 </div>
+                <a (click)="resendotp()">Resend OTP</a>
             </div>
             <div
                 *ngIf="verifyform.controls['otp'].invalid && (verifyform.controls['otp'].dirty || verifyform.controls['otp'].touched)">

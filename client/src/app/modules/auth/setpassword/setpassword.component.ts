@@ -23,6 +23,18 @@ export class SetpasswordComponent {
   }
   );
  }
+ showPassword: boolean = false;
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+    const inputType = this.showPassword ? 'text' : 'password';
+    document.getElementById('Password')?.setAttribute('type', inputType);
+  }
+  toggleConfirmPasswordVisibility(): void{
+    this.showPassword = !this.showPassword;
+    const inputType = this.showPassword ? 'text' : 'password';
+    document.getElementById('confirmpassword')?.setAttribute('type', inputType);
+  }
  passwordMatchValidator(form: AbstractControl){
      return form.get('password')?.value === form.get('confirmpassword')?.value ? null: { mismatch: true };
  }

@@ -4,6 +4,9 @@
     border-radius: 15px;
     padding: 20px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 /* Form Classes starts */
 .form{
@@ -115,4 +118,60 @@ textarea{
      object-fit: cover;
      object-position:  start;
      border-radius: 50%;
+ }
+
+ .bk-shadow{
+    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
+    border: 1px solid #EAEAEA;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+}
+ h4{
+    margin: 0px;
+ }
+ p{
+    margin: 0px;
+ }
+ .editbook-page{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    border: 1.5px solid black;
+    padding: 10px;
+    border-radius: 10px;
+ }
+ .book-name{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+ }
+ .book-details{
+    display: flex;
+    justify-content: space-between;
+ }
+.book-img img{
+    width: 100px;
+}
+ .book-img{
+    display: flex;
+    justify-content: space-between;
+ }
+ .book-img-height img{
+    width: 80px;
+    height: 90%;
+    border-radius: 10px;
+ }
+ .btn{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+ }
+ button{
+    border: none;
+    padding: 20px 30px;
+    border-radius: 10px;
+    background-color: #fb3453;
+    color: white;
+    cursor: pointer;
  }

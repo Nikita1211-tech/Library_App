@@ -43,7 +43,7 @@ const routes: Routes = [
         loadChildren: () => import('./modules/admin/addbook/addbook.module').then(m => m.AddbookModule) 
       },
       { 
-        path: 'editbook', 
+        path: 'editbook/:id', 
         loadChildren: () => import('./modules/admin/editbook/editbook.module').then(m => m.EditbookModule) 
       },
       {

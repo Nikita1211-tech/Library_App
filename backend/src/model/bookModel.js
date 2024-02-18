@@ -12,7 +12,6 @@ const Book = sequelize.define('Book',{
     img: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
     },
     bookName: {
       type: DataTypes.STRING,
@@ -41,7 +40,6 @@ const Book = sequelize.define('Book',{
     bookcat_img: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
     },
     category: {
         type: DataTypes.STRING,
@@ -50,7 +48,6 @@ const Book = sequelize.define('Book',{
     booktype_img: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
     },
     booktypename: {
         type: DataTypes.STRING,

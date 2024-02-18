@@ -21,13 +21,20 @@ export class LoginComponent{
       password: new FormControl(''),
     });
   }
+  showPassword: boolean = false;
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+    const inputType = this.showPassword ? 'text' : 'password';
+    document.getElementById('Password')?.setAttribute('type', inputType);
+  }
   onSubmit(): void{
      const email = this.loginform.value.email
      const password = this.loginform.value.password
      this.auth.login(email, password, (error) => {
       Swal.fire({
           title: 'Login unsuccessful.',
-          text: "Bad Credentials",
+          text: error?.error.message,
           icon: 'error',
           confirmButtonText: 'Okay',
           confirmButtonColor: "#fb3453",

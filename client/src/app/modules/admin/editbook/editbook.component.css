@@ -1,4 +1,69 @@
-/* Table classes starts 
+.bk-shadow{
+    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
+    border: 1px solid #EAEAEA;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+/* Form Classes starts */
+.form{
+    display: flex;
+    justify-content: space-between;
+}
+.form-elements{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    width: 48%;
+}
+label{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+input{
+    margin-top: 5px;
+    width: 96%;
+    border: none;
+    background: #EAEAEA;
+    border-radius: 10px;
+    padding: 15px;
+}
+select{
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    border-radius: 10px;
+    background: #EAEAEA;
+    padding: 15px;
+}
+textarea{
+    width: 98%;
+    border: none;
+    border-radius: 10px;
+    background: #EAEAEA;
+    padding: 15px;
+}
+.button{
+    display: flex;
+    justify-content: center;
+}
+.submit{
+    width: 10%;
+    color: white;
+    font-size: 16px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #fb3453;
+}
+::placeholder{
+    font-size: 16px;
+}
+/* Table classes starts  */
 .table-section{
     display: flex;
     flex-direction: column;
@@ -53,4 +118,60 @@
      object-fit: cover;
      object-position:  start;
      border-radius: 50%;
- } */
+ }
+
+ .bk-shadow{
+    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
+    border: 1px solid #EAEAEA;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+}
+ h4{
+    margin: 0px;
+ }
+ p{
+    margin: 0px;
+ }
+ .editbook-page{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    border: 1.5px solid black;
+    padding: 10px;
+    border-radius: 10px;
+ }
+ .book-name{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+ }
+ .book-details{
+    display: flex;
+    justify-content: space-between;
+ }
+.book-img img{
+    width: 100px;
+}
+ .book-img{
+    display: flex;
+    justify-content: space-between;
+ }
+ .book-img-height img{
+    width: 80px;
+    height: 90%;
+    border-radius: 10px;
+ }
+ .btn{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+ }
+ button{
+    border: none;
+    padding: 20px 30px;
+    border-radius: 10px;
+    background-color: #fb3453;
+    color: white;
+    cursor: pointer;
+ }

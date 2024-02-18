@@ -47,14 +47,38 @@ const Verifyuser = async(req,res) => {
 const Verifyotp = async(req,res) => {
   const{email, otp} = req.body;
   const user = users.find(user => user.email === email);
+  console.log(users)
   if (user.otp == otp) {
-    users.splice(users.indexOf(user), 1);
     res.status(200).json({ message: 'OTP verified successfully' });
     console.log(user);
+    users.splice(users.indexOf(user), 1);
   } else {
     // Remove the used OTP from the database
     res.status(400).json({ message: 'Invalid OTP' });
   }
+}
+const Resendotp = async (req, res) => {
+  const { email, otp } = req.body;
+  const user = users.find(user => user.email === email);
+
+  if (!user) {
+    return res.status(400).json({ message: 'User not found' });
+  }
+
+  const newOTP = otpgenerator();
+  otpSender(email, newOTP); 
+
+  user.otp = newOTP;
+  if (user.otp == otp) {
+    res.status(200).json({ message: 'OTP verified successfully' });
+    console.log(user);
+    users.splice(users.indexOf(user), 1);
+  } else {
+    // Remove the used OTP from the database
+    res.status(400).json({ message: 'Invalid OTP' });
+  }
+
+  // res.status(200).json({ message: 'New OTP sent successfully', otp: newOTP });
 }
 const Saveuser = async(req,res) => {
   const user = {
@@ -91,13 +115,15 @@ const Auth = async (req,res) => {
     console.log(user)
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     console.log(validPassword)
-    if(user != null ) return res.status(401).json({message: "Email id doesnot exists"});
-    if(validPassword){
-         const token = tokengenerator(Users.email);
-         res.cookie('jwt', token, { httpOnly: true, secure:true });
-         return res.json({ token });
+    if(user){
+      if(validPassword){
+           const token = tokengenerator(Users.email);
+           res.cookie('jwt', token, { httpOnly: true, secure:true });
+           return res.json({ token });
+      }
+      else return res.status(401).json({message: "Incorrect Password"});
     }
-    else return res.status(401).json({message: "Incorrect Password"});
+    else return res.status(401).json("Email ID doesnot exists");
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }
@@ -189,4 +215,4 @@ const updatePassword = async(req,res) => {
 //   }
 // }
 
-module.exports = {Login, Auth, Logout, Register,Verifyuser, Verifyotp, Saveuser, Reset, updatePassword, Otp}
+module.exports = {Login, Auth, Logout, Register,Verifyuser, Verifyotp, Resendotp, Saveuser, Reset, updatePassword, Otp}

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { EditbookRoutingModule } from './editbook-routing.module';
 import { EditbookComponent } from './editbook.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { EditbookComponent } from './editbook.component';
   ],
   imports: [
     CommonModule,
-    EditbookRoutingModule
+    EditbookRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class EditbookModule { }

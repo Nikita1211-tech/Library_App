@@ -1,71 +1,145 @@
-<!-- 
-<div class="table-container">
-    <table>
-       <thead>
-           <tr>
-               <th scope="col">Book Name</th>
-               <th scope="col">Book Image</th>
-               <th scope="col">Book Category Name</th>
-               <th scope="col">Book Category Image</th>
-               <th scope="col">Book Type Name</th>
-               <th scope="col">Book Type Image</th>
-               <th scope="col">Cost Price</th>
-               <th scope="col">Selling Price</th>
-               <th scope="col">Publish year</th>
-               <th scope="col">Writer Name</th>
-               <th scope="col">Book Summary</th>
-           </tr>
-       </thead>
-       <tbody>
-           <tr *ngFor="let book of books">
-               <td>{{book.bookName}}</td>
-               <div class="reader-name">
-                   <img [src]="book.bookcat_img" alt="">
-               </div>
-               <td>{{book.category}}</td>
-               <div class="reader-name">
-                   <img [src]="book.img" alt="">
-               </div>
-               <td>{{book.booktypename}}</td>
-               <div class="reader-name">
-                   <img [src]="book.booktype_img" alt="">
-               </div>
-               <td>{{book.costprice}}</td>
-               <td>{{book.sellingprice}}</td>
-               <td>{{book.publishyear}}</td>
-               <td>{{book.writerName}}</td>
-               <td>{{book.booksummary}}</td>
-           </tr>
-       </tbody>
-   </table>
-</div>
-<!-- <div>
-    <div class="book-name" *ngFor="let book of books">
-        <h4>Book Name</h4>
-        <p>{{book.bookName}}</p>
-        <h4>Book Category Name</h4>
-        <p>{{book.category}}</p>
-        <h4>Book Type Name</h4>
-        <p>{{book.booktypename}}</p>
+<div class="bk-shadow">
+    <form [formGroup]="editBookForm" (ngSubmit)="onEditBook()" class="form-control" enctype="multipart/form-data">
+        <div class="form">
+            <div class="form-elements">
+                <div>
+                    <label for="bookname">Book Name</label>
+                    <input class="form-control" formControlName="bookname" type="text" name="bookname"
+                        value= "book.bookname" placeholder="Enter Book name">
+                </div>
+                <div>
+                    <label for="bookimg">Book Image</label><br>
+                    <img [src]="books?.img" alt="Book Image" *ngIf="books?.img" style="max-width: 100%; max-height: 200px;">
+                    <input class="form-control"  formControlName="bookimg" type="file" name="bookimg"
+                        placeholder="Enter Book Image">
+                </div>
+                <div>
+                    <label for="booksellingprice">Book Actual Price</label>
+                    <input class="form-control" formControlName="booksellingprice" type="text" name="booksellingprice"
+                        placeholder="Enter Book Actual Price">
+                </div>
+                <div>
+                    <label for="bookcostprice">Book Cost Price</label>
+                    <input class="form-control" formControlName="bookcostprice" type="text" name="bookcostprice"
+                        placeholder="Enter Book Cost Price">
+                </div>
+                <div>
+                    <label for="bookcategory">Book Category Name</label><br>
+                    <select class='form-select'  name="bookcategory" id="bookcategory" formControlName="bookcategories">
+                        <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{
+                            bookcategory.abbrev }}</option>
+                    </select>
+                    <!-- <input type="text" name="bookcategory" placeholder="Enter Book Category Name"> -->
+                </div>
+            </div>
+            <div class="form-elements">
+                <div>
+                    <label for="bookcategoryimg">Book Category Image</label><br>
+                    <img [src]="books?.bookcat_img" alt="Book Image" *ngIf="books?.bookcat_img" style="max-width: 100%; max-height: 200px;">
+                    <input class="form-control"  formControlName="bookcategoryimg" type="file" name="bookcategoryimg"
+                        placeholder="Enter Book Category Image">
+
+                </div>
+                <div>
+                    <label for="booktype">Book Type Name</label>
+                    <select name="booktype" id="booktype" formControlName="booktype">
+                        <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">{{ booktype.abbrev }}
+                        </option>
+                    </select>
+                    <!-- <input type="text" name="bookwriter" placeholder="Enter Book Type Name"> -->
+
+                </div>
+                <div>
+                    <label for="bookwriter">Book Writer Name</label>
+                    <input class="form-control" formControlName="bookwriter" type="text" name="booktype"
+                        placeholder="Enter Book Writer Name">
+                </div>
+                <div>
+                    <label for="booktypeimg">Book Type Image</label><br>
+                    <img [src]="books?.booktype_img" alt="Book Image" *ngIf="books?.booktype_img" style="max-width: 100%; max-height: 200px;">
+                    <input class="form-control" (change)="onFileSelected($event)"  formControlName="booktypeimg" type="file" name="booktypeimg"
+                        placeholder="Enter Book Type Image">
+                </div>
+                <div>
+                    <label for="publishyear">Enter Publish Year</label>
+                    <input class="form-control" formControlName="publishyear" type="text" name="publishyear"
+                        placeholder="Enter Publish Year">
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label for="summary">Enter Book Summary</label><br>
+            <textarea name="summary" id="" cols="30" rows="10" formControlName="summary"
+                placeholder="Enter Book Summary"></textarea>
+        </div>
+        <div class="button">
+            <input type="submit" name="submit" value="Update" class="submit">
+        </div>
+    </form>
+    <!-- <div>
+        <div *ngFor="let book of books" class="editbook-page">
+            <div class="book-name">
+                <div class="book-details">
+                    <div>
+                        <h4>Book Name</h4>
+                        <p>{{book.bookName}}</p>
+                    </div>
+                   
+                    <div>
+                        <h4>Book Category Name</h4>
+                        <p>{{book.category}}</p>
+        
+                    </div>
+                    <div>
+                        <h4>Book Type Name</h4>
+                        <p>{{book.booktypename}}</p>
+            
+                    </div>
+                    <div>
+                        <h4>Publish Year</h4>
+                        <p>{{book.publishyear}}</p>
+        
+                    </div>
+                    <div>
+                        <h4>Writer Name</h4>
+                        <p>{{book.writerName}}</p>
+        
+                    </div>
+                </div>
+                <div class="book-img">
+                    <div  class="book-img-height">
+                        <h4>Book Image</h4>
+                        <img [src]="book.img" alt="">
+        
+                    </div>
+                    <div  class="book-img-height">
+                        <h4>Book Category Image</h4>
+                        <img [src]="book.bookcat_img" alt="">
+        
+                    </div>
+                    <div class="book-img-height">
+                        <h4>Book Type Image</h4>
+                        <img [src]="book.booktype_img" alt="">
+        
+                    </div>
+                    <div>
+                        <h4>Cost Price</h4>
+                        <p>{{book.costprice}}</p>
+        
+                    </div>
+                    <div>
+                        <h4>Selling Price</h4>
+                        <p>{{book.sellingprice}}</p>
+        
+                    </div>
+                </div>
+                <div class="book-summary">
+                    <h4>Book Summary</h4>
+                    <td>{{book.booksummary}}</td>
+                </div>
+            </div>
+        </div> 
     </div>
-    <div class="book-image" *ngFor="let book of books">
-        <h4>Book Image</h4>
-        <img src="book.img" alt="">
-        <h4>Book Category Image</h4>
-        <img src="book.bookcat_img" alt="">
-        <h4>Book Type Image</h4>
-        <img src="book.booktype_img" alt="">
-    </div>
-    <div class="book-price" *ngFor="let book of books">
-        <h4>Cost Price</h4>
-        <p>{{book.costprice}}</p>
-        <h4>Selling Price</h4>
-        <p>{{book.sellingprice}}</p>
-        <h4>Publish Year</h4>
-        <p>{{book.publishyear}}</p>
-        <h4>Writer Name</h4>
-        <p>{{book.writerName}}</p>
-    </div>
-    <h4>Book Summary</h4>
-    <p>{{book.booksummary}}</p>
-</div> --> -->
+    
+</div> -->

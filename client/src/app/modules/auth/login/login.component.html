@@ -16,8 +16,11 @@
         </div>
         <div class="form-label">
           <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" formControlName="password" id="Password"
-            placeholder="Password" required />
+          <div style="display: flex; align-items: center;">
+            <input type="password" style="width: 100%;" class="form-control" name="password" formControlName="password" id="Password"
+              placeholder="Password" required />
+              <i class="far fa-eye" (click)="togglePasswordVisibility()"></i>
+          </div>
         </div>
         <div class="form-input">
           <div>

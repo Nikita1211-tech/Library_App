@@ -61,6 +61,21 @@ export class AuthService {
         }
       )
   }
+  resendOtp(email: string|null, otp: number,  errorCallback: (error: any) => void): void{
+    const obj = {
+      email: email,
+      otp: otp,
+    };
+    this.http.post(this.API_URL+'/resendotp', obj)
+    .subscribe(
+      (response) => {
+        this.router.navigate(['/updatepassword']);
+      },
+      (error) => {
+        errorCallback(error);
+      }
+    )
+  }
   updatePassword(email:string|null, password: string, errorCallback: (error: any) => void): void{
     const obj = {
       email: email,
