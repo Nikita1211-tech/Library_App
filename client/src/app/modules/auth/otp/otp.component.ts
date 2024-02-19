@@ -15,12 +15,20 @@ export class OtpComponent {
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router){
   this.otpform =  new FormGroup({
     // email: new FormControl(''),
-    otp: new FormControl('', Validators.required),
+        otp1: new FormControl('', [Validators.required]),
+        otp2: new FormControl('', [Validators.required]),
+        otp3: new FormControl('', [Validators.required]),
+        otp4: new FormControl('', [Validators.required]),
   });
  }
  
  otp(): void{
-  const otp = this.otpform.value.otp
+    const otp1 = this.otpform.value.otp1;
+    const otp2 = this.otpform.value.otp2;
+    const otp3 = this.otpform.value.otp3;
+    const otp4 = this.otpform.value.otp4;
+    
+    const otp = otp1 + otp2 + otp3 + otp4; 
   const email = localStorage.getItem('username')
   console.log(email)
   this.auth.otp(email, otp, (error)=>{

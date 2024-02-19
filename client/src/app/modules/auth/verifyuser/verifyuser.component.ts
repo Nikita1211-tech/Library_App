@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../../../core/services/auth.service';
 import { RegisterService } from '../../../core/services/register.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-verifyuser',
@@ -13,19 +14,40 @@ export class VerifyuserComponent {
   verifyform: FormGroup
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private router: Router){
     this.verifyform = new FormGroup({
-
-      otp: new FormControl('', [Validators.required]),
+        otp1: new FormControl('', [Validators.required]),
+        otp2: new FormControl('', [Validators.required]),
+        otp3: new FormControl('', [Validators.required]),
+        otp4: new FormControl('', [Validators.required]),
     })
   }
-  onVerify(): void{
-    const otp = this.verifyform.value.otp;
-    const email = localStorage.getItem('registeruser')
-    console.log(email)
-    this.register.verifyotp(email, otp, (error)=>{})
+  onVerify(): void {
+    const otp1 = this.verifyform.value.otp1;
+    const otp2 = this.verifyform.value.otp2;
+    const otp3 = this.verifyform.value.otp3;
+    const otp4 = this.verifyform.value.otp4;
+    
+    const otp = otp1 + otp2 + otp3 + otp4; 
+    
+    const email = localStorage.getItem('registeruser');
+    
+    this.register.verifyotp(email, otp, (error) => {
+      if (error) {
+        Swal.fire({
+          text: error?.error?.message,
+          confirmButtonText: 'Okay',
+          confirmButtonColor: "#fb3453",
+          timer: 3000
+        });
+      } else {
+        // this.router.navigate(['/updatepassword']);
+      }
+    });
   }
   resendotp(): void{
     const otp = this.verifyform.value.otp;
     const email = localStorage.getItem('registeruser')
-    this.auth.resendOtp(email, otp, (error) => {})
+    this.auth.resendOtp(email, otp, (error) => {
+
+    })
   }
 }

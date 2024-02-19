@@ -19,8 +19,45 @@ export class UpdatepasswordComponent {
     validators: this.passwordMatchValidator,
   });
  }
+
  passwordMatchValidator(form: AbstractControl){
   return form.get('password')?.value === form.get('confirmpassword')?.value ? null: { mismatch: true };
+}
+togglePasswordVisibility() {
+  const passwordInput = document.getElementById('Password') as HTMLInputElement;
+  const passwordIcon = document.querySelector('.toggle-password i');
+
+  if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      if (passwordIcon) {
+          passwordIcon.classList.remove('far', 'fa-eye');
+          passwordIcon.classList.add('far', 'fa-eye-slash');
+      }
+  } else {
+      passwordInput.type = 'password';
+      if (passwordIcon) {
+          passwordIcon.classList.remove('far', 'fa-eye-slash');
+          passwordIcon.classList.add('far', 'fa-eye');
+      }
+  }
+}
+toggleConfirmPasswordVisibility() {
+  const passwordInput = document.getElementById('confirmpassword') as HTMLInputElement;
+  const passwordIcon = document.querySelector('.toggle-password i');
+
+  if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      if (passwordIcon) {
+          passwordIcon.classList.remove('far', 'fa-eye');
+          passwordIcon.classList.add('far', 'fa-eye-slash');
+      }
+  } else {
+      passwordInput.type = 'password';
+      if (passwordIcon) {
+          passwordIcon.classList.remove('far', 'fa-eye-slash');
+          passwordIcon.classList.add('far', 'fa-eye');
+      }
+  }
 }
  onUpdate(): void{
   const email = localStorage.getItem('username')
