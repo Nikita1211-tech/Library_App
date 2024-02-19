@@ -112,10 +112,13 @@ const Auth = async (req,res) => {
 
   try {
     const user = await Users.findOne({ where: { email: email } });
+    if(user === null){
+      return res.status(401).json({message: "Email ID doesnot exists"});
+    }
     console.log(user)
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     console.log(validPassword)
-    if(user){
+    if(user!= null){
       if(validPassword){
            const token = tokengenerator(Users.email);
            res.cookie('jwt', token, { httpOnly: true, secure:true });
@@ -123,7 +126,6 @@ const Auth = async (req,res) => {
       }
       else return res.status(401).json({message: "Incorrect Password"});
     }
-    else return res.status(401).json("Email ID doesnot exists");
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }

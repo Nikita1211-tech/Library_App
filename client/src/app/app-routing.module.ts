@@ -46,6 +46,14 @@ const routes: Routes = [
         path: 'editbook/:id', 
         loadChildren: () => import('./modules/admin/editbook/editbook.module').then(m => m.EditbookModule) 
       },
+      { 
+        path: 'bookcategories', 
+        loadChildren: () => import('./modules/admin/bookcategories/bookcategories.module').then(m => m.BookcategoriesModule) 
+      },
+      { 
+        path: 'bookdescription/:id', 
+        loadChildren: () => import('./modules/admin/bookdescription/bookdescription.module').then(m => m.BookdescriptionModule) 
+      },
       {
         path: 'reports',
         loadChildren: () => import('./modules/admin/reports/reports.module').then(m => m.ReportsModule),
@@ -100,6 +108,8 @@ const routes: Routes = [
       },
     ]
   },
+  
+  
   
  
   // User Component routing ends 

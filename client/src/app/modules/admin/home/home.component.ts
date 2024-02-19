@@ -4,14 +4,16 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Chart from 'chart.js/auto';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent{
   books: Book[]=[];
+  public environment = environment.IMG_URL;
   public chart: any;
   constructor(private router:Router, private http: HttpClient){}
   
@@ -52,13 +54,13 @@ export class HomeComponent {
   getBooks(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiURL}/books`);
   }
-  
-  
   ngOnInit(): void {
     this.createChart();
     this.getBooks().subscribe((books) => {
       this.books = books;
+      // this.books[0].img = books.img
       console.log(books)
+      console.log(books[0].img);
     });
   }
 }

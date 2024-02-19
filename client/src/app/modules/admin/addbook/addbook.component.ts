@@ -86,19 +86,19 @@ getBooks(){
   return this.admin.showbook()
 }
 
-onDeleteBook(bookId: number): void {
-  // Call the deleteBook method from the BookService
-  this.admin.deleteBook(bookId).subscribe(
-    () => {
-      console.log('Book deleted successfully');
-      // Optionally, you can perform additional actions after deletion, such as updating the UI
-    },
-    (error) => {
-      console.error('Failed to delete book:', error);
-      // Handle error, e.g., show an error message to the user
-    }
-  );
-}
+// onDeleteBook(bookId: number): void {
+//   // Call the deleteBook method from the BookService
+//   this.admin.deleteBook(bookId).subscribe(
+//     () => {
+//       console.log('Book deleted successfully');
+//       // Optionally, you can perform additional actions after deletion, such as updating the UI
+//     },
+//     (error) => {
+//       console.error('Failed to delete book:', error);
+//       // Handle error, e.g., show an error message to the user
+//     }
+//   );
+// }
   // edit book
   
 

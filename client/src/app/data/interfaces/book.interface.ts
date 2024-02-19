@@ -1,14 +1,14 @@
 export interface Book{
-    id: Number;
-    img: String;
-    bookName: String;
-    writerName: String;
-    costprice: String;
-    sellingprice: String;
-    publishyear: String;
-    booksummary: String;
-    category: String;
-    bookcat_img: String;
-    booktype_img: String;
-    booktypename: String;
+    id: number;
+    img: string;
+    bookName: string;
+    writerName: string;
+    costprice: string;
+    sellingprice: string;
+    publishyear: string;
+    booksummary: string;
+    category: string;
+    bookcat_img: string;
+    booktype_img: string;
+    booktypename: string;
 }

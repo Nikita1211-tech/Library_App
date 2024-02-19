@@ -50,7 +50,7 @@
                     number</div>
             </div>
             </div>
-            <button type="submit" class="button">Send OTP</button>
+            <button type="submit" class="button" [disabled]="!registerform.valid">Send OTP</button>
         </form>
     </div>
 </div>

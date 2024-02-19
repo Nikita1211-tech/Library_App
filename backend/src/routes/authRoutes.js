@@ -2,7 +2,7 @@ const express = require('express');
 const { Login, Auth, Logout, Register, Reset, Otp, updatePassword, Verifyuser, Verifyotp, Saveuser, Resendotp } = require('../controllers/authControllers');
 const authenticateJWT = require("../middlewares/auth");
 const otpgenerator = require('../services/otpgenerator.service');
-const { Booklist, Bookdesc, AddBook, upload, Updatebook, Deletebook } = require('../controllers/adminControllers');
+const { Booklist, Bookdesc, AddBook, upload, Updatebook, Deletebook, Bookcategory } = require('../controllers/adminControllers');
 
 const router = express.Router();
 // Login routes 
@@ -25,8 +25,10 @@ router.get('/logout', Logout);
 router.get('/books', Booklist);
 router.get('/bookdescription/:book_id', Bookdesc);
 router.post('/updatebook/:book_id', Updatebook);
+router.post('/bookcategory', Bookcategory)
 router.delete('/deletebook/:book_id', Deletebook);
-router.get('/bookcategory', Booklist);
+// router.get('/bookcategory', Bookcategory);
+router.get('/booklist', Booklist);
 
 
 module.exports = router;

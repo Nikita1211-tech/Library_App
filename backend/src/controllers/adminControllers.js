@@ -1,3 +1,4 @@
+// const { SELECT } = require("sequelize/types/query-types");
 const Book = require("../model/bookModel");
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -53,49 +54,6 @@ const AddBook = async (req, res) => {
     console.error('Error adding book:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
-  // try {
-  //   let imgPath = ''; // Initialize imgPath variable
-  //   // Check if req.file exists before accessing its properties
-  //   if (req.body && req.body.bookimg) {
-  //     imgPath = req.body.bookimg; // Get the path of the uploaded file
-  //   } else {
-      
-  //     console.log(imgPath)
-  //     console.log(req.body)
-  //     // console.log(req)
-  //     // Handle case where req.file is undefined or missing
-  //     console.error('No file uploaded');
-  //     // Optionally, you can return an error response to the client
-  //     return res.status(400).json({ error: 'No file uploaded' });
-  //   }
-  //   const obj = { 
-  //     bookName: req.body.bookname, 
-  //     img: req.body.bookimg, 
-  //     sellingprice: req.body.booksellingprice, 
-  //     costprice: req.body.bookcostprice,  
-  //     bookcat_img : req.body.bookcategoryimg, 
-  //     writerName: req.body.bookwriter, 
-  //     booktype_img : req.body.booktypeimg,
-  //     publishyear: req.body.publishyear,
-  //     booktypename: req.body.booktype,
-  //     category: req.body.bookcategories,
-  //     booksummary: req.body.summary
-  //   };
-  //   console.log(obj)
-  //   let newbook = await Book.create(obj);
-  //   if(newbook){
-  //     console.log("Inserted successfully")
-  //     res.status(200).json({message: "Inserted"})
-  //   }
-  //   else
-  //   {
-  //     console.log("Not Inserted")
-  //     res.status(400).json({message: "Not Inserted"})
-  //   }
-  // } catch (error) {
-  //   console.error(error);
-  //   res.status(500).json({ message: 'Internal server error' });
-  // }
 };
 
 // const Addbook = async(req,res)=>{
@@ -201,26 +159,47 @@ const Deletebook = async (req, res) => {
   const bookId = req.params.book_id;
 
   try {
-    // Find the book by ID
     const book = await Book.findByPk(bookId);
 
-    // If the book doesn't exist, return a 404 Not Found response
     if (!book) {
       return res.status(404).json({ error: 'Book not found' });
     }
 
-    // Delete the book
     else {
       await book.destroy();
 
-    // Return a success response
       return res.status(200).json({ message: 'Book deleted successfully' });
     }
   } catch (error) {
-    // If an error occurs, return a 500 Internal Server Error response
     console.error('Failed to delete book:', error);
     return res.status(500).json({ error: 'Failed to delete book' });
   }
-};
+}
 
-module.exports = { AddBook,Detail, upload, Booklist, Bookdesc, Updatebook, Deletebook } 
+const Bookcategory = async(req,res) => {
+  const bookcategory = req.body.bookcategory  
+  // const bookdata = await Book.findOne({where: {category: bookcategory} }); 
+
+  try {
+    const bookdata = await Book.findOne({where: {category: bookcategory} }); 
+    console.log(bookdata)
+    if(bookdata){
+      res.json(bookdata);
+    }
+    else{
+      return res.status(404).json({Message: "Bookcategory not found"})
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Failed to load book' });
+  }
+  // if(book){
+  //   return res.status(200).json({ message: 'Book category added successfully' });
+  // }
+  // else{
+  //   return res.status(400).json({message: 'Error'});
+  // }
+  // const book = await Book.
+}
+
+module.exports = { AddBook,Detail, upload, Booklist, Bookdesc, Updatebook, Deletebook, Bookcategory } 

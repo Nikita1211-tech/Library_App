@@ -32,9 +32,10 @@
         <p>View All</p>
       </a>
     </div>
+    <!-- <p>{{environment}}</p> -->
     <div class="book-section-row2">
       <div class="book-frame" *ngFor="let book of books">
-        <a [routerLink]="['/bookdescription/', book.id]"><img [src]="book.img" alt="Card image cap"></a>
+        <a [routerLink]="['/bookdescription/', book.id]"><img [src]="book.img"  alt="Card image cap"></a>
         <div class="book-detail">
           <h5 class="">{{book.bookName}}</h5>
           <p class="writer-name">{{book.writerName}}</p>

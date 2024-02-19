@@ -1,0 +1,32 @@
+.bk-shadow{
+    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
+    border: 1px solid #EAEAEA;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+}
+h3,h4{
+    margin: 0px;
+}
+.bookcategories-row1{
+    display: flex;
+    gap: 20px;
+}
+.bookcategories-row1 img{
+    width: 100px;
+    height: 80%;
+}
+.book-details{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 20px;
+}
+.book-details div{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.book-details-row1{
+    display: flex;
+}

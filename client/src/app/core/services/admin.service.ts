@@ -56,18 +56,34 @@ updateBook(id: number, updatedData: FormData, errorCallback: (error: any) => voi
               errorCallback(error);
           }
       );
-      console.log(updatedData)
-      console.log(`${this.API_URL}/updatebook/${id}`);
+      // console.log(updatedData)
+      // console.log(`${this.API_URL}/updatebook/${id}`);
 }
  
 deleteBook(bookId: number): Observable<any> {
   return this.http.delete<any>(`${this.API_URL}/deletebook/${bookId}`);
 }
 
- showbook(){
-   return this.http.get<any>(this.API_URL+'/bookcategory')
- }
- getBookById(id: number){
-  return this.http.get<any>(`${this.API_URL}/bookdescription/${id}`); // Adjust the URL as per your API endpoint
-  }
+getBookById(id: number){
+ return this.http.get<any>(`${this.API_URL}/bookdescription/${id}`); 
+}
+
+bookcategory(bookcategory: String | null, errorCallback: (error: any) => void){
+  this.http.post(this.API_URL+'/bookcategory',  { bookcategory }).subscribe(
+    (response) => {
+       console.log(response);
+       this.router.navigate(['/bookcategories']);
+      //  return response;
+    },
+    (error) => {
+          errorCallback(error);
+    }
+  )
+}
+showBookCategory(bookCategory: string | null): Observable<any> {
+  return this.http.post<any>(`${this.API_URL}/bookcategory`, { bookcategory: bookCategory });
+}
+showbook(): Observable<any> {
+  return this.http.get<any>(this.API_URL+'/booklist')
+}
 }
