@@ -30,6 +30,9 @@ const Register =  async(req,res) => {
         if(existinguser != null){
           return res.status(409).json({message: "User already exists"});
         }
+         const hashedPassword = await bcrypt.hash(user.password, 10);
+         console.log(hashedPassword);
+         user.password = hashedPassword;
          const newuser = await Users.create(user);
          return res.status(201).json({message: "User created successfully"})
     } catch(error){

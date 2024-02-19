@@ -32,12 +32,12 @@ const Users = sequelize.define('Users',{
       defaultValue: 0,
     },
 })
-const options = {
-  field: 'password',
-  rounds: 12,
-  compare: 'authenticate', 
-}
-useBcrypt(Users, options);
+// const options = {
+//   field: 'password',
+//   rounds: 12,
+//   compare: 'authenticate', 
+// }
+// useBcrypt(Users, options);
 Users.sync({ force: false }).then(() => {
     console.log('User table synced');
 });
