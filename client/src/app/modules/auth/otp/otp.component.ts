@@ -33,9 +33,7 @@ export class OtpComponent {
         confirmButtonText: 'Okay',
         confirmButtonColor: "#fb3453",
         timer: 3000
-      }).then((result) => {
-        // this.router.navigate(['/otp']);
-      });
+      })
     }
     else{
       // this.router.navigate(['/updatepassword']);

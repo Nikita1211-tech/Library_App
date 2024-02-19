@@ -9,7 +9,7 @@
                 </div>
                 <div>
                     <label for="bookimg">Book Image</label><br>
-                    <img  alt="Book Image" style="max-width: 100%; max-height: 200px;">
+                    <img [src]="environment + bookImageUrl" alt="Book Image" style="max-width: 100%; max-height: 200px;">
                     <input class="form-control"  formControlName="bookimg" type="file" name="bookimg"
                         placeholder="Enter Book Image">
                 </div>
@@ -25,9 +25,8 @@
                 </div>
                 <div>
                     <label for="bookcategory">Book Category Name</label><br>
-                    <select class='form-select'  name="bookcategory" id="bookcategory" formControlName="bookcategories">
-                        <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{
-                            bookcategory.abbrev }}</option>
+                    <select class='form-select'  name="bookcategory" id="bookcategory" formControlName="bookcategory">
+                        <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{ bookcategory.abbrev }}</option>
                     </select>
                     <!-- <input type="text" name="bookcategory" placeholder="Enter Book Category Name"> -->
                 </div>
@@ -35,14 +34,14 @@
             <div class="form-elements">
                 <div>
                     <label for="bookcategoryimg">Book Category Image</label><br>
-                    <img  alt="Book Image"  style="max-width: 100%; max-height: 200px;">
+                    <img [src]="environment + bookCategoryImageUrl" alt="Book Image" style="max-width: 100%; max-height: 200px;">
                     <input class="form-control"  formControlName="bookcategoryimg" type="file" name="bookcategoryimg"
                         placeholder="Enter Book Category Image">
 
                 </div>
                 <div>
                     <label for="booktype">Book Type Name</label>
-                    <select name="booktype" id="booktype" formControlName="booktype">
+                    <select class='form-select'  name="booktype" id="booktype" formControlName="booktype">
                         <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">{{ booktype.abbrev }}
                         </option>
                     </select>
@@ -56,7 +55,7 @@
                 </div>
                 <div>
                     <label for="booktypeimg">Book Type Image</label><br>
-                    <img  alt="Book Image" style="max-width: 100%; max-height: 200px;">
+                    <img [src]="environment + bookTypeImageUrl" alt="Book Image" style="max-width: 100%; max-height: 200px;">
                     <input class="form-control" (change)="onFileSelected($event)"  formControlName="booktypeimg" type="file" name="booktypeimg"
                         placeholder="Enter Book Type Image">
                 </div>

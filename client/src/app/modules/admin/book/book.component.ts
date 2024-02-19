@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AdminService } from '../../../core/services/admin.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-book',
@@ -11,6 +12,7 @@ import { AdminService } from '../../../core/services/admin.service';
   styleUrl: './book.component.css'
 })
 export class BookComponent {
+  public environment = environment.IMG_URL
   books: Book[]=[];
   public chart: any;
   constructor(private router:Router, private http: HttpClient, private admin: AdminService){}

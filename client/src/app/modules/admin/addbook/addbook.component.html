@@ -9,7 +9,7 @@
                 </div>
                 <div>
                     <label for="bookimg">Book Image</label>
-                    <input class="form-control"  (change)="onFileSelected($event)" formControlName="bookimg" type="file" name="bookimg"
+                    <input class="form-control"  (change)="onFileSelected($event, 'bookimg')" formControlName="bookimg" type="file" name="bookimg"
                         placeholder="Enter Book Image">
                 </div>
                 <div>
@@ -34,7 +34,7 @@
             <div class="form-elements">
                 <div>
                     <label for="bookcategoryimg">Book Category Image</label>
-                    <input class="form-control" (change)="onFileSelected($event)" formControlName="bookcategoryimg" type="file" name="bookcategoryimg"
+                    <input class="form-control" (change)="onFileSelected($event, 'bookcategoryimg')" formControlName="bookcategoryimg" type="file" name="bookcategoryimg"
                         placeholder="Enter Book Category Image">
 
                 </div>
@@ -54,7 +54,7 @@
                 </div>
                 <div>
                     <label for="booktypeimg">Book Type Image</label>
-                    <input class="form-control" (change)="onFileSelected($event)" formControlName="booktypeimg" type="file" name="booktypeimg"
+                    <input class="form-control" (change)="onFileSelected($event, 'booktypeimg')" formControlName="booktypeimg" type="file" name="booktypeimg"
                         placeholder="Enter Book Type Image">
                 </div>
                 <div>
@@ -107,17 +107,17 @@
                 <div class="book-img">
                     <div  class="book-img-height">
                         <h4>Book Image</h4>
-                        <img [src]="book.img" alt="">
+                        <img [src]="environment + book.img" alt="">
         
                     </div>
                     <div  class="book-img-height">
                         <h4>Book Category Image</h4>
-                        <img [src]="book.bookcat_img" alt="">
+                        <img [src]="environment + book.bookcat_img" alt="">
         
                     </div>
                     <div class="book-img-height">
                         <h4>Book Type Image</h4>
-                        <img [src]="book.booktype_img" alt="">
+                        <img [src]="environment + book.booktype_img" alt="">
         
                     </div>
                     <div>
@@ -138,7 +138,7 @@
             </div>
             <div class="btn">
                 <a [href]="'/editbook/' + book.id"><button>Edit</button></a>
-                <a [href]="'/deletebook/' + book.id"><button>Delete</button></a>
+                <a (click)="confirmDelete(book.id)"><button>Delete</button></a>
             </div>
         </div> 
     </div>

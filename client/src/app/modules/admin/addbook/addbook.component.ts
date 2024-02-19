@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../../../core/services/admin.service';
 import { Book } from '../../../data/interfaces/book.interface';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import Swal from "sweetalert2"
 
 @Component({
   selector: 'app-addbook',
@@ -11,6 +13,7 @@ import { Observable } from 'rxjs';
   styleUrl: './addbook.component.css'
 })
 export class AddbookComponent {
+  public environment = environment.IMG_URL;
   bookId: number;
   books: Book[] = []
   booktypes = [
@@ -57,16 +60,24 @@ export class AddbookComponent {
     summary: new FormControl('', Validators.required)
   });
  }
-
-onFileSelected(event: any) {
+ onFileSelected(event: any, formControlName: string) {
   if (event.target.files && event.target.files.length > 0) {
     const file = event.target.files[0];
-    const bookimgControl = this.addBookForm.get('bookimg');
-    if (bookimgControl) {
-      bookimgControl.setValue(file);
+    const control = this.addBookForm.get(formControlName);
+    if (control) {
+      control.setValue(file);
     }       
   }
 }
+// onFileSelected(event: any) {
+//   if (event.target.files && event.target.files.length > 0) {
+//     const file = event.target.files[0];
+//     const bookimgControl = this.addBookForm.get('bookimg');
+//     if (bookimgControl) {
+//       bookimgControl.setValue(file);
+//     }       
+//   }
+// }
 
 onAddBook() {
   const formData = new FormData();
@@ -101,7 +112,30 @@ getBooks(){
 // }
   // edit book
   
-
+  confirmDelete(bookId: number): void {
+    const confirmDelete = confirm('Are you sure you want to delete this book?');
+    if (confirmDelete) {
+      this.admin.deleteBook(bookId).subscribe(
+        (response) => {
+          if(response.message == 'Book deleted successfully'){
+            Swal.fire({
+              title: 'Deleted',
+              text: response?.message,
+              icon: 'success',
+              confirmButtonText: 'Okay',
+              confirmButtonColor: "#fb3453",
+              timer: 3000
+            }).then((result) => {
+              // this.router.navigate(['/otp']);
+            });
+          }
+        },
+        error => {
+          console.error('Failed to delete book:', error);
+        }
+      );
+    }
+  }
     
 }
 

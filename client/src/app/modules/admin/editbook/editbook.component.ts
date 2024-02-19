@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../../../core/services/admin.service';
 import { Book } from '../../../data/interfaces/book.interface';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-editbook',
@@ -10,9 +11,13 @@ import { Book } from '../../../data/interfaces/book.interface';
   styleUrl: './editbook.component.css'
 })
 export class EditbookComponent{
+  public environment = environment.IMG_URL
   bookId: number 
   books: Book[] = []
   editBookForm: FormGroup;
+  bookImageUrl: string | null = null;
+  bookCategoryImageUrl: string | null = null;
+  bookTypeImageUrl: string | null = null;
   booktypes = [
     {name: 'books', abbrev: 'Books'},
     {name: 'magazine', abbrev: 'Magazine'},
@@ -29,60 +34,54 @@ export class EditbookComponent{
     {name: 'biographies', abbrev: 'Biographies'},
     {name: 'fiction', abbrev: 'Fiction'}
   ];
-  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute ,private admin: AdminService){
+  constructor(private formBuilder: FormBuilder, private admin: AdminService, private route: ActivatedRoute) {
     this.bookId = this.route.snapshot.params['id'];
-      console.log(this.bookId)
-      this.getBookById().subscribe((books) => {
-        this.books = books;
-        this.editBookForm.patchValue({
+    this.editBookForm = this.formBuilder.group({
+      bookname: ['', Validators.required],
+      booksellingprice: ['', Validators.required],
+      bookcostprice: ['', Validators.required],
+      bookcategory: ['', Validators.required],
+      booktype: ['', Validators.required],
+      bookwriter: ['', Validators.required],
+      publishyear: ['', Validators.required],
+      summary: ['', Validators.required],
+      bookimg: [''],
+      bookcategoryimg: [''],
+      booktypeimg: ['']
+    });
+  }
+
+  ngOnInit(): void {
+    // Fetch the book data by its ID and patch the form with the retrieved data
+    this.getBookData();
+  }
+
+  getBookData(): void {
+    this.admin.getBookById(this.bookId).subscribe((books) => {
+      this.books = books
+      this.bookImageUrl = books.img;
+      this.bookCategoryImageUrl = books.bookcat_img;
+      this.bookTypeImageUrl = books.booktype_img;
+      // Patch the form with the retrieved book data
+      this.editBookForm.patchValue({
         bookname: books.bookName,
         booksellingprice: books.sellingprice,
         bookcostprice: books.costprice,
-        bookcategories: books.category,
+        bookcategory: books.category,
         booktype: books.booktypename,
         bookwriter: books.writerName,
         publishyear: books.publishyear,
-        summary: books.booksummary,
-        // booktypeimg: books.booktype_img,
-        // bookcategoryimg: books.bookcat_img,
-        // img: books.bookcat_img
+        summary: books.summary,
+        bookimg: books.img,
+        bookcategoryimg: books.bookcat_img,
+        booktypeimg: books.booktype_img
       });
-      })
-    this.editBookForm = new FormGroup({
-      bookname: new FormControl('',[ Validators.required, Validators.minLength(8)]),
-      bookimg: new FormControl('0', [ Validators.required, Validators.minLength(8)]),
-      booksellingprice: new FormControl('', [ Validators.required]),
-      bookcostprice: new FormControl('', Validators.required),
-      bookcategoryimg: new FormControl('0',Validators.required),
-      bookwriter: new FormControl('', Validators.required),
-      booktypeimg: new FormControl('0', Validators.required),
-      publishyear: new FormControl('', Validators.required),
-      booktype: new FormControl(this.booktypes),
-      bookcategories: new FormControl(this.bookcategories),
-      summary: new FormControl('', Validators.required)
     });
-//   getBooks(){
-//    return this.admin.showbook()
-// }
-}
-onFileSelected(event: any) {
-  if (event.target.files && event.target.files.length > 0) {
-    const file = event.target.files[0];
-    const bookimgControl = this.editBookForm.get('bookimg');
-    if (bookimgControl) {
-      bookimgControl.setValue(file);
-    }       
   }
+
+onFileSelected(e: any){
+  console.log(e)
 }
-getBookById(){
-  return this.admin.getBookById(this.bookId)
-}
-// onEditBook(){
-//   const updatedData = this.editBookForm.value;
-//     this.admin.updateBook(this.bookId, updatedData, (error) => {
-//         console.error('Failed to update book:', error)});
-//         console.log(updatedData);
-// }
 onEditBook() {
   const updatedData = new FormData();
   Object.keys(this.editBookForm.value).forEach(key => {
@@ -94,4 +93,5 @@ onEditBook() {
         console.error('Failed to update book:', error)});
         console.log(updatedData);
 }
+
 }

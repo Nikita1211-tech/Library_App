@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Book } from '../../../data/interfaces/book.interface';
 import { HttpClient } from '@angular/common/http';
 import { AdminService } from '../../../core/services/admin.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-bookcategories',
@@ -9,25 +10,25 @@ import { AdminService } from '../../../core/services/admin.service';
   styleUrl: './bookcategories.component.css'
 })
 export class BookcategoriesComponent {
-  // responseData: any;
-  books: Book[]=[];
+  public environment = environment.IMG_URL
+  books: Book[] = [];
   constructor(private admin: AdminService) {
-    // const bookcategory = localStorage.getItem('bookcategory')
-    // this.admin.showBookCategory(bookcategory).subscribe(
-    //   (book) => {
-    //     this.books = book;
-    //     console.log(book);
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-    // );
-  }
-  ngOnInit(): void {
     const bookcategory = localStorage.getItem('bookcategory')
-    this.admin.showBookCategory(bookcategory).subscribe((books) => {
-      this.books = books;
-      console.log(books);
-    });
+    this.admin.showBookCategory(bookcategory).subscribe(
+      (books) => {
+        this.books = books;
+        console.log(books);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
+  // ngOnInit(): void {
+  //   const bookcategory = localStorage.getItem('bookcategory')
+  //   this.admin.showBookCategory(bookcategory).subscribe((books) => {
+  //     this.books = books;
+  //     console.log(books);
+  //   });
+  // }
 }

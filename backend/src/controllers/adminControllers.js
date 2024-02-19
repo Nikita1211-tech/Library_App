@@ -32,20 +32,29 @@ const upload = multer({
 })
 const AddBook = async (req, res) => {
   try {
-    console.log(req.file)
-    const obj = { 
-      bookName: req.body.bookname, 
-      img: req.file.path, 
-      sellingprice: req.body.booksellingprice, 
-      costprice: req.body.bookcostprice,  
-      bookcat_img : req.file.path, 
-      writerName: req.body.bookwriter, 
-      booktype_img : req.file.path,
+    console.log(req.files)
+    const obj = {
+      bookName: req.body.bookname,
+      sellingprice: req.body.booksellingprice,
+      costprice: req.body.bookcostprice,
+      writerName: req.body.bookwriter,
       publishyear: req.body.publishyear,
       booktypename: req.body.booktype,
       category: req.body.bookcategories,
       booksummary: req.body.summary
     };
+    if (req.files) {
+      // Assuming req.files contains uploaded files for both fields
+      if (req.files['bookimg'] && req.files['bookimg'].length > 0) {
+        obj.img = req.files['bookimg'][0].path;
+      }
+      if (req.files['bookcategoryimg'] && req.files['bookcategoryimg'].length > 0) {
+        obj.bookcat_img = req.files['bookcategoryimg'][0].path;
+      }
+      if (req.files['booktypeimg'] && req.files['booktypeimg'].length > 0) {
+        obj.booktype_img = req.files['booktypeimg'][0].path;
+      }
+    }
     // const bookimg = req.file.path; // Assuming the image path is saved in 'uploads/'
 
     const newBook = await Book.create(obj);
@@ -123,6 +132,7 @@ const Updatebook = async(req, res)=>{
     const bookId = req.params.book_id;
     console.log(bookId)
     const book = await Book.findByPk(bookId);
+    console.log(req.body)
     const obj = { 
       bookName: req.body.bookname, 
       img: req.body.img, 
@@ -176,30 +186,23 @@ const Deletebook = async (req, res) => {
   }
 }
 
-const Bookcategory = async(req,res) => {
-  const bookcategory = req.body.bookcategory  
-  // const bookdata = await Book.findOne({where: {category: bookcategory} }); 
+const Bookcategory = async (req, res) => {
+  const bookcategory = req.body.bookcategory;
 
   try {
-    const bookdata = await Book.findOne({where: {category: bookcategory} }); 
-    console.log(bookdata)
-    if(bookdata){
-      res.json(bookdata);
-    }
-    else{
-      return res.status(404).json({Message: "Bookcategory not found"})
+    const books = await Book.findAll({ where: { category: bookcategory } }); // Using findAll to get multiple books
+    console.log(books);
+    
+    if (books.length > 0) {
+      res.json(books); 
+    } else {
+      return res.status(404).json({ Message: "Book category not found" });
     }
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: 'Failed to load book' });
+    return res.status(500).json({ error: 'Failed to load books' });
   }
-  // if(book){
-  //   return res.status(200).json({ message: 'Book category added successfully' });
-  // }
-  // else{
-  //   return res.status(400).json({message: 'Error'});
-  // }
-  // const book = await Book.
 }
+
 
 module.exports = { AddBook,Detail, upload, Booklist, Bookdesc, Updatebook, Deletebook, Bookcategory } 

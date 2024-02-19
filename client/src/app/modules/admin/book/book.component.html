@@ -5,7 +5,7 @@
             <a href="">View All</a>
         </div>
         <div class="bookcontainer-row2">
-            <div class="bookdes" *ngFor="let book of books"><img (click)="onClick(book.category)" [src]="book.bookcat_img" alt="">
+            <div class="bookdes" *ngFor="let book of books"><img (click)="onClick(book.category)" [src]="environment+book.bookcat_img" alt="">
                 <div class="">
                     <p class="">{{book.category}}</p>
                 </div>
@@ -19,7 +19,7 @@
         </div>
         <div class="bookcontainer-row2">
             <div class="bookdes" *ngFor="let book of books">
-                <img class="" [src]="book.booktype_img" alt="">
+                <img class="" [src]="environment+book.booktype_img" alt="">
                 <div class="">
                     <p class="">{{book.booktypename}}</p>
                 </div>

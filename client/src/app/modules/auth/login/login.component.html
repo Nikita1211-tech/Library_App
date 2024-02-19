@@ -19,7 +19,9 @@
           <div class="input-group" style="display: flex; align-items: center;">
             <input type="password" style="width: 100%;" class="form-control" name="password" formControlName="password" id="Password"
               placeholder="Password" required />
-              <i class="far fa-eye" (click)="togglePasswordVisibility()"></i>
+              <span class="toggle-password" (click)="togglePasswordVisibility()">
+                <i class="far fa-eye"></i>
+              </span>
           </div>
         </div>
         <div class="form-input">

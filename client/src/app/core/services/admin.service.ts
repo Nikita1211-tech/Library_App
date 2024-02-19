@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Book } from '../../data/interfaces/book.interface';
 
 @Injectable({
@@ -46,7 +46,7 @@ addBook(formData: FormData, errorCallback: (error: any) => void): void {
       );
 }
 
-updateBook(id: number, updatedData: FormData, errorCallback: (error: any) => void){
+updateBook(id: number, updatedData: FormData, errorCallback: (error: any) => void): void{
   this.http.post<any>(`${this.API_URL}/updatebook/${id}`, updatedData)
       .subscribe(
           (response) => {
@@ -80,8 +80,8 @@ bookcategory(bookcategory: String | null, errorCallback: (error: any) => void){
     }
   )
 }
-showBookCategory(bookCategory: string | null): Observable<any> {
-  return this.http.post<any>(`${this.API_URL}/bookcategory`, { bookcategory: bookCategory });
+showBookCategory(bookCategory: string | null): Observable<any[]> {
+  return this.http.post<any[]>(`${this.API_URL}/bookcategory`, { bookcategory: bookCategory })
 }
 showbook(): Observable<any> {
   return this.http.get<any>(this.API_URL+'/booklist')

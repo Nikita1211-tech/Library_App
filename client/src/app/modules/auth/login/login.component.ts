@@ -21,12 +21,23 @@ export class LoginComponent{
       password: new FormControl(''),
     });
   }
-  showPassword: boolean = false;
+  togglePasswordVisibility() {
+    const passwordInput = document.getElementById('Password') as HTMLInputElement;
+    const passwordIcon = document.querySelector('.toggle-password i');
 
-  togglePasswordVisibility(): void {
-    this.showPassword = !this.showPassword;
-    const inputType = this.showPassword ? 'text' : 'password';
-    document.getElementById('Password')?.setAttribute('type', inputType);
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        if (passwordIcon) {
+            passwordIcon.classList.remove('far', 'fa-eye');
+            passwordIcon.classList.add('far', 'fa-eye-slash');
+        }
+    } else {
+        passwordInput.type = 'password';
+        if (passwordIcon) {
+            passwordIcon.classList.remove('far', 'fa-eye-slash');
+            passwordIcon.classList.add('far', 'fa-eye');
+        }
+    }
   }
   onSubmit(): void{
      const email = this.loginform.value.email

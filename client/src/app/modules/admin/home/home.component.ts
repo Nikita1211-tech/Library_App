@@ -14,6 +14,7 @@ import { environment } from '../../../../environments/environment';
 export class HomeComponent{
   books: Book[]=[];
   public environment = environment.IMG_URL;
+  private API_URL = environment.API_URL
   public chart: any;
   constructor(private router:Router, private http: HttpClient){}
   
@@ -49,10 +50,9 @@ export class HomeComponent{
       },
     });
   }
-  apiURL = 'http://localhost:3000/api/users';
 
   getBooks(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiURL}/books`);
+    return this.http.get<any[]>(`${this.API_URL}/books`);
   }
   ngOnInit(): void {
     this.createChart();
@@ -60,7 +60,6 @@ export class HomeComponent{
       this.books = books;
       // this.books[0].img = books.img
       console.log(books)
-      console.log(books[0].img);
     });
   }
 }
