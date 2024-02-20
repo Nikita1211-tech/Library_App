@@ -4,8 +4,11 @@
             <img src="./../../assets/images/logo.png" alt="">
             <h5>Book Library</h5>
         </div>
-        <button style="background-color: #fb3453; width: 40px;border: none;padding: 10px; border-radius: 5px;" (click)="showformvalue()"><i class="fas fa-arrow-left" style="color: white;"></i></button>
-        <h4>Sign Up</h4>
+        <div class="back-button">
+            <i (click)="onBack()" class="fas fa-arrow-left" style="color: black;cursor: pointer;"></i>
+            <h4>OTP</h4>
+
+        </div>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, ducimus? Velit et a modi nobis.</p>
         <form [formGroup]="verifyform" (ngSubmit)="onVerify()" class="form-control" id="registerForm">
             <div>

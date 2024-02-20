@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { RegisterService } from '../../../core/services/register.service';
 import { register } from '../../../data/interfaces/register.interface';
 // import { HttpErrorResponse } from '@angular/common/http';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -56,8 +56,6 @@ export class RegisterComponent {
   //   }
   //  })
  }
- otp(): void{
-    
- }
+
 }
 

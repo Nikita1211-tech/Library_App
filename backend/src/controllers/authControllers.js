@@ -50,14 +50,15 @@ const Verifyotp = async(req,res) => {
   }
   const{email, otp} = req.body;
   const user = users.find(user => user.email === email);
+    
   console.log(users)
+  console.log(user.otp);
   if (user.otp == otp) {
-    res.status(200).json({ message: 'OTP verified successfully' });
-    console.log(user);
     users.splice(users.indexOf(user), 1);
+    res.status(200).json({ message: 'OTP verified successfully' });
   } else {
     // Remove the used OTP from the database
-    return res.status(400).json({ message: 'Invalid OTP' });
+    return res.status(400).json({ message: 'Incorrect OTP' });
   }
 }
 const Resendotp = async (req, res) => {
@@ -163,7 +164,7 @@ const Reset = async (req,res) => {
         await Users.update({otp: otp}, {where: {
           email: email
         }});
-        return res.json("OTP Sent");
+        return res.json(email);
     } 
     else return res.status(401).json({message: "Email id doesnot exists"});
    } catch(error){

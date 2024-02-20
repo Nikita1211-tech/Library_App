@@ -77,4 +77,27 @@ resendotp(): void{
 });
   // return email;
 }
+onBack(): void{
+  // const user = localStorage.getItem('registerusername');
+  // const contact = localStorage.getItem('number');
+  // const email = localStorage.getItem('registeruser');
+  Swal.fire({
+    title: "Do you want to go back?",
+    icon: 'question',
+    showCancelButton: true,
+    cancelButtonText: "No",
+    confirmButtonText: "Yes",
+    confirmButtonColor: "#fb3453",
+    cancelButtonColor: "#fb3453"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.reload();
+      this.router.navigate(['/forgotpassword']);
+    }
+    else {
+      this.router.navigate(['/otp'])
+    }
+  });
+  // this.router.navigate(['/register']);
+}
 }

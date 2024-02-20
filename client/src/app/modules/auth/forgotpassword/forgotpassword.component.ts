@@ -17,6 +17,7 @@ export class ForgotpasswordComponent {
   }
   onReset(): string{
      var email = this.resetPassword.value.email
+     localStorage.setItem('username', email)
      this.auth.resetPassword(email, (error) => {
       Swal.fire({
         // title: 'Login unsuccessful.',
@@ -26,7 +27,7 @@ export class ForgotpasswordComponent {
         confirmButtonColor: "#fb3453",
         timer: 3000
       }).then((result) => {
-        this.router.navigate(['/login']);
+        // this.router.navigate(['/login']);
       });
    });
      return email;

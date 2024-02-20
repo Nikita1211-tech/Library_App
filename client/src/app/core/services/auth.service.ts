@@ -37,7 +37,8 @@ export class AuthService {
       .subscribe(
         (response) => {
           console.log(response)
-          localStorage.setItem('username', response.email)
+          // localStorage.setItem('username', response.email)
+          // console.log(localStorage.getItem('username'))
           this.router.navigate(['/otp']);
           return response;
         },
