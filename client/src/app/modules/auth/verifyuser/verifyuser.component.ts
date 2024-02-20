@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { RegisterService } from '../../../core/services/register.service';
@@ -12,6 +12,10 @@ import Swal from 'sweetalert2'
 })
 export class VerifyuserComponent {
   verifyform: FormGroup
+  @ViewChild('otp1Input') otp1Input!: ElementRef;
+  @ViewChild('otp2Input') otp2Input!: ElementRef;
+  @ViewChild('otp3Input') otp3Input!: ElementRef;
+  @ViewChild('otp4Input') otp4Input!: ElementRef;
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private router: Router){
     this.verifyform = new FormGroup({
         otp1: new FormControl('', [Validators.required]),
@@ -59,10 +63,37 @@ export class VerifyuserComponent {
         }
       )
   }
+  showformvalue(): void{
+    const user = localStorage.getItem('registerusername');
+    const contact = localStorage.getItem('number');
+    const email = localStorage.getItem('registeruser');
+    Swal.fire({
+      title: "Do you want to go back?",
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#fb3453",
+      cancelButtonColor: "#fb3453"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
+      else {
+        this.router.navigate(['/verifyuser'])
+      }
+    });
+    this.router.navigate(['/register']);
+  }
+  jumpToNext(event: any, nextInput: any) {
+    if (event.target.value.length === 1) {
+      nextInput.nativeElement.focus();
+    }
+  }
   resendotp(): void{
     const otp = this.verifyform.value.otp;
     const email = localStorage.getItem('registeruser')
-    this.auth.resendOtp(email, otp, (error) => {
+    this.register.verifyuser(email, (error) => {
 
     })
   }

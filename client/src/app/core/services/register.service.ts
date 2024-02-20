@@ -21,7 +21,7 @@ export class RegisterService {
         }
       );
   }
-  verifyuser(email: string, errorCallback: (error: any) => void): void{
+  verifyuser(email: string | null, errorCallback: (error: any) => void): void{
     const obj = {
       email: email
     };

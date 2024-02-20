@@ -10,14 +10,17 @@
             <div>
                 <div class="form-label">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" name="username" id="username"
+                    <input type="text" class="form-control" name="username" id="username" value="{{this.registerform.value.username}}"
                         formControlName="username" aria-describedby="emailHelp" placeholder="Enter your User name"
                         required>
+                        <p></p>
                 </div>
             </div>
             <div *ngIf="registerform.controls['username'].invalid && (registerform.controls['username'].dirty || registerform.controls['username'].touched)">
                 <div class="form-validation form-rules" *ngIf="registerform.controls['username'].errors?.['required']">User name
                     is required.
+                </div>
+                <div class="form-validation form-rules" *ngIf="registerform.controls['username'].errors?.['pattern']">Username must contain number and underscore(_)
                 </div>
             </div>
             <div>

@@ -4,6 +4,7 @@
             <img src="./../../assets/images/logo.png" alt="">
             <h5>Book Library</h5>
         </div>
+        <button style="background-color: #fb3453; width: 40px;border: none;padding: 10px; border-radius: 5px;" (click)="showformvalue()"><i class="fas fa-arrow-left" style="color: white;"></i></button>
         <h4>Sign Up</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, ducimus? Velit et a modi nobis.</p>
         <form [formGroup]="verifyform" (ngSubmit)="onVerify()" class="form-control" id="registerForm">
@@ -11,10 +12,10 @@
                 <div class="form-label">
                     <label for="otp">OTP</label>
                     <div class="otp-input">
-                        <input type="text" class="form-control" name="otp1" id="otp1" formControlName="otp1" required maxlength="1" />
-                        <input type="text" class="form-control" name="otp2" id="otp2" formControlName="otp2" required maxlength="1" />
-                        <input type="text" class="form-control" name="otp3" id="otp3" formControlName="otp3" required maxlength="1" />
-                        <input type="text" class="form-control" name="otp4" id="otp4" formControlName="otp4" required maxlength="1" />
+                        <input type="text" class="form-control" name="otp1" id="otp1" formControlName="otp1" required maxlength="1" (input)="jumpToNext($event, otp2)" #otp1Input />
+                        <input type="text" class="form-control" name="otp2" id="otp2" formControlName="otp2" required maxlength="1" (input)="jumpToNext($event, otp3)" #otp2Input />
+                        <input type="text" class="form-control" name="otp3" id="otp3" formControlName="otp3" required maxlength="1" (input)="jumpToNext($event, otp4)" #otp3Input />
+                        <input type="text" class="form-control" name="otp4" id="otp4" formControlName="otp4" required maxlength="1" #otp4Input />
                     </div>
                     <!-- <input type="text" class="form-control" name="otp" id="otp"
                         formControlName="otp" aria-describedby="emailHelp" placeholder="Enter otp"

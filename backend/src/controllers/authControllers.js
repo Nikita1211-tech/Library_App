@@ -163,7 +163,7 @@ const Reset = async (req,res) => {
         await Users.update({otp: otp}, {where: {
           email: email
         }});
-        return res.json({email});
+        return res.json("OTP Sent");
     } 
     else return res.status(401).json({message: "Email id doesnot exists"});
    } catch(error){
