@@ -50,7 +50,7 @@ export class AuthService {
       const obj = {
         email: email,
         otp: otp,
-      };
+      }
       this.http.post(this.API_URL+'/otp', obj)
       .subscribe(
         (response) => {

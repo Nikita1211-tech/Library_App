@@ -44,7 +44,7 @@ const Verifyuser = async(req,res) => {
    res.status(200).json({message: "OTP received"});
   //  return res.json({email});
 }
-const sVerifyotp = async(req,res) => {
+const Verifyotp = async(req,res) => {
   if(!req.body.otp){
     return res.status(401).json({ message: 'Please enter OTP' });
   }

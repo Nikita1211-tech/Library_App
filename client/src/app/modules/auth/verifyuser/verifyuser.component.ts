@@ -31,14 +31,19 @@ export class VerifyuserComponent {
     const email = localStorage.getItem('registeruser');
     
     this.register.verifyotp(email, otp, (error) => {
+      if(error){
         Swal.fire({
-          title: error?.message,
-          text: error?.message,
+          title: error?.error?.message,
+          text: error?.error?.message,
           icon: 'error',
           confirmButtonText: 'Okay',
           confirmButtonColor: "#fb3453",
           timer: 3000
         });
+      }
+      else{
+
+      }
       }).subscribe(
         (response: any)=>{
           if(response){
