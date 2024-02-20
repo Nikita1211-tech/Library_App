@@ -36,7 +36,7 @@ moveToNext(event: any, nextInputIndex: number | null) {
       }
   }
 }
-// Deletion of otp 
+// move to back otp 
 handleDeletion(event: KeyboardEvent, currentIndex: number | null) {
   const input = event.target as HTMLInputElement;
 

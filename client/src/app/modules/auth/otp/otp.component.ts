@@ -37,6 +37,21 @@ moveToNext(event: any, nextInputIndex: number | null) {
       }
   }
 }
+//  move to back otp 
+handleDeletion(event: KeyboardEvent, currentIndex: number | null) {
+  const input = event.target as HTMLInputElement;
+
+  // Check if Backspace key is pressed and the input field is empty
+  if (event.key === 'Backspace' && input.value.length === 0) {
+      // Handle Backspace when the input field is empty
+      if (currentIndex !== null && currentIndex !== 1) { // Exclude the first input
+          const prevInput = document.getElementById(`otp${currentIndex - 1}`) as HTMLInputElement;
+          if (prevInput) {
+              prevInput.focus();
+          }
+      }
+  }
+}
  otp(): void{
     const otp1 = this.otpform.value.otp1;
     const otp2 = this.otpform.value.otp2;
