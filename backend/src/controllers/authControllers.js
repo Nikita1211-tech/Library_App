@@ -54,13 +54,13 @@ const Verifyotp = async(req,res) => {
     users.splice(users.indexOf(user), 1);
   } else {
     // Remove the used OTP from the database
-    res.status(400).json({ message: 'Invalid OTP' });
+    return res.status(400).json({ message: 'Invalid OTP' });
   }
 }
 const Resendotp = async (req, res) => {
   const { email, otp } = req.body;
   const user = users.find(user => user.email === email);
-
+  console.log(user)
   if (!user) {
     return res.status(400).json({ message: 'User not found' });
   }
@@ -80,6 +80,30 @@ const Resendotp = async (req, res) => {
 
   // res.status(200).json({ message: 'New OTP sent successfully', otp: newOTP });
 }
+// const loginresendotp = async (req, res) => {
+//   const { email, otp } = req.body;
+//   const user =  await Users.findOne({ where: { email: email} })
+//   console.log(user)
+//   if (!user) {
+//     return res.status(400).json({ message: 'User not found' });
+//   }
+
+//   const newOTP = otpgenerator();
+//   otpSender(email, newOTP); 
+
+//   user.otp = newOTP;
+//   if (user.otp == otp) {
+//     res.status(200).json({ message: 'OTP verified successfully' });
+//     console.log(user);
+//     users.splice(users.indexOf(user), 1);
+//   } else {
+//     // Remove the used OTP from the database
+//     res.status(400).json({ message: 'Invalid OTP' });
+//   }
+
+//   // res.status(200).json({ message: 'New OTP sent successfully', otp: newOTP });
+// }
+
 const Saveuser = async(req,res) => {
   console.log(req.body)
   const user = {
@@ -143,7 +167,10 @@ const Reset = async (req,res) => {
      res.status(500).json({ message: error.message });
    }
 }
-const Otp = async(req,res) => {
+const Otp = async(req,res) => { 
+  if(!req.body.otp){
+    return res.status(401).json({ message: 'Please enter OTP' });
+  }
   const { email, otp } = req.body;
   try{
     const user =  await Users.findOne({where: {

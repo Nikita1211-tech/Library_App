@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-updatepassword',
@@ -24,7 +25,7 @@ export class UpdatepasswordComponent {
   return form.get('password')?.value === form.get('confirmpassword')?.value ? null: { mismatch: true };
 }
 togglePasswordVisibility() {
-  const passwordInput = document.getElementById('Password') as HTMLInputElement;
+  const passwordInput = document.getElementById('password') as HTMLInputElement;
   const passwordIcon = document.querySelector('.toggle-password i');
 
   if (passwordInput.type === 'password') {
@@ -43,7 +44,7 @@ togglePasswordVisibility() {
 }
 toggleConfirmPasswordVisibility() {
   const passwordInput = document.getElementById('confirmpassword') as HTMLInputElement;
-  const passwordIcon = document.querySelector('.toggle-password i');
+  const passwordIcon = document.querySelector('.toggle-confirmpassword i');
 
   if (passwordInput.type === 'password') {
       passwordInput.type = 'text';
@@ -65,21 +66,21 @@ toggleConfirmPasswordVisibility() {
   const confirmpassword = this.updatePasswordForm.value.confirmpassword
   this.auth.updatePassword(email, password, (error)=>{
    
-    if(error){
-      // Swal.fire({
-      //   title: 'Incorrect otp',
-      //   text: error?.error?.message,
-      //   icon: 'error',
-      //   confirmButtonText: 'Okay',
-      //   confirmButtonColor: "#fb3453",
-      //   timer: 3000
-      // }).then((result) => {
-      //   // this.router.navigate(['/otp']);
-      // });
-    }
-    else{
-      // this.router.navigate(['/updatepassword']);
-    }
+    // if(error){
+    //   Swal.fire({
+    //     title: error?.error?.message,
+    //     text: error?.error?.message,
+    //     icon: 'success',
+    //     confirmButtonText: 'Okay',
+    //     confirmButtonColor: "#fb3453",
+    //     timer: 3000
+    //   }).then((result) => {
+    //     // this.router.navigate(['/otp']);
+    //   });
+    // }
+    // else{
+    //   // this.router.navigate(['/updatepassword']);
+    // }
 })
 }
 }

@@ -29,7 +29,7 @@ export class AuthService {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
   }
-  resetPassword(email: string, errorCallback: (error: any) => void): void{
+  resetPassword(email: string | null, errorCallback: (error: any) => void): void{
     const obj = {
       email: email
     };
@@ -46,7 +46,7 @@ export class AuthService {
         }
       );
   }   
-  otp(email: string|null, otp: number,  errorCallback: (error: any) => void): void{
+  otp(email: string|null, otp: number,  errorCallback: (error: any) => void): any{
       const obj = {
         email: email,
         otp: otp,
@@ -55,6 +55,7 @@ export class AuthService {
       .subscribe(
         (response) => {
           this.router.navigate(['/updatepassword']);
+          return response
         },
         (error) => {
           errorCallback(error);
@@ -76,7 +77,7 @@ export class AuthService {
       }
     )
   }
-  updatePassword(email:string|null, password: string, errorCallback: (error: any) => void): void{
+  updatePassword(email:string|null, password: string, errorCallback: (error: any) => void): any{
     const obj = {
       email: email,
       password: password,
@@ -85,7 +86,8 @@ export class AuthService {
     this.http.post(this.API_URL+'/updatepassword', obj)
     .subscribe(
       (response) => {
-           console.log(response)
+           console.log(response);
+           this.router.navigate(['/userhome']);
       },
       (error) => {
         errorCallback(error);

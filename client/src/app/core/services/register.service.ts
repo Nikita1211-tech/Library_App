@@ -36,7 +36,7 @@ export class RegisterService {
         }
       );
   } 
-  verifyotp(email:string|null, otp: number, errorCallback: (error: any) => void): void{
+  verifyotp(email:string|null, otp: number, errorCallback: (error: any) => void): any{
     const obj = {
       email: email,
       otp: otp
@@ -46,6 +46,7 @@ export class RegisterService {
         (response) => {
           console.log(response);
           this.router.navigate(['/setpassword']);
+          return response
         },
         (error) => {
           errorCallback(error);

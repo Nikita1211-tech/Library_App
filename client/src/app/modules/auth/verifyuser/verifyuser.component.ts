@@ -31,17 +31,15 @@ export class VerifyuserComponent {
     const email = localStorage.getItem('registeruser');
     
     this.register.verifyotp(email, otp, (error) => {
-      if (error) {
         Swal.fire({
-          text: error?.error?.message,
+          title: error?.message,
+          text: error?.message,
+          icon: 'error',
           confirmButtonText: 'Okay',
           confirmButtonColor: "#fb3453",
           timer: 3000
         });
-      } else {
-        // this.router.navigate(['/updatepassword']);
-      }
-    });
+      })
   }
   resendotp(): void{
     const otp = this.verifyform.value.otp;

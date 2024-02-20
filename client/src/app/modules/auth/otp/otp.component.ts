@@ -46,11 +46,35 @@ export class OtpComponent {
     else{
       // this.router.navigate(['/updatepassword']);
     }
-})
+}).subscribe(
+  (response: any) => {
+    if(response){
+      Swal.fire({
+        title: 'Incorrect otp',
+        text: response?.response?.message,
+        icon: 'error',
+        confirmButtonText: 'Okay',
+        confirmButtonColor: "#fb3453",
+        timer: 3000
+      })
+    }
+  }
+)
 }
 resendotp(): void{
-  const otp = this.otpform.value.otp;
-  const email = localStorage.getItem('registeruser')
-  this.auth.resendOtp(email, otp, (error) => {})
+  const email = localStorage.getItem('username')
+  this.auth.resetPassword(email, (error) => {
+   Swal.fire({
+     // title: 'Login unsuccessful.',
+     text: error?.error.message,
+     icon: 'error',
+     confirmButtonText: 'Okay',
+     confirmButtonColor: "#fb3453",
+     timer: 3000
+   }).then((result) => {
+     this.router.navigate(['/login']);
+   });
+});
+  // return email;
 }
 }
