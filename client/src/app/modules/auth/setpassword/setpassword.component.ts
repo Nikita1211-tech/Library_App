@@ -50,7 +50,7 @@ export class SetpasswordComponent {
   }
   toggleConfirmPasswordVisibility() {
     const passwordInput = document.getElementById('confirmpassword') as HTMLInputElement;
-    const passwordIcon = document.querySelector('.toggle-password i');
+    const passwordIcon = document.querySelector('.toggle-confirmpassword i');
 
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';

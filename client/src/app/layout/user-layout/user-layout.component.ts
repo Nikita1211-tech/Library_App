@@ -11,7 +11,7 @@ export class UserLayoutComponent {
   ismainpage(): boolean {
     return this.router.url === '/main';
 }
-isuserpage(): boolean{
-  return this.router.url === '/userhome';
-}
+  isuserpage(): boolean{
+    return this.router.url === '/userhome';
+  }
 }
