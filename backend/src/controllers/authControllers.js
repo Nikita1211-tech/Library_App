@@ -81,21 +81,17 @@ const Resendotp = async (req, res) => {
   // res.status(200).json({ message: 'New OTP sent successfully', otp: newOTP });
 }
 const Saveuser = async(req,res) => {
+  console.log(req.body)
   const user = {
     email:  req.body.email,
     username: req.body.username, 
     contact: req.body.contact, 
-    password: req.body.password
+    password: await bcrypt.hash(req.body.password, 10)
     }
     const existinguser = await Users.findOne({ where: { email: user.email} })
     console.log(existinguser)
     if(existinguser == null){
-      const newuser = await Users.create( {
-        email:  req.body.email,
-        username: req.body.username, 
-        contact: req.body.contact, 
-        password: req.body.password
-        });
+      const newuser = await Users.create(user);
       console.log(newuser);
       return res.status(201).json({message: "User created successfully"})
     }
@@ -169,8 +165,10 @@ const Otp = async(req,res) => {
 }
 const updatePassword = async(req,res) => {
     const { email, password } = req.body;
+    const newpassword = await bcrypt.hash(password, 10)
+    console.log(newpassword);
     try {
-      const updatedpassword = await Users.update({password: password}, {where: {
+      const updatedpassword = await Users.update({password: newpassword}, {where: {
         email: email
       }});
       if(updatedpassword){

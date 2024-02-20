@@ -18,7 +18,17 @@ export class ForgotpasswordComponent {
   onReset(): string{
      var email = this.resetPassword.value.email
      this.auth.resetPassword(email, (error) => {
-     })
+      Swal.fire({
+        // title: 'Login unsuccessful.',
+        text: error?.error.message,
+        icon: 'error',
+        confirmButtonText: 'Okay',
+        confirmButtonColor: "#fb3453",
+        timer: 3000
+      }).then((result) => {
+        this.router.navigate(['/login']);
+      });
+   });
      return email;
   }
   // currentUser(): void{

@@ -87,7 +87,16 @@ onAddBook() {
   });
 
   this.admin.addBook(formData, (error) => {
-      // Handle error
+    Swal.fire({
+      title: error?.error.message,
+      text: error?.error.message,
+      icon: 'success',
+      confirmButtonText: 'Okay',
+      confirmButtonColor: "#fb3453",
+      timer: 3000
+    }).then((result) => {
+      // this.router.navigate(['/login']);
+    });
   });
 }
 getBookById(){
