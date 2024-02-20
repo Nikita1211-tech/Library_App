@@ -44,8 +44,7 @@ export class LoginComponent{
      const password = this.loginform.value.password
      this.auth.login(email, password, (error) => {
       Swal.fire({
-          title: 'Login unsuccessful.',
-          text: error?.error.message,
+          title: error?.error.message,
           icon: 'error',
           confirmButtonText: 'Okay',
           confirmButtonColor: "#fb3453",

@@ -20,6 +20,38 @@ export class VerifyuserComponent {
         otp4: new FormControl('', [Validators.required]),
     })
   }
+//  Move to next otp input 
+moveToNext(event: any, nextInputIndex: number | null) {
+  const input = event.target;
+  const maxLength = parseInt(input.getAttribute('maxlength'), 10);
+
+  if (input.value.length >= maxLength) {
+      if (nextInputIndex !== null) {
+          const nextInput = document.getElementById(`otp${nextInputIndex}`);
+          if (nextInput) {
+              nextInput.focus();
+          }
+      } else {
+          input.blur(); // Remove focus after last input
+      }
+  }
+}
+// Deletion of otp 
+handleDeletion(event: KeyboardEvent, currentIndex: number | null) {
+  const input = event.target as HTMLInputElement;
+
+  // Check if Backspace key is pressed and the input field is empty
+  if (event.key === 'Backspace' && input.value.length === 0) {
+      // Handle Backspace when the input field is empty
+      if (currentIndex !== null && currentIndex !== 1) { // Exclude the first input
+          const prevInput = document.getElementById(`otp${currentIndex - 1}`) as HTMLInputElement;
+          if (prevInput) {
+              prevInput.focus();
+          }
+      }
+  }
+}
+//  Form Submission 
   onVerify(): void {
     const otp1 = this.verifyform.value.otp1;
     const otp2 = this.verifyform.value.otp2;
@@ -59,29 +91,28 @@ export class VerifyuserComponent {
         }
       )
   }
-  onBack(): void{
-    const user = localStorage.getItem('registerusername');
-    const contact = localStorage.getItem('number');
-    const email = localStorage.getItem('registeruser');
+  onBack(): void {
     Swal.fire({
-      title: "Do you want to go back?",
-      icon: 'question',
-      showCancelButton: true,
-      cancelButtonText: "No",
-      confirmButtonText: "Yes",
-      confirmButtonColor: "#fb3453",
-      cancelButtonColor: "#fb3453"
+        title: "Do you want to go back?",
+        icon: 'question',
+        showCancelButton: true,
+        cancelButtonText: "No",
+        confirmButtonText: "Yes",
+        confirmButtonColor: "#fb3453",
+        cancelButtonColor: "#fb3453"
     }).then((result) => {
-      if (result.isConfirmed) {
-        this.router.navigate(['/register']);
-        window.location.reload();
-      }
-      else {
-        this.router.navigate(['/verifyuser'])
-      }
+        if (result.isConfirmed) {
+            // Redirect to register page and reload the window
+            this.router.navigate(['/register']).then(() => {
+                window.location.reload();
+            });
+        } else {
+            // Stay on the same route
+            this.router.navigate(['/verifyuser']);
+        }
     });
-    // this.router.navigate(['/register']);
-  }
+}
+
   jumpToNext(event: any, nextInput: any) {
     // if (event.target.value.length === 1) {
     //   nextInput.nativeElement.focus();

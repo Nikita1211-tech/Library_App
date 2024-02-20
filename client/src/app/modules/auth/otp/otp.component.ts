@@ -21,7 +21,22 @@ export class OtpComponent {
         otp4: new FormControl('', [Validators.required]),
   });
  }
- 
+//  Move to next otp input 
+moveToNext(event: any, nextInputIndex: number | null) {
+  const input = event.target;
+  const maxLength = parseInt(input.getAttribute('maxlength'), 10);
+
+  if (input.value.length >= maxLength) {
+      if (nextInputIndex !== null) {
+          const nextInput = document.getElementById(`otp${nextInputIndex}`);
+          if (nextInput) {
+              nextInput.focus();
+          }
+      } else {
+          input.blur(); // Remove focus after last input
+      }
+  }
+}
  otp(): void{
     const otp1 = this.otpform.value.otp1;
     const otp2 = this.otpform.value.otp2;
@@ -77,27 +92,25 @@ resendotp(): void{
 });
   // return email;
 }
-onBack(): void{
-  // const user = localStorage.getItem('registerusername');
-  // const contact = localStorage.getItem('number');
-  // const email = localStorage.getItem('registeruser');
+onBack(): void {
   Swal.fire({
-    title: "Do you want to go back?",
-    icon: 'question',
-    showCancelButton: true,
-    cancelButtonText: "No",
-    confirmButtonText: "Yes",
-    confirmButtonColor: "#fb3453",
-    cancelButtonColor: "#fb3453"
+      title: "Do you want to go back?",
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#fb3453",
+      cancelButtonColor: "#fb3453"
   }).then((result) => {
-    if (result.isConfirmed) {
-      window.location.reload();
-      this.router.navigate(['/forgotpassword']);
-    }
-    else {
-      this.router.navigate(['/otp'])
-    }
+      if (result.isConfirmed) {
+          // Redirect to register page and reload the window
+          this.router.navigate(['/forgotpassword']).then(() => {
+              window.location.reload();
+          });
+      } else {
+          // Stay on the same route
+          this.router.navigate(['/otp']);
+      }
   });
-  // this.router.navigate(['/register']);
 }
 }

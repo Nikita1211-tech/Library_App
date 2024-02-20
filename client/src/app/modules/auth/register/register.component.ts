@@ -16,8 +16,8 @@ export class RegisterComponent {
   registerform: FormGroup
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private router: Router){
     this.registerform = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_-]{8,15}$')]),
-      mail: new FormControl('', [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      username: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[a-zA-Z0-9])[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;'"<>,.?\\/|\-=]+$/), Validators.minLength(8), Validators.maxLength(15)]),
+      mail: new FormControl('', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]),
       contact: new FormControl('',[ Validators.required,  Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")])
     })
   }

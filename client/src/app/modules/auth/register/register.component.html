@@ -17,11 +17,17 @@
                 </div>
             </div>
             <div *ngIf="registerform.controls['username'].invalid && (registerform.controls['username'].dirty || registerform.controls['username'].touched)">
-                <div class="form-validation form-rules" *ngIf="registerform.controls['username'].errors?.['required']">User name
-                    is required.
+                <div *ngIf="registerform.controls['username'].errors?.['required']; else patternError">
+                    <div class="form-validation form-rules">User name is required.</div>
                 </div>
-                <div class="form-validation form-rules" *ngIf="registerform.controls['username'].errors?.['pattern']">Username must consist of alphanumeric 
-                </div>
+                <ng-template #patternError>
+                    <div *ngIf="registerform.controls['username'].errors?.['pattern']; else minlengthError">
+                        <div class="form-validation form-rules">Username must be alphanumeric.</div>
+                    </div>
+                    <ng-template #minlengthError>
+                        <div class="form-validation form-rules">Username must be 8 to 15 characters long.</div>
+                    </ng-template>
+                </ng-template>
             </div>
             <div>
                 <div class="form-label">
@@ -35,14 +41,16 @@
                 *ngIf="registerform.controls['mail'].invalid && (registerform.controls['mail'].dirty || registerform.controls['mail'].touched)">
                 <div class="form-validation form-rules" *ngIf="registerform.controls['mail'].errors?.['required']">Email Id is
                     required.</div>
-                <div class="form-validation form-rules" *ngIf="registerform.controls['mail'].errors">Email must be a valid email
+                    <!-- <div class="form-validation form-rules" *ngIf="registerform.controls['mail'].errors">Email must be a valid email
+                        address</div> -->
+                <div class="form-validation form-rules" *ngIf="registerform.controls['mail'].errors?.['pattern']">Email must be a valid email
                     address</div>
             </div>
             <div>
                 <div class="form-label">
                     <label for="contact">Phone No.</label>
                     <input type="number" class="form-control" name="contact" id="contact"
-                        formControlName="contact" aria-describedby="emailHelp" placeholder="Enter your Contact no."
+                        formControlName="contact" aria-describedby="emailHelp" placeholder="Enter your Contact number"
                         required>
                 </div>
                 <div

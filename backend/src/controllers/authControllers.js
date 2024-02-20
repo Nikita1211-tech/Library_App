@@ -40,24 +40,32 @@ const Verifyuser = async(req,res) => {
    const { email } = req.body;
    const otp = otpgenerator()
    otpSender(email,otp)
-   users.push({email, otp});
+   const userIndex = users.findIndex(user => user.email === email);
+   if (userIndex !== -1) {
+    users[userIndex].otp = otp;
+    }  
+    else {
+        users.push({ email, otp });
+    }
    res.status(200).json({message: "OTP received"});
   //  return res.json({email});
 }
 const Verifyotp = async(req,res) => {
-  if(!req.body.otp){
-    return res.status(401).json({ message: 'Please enter OTP' });
-  }
   const{email, otp} = req.body;
   const user = users.find(user => user.email === email);
-    
   console.log(users)
-  console.log(user.otp);
   if (user.otp == otp) {
     users.splice(users.indexOf(user), 1);
     res.status(200).json({ message: 'OTP verified successfully' });
-  } else {
-    // Remove the used OTP from the database
+  } 
+  else if(!otp){
+    if (user) {
+      users.splice(users.indexOf(user), 1);
+    }
+    return res.status(401).json({ message: 'Please enter OTP' });
+  }
+  else {
+    // users.splice(users.indexOf(user), 1);
     return res.status(400).json({ message: 'Incorrect OTP' });
   }
 }
@@ -132,23 +140,29 @@ const Saveuser = async(req,res) => {
 
 }
 const Auth = async (req,res) => {
-    const { email } = req.body;
-
-  try {
-    const user = await Users.findOne({ where: { email: email } });
+    const { email, password } = req.body;
+    console.log(req.body.password);
+    try {
+      if((req.body.email == "" && req.body.password == "") || req.body.password == "" || req.body.email == ""){
+        return res.status(401).json({message: "Please enter Login Credentials"});
+      }
+      const user = await Users.findOne({ where: { email: email } });
     if(user === null){
-      return res.status(401).json({message: "Email ID doesnot exists"});
+      return res.status(400).json({message: "Email ID doesnot exists"});
     }
     console.log(user)
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     console.log(validPassword)
     if(user!= null){
-      if(validPassword){
+      if(req.body.password === ""){
+        return res.status(401).json({message: "Please enter password"})
+      }
+      else if(validPassword){
            const token = tokengenerator(Users.email);
            res.cookie('jwt', token, { httpOnly: true, secure:true });
            return res.json({ token });
       }
-      else return res.status(401).json({message: "Incorrect Password"});
+      else return res.status(400).json({message: "Incorrect Password"});
     }
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });

@@ -13,7 +13,7 @@ export class UpdatepasswordComponent {
   updatePasswordForm: FormGroup
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router){
   this.updatePasswordForm =  new FormGroup({
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\\|[\]{};:'",.<>/?]).{8,20}$/)]),
     confirmpassword: new FormControl('', Validators.required)
   },
   {
@@ -24,6 +24,7 @@ export class UpdatepasswordComponent {
  passwordMatchValidator(form: AbstractControl){
   return form.get('password')?.value === form.get('confirmpassword')?.value ? null: { mismatch: true };
 }
+
 togglePasswordVisibility() {
   const passwordInput = document.getElementById('password') as HTMLInputElement;
   const passwordIcon = document.querySelector('.toggle-password i');
@@ -82,5 +83,27 @@ toggleConfirmPasswordVisibility() {
     //   // this.router.navigate(['/updatepassword']);
     // }
 })
+}
+// Back Button 
+onBack(): void {
+  Swal.fire({
+      title: "Do you want to go back?",
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#fb3453",
+      cancelButtonColor: "#fb3453"
+  }).then((result) => {
+      if (result.isConfirmed) {
+          // Redirect to register page and reload the window
+          this.router.navigate(['/forgotpassword']).then(() => {
+              window.location.reload();
+          });
+      } else {
+          // Stay on the same route
+          this.router.navigate(['/updatepassword']);
+      }
+  });
 }
 }

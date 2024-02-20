@@ -11,14 +11,14 @@
         </div>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, ducimus? Velit et a modi nobis.</p>
         <form [formGroup]="verifyform" (ngSubmit)="onVerify()" class="form-control" id="registerForm">
-            <div>
+            <div style="display: flex;flex-direction: column;gap: 10px;">
                 <div class="form-label">
                     <label for="otp">OTP</label>
                     <div class="otp-input">
-                        <input type="text" class="form-control" name="otp1" id="otp1" formControlName="otp1" required maxlength="1" (input)="jumpToNext($event, otp2)" #otp1Input />
-                        <input type="text" class="form-control" name="otp2" id="otp2" formControlName="otp2" required maxlength="1" (input)="jumpToNext($event, otp3)" #otp2Input />
-                        <input type="text" class="form-control" name="otp3" id="otp3" formControlName="otp3" required maxlength="1" (input)="jumpToNext($event, otp4)" #otp3Input />
-                        <input type="text" class="form-control" name="otp4" id="otp4" formControlName="otp4" required maxlength="1" #otp4Input />
+                        <input type="text" class="form-control" name="otp1" id="otp1" formControlName="otp1" required maxlength="1" (keydown)="handleDeletion($event, null)" (input)="moveToNext($event, 2)" />
+                        <input type="text" class="form-control" name="otp2" id="otp2" formControlName="otp2" required maxlength="1" (keydown)="handleDeletion($event, 2)" (input)="moveToNext($event, 3)" />
+                        <input type="text" class="form-control" name="otp3" id="otp3" formControlName="otp3" required maxlength="1" (keydown)="handleDeletion($event, 3)" (input)="moveToNext($event, 4)" />
+                        <input type="text" class="form-control" name="otp4" id="otp4" formControlName="otp4" required maxlength="1" (keydown)="handleDeletion($event, 4)" (input)="moveToNext($event, null)" />
                     </div>
                     <!-- <input type="text" class="form-control" name="otp" id="otp"
                         formControlName="otp" aria-describedby="emailHelp" placeholder="Enter otp"

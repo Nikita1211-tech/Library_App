@@ -14,13 +14,15 @@ export class SetpasswordComponent {
   setPasswordForm: FormGroup
   constructor(private fb: FormBuilder, private register: RegisterService, private router: Router){
   this.setPasswordForm =  new FormGroup({
-    password: new FormControl('',[ Validators.required, Validators.minLength(8)]),
+    password: new FormControl('',[ Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\\|[\]{};:'",.<>/?]).{8,20}$/)]),
     confirmpassword: new FormControl('', [ Validators.required, Validators.minLength(8)])
   },
   
   {
     validators: this.passwordMatchValidator,
   }
+  
+  
   );
  }
 //  showPassword: boolean = false;
@@ -88,9 +90,6 @@ export class SetpasswordComponent {
   })
  }
  onBack(): void{
-  // const user = localStorage.getItem('registerusername');
-  // const contact = localStorage.getItem('number');
-  // const email = localStorage.getItem('registeruser');
   Swal.fire({
     title: "Do you want to go back?",
     icon: 'question',
@@ -102,7 +101,9 @@ export class SetpasswordComponent {
   }).then((result) => {
     if (result.isConfirmed) {
       // window.location.reload();
-      this.router.navigate(['/register']);
+      this.router.navigate(['/register']).then(() => {
+        window.location.reload();
+    });
     }
     else {
       this.router.navigate(['/setpassword'])

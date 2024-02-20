@@ -12,7 +12,7 @@ export class ForgotpasswordComponent {
   resetPassword: FormGroup
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router){
     this.resetPassword =  new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]),
     });
   }
   onReset(): string{
@@ -32,6 +32,28 @@ export class ForgotpasswordComponent {
    });
      return email;
   }
+  // Back Button 
+  onBack(): void {
+    Swal.fire({
+        title: "Do you want to go back?",
+        icon: 'question',
+        showCancelButton: true,
+        cancelButtonText: "No",
+        confirmButtonText: "Yes",
+        confirmButtonColor: "#fb3453",
+        cancelButtonColor: "#fb3453"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redirect to register page and reload the window
+            this.router.navigate(['/login']).then(() => {
+                window.location.reload();
+            });
+        } else {
+            // Stay on the same route
+            this.router.navigate(['/forgotpassword']);
+        }
+    });
+}
   // currentUser(): void{
   //   var email = this.resetPassword.value.email
   //   this.auth.setUsername(email);

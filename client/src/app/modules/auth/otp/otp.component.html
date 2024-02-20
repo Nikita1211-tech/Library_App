@@ -13,14 +13,14 @@
 
         <!-- OTP form  -->
         <form [formGroup]="otpform" (ngSubmit)="otp()" class="form-control" id="otpForm">
-            <div class="form-label">
+            <div class="form-label" style="display: flex;flex-direction: column; gap: 10px;">
                 <label for="mail">Enter OTP</label>
                 <div class="otp-input">
-                    <input type="text" class="form-control" name="otp1" id="otp1" formControlName="otp1" required maxlength="1" />
-                    <input type="text" class="form-control" name="otp2" id="otp2" formControlName="otp2" required maxlength="1" />
-                    <input type="text" class="form-control" name="otp3" id="otp3" formControlName="otp3" required maxlength="1" />
-                    <input type="text" class="form-control" name="otp4" id="otp4" formControlName="otp4" required maxlength="1" />
-                  </div>
+                    <input type="text" class="form-control" name="otp1" id="otp1" formControlName="otp1" required maxlength="1" (input)="moveToNext($event, 2)" />
+                    <input type="text" class="form-control" name="otp2" id="otp2" formControlName="otp2" required maxlength="1" (input)="moveToNext($event, 3)" />
+                    <input type="text" class="form-control" name="otp3" id="otp3" formControlName="otp3" required maxlength="1" (input)="moveToNext($event, 4)" />
+                    <input type="text" class="form-control" name="otp4" id="otp4" formControlName="otp4" required maxlength="1" (input)="moveToNext($event, null)" />
+                </div>
                 <a (click)="resendotp()">Resend OTP</a>
             </div>
             <div>
