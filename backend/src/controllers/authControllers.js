@@ -30,9 +30,6 @@ const Register =  async(req,res) => {
         if(existinguser != null){
           return res.status(409).json({message: "User already exists"});
         }
-         const hashedPassword = await bcrypt.hash(user.password, 10);
-         console.log(hashedPassword);
-         user.password = hashedPassword;
          const newuser = await Users.create(user);
          return res.status(201).json({message: "User created successfully"})
     } catch(error){
@@ -54,38 +51,34 @@ const Verifyotp = async(req,res) => {
   if (user.otp == otp) {
     res.status(200).json({ message: 'OTP verified successfully' });
     console.log(user);
-    // users.splice(users.indexOf(user), 1);
+    users.splice(users.indexOf(user), 1);
   } else {
     // Remove the used OTP from the database
     res.status(400).json({ message: 'Invalid OTP' });
   }
 }
-
 const Resendotp = async (req, res) => {
   const { email, otp } = req.body;
-  const newOTP = otpgenerator();
   const user = users.find(user => user.email === email);
 
   if (!user) {
     return res.status(400).json({ message: 'User not found' });
   }
 
-  // Update the user's OTP
-  user.otp = newOTP;
-  
-  // Send OTP to the user's email
-  otpSender(email, newOTP);
+  const newOTP = otpgenerator();
+  otpSender(email, newOTP); 
 
-  // Check if the provided OTP matches the generated OTP
-  if (user.otp === otp) {
-    // If OTP matches, remove the user from the users array
-    const index = users.indexOf(user);
-    users.splice(index, 1);
+  user.otp = newOTP;
+  if (user.otp == otp) {
     res.status(200).json({ message: 'OTP verified successfully' });
+    console.log(user);
+    users.splice(users.indexOf(user), 1);
   } else {
-    // If OTP does not match, return an error
+    // Remove the used OTP from the database
     res.status(400).json({ message: 'Invalid OTP' });
   }
+
+  // res.status(200).json({ message: 'New OTP sent successfully', otp: newOTP });
 }
 const Saveuser = async(req,res) => {
   const user = {
@@ -147,7 +140,7 @@ const Reset = async (req,res) => {
         await Users.update({otp: otp}, {where: {
           email: email
         }});
-        return res.status(200).json({message: "Email id found"});
+        return res.json({email});
     } 
     else return res.status(401).json({message: "Email id doesnot exists"});
    } catch(error){
@@ -162,7 +155,7 @@ const Otp = async(req,res) => {
     }});
     console.log(email)
     if(otp != user.otp){
-      res.status(401).json({message: "Invalid OTP"});
+      res.status(401).json({message: "OTP not matched"});
     }
     else if(email != user.email){
       res.status(400).json({message: "Email ID doesnot exists"});
@@ -175,19 +168,19 @@ const Otp = async(req,res) => {
   }
 }
 const updatePassword = async(req,res) => {
-    const { email, newpassword } = req.body;
+    const { email, password } = req.body;
     try {
-      const hashedPassword = await bcrypt.hash(newpassword, 12);
-      const [updatedRowsCount] = await Users.update({ password: hashedPassword }, { where: { email } });
-
-      if (updatedRowsCount > 0) {
-        return res.status(200).json("Password updated successfully");
-      } else {
-        return res.status(400).json("Password not updated successfully");
+      const updatedpassword = await Users.update({password: password}, {where: {
+        email: email
+      }});
+      if(updatedpassword){
+        res.status(200).json("Password updated successfully")
+      }
+      else{
+        res.status(400).json("Password not updated successfully")
       }
     } catch (error) {
-      console.error('Failed to update password:', error);
-      return res.status(500).json({ error: 'Failed to update password' });
+      
     }
 }
 // const Detail = (req,res) => {
