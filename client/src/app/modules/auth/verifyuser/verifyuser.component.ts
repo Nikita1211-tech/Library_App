@@ -39,7 +39,20 @@ export class VerifyuserComponent {
           confirmButtonColor: "#fb3453",
           timer: 3000
         });
-      })
+      }).subscribe(
+        (response: any)=>{
+          if(response){
+             Swal.fire({
+              title: response?.response?.message,
+              text: response?.response?.message,
+              icon: 'error',
+              confirmButtonText: 'Okay',
+              confirmButtonColor: "#fb3453",
+              timer: 3000
+            });
+          }
+        }
+      )
   }
   resendotp(): void{
     const otp = this.verifyform.value.otp;

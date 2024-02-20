@@ -44,7 +44,10 @@ const Verifyuser = async(req,res) => {
    res.status(200).json({message: "OTP received"});
   //  return res.json({email});
 }
-const Verifyotp = async(req,res) => {
+const sVerifyotp = async(req,res) => {
+  if(!req.body.otp){
+    return res.status(401).json({ message: 'Please enter OTP' });
+  }
   const{email, otp} = req.body;
   const user = users.find(user => user.email === email);
   console.log(users)

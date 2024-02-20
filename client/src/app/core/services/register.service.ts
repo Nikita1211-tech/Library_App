@@ -44,7 +44,6 @@ export class RegisterService {
     this.http.post(this.API_URL+'/verifyotp', obj)
       .subscribe(
         (response) => {
-          console.log(response);
           this.router.navigate(['/setpassword']);
           return response
         },
