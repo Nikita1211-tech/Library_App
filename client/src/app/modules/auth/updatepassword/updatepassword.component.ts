@@ -67,22 +67,39 @@ toggleConfirmPasswordVisibility() {
   const confirmpassword = this.updatePasswordForm.value.confirmpassword
   this.auth.updatePassword(email, password, (error)=>{
    
-    // if(error){
-    //   Swal.fire({
-    //     title: error?.error?.message,
-    //     text: error?.error?.message,
-    //     icon: 'success',
-    //     confirmButtonText: 'Okay',
-    //     confirmButtonColor: "#fb3453",
-    //     timer: 3000
-    //   }).then((result) => {
-    //     // this.router.navigate(['/otp']);
-    //   });
-    // }
+    if(error){
+      Swal.fire({
+        title: error?.error?.message,
+        text: error?.error?.message,
+        icon: 'success',
+        confirmButtonText: 'Okay',
+        confirmButtonColor: "#fb3453",
+        timer: 3000
+      }).then((result) => {
+        // this.router.navigate(['/otp']);
+      });
+    }
     // else{
     //   // this.router.navigate(['/updatepassword']);
     // }
-})
+}).subscribe(
+  (response: any)=>{
+    if(response){
+      console.log(response)
+        Swal.fire({
+        title: response?.response?.message,
+        text: response?.response?.message,
+        icon: 'success',
+        confirmButtonText: 'Okay',
+        confirmButtonColor: "#fb3453",
+        timer: 3000
+      }).then((result) => {
+        this.router.navigate(['/userhome']);
+      });
+    }
+     
+  }
+)
 }
 // Back Button 
 onBack(): void {

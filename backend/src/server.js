@@ -11,7 +11,7 @@ require("./model/bookModel");
 require('dotenv').config();
 
 const app = express();
-
+app.use(express.json());
 // Multer setup for file uploads
 const upload = multer({ dest: "uploads/" });
 

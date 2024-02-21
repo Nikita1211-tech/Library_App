@@ -87,8 +87,9 @@ export class AuthService {
     this.http.post(this.API_URL+'/updatepassword', obj)
     .subscribe(
       (response) => {
-           console.log(response);
+        console.log(response)
            this.router.navigate(['/userhome']);
+           return response
       },
       (error) => {
         errorCallback(error);

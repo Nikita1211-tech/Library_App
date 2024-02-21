@@ -217,10 +217,10 @@ const updatePassword = async(req,res) => {
         email: email
       }});
       if(updatedpassword){
-        res.status(200).json("Password updated successfully")
+        res.status(200).json({message: "Password updated successfully"});
       }
       else{
-        res.status(400).json("Password not updated successfully")
+        res.status(400).json({message: "Password not updated"});
       }
     } catch (error) {
       
