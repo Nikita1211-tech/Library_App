@@ -83,10 +83,6 @@ const routes: Routes = [
         loadChildren: () => import('./modules/auth/otp/otp.module').then(m => m.OtpModule) 
       },
       { 
-        path: 'userhome', 
-        loadChildren: () => import('./modules/user/user-home/user-home.module').then(m => m.UserHomeModule) 
-      },
-      { 
         path: 'updatepassword', 
         loadChildren: () => import('./modules/auth/updatepassword/updatepassword.module').then(m => m.UpdatepasswordModule) 
       },
@@ -105,12 +101,13 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      {
-        path: 'userhome',
-        loadChildren: () => import('./modules/user/user-home/user-home.module').then(m => m.UserHomeModule)
+      { 
+        path: 'modules/main/userhome', 
+        loadChildren: () => import('./modules/main/userhome/userhome.module').then(m => m.UserhomeModule) 
       },
     ]
   },
+  
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
