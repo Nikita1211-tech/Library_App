@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { register } from '../../data/interfaces/register.interface';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -15,23 +16,45 @@ export class RegisterService {
       .subscribe(
         (response) => {
           this.router.navigate(['/userhome']);
+          return response
         },
         (error) => {
           errorCallback(error);
         }
       );
   }
-  verifyuser(email: string | null, errorCallback: (error: any) => void): void{
+  verifyuser(email: string | null, username: string | null, number: string | null, errorCallback: (error: any) => void): any{
     const obj = {
-      email: email
+      email: email,
+      username: username,
+      contact: number
     };
     this.http.post<{email: string}>(this.API_URL+'/verifyuser', obj)
       .subscribe(
         (response) => {
-          console.log(response);
+          
+          console.log(response)
+          Swal.fire({
+            title: "Otp sent",
+            width: '400',
+            showCancelButton: false,
+            showConfirmButton: false,
+            customClass: 'swal-wide',
+            timer: 1500,
+          })
           this.router.navigate(['/verifyuser']);
         },
         (error) => {
+          console.log(error);
+          Swal.fire({
+            title: 'Signup unsuccessful.',
+            text: error?.error?.message,
+            icon: 'warning',
+            iconColor: '#fb3453',
+            showCancelButton: false,
+            showConfirmButton: false,
+            timer: 1500
+          })
           errorCallback(error);
         }
       );
@@ -63,6 +86,14 @@ export class RegisterService {
       .subscribe(
         (response) => {
           console.log(response);
+          Swal.fire({
+            icon: 'success',
+            iconColor: '#fb3453',
+            text: "User Registered Successfully",
+            showCancelButton: false,
+            showConfirmButton: false,
+            timer: 1500,
+          })
           this.router.navigate(['/']);
         },
         (error) => {

@@ -71,24 +71,40 @@ export class SetpasswordComponent {
  passwordMatchValidator(form: AbstractControl){
      return form.get('password')?.value === form.get('confirmpassword')?.value ? null: { mismatch: true };
  }
+
  onSetPassword(): void{
-  const password = this.setPasswordForm.value.password
-  const email = localStorage.getItem('registeruser')
-  const username = localStorage.getItem('registerusername')
-  const contact = localStorage.getItem('number')
-  this.register.saveuser(email, username, contact, password, (error) => {
-    if(error?.error?.message === "User already exists"){
-          Swal.fire({
-            title: 'Signup unsuccessful.',
-            text: 'User already exists',
-            icon: 'warning',
-            confirmButtonText: 'Okay',
-            confirmButtonColor: "#fb3453",
-            timer: 2000
-          })
-        }
-  })
+  if(!this.setPasswordForm.valid) {
+    this.markFormGroupTouched(this.setPasswordForm);
+  } 
+  else{
+
+    const password = this.setPasswordForm.value.password
+    const email = localStorage.getItem('registeruser')
+    const username = localStorage.getItem('registerusername')
+    const contact = localStorage.getItem('number')
+    this.register.saveuser(email, username, contact, password, (error) => {
+      if(error?.error?.message === "User already exists"){
+            Swal.fire({
+              title: 'Signup unsuccessful.',
+              text: 'User already exists',
+              icon: 'warning',
+              confirmButtonText: 'Okay',
+              confirmButtonColor: "#fb3453",
+              timer: 2000
+            })
+          }
+    })
+  }
  }
+  markFormGroupTouched(formGroup: FormGroup) {
+  Object.values(formGroup.controls).forEach(control => {
+    control.markAsTouched();
+
+    if (control instanceof FormGroup) {
+      this.markFormGroupTouched(control);
+    }
+  })
+}
  onBack(): void{
   Swal.fire({
     title: "Do you want to go back?",

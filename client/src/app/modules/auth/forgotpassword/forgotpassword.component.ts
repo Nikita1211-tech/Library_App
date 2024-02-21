@@ -29,7 +29,7 @@ export class ForgotpasswordComponent {
       }).then((result) => {
         // this.router.navigate(['/login']);
       });
-   });
+   })
      return email;
   }
   // Back Button 

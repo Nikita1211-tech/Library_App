@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AuthService {
       .subscribe(
         (response) => {
           localStorage.setItem('token', response.token );
-          this.router.navigate(['/userhome']);
+          this.router.navigate(['/main']);
         },
         (error) => {
           errorCallback(error);
@@ -29,7 +30,7 @@ export class AuthService {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
   }
-  resetPassword(email: string | null, errorCallback: (error: any) => void): void{
+  resetPassword(email: string | null, errorCallback: (error: any) => void): any{
     const obj = {
       email: email
     };
@@ -40,7 +41,15 @@ export class AuthService {
           // localStorage.setItem('username', response.email)
           // console.log(localStorage.getItem('username'))
           this.router.navigate(['/otp']);
-          return response;
+          Swal.fire({
+            title: "Otp sent",
+            width: '400',
+            showCancelButton: false,
+            showConfirmButton: false,
+            customClass: 'swal-wide',
+            timer: 1500,
+          })
+          return response
         },
         (error) => {
           errorCallback(error);
@@ -88,7 +97,15 @@ export class AuthService {
     .subscribe(
       (response) => {
            console.log(response);
-           this.router.navigate(['/userhome']);
+           Swal.fire({
+            icon: 'success',
+            iconColor: '#fb3453',
+            text: "Password updated Successfully",
+            showCancelButton: false,
+            showConfirmButton: false,
+            timer: 1000,
+          })
+           this.router.navigate(['/main']);
       },
       (error) => {
         errorCallback(error);

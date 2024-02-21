@@ -144,15 +144,18 @@ input[type="checkbox"]:checked:after {
 }
 .input-group {
     position: relative;
-  }
-  
-  .input-group i {
-    position: absolute;
-    right: 10px; 
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
+}
+
+.input-group i {
+  position: absolute;
+  right: 10px; 
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.form-rules{
+    color: #FB3453;
+}
   
 /* Media Queries  */
 @media (max-width: 685px){

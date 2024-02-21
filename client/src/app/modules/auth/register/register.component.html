@@ -17,17 +17,18 @@
                 </div>
             </div>
             <div *ngIf="registerform.controls['username'].invalid && (registerform.controls['username'].dirty || registerform.controls['username'].touched)">
-                <div *ngIf="registerform.controls['username'].errors?.['required']; else patternError">
+                <div *ngIf="registerform.controls['username'].errors?.['required']; ">
                     <div class="form-validation form-rules">User name is required.</div>
                 </div>
-                <ng-template #patternError>
-                    <div *ngIf="registerform.controls['username'].errors?.['pattern']; else minlengthError">
-                        <div class="form-validation form-rules">Username must be alphanumeric.</div>
-                    </div>
-                    <ng-template #minlengthError>
-                        <div class="form-validation form-rules">Username must be 8 to 15 characters long.</div>
-                    </ng-template>
-                </ng-template>
+                <div *ngIf="registerform.controls['username'].errors?.['pattern'];">
+                    <div class="form-validation form-rules">Username must be alphanumeric.</div>
+                </div>
+                <div *ngIf="registerform.controls['username'].errors?.['minlength'];">
+                    <div class="form-validation form-rules">Username must be eight to fifteen characters long.</div>
+                </div>
+                <div *ngIf="registerform.controls['username'].errors?.['maxlength'];">
+                    <div class="form-validation form-rules">Username must be eight to fifteen characters long.</div>
+                </div>
             </div>
             <div>
                 <div class="form-label">
@@ -61,7 +62,7 @@
                     number</div>
             </div>
             </div>
-            <button type="submit" class="button" [disabled]="!registerform.valid">Send OTP</button>
+            <button type="submit" class="button" >Send OTP</button>
             <p style="text-align: center; margin-top: 10px;" >Already Registered? <a href="/login"> <span
                 style="color: #fb3453; font-weight: bold; cursor: pointer;">Sign In</span></a></p>
         </form>

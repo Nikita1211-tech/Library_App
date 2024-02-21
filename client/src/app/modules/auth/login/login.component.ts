@@ -17,8 +17,8 @@ export class LoginComponent{
   constructor(private elementRef: ElementRef, private fb: FormBuilder, private auth: AuthService, private router: Router){
     this.toast = this.elementRef.nativeElement.querySelector('#toast');
     this.loginform =  new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]),
+      password: new FormControl('', Validators.required),
     });
   }
   togglePasswordVisibility() {
