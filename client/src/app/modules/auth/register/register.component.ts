@@ -13,32 +13,53 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  submitted = false;
   registerform: FormGroup
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private router: Router){
     this.registerform = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[a-zA-Z0-9])[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;'"<>,.?\\/|\-=]+$/), Validators.minLength(8), Validators.maxLength(15)]),
+      username: new FormControl('', [Validators.required, Validators.pattern(/[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]/), Validators.minLength(8), Validators.maxLength(15)]),
       mail: new FormControl('', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]),
       contact: new FormControl('',[ Validators.required,  Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")])
     })
   }
+  // onClick(): void{
+  //   if (this.registerform.valid) {
+  //     console.log('Form submitted successfully');
+  //   } else {
+  //     this.markFormGroupTouched(this.registerform);
+  //   }
+  // }
   onRegister(): void{
-   const username = this.registerform.value.username
-   const email = this.registerform.value.mail
-   const contact = this.registerform.value.contact
-   console.log(username);
-   console.log(email);
-   console.log(contact);
-   localStorage.setItem('registeruser', email);
-   localStorage.setItem('registerusername', username);
-   localStorage.setItem('number', contact);
-   this.register.verifyuser(email, (error)=>{
+    if(!this.registerform.valid) {
+      this.markFormGroupTouched(this.registerform);
+    } 
+    else{
+      const username = this.registerform.value.username
+      const email = this.registerform.value.mail
+      const contact = this.registerform.value.contact
+      console.log(username);
+      console.log(email);
+      console.log(contact);
+      localStorage.setItem('registeruser', email);
+      localStorage.setItem('registerusername', username);
+      localStorage.setItem('number', contact);
+      this.register.verifyuser(email, username, contact, (error: any) => {
+       
+      })
+
+    }
+    }
+    markFormGroupTouched(formGroup: FormGroup) {
+      Object.values(formGroup.controls).forEach(control => {
+        control.markAsTouched();
     
-   })
-   this.registerform.patchValue({
-    username: username,
-    email: email,
-    contact: contact
-  });
+        if (control instanceof FormGroup) {
+          this.markFormGroupTouched(control);
+        }
+      });
+}
+
+}
   //  this.register.register(obj, (error) => {
   //   if(error?.error?.message === "User already exists"){
   //     // Swal.fire({
@@ -55,7 +76,6 @@ export class RegisterComponent {
   //     this.router.navigate(['/home']);
   //   }
   //  })
- }
 
-}
+
 

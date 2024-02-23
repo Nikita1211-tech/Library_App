@@ -62,6 +62,7 @@ toggleConfirmPasswordVisibility() {
   }
 }
  onUpdate(): void{
+<<<<<<< HEAD
   const email = localStorage.getItem('username')
   const password = this.updatePasswordForm.value.password
   const confirmpassword = this.updatePasswordForm.value.confirmpassword
@@ -100,6 +101,44 @@ toggleConfirmPasswordVisibility() {
      
   }
 )
+=======
+  if(!this.updatePasswordForm.valid) {
+    this.markFormGroupTouched(this.updatePasswordForm);
+  } 
+  else{
+
+    const email = localStorage.getItem('username')
+    const password = this.updatePasswordForm.value.password
+    const confirmpassword = this.updatePasswordForm.value.confirmpassword
+    this.auth.updatePassword(email, password, (error)=>{
+     
+      // if(error){
+      //   Swal.fire({
+      //     title: error?.error?.message,
+      //     text: error?.error?.message,
+      //     icon: 'success',
+      //     confirmButtonText: 'Okay',
+      //     confirmButtonColor: "#fb3453",
+      //     timer: 3000
+      //   }).then((result) => {
+      //     // this.router.navigate(['/otp']);
+      //   });
+      // }
+      // else{
+      //   // this.router.navigate(['/updatepassword']);
+      // }
+  })
+  }
+}
+markFormGroupTouched(formGroup: FormGroup) {
+  Object.values(formGroup.controls).forEach(control => {
+    control.markAsTouched();
+
+    if (control instanceof FormGroup) {
+      this.markFormGroupTouched(control);
+    }
+  })
+>>>>>>> e282480cc323b487cf84a7199261b2cd6e13ca92
 }
 // Back Button 
 onBack(): void {

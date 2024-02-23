@@ -121,7 +121,9 @@ handleDeletion(event: KeyboardEvent, currentIndex: number | null) {
   resendotp(): void{
     const otp = this.verifyform.value.otp;
     const email = localStorage.getItem('registeruser')
-    this.register.verifyuser(email, (error) => {
+    const username = localStorage.getItem('registerusername')
+    const contact = localStorage.getItem('number')
+    this.register.verifyuser(email, username, contact, (error) => {
 
     })
   }

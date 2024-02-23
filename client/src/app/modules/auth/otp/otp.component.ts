@@ -76,20 +76,7 @@ handleDeletion(event: KeyboardEvent, currentIndex: number | null) {
     else{
       // this.router.navigate(['/updatepassword']);
     }
-}).subscribe(
-  (response: any) => {
-    if(response){
-      Swal.fire({
-        title: 'Incorrect otp',
-        text: response?.response?.message,
-        icon: 'error',
-        confirmButtonText: 'Okay',
-        confirmButtonColor: "#fb3453",
-        timer: 3000
-      })
-    }
-  }
-)
+})
 }
 resendotp(): void{
   const email = localStorage.getItem('username')
