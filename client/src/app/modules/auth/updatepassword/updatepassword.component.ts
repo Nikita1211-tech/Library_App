@@ -62,7 +62,6 @@ toggleConfirmPasswordVisibility() {
   }
 }
  onUpdate(): void{
-<<<<<<< HEAD
   const email = localStorage.getItem('username')
   const password = this.updatePasswordForm.value.password
   const confirmpassword = this.updatePasswordForm.value.confirmpassword
@@ -101,7 +100,6 @@ toggleConfirmPasswordVisibility() {
      
   }
 )
-=======
   if(!this.updatePasswordForm.valid) {
     this.markFormGroupTouched(this.updatePasswordForm);
   } 
@@ -138,7 +136,7 @@ markFormGroupTouched(formGroup: FormGroup) {
       this.markFormGroupTouched(control);
     }
   })
->>>>>>> e282480cc323b487cf84a7199261b2cd6e13ca92
+// >>>>>>> e282480cc323b487cf84a7199261b2cd6e13ca92 
 }
 // Back Button 
 onBack(): void {

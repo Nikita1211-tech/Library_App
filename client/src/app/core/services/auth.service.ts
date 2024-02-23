@@ -96,11 +96,11 @@ export class AuthService {
     this.http.post(this.API_URL+'/updatepassword', obj)
     .subscribe(
       (response) => {
-<<<<<<< HEAD
+// <<<<<<< HEAD
         console.log(response)
            this.router.navigate(['/userhome']);
            return response
-=======
+// =======
            console.log(response);
            Swal.fire({
             icon: 'success',
@@ -111,7 +111,7 @@ export class AuthService {
             timer: 1000,
           })
            this.router.navigate(['/main']);
->>>>>>> e282480cc323b487cf84a7199261b2cd6e13ca92
+// >>>>>>> e282480cc323b487cf84a7199261b2cd6e13ca92 
       },
       (error) => {
         errorCallback(error);

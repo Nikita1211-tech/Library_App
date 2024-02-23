@@ -202,26 +202,24 @@ const Reset = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-<<<<<<< HEAD
 }
-const updatePassword = async(req,res) => {
-    const { email, password } = req.body;
-    const newpassword = await bcrypt.hash(password, 10)
-    console.log(newpassword);
-    try {
-      const updatedpassword = await Users.update({password: newpassword}, {where: {
-        email: email
-      }});
-      if(updatedpassword){
-        res.status(200).json({message: "Password updated successfully"});
-      }
-      else{
-        res.status(400).json({message: "Password not updated"});
-      }
-    } catch (error) {
-      
-=======
-};
+// const updatePassword = async(req,res) => {
+//     const { email, password } = req.body;
+//     const newpassword = await bcrypt.hash(password, 10)
+//     console.log(newpassword);
+//     try {
+//       const updatedpassword = await Users.update({password: newpassword}, {where: {
+//         email: email
+//       }});
+//       if(updatedpassword){
+//         res.status(200).json({message: "Password updated successfully"});
+//       }
+//       else{
+//         res.status(400).json({message: "Password not updated"});
+//       }
+//     } catch (error) {
+//     }   
+// };
 const Otp = async (req, res) => {
   if (!req.body.otp) {
     return res.status(401).json({ message: "Please enter OTP" });
@@ -240,7 +238,6 @@ const Otp = async (req, res) => {
       res.status(400).json({ message: "Email ID doesnot exists" });
     } else {
       res.status(200).json({ message: "OTP matched" });
->>>>>>> e282480cc323b487cf84a7199261b2cd6e13ca92
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

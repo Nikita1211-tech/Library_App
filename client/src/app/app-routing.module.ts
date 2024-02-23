@@ -6,7 +6,7 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layout/user-layout/user-layout.component';
 import { HashLocationStrategy } from '@angular/common';
-import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+// import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 const routes: Routes = [
   // Landingpage route 
@@ -97,16 +97,16 @@ const routes: Routes = [
     ]
   },
   // User Component routing ends 
-  {
-    path: '',
-    component: MainLayoutComponent,
-    children: [
-      { 
-        path: 'modules/main/userhome', 
-        loadChildren: () => import('./modules/main/userhome/userhome.module').then(m => m.UserhomeModule) 
-      },
-    ]
-  },
+  // {
+  //   path: '',
+  //   component: MainLayoutComponent,
+  //   children: [
+  //     { 
+  //       path: 'modules/main/userhome', 
+  //       loadChildren: () => import('./modules/main/userhome/userhome.module').then(m => m.UserhomeModule) 
+  //     },
+  //   ]
+  // },
   
 ]
 @NgModule({
