@@ -5,6 +5,7 @@ const otpgenerator = require('../services/otpgenerator.service');
 const { Booklist, Bookdesc, AddBook, upload, Updatebook, Deletebook, Bookcategory } = require('../controllers/adminControllers');
 // const validationMiddleware = require('../middlewares/validations/registervalidation');
 const Registervalidation = require('../middlewares/validations/registervalidation');
+const saveUserHandler = require('../services/registervalidation');
 // const Registerschema = require('../middlewares/schema/registerschema');
 
 const router = express.Router();
@@ -20,7 +21,7 @@ router.post('/verifyotp', Verifyotp);
 router.post('/resendotp', Resendotp);
 router.post('/resetpassword', Reset);
 router.post('/otp', Otp);
-router.post('/saveuser', Saveuser);
+router.post('/saveuser', saveUserHandler, Saveuser);
 router.post('/addbook',upload.fields([
     { name: 'bookimg', maxCount: 1 },
     { name: 'bookcategoryimg', maxCount: 1 },

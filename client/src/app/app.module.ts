@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonloginComponent } from './shared/component/commonlogin/commonlogin.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layout/user-layout/user-layout.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UserLayoutComponent } from './layout/user-layout/user-layout.component'
     UserLayoutComponent,
     SidebarComponent,
     HeaderComponent,
-    CommonloginComponent
+    CommonloginComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
