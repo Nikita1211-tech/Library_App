@@ -14,16 +14,20 @@ import { environment } from '../../../../environments/environment';
 export class BookComponent {
   public environment = environment.IMG_URL
   books: Book[]=[];
-  public chart: any;
+  // public chart: any;
   constructor(private router:Router, private http: HttpClient, private admin: AdminService){}
 
-  apiURL = 'http://localhost:3000/api/users';
+  // apiURL = 'http://localhost:3000/api/users';
 
   // getBooks(): Observable<any[]> {
   //   return this.http.get<any[]>(`${this.apiURL}/booklist`);
   // }
   
   ngOnInit(): void {
+    // this.admin.showbooktypelist().subscribe((booktypes) => {
+    //   this.books = booktypes;
+    //   console.log(booktypes);
+    // });
     this.admin.showbook().subscribe((books) => {
       this.books = books;
       console.log(books);

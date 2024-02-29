@@ -50,6 +50,14 @@ const routes: Routes = [
         path: 'reports',
         loadChildren: () => import('./modules/admin/reports/reports.module').then(m => m.ReportsModule),
       },
+      { 
+        path: 'bookcategorydetail', 
+        loadChildren: () => import('./modules/admin/bookcategorydetail/bookcategorydetail.module').then(m => m.BookcategorydetailModule) 
+      },
+      { 
+        path: 'booktypedetail', 
+        loadChildren: () => import('./modules/admin/booktypedetail/booktypedetail.module').then(m => m.BooktypedetailModule) 
+      },
     ]
   },
    // Admin Component routing ends 
@@ -112,6 +120,8 @@ const routes: Routes = [
       },
     ]
   },
+  
+  
   
 ]
 @NgModule({

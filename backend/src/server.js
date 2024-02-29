@@ -5,8 +5,11 @@ const path = require('path');
 const multer = require('multer');
 const authRoutes = require("./routes/authRoutes");
 const { AddBook } = require("./controllers/adminControllers");
+
 require("./model/userModel");
 require("./model/bookModel");
+require("./model/bookCategoryModel");
+require("./model/bookType.model");
 
 require('dotenv').config();
 

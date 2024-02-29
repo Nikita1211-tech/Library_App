@@ -13,9 +13,11 @@ import Swal from "sweetalert2"
   styleUrl: './addbook.component.css'
 })
 export class AddbookComponent {
+  addBookForm: FormGroup
   public environment = environment.IMG_URL;
   bookId: number;
   books: Book[] = []
+  bookcategories = []
   booktypes = [
     {name: 'books', abbrev: 'Books'},
     {name: 'magazine', abbrev: 'Magazine'},
@@ -24,28 +26,32 @@ export class AddbookComponent {
     {name: 'newspaper', abbrev: 'Newspaper'},
     {name: 'artanddesign', abbrev: 'Art and designs'}
   ];
-  bookcategories = [
-    {name: 'academic', abbrev: 'Academic'},
-    {name: 'art', abbrev: 'Art and Desgin'},
-    {name: 'mythological', abbrev: 'Mythological'},
-    {name: 'motivational', abbrev: 'Motivational'},
-    {name: 'biographies', abbrev: 'Biographies'},
-    {name: 'fiction', abbrev: 'Fiction'}
-  ];
-  addBookForm: FormGroup
+  // bookcategories = []
+  getBookCategory(){
+    this.admin.showbookcategory().subscribe((bookcategory) => {
+      var arr = bookcategory
+      var newarr = arr.map((item: any) => {
+        console.log(item)
+        return {name: item.category, abbrev: item.category}
+      }) 
+      this.bookcategories = newarr
+      console.log("New array is", newarr, this.bookcategories)
+    })
+    return this.bookcategories
+  }
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private admin: AdminService){
     this.bookId = this.route.snapshot.params['id'];
-    console.log(this.bookId);
+    // console.log(this.bookId);
     this.getBookById().subscribe((books) => {
       this.books = books;
     });
     this.getBooks().subscribe((books) => {
       this.books = books
-      console.log(books)
+      // console.log(books)
     })
     // this.bookId =  this.route.snapshot.params['id'];
     this.bookId = this.route.snapshot.params['id'];
-    console.log(this.bookId);
+    // console.log(this.bookId);
     this.addBookForm =  new FormGroup({
     bookname: new FormControl('',[ Validators.required, Validators.minLength(8)]),
     bookimg: new FormControl('0', [ Validators.required, Validators.minLength(8)]),
@@ -56,10 +62,11 @@ export class AddbookComponent {
     booktypeimg: new FormControl('0', Validators.required),
     publishyear: new FormControl('', Validators.required),
     booktype: new FormControl(this.booktypes),
-    bookcategories: new FormControl(this.bookcategories),
+    // bookcategories: new FormControl(this.bookcategories),
     summary: new FormControl('', Validators.required)
   });
- }
+  
+ } 
  onFileSelected(event: any, formControlName: string) {
   if (event.target.files && event.target.files.length > 0) {
     const file = event.target.files[0];

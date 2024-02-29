@@ -1,31 +1,5 @@
 const Joi = require('joi');
 
-// const Registerschema = Joi.object({
-//     username: Joi.string()
-//         .alphanum()
-//         .min(8)
-//         .max(15)
-//         .regex(/^(?=.*[a-zA-Z0-9])[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;'"<>,.?\\/|\-=]+$/)
-//         .required(),
-//     email: Joi.string()
-//         .email()
-//         .regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
-//         .required(),
-//     contact: Joi.string()
-//         .regex(/^((\+91-?)|0)?[0-9]{10}$/)
-//         .required(),
-//     password: Joi.string()
-//         .required()
-//         .min(8)
-//         .max(20)
-//         .regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\\|[\]{};:'",.<>/?]).{8,20}$/)
-//         .messages({
-//             'string.pattern.base': 'Password must be at least 8 characters long and contain at least one uppercase letter, one digit, and one special character.',
-//             'string.min': 'Password must be at least {#limit} characters long.',
-//             'string.max': 'Password must be at most {#limit} characters long.'
-//         })
-// });
-
 const Registervalidation = (schema, property) => { 
     return (req, res, next) => {
     const data = {
@@ -48,6 +22,16 @@ const Registervalidation = (schema, property) => {
        console.log("error", message); 
        res.status(422).json({ error: message }) } 
 };
+}
+const Passwordvalidation = (schema, property) => {
+    return(req, res, next) => {
+        const data = {
+            password: req.body.password,
+            confirmpassword: req.body.confirmpassword
+        };
+
+        const { result } = Joi.validate(data, )
+    }
 }
 
 module.exports = Registervalidation;

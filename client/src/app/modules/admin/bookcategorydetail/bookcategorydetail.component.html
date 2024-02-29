@@ -1,0 +1,45 @@
+<div class="bk-shadow">
+    <div class="book-search">
+        <div class="search_box">
+            <img src="./../../../assets/images/search_bar.png" alt="">
+            <input type="search" placeholder="Search book by category">
+        </div>
+        <button>Add New Category</button>
+    </div>
+    <div class="bookcontainer" >
+        <!-- <div class="bookcontainer-row1">
+            <h4>Books Category</h4>
+            <a href="/bookcategorydetail">View All</a>
+        </div> -->
+        <div class="bookcontainer-row2">
+            <div class="bookdes" *ngFor="let book of books">
+                <img [src]="environment+book.bookcat_img" alt="">
+                <div class="">
+                    <p class="">{{book.category}}</p>
+                </div>
+            </div>
+            <div class="bookdes" (click)="showcategoryform()">
+                <!-- <form action="">
+                    <label for="category"></label>
+                    <input type="text">
+                </form> -->
+                <!-- <div class="addcategory">
+                    <i class="fas fa-plus fa-lg" style="color: #fb3453;"></i>
+                    <button>Add New Category</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="categoryform" id="categoryform">
+        <h4>Add New Category</h4>
+        <form [formGroup]="categoryform" (ngSubmit)="onAddingCategory()" class="form-control" id="categoryform">
+            <label for="category">Enter Category Name</label>
+            <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
+            <div *ngIf="categoryform.controls['category'].invalid && (categoryform.controls['category'].dirty || categoryform.controls['category'].touched)">
+                <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['required']">Category name is
+                    required.</div>
+            </div>
+            <input type="submit">
+        </form>
+    </div>
+</div>

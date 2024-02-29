@@ -17,24 +17,38 @@ const registerSchema = Joi.object({
         .required(),
 });
 
+// const passwordSchema = Joi.object({
+//     password: Joi.string()
+//               .min(8)
+//               .max(20)
+//               .pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\\|[\]{};:'",.<>/?]).{8,20}$/)
+//               .required(),
+//     confirmpassword: Joi.string()
+//                      .valid(Joi.ref('password'))
+//                      .required()
+// })
 
 function saveUserHandler(req, res) {
     const data = req.body;
-
-    // Perform validation
     const validationResult = registerSchema.validate(data);
 
-    // Handle validation results
     if (validationResult.error) {
         console.error(validationResult.error.details);
-        // Respond with validation error
         return res.status(400).json({ error: validationResult.error.details });
     } else {
-        // Data is valid, proceed with further processing
-        // For example, save data to database
-        // Return success response
         return res.status(200).json({ message: 'Data is valid', data: validationResult.value });
     }
 }
+
+// function Passwordvalidation(req, res) {
+//         const data = req.body;
+//         const passwordValidation = passwordSchema.validate(data)
+//         if (passwordValidation.error) {
+//             console.error(passwordValidation.error.details);
+//             return res.status(400).json({ error: passwordValidation.error.details });
+//         } else {
+//             return res.status(200).json({ message: 'Data is valid', data: passwordValidation.value });
+//         }
+// }
 
 module.exports = saveUserHandler;

@@ -86,4 +86,43 @@ showBookCategory(bookCategory: string | null): Observable<any[]> {
 showbook(): Observable<any> {
   return this.http.get<any>(this.API_URL+'/booklist')
 }
+// showtype(): Observable<any> {
+//   return this.http.get<any>(this.API_URL+'/booktypelist')
+// }
+addbookcategory(category: string, errorCallback: (error: any) => void){
+  const obj = {
+    category: category
+  }
+  // console.log(category)
+   this.http.post(this.API_URL+'/addbookcategory', obj)
+   .subscribe(
+    (response)=>{
+         console.log(response)
+    },
+    (error) => {
+
+    }
+   )
+  }
+  showbookcategory(): Observable<any>{
+    return this.http.get<any>(this.API_URL+'/showbookcategory')
+  }
+addbooktype(type: string, errorCallback: (error: any) => void){
+  const obj = {
+    type: type
+  }
+  // console.log(category)
+   this.http.post(this.API_URL+'/addbooktype', obj)
+   .subscribe(
+    (response)=>{
+         console.log(response)
+    },
+    (error) => {
+
+    }
+   )
+}
+showbooktype(): Observable<any>{
+  return this.http.get<any>(this.API_URL+'/showbooktype')
+}
 }

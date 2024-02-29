@@ -1,6 +1,10 @@
 // const { SELECT } = require("sequelize/types/query-types");
+const { Sequelize } = require("sequelize");
 const Book = require("../model/bookModel");
+const BookCategory = require("../model/bookCategoryModel")
+const Booktype = require("../model/bookType.model");
 const multer = require('multer');
+// const Booktype = require("../model/bookType.model");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/'); // Save files to the 'uploads' directory
@@ -101,13 +105,34 @@ const Detail = (req,res) => {
 }
 const Booklist = async(req,res) => {
   try {
-    const books = await Book.findAll();
+    const books = await Book.findAll({
+      attributes: [
+        [Sequelize.fn("MAX", Sequelize.col("id")), "id"],
+        "category","bookcat_img", "booktypename","booktype_img",
+      ],
+      group: ["category", "booktypename"],
+    });
     res.json(books);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+// const Booktypelist = async(req,res) => {
+//   try {
+//     const books = await Book.findAll({
+//       attributes: [
+//         [Sequelize.fn("MAX", Sequelize.col("id")), "id"],
+//         "booktypename","booktype_img",
+//       ],
+//       group: ["booktypename"],
+//     });
+//     res.json(books);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// }
 const Bookdesc = async(req,res) => {
   const bookId = req.params.book_id;
   try {
@@ -204,5 +229,56 @@ const Bookcategory = async (req, res) => {
   }
 }
 
+const Addbookcategory = async (req, res) => {
+  const obj = {
+    category: req.body.category 
+  }
+  console.log(obj.category)
+  try {
+    const existingcategory = await BookCategory.findOne({ where: { category: obj.category } });
+    if (existingcategory != null) {
+      return res.status(409).json({ message: "Book category already exists" });
+    }
+    const newBook = await BookCategory.create(obj);
+    return res.status(201).json({ message: "Book category added successfully" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
 
-module.exports = { AddBook,Detail, upload, Booklist, Bookdesc, Updatebook, Deletebook, Bookcategory } 
+const Showbookcategory = async (req,res) => {
+  try {
+    const Bookcategory = await BookCategory.findAll();
+    return res.status(201).json(Bookcategory);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
+
+const Addbooktype = async (req, res) => {
+  const obj = {
+    type: req.body.type 
+  }
+  console.log(obj.type)
+  try {
+    const existingtype = await Booktype.findOne({ where: { type: obj.type } });
+    if (existingtype != null) {
+      return res.status(409).json({ message: "Book type already exists" });
+    }
+    const newBook = await Booktype.create(obj);
+    return res.status(201).json({ message: "Book type added successfully" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
+
+const Showbooktype = async (req,res) => {
+  try {
+    const type = await Booktype.findAll();
+    return res.status(201).json(type);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
+
+module.exports = { AddBook, Detail, upload, Booklist, Bookdesc, Updatebook, Deletebook, Bookcategory, Addbookcategory, Showbookcategory, Addbooktype, Showbooktype } 

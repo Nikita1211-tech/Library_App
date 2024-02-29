@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <label for="bookcategory">Book Category Name</label><br>
-                    <select class='form-select'  name="bookcategory" id="bookcategory" formControlName="bookcategories">
+                    <select class='form-select' (click)="getBookCategory()" name="bookcategory" id="bookcategory" formControlName="bookcategories">
                         <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{
                             bookcategory.abbrev }}</option>
                     </select>

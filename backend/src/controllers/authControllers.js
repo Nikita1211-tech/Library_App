@@ -2,7 +2,7 @@ const mysql = require("mysql2");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const Users = require("../model/userModel");
-const Book = require("../model/bookModel");
+// const Book = require("../model/bookModel");
 const tokengenerator = require("../services/tokengenerator.service");
 const otpgenerator = require("../services/otpgenerator.service");
 const { where } = require("sequelize");
@@ -42,9 +42,9 @@ const Verifyuser = async (req, res) => {
   const existinguser = await Users.findOne({ where: { email: email } });
   const existingusername = await Users.findOne({where: { username: username}});
   const existingcontact = await Users.findOne({where: { contact: contact}});
-  console.log(existinguser)
-  console.log(existingusername)
-  console.log(existingcontact)
+  // console.log(existinguser)
+  // console.log(existingusername)
+  // console.log(existingcontact)
   if (existinguser) return res.status(401).json({ message: "Email ID already exists" });
   if (existingusername) return res.status(401).json({ message: "Username already exists" });
   if (existingcontact) return res.status(401).json({ message: "Contact number already exists" });

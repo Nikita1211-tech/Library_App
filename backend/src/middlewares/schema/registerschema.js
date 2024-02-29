@@ -17,4 +17,12 @@ const Registerschema = Joi.object({
         .required()
 });
 
+const Passwordschema = Joi.object({
+    password: Joi.string()
+              .min(8)
+              .max(20)
+              .pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\\|[\]{};:'",.<>/?]).{8,20}$/)
+              .required()
+})
+
 module.exports = Registerschema;

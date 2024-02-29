@@ -37,9 +37,9 @@ export class RegisterComponent {
       const username = this.registerform.value.username
       const email = this.registerform.value.mail
       const contact = this.registerform.value.contact
-      console.log(username);
-      console.log(email);
-      console.log(contact);
+      // console.log(username);
+      // console.log(email);
+      // console.log(contact);
       localStorage.setItem('registeruser', email);
       localStorage.setItem('registerusername', username);
       localStorage.setItem('number', contact);
