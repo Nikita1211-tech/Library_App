@@ -7,15 +7,15 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 90vh;
 }
 h4{
-    font-size: 24px;
+    font-size: 26px;
     margin: 0px;
 }
 p{
-    font-size: 17px;
-    /* font-weight: bold; */
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: bold;
     margin: 0px;
 }
 .search_box{
@@ -26,9 +26,10 @@ p{
     display: flex;
     align-items: center;
 }
-.search_box img{
-    width: 20px;
-    height: 20px;
+.search_box i{
+    /* width: 30px;
+    height: 30px; */
+    padding: 10px;
 }
 .book-search{
     display: flex;
@@ -60,19 +61,35 @@ form{
     gap: 10px;
     margin: 0px;
 }
-input{
+label{
+    font-size: 22px;
+}
+input[type="text"]{
     padding: 15px;
     background-color: #EAEAEA;
     border: none;
     width:400px;
     border-radius: 10px;
+    font-family: Poppins;
 }
 input[type="submit"]{
+    padding: 15px;
     border: none;
     background-color: #fb3453;
     color: white;
-    width: 100px;
+    border-radius: 10px;
+    width: 150px;
     cursor: pointer;
+    font-family: Poppins;
+    font-size: 18px;
+}
+input[type="search"]{
+    padding: 10px;
+    background-color: #EAEAEA;
+    border: none;
+    font-family: Poppins;
+    width:400px;
+    border-radius: 10px;
 }
 .addcategory{
     /* background-image: url(./../../../../assets/images/categoryimg.avif); */
@@ -86,6 +103,21 @@ input[type="submit"]{
     align-items: center;
     cursor: pointer;
 }
+input[type="file"]::file-selector-button{
+    border: none;
+    color: black;
+    background-color: #EAEAEA;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Poppins;
+    font-size: 18px;
+    /* width: 400px; */
+}  
+::placeholder{
+    font-size: 18px;
+    color: black;
+}
 /* .addcategory i{
     width: 50px;
 } */
@@ -96,6 +128,9 @@ button{
     padding: 12px;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 18px;
+    width: 150px;
+    font-family: Poppins;
 }
 .form-rules{
     color: #FB3453;

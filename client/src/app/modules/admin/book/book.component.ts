@@ -33,12 +33,20 @@ export class BookComponent {
       console.log(books);
     });
   }
-  onClick(data: string): void{
+  onClickCategory(data: string): void{
     const bookcategory = data
     localStorage.setItem('bookcategory', bookcategory);
     console.log(bookcategory)
     this.admin.bookcategory(bookcategory, (error) => {
       console.log(error);
     })
+ }
+ onClickType(data: string): void{
+  const booktype = data
+  localStorage.setItem('booktype', booktype);
+  console.log(booktype)
+  this.admin.booktype(booktype, (error) => {
+    console.log(error);
+  })
  }
 }

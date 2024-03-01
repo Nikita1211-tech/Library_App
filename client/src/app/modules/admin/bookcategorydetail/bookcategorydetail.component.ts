@@ -14,13 +14,16 @@ import { RegisterService } from '../../../core/services/register.service';
   styleUrl: './bookcategorydetail.component.css'
 })
 export class BookcategorydetailComponent {
-  books: Book[]=[];
+  // x = document.getElementById("categoryform");
   public environment = environment.IMG_URL
+  books: Book[]=[];
   categoryform: FormGroup
-  showCategoryForm: boolean = false;
+  showCategoryForm: Boolean = false
+  // public chart: any;
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.categoryform = new FormGroup({
-      category: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required, Validators.pattern(/[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]/)]),
+      image: new FormControl('', Validators.required)
     })
   }
     
@@ -31,14 +34,14 @@ export class BookcategorydetailComponent {
     });
   }
 
-  // showcategoryform(): void{
-  //   // if (this.x.style.display === "none") {
-  //   //   this.x.style.display = "block";
-  //   // } else {
-  //   //   x.style.display = "none";
-  //   // }
-  //   console.log("true")
-  // }
+  showcategoryform(): void{
+    // if (this.x.style.display === "none") {
+    //   this.x.style.display = "block";
+    // } else {
+    //   x.style.display = "none";
+    // }
+    console.log("true")
+  }
 
   onAddingCategory(): void{
     if(!this.categoryform.valid) {
@@ -46,13 +49,6 @@ export class BookcategorydetailComponent {
     } 
     else{
       const category = this.categoryform.value.category
-      console.log(category)
-      // console.log(username);
-      // console.log(email);
-      // console.log(contact);
-      // localStorage.setItem('registeruser', email);
-      // localStorage.setItem('registerusername', username);
-      // localStorage.setItem('number', contact);
       this.admin.addbookcategory(category, (error: any) => {
        
       })

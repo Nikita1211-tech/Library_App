@@ -11,6 +11,7 @@ import { CommonloginComponent } from './shared/component/commonlogin/commonlogin
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layout/user-layout/user-layout.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,11 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

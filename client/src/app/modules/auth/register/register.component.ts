@@ -13,7 +13,7 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  submitted = false;
+  // submitted = false;
   registerform: FormGroup
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private router: Router){
     this.registerform = new FormGroup({

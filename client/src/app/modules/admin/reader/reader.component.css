@@ -38,6 +38,7 @@ td{
 .reader-container{
     display: flex;
     gap: 20px;
+    height: 90vh;
 }
 .readercontainer-sec1{
     display: flex;

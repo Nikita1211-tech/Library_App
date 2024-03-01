@@ -103,6 +103,15 @@ const Detail = (req,res) => {
     var password  = req.body.password;
     console.log(`Username: ${username}, Password: ${password}`)
 }
+const Books = async (req, res) => {
+  try {
+    const books = await Book.findAll();
+    res.json(books);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
 const Booklist = async (req, res) => {
   try {
     const books = await Book.findAll({
@@ -233,11 +242,29 @@ const Bookcategory = async (req, res) => {
   }
 }
 
+const Booktypes = async (req, res) => {
+  const booktype = req.body.booktype;
+
+  try {
+    const books = await Book.findAll({ where: { booktypename: booktype } }); // Using findAll to get multiple books
+    console.log(books);
+    
+    if (books.length > 0) {
+      res.json(books); 
+    } else {
+      return res.status(404).json({ Message: "Book type not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Failed to load books' });
+  }
+}
+
 const Addbookcategory = async (req, res) => {
   const obj = {
     category: req.body.category 
   }
-  console.log(obj.category)
+  console.log(obj)
   try {
     const existingcategory = await BookCategory.findOne({ where: { category: obj.category } });
     if (existingcategory != null) {
@@ -285,4 +312,4 @@ const Showbooktype = async (req,res) => {
   }
 }
 
-module.exports = { AddBook, Detail, upload, Booklist, Bookdesc, Updatebook, Deletebook, Bookcategory, Addbookcategory, Showbookcategory, Addbooktype, Showbooktype } 
+module.exports = { AddBook, Detail, Books, upload, Booklist, Bookdesc, Updatebook, Deletebook, Bookcategory, Booktypes, Addbookcategory, Showbookcategory, Addbooktype, Showbooktype } 

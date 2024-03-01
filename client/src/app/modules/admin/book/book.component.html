@@ -6,7 +6,7 @@
         </div>
         <div class="bookcontainer-row2">
             <div class="bookdes" *ngFor="let book of books">
-                <img (click)="onClick(book.category)" [src]="environment+book.bookcat_img" alt="">
+                <img (click)="onClickCategory(book.category)" [src]="environment+book.bookcat_img" alt="">
                 <div class="">
                     <p class="">{{book.category}}</p>
                 </div>
@@ -19,8 +19,8 @@
             <a href="/booktypedetail">View All</a>
         </div>
         <div class="bookcontainer-row2">
-            <div class="bookdes" *ngFor="let book of books">
-                <img class="" [src]="environment+book.booktype_img" alt="">
+            <div class="booktype" *ngFor="let book of books">
+                <img class="" (click)="onClickType(book.booktypename)" [src]="environment+book.booktype_img" alt="">
                 <div class="">
                     <p class="">{{book.booktypename}}</p>
                 </div>

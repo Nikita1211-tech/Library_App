@@ -1,79 +1,116 @@
 <div class="bk-shadow">
     <form [formGroup]="addBookForm" (ngSubmit)="onAddBook()" class="form-control" enctype="multipart/form-data">
         <div class="form">
-            <div class="form-elements">
+            <div class="form-col1">
                 <div>
+                    <!-- <mat-form-field class="col-12">
+                        <input matInput placeholder="Name" value="Tudip">
+                     </mat-form-field> -->
                     <label for="bookname">Book Name</label>
                     <input class="form-control" formControlName="bookname" type="text" name="bookname"
                         placeholder="Enter Book name">
                 </div>
-                <div>
-                    <label for="bookimg">Book Image</label>
-                    <input class="form-control"  (change)="onFileSelected($event, 'bookimg')" formControlName="bookimg" type="file" name="bookimg"
+                <!-- <div>
+                    <label for="bookimg">Upload Book Image</label>
+                    <input style="margin-left: 10px" class="form-control file" id="file"
+                        (change)="onFileSelected($event, 'bookimg')" formControlName="bookimg" type="file"
+                        name="bookimg" placeholder="Enter Book Image">
+                </div> -->
+                <!-- <div class="file-input">
+                    <label for="bookimg">Upload Book Image</label>
+                    <input class="form-control file" id="file" (change)="onFileSelected($event, 'bookimg')" formControlName="bookimg" type="file" name="bookimg"
                         placeholder="Enter Book Image">
+                </div> -->
+                <div class="book-price-details">
+                    <div>
+                        <label for="booksellingprice">Book Actual Price</label>
+                        <input class="form-control" formControlName="booksellingprice" type="text" name="booksellingprice"
+                            placeholder="Enter Book Selling Price">
+                    </div>
+                    <div>
+                        <label for="bookcostprice">Book Cost Price</label>
+                        <input class="form-control" formControlName="bookcostprice" type="text" name="bookcostprice"
+                            placeholder="Enter Book Cost Price">
+                    </div>
                 </div>
-                <div>
-                    <label for="booksellingprice">Book Actual Price</label>
-                    <input class="form-control" formControlName="booksellingprice" type="text" name="booksellingprice"
-                        placeholder="Enter Book Actual Price">
+                <div class="book-price-details">
+                    <div>
+                        <label for="bookwriter">Book Writer Name</label>
+                        <input class="form-control" formControlName="bookwriter" type="text" name="booktype"
+                            placeholder="Enter Book Writer Name">
+                    </div>
+                    <div>
+                        <label for="publishyear">Enter Publish Year</label>
+                        <input class="form-control" formControlName="publishyear" type="text" name="publishyear"
+                            placeholder="Enter Publish Year">
+                    </div>
                 </div>
-                <div>
-                    <label for="bookcostprice">Book Cost Price</label>
-                    <input class="form-control" formControlName="bookcostprice" type="text" name="bookcostprice"
-                        placeholder="Enter Book Cost Price">
+            </div>
+            <div class="form-col2">
+                <div class="type">
+                    <div>
+                        <label for="bookcategory">Select Book Category Name</label>
+                        <select name="bookcategory" id="bookcategory" (click)="getBookCategory()" formControlName="bookcategories">
+                            <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{ bookcategory.abbrev }}
+                            </option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="bookcategoryimg">Select Book Category Image</label>
+                        <!-- <input class="form-control" (change)="onFileSelected($event, 'booktypeimg')" formControlName="booktypeimg" type="file" name="booktypeimg"
+                                placeholder="Enter Book Type Image"> -->
+                        <select class='form-select' (click)="getBookCategory()" name="bookcategory" id="bookcategory"
+                            formControlName="bookcategories">
+                            <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{
+                                bookcategory.abbrev }}</option>
+                        </select>
+                    </div>
                 </div>
-                <div>
+                <div class="type">
+                    <div>
+                        <label for="booktype">Select Book Type Name</label>
+                        <select name="booktype" id="booktype" (click)="getBookType()" formControlName="booktype">
+                            <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">{{ booktype.abbrev }}
+                            </option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="booktypeimg">Select Book Type Image</label>
+                        <!-- <input class="form-control" (change)="onFileSelected($event, 'booktypeimg')" formControlName="booktypeimg" type="file" name="booktypeimg"
+                                placeholder="Enter Book Type Image"> -->
+                        <select class='form-select' (click)="getBookType()" name="booktype" id="bookcategory"
+                            formControlName="booktypes" placeholder="Select Book Type Image">booktype
+                            <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">{{
+                                booktype.abbrev }}</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <div>
                     <label for="bookcategory">Book Category Name</label><br>
                     <select class='form-select' (click)="getBookCategory()" name="bookcategory" id="bookcategory" formControlName="bookcategories">
                         <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{
                             bookcategory.abbrev }}</option>
                     </select>
-                </div>
-            </div>
-            <div class="form-elements">
-                <div>
-                    <label for="bookcategoryimg">Book Category Image</label>
-                    <input class="form-control" (change)="onFileSelected($event, 'bookcategoryimg')" formControlName="bookcategoryimg" type="file" name="bookcategoryimg"
-                        placeholder="Enter Book Category Image">
-
-                </div>
-                <div>
+                </div> -->
+                <!-- <div>
                     <label for="booktype">Book Type Name</label>
                     <select name="booktype" id="booktype" (click)="getBookType()" formControlName="booktype">
                         <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">{{ booktype.abbrev }}
                         </option>
                     </select>
-                    <!-- <input type="text" name="bookwriter" placeholder="Enter Book Type Name"> -->
-
-                </div>
-                <div>
-                    <label for="bookwriter">Book Writer Name</label>
-                    <input class="form-control" formControlName="bookwriter" type="text" name="booktype"
-                        placeholder="Enter Book Writer Name">
-                </div>
-                <div>
-                    <label for="booktypeimg">Book Type Image</label>
-                    <input class="form-control" (change)="onFileSelected($event, 'booktypeimg')" formControlName="booktypeimg" type="file" name="booktypeimg"
-                        placeholder="Enter Book Type Image">
-                </div>
-                <div>
-                    <label for="publishyear">Enter Publish Year</label>
-                    <input class="form-control" formControlName="publishyear" type="text" name="publishyear"
-                        placeholder="Enter Publish Year">
-                </div>
+                </div> -->
             </div>
         </div>
-
         <div>
-            <label for="summary">Enter Book Summary</label><br>
-            <textarea name="summary" id="" cols="30" rows="10" formControlName="summary"
+            <!-- <label for="summary">Enter Book Summary</label><br> -->
+            <textarea name="summary" id="" cols="30" rows="7" formControlName="summary"
                 placeholder="Enter Book Summary"></textarea>
         </div>
         <div class="button">
             <input type="submit" name="submit" value="Submit" class="submit">
         </div>
     </form>
-    <div>
+    <!-- <div>
         <div *ngFor="let book of books" class="editbook-page">
             <div class="book-name">
                 <div class="book-details">
@@ -140,8 +177,8 @@
                 <a (click)="confirmDelete(book.id)"><button>Delete</button></a>
             </div>
         </div> 
-    </div>
-    
+    </div> -->
+
 </div>
 <!-- <div class="table-container">
     <table>

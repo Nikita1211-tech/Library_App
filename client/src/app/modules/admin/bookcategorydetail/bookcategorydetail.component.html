@@ -1,10 +1,11 @@
 <div class="bk-shadow">
     <div class="book-search">
         <div class="search_box">
-            <img src="./../../../assets/images/search_bar.png" alt="">
+            <!-- <img src="./../../../assets/images/search_bar.png" alt=""> -->
+            <i class="fas fa-search fa-lg"></i>
             <input type="search" placeholder="Search book by category">
         </div>
-        <button (click)="showCategoryForm = true">Add New Category</button>
+        <button (click)="showCategoryForm = true">Category  <i class="fas fa-plus fa-md" style="color: white; margin-left: 10px;"></i></button>
     </div>
     <div class="bookcontainer" >
         <!-- <div class="bookcontainer-row1">
@@ -38,7 +39,10 @@
             <div *ngIf="categoryform.controls['category'].invalid && (categoryform.controls['category'].dirty || categoryform.controls['category'].touched)">
                 <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['required']">Category name is
                     required.</div>
+                <!-- <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['pattern']">Category name must be in alphabets.</div> -->
             </div>
+            <label for="image">Upload Image</label>
+            <input type="file" class="form-control" name="image" id="image"  formControlName="image" required>
             <input type="submit">
         </form>
     </div>

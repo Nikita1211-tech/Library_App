@@ -24,6 +24,7 @@ header{
     justify-content: space-between;
     padding: 20px;
     box-shadow: 2px 2px 12px  rgba(128, 128, 128, 0.308);
+    /* position: fixed; */
 }
 .search_box{
     padding: 10px;

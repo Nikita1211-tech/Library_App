@@ -43,6 +43,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/admin/bookcategories/bookcategories.module').then(m => m.BookcategoriesModule) 
       },
       { 
+        path: 'booktypes', 
+        loadChildren: () => import('./modules/admin/booktypes/booktypes.module').then(m => m.BooktypesModule) 
+      },
+      { 
         path: 'bookdescription/:id', 
         loadChildren: () => import('./modules/admin/bookdescription/bookdescription.module').then(m => m.BookdescriptionModule) 
       },
@@ -120,6 +124,7 @@ const routes: Routes = [
       },
     ]
   },
+  
   
   
   

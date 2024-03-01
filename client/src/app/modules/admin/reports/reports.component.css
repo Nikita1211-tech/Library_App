@@ -35,6 +35,7 @@ a{
     display: flex;
     flex-direction: column;
     gap: 30px;
+    height: 90vh;
 }
 .reportContainer_row1{
     display: flex;

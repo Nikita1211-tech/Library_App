@@ -81,8 +81,23 @@ bookcategory(bookcategory: String | null, errorCallback: (error: any) => void){
     }
   )
 }
+booktype(booktype: String | null, errorCallback: (error: any) => void){
+  this.http.post(this.API_URL+'/booktype',  { booktype }).subscribe(
+    (response) => {
+       console.log(response);
+       this.router.navigate(['/booktypes']);
+       return response;
+    },
+    (error) => {
+          errorCallback(error);
+    }
+  )
+}
 showBookCategory(bookCategory: string | null): Observable<any[]> {
   return this.http.post<any[]>(`${this.API_URL}/bookcategory`, { bookcategory: bookCategory })
+}
+showBookType(bookType: string | null): Observable<any[]> {
+  return this.http.post<any[]>(`${this.API_URL}/booktype`, { booktype: bookType })
 }
 showbook(): Observable<any> {
   return this.http.get<any>(this.API_URL+'/booklist')
@@ -94,7 +109,7 @@ addbookcategory(category: string, errorCallback: (error: any) => void){
   const obj = {
     category: category
   }
-  // console.log(category)
+  console.log(obj)
    this.http.post(this.API_URL+'/addbookcategory', obj)
    .subscribe(
     (response)=>{

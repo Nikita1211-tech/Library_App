@@ -17,7 +17,7 @@ export class AddbookComponent {
   public environment = environment.IMG_URL;
   bookId: number;
   books: Book[] = []
-  bookcategories: { name: string, abbrev: string }[] = []
+  bookcategories: { name: string, abbrev: string}[] = []
   booktypes: { name: string, abbrev: string }[] = []
   // booktypes = [
   //   {name: 'books', abbrev: 'Books'},
@@ -42,7 +42,7 @@ export class AddbookComponent {
       var arr = bookcategory
       var bookcategoryarr = arr.map((item: any) => {
         // console.log(item)
-        return {name: item.category, abbrev: item.category}
+        return {name: item.category, abbrev: item.category, value:"Select Book Category"}
       }) 
       this.bookcategories = bookcategoryarr
       // console.log("New array is", newarr, this.bookcategories)

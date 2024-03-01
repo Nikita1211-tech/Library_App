@@ -5,7 +5,6 @@ import { AddbookRoutingModule } from './addbook-routing.module';
 import { AddbookComponent } from './addbook.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     AddbookComponent
@@ -13,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AddbookRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class AddbookModule { }
