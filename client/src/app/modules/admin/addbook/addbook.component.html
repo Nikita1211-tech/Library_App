@@ -28,7 +28,6 @@
                         <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{
                             bookcategory.abbrev }}</option>
                     </select>
-                    <!-- <input type="text" name="bookcategory" placeholder="Enter Book Category Name"> -->
                 </div>
             </div>
             <div class="form-elements">
@@ -40,7 +39,7 @@
                 </div>
                 <div>
                     <label for="booktype">Book Type Name</label>
-                    <select name="booktype" id="booktype" formControlName="booktype">
+                    <select name="booktype" id="booktype" (click)="getBookType()" formControlName="booktype">
                         <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">{{ booktype.abbrev }}
                         </option>
                     </select>

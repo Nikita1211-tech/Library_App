@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Book } from '../../data/interfaces/book.interface';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -97,10 +98,25 @@ addbookcategory(category: string, errorCallback: (error: any) => void){
    this.http.post(this.API_URL+'/addbookcategory', obj)
    .subscribe(
     (response)=>{
+      Swal.fire({
+        icon: 'success',
+        iconColor: '#fb3453',
+        text: "Book category added successfully",
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 1500,
+      })
          console.log(response)
     },
     (error) => {
-
+      Swal.fire({
+        icon: 'info',
+        iconColor: '#fb3453',
+        text: "Book category already exists",
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 1500,
+      })
     }
    )
   }
@@ -115,10 +131,26 @@ addbooktype(type: string, errorCallback: (error: any) => void){
    this.http.post(this.API_URL+'/addbooktype', obj)
    .subscribe(
     (response)=>{
+      Swal.fire({
+        icon: 'success',
+        iconColor: '#fb3453',
+        text: "Book type added successfully",
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 1500,
+      })
          console.log(response)
     },
     (error) => {
-
+      Swal.fire({
+        icon: 'info',
+        iconColor: '#fb3453',
+        text: "Book type already exists",
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+       console.log(error)
     }
    )
 }

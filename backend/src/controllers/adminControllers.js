@@ -103,21 +103,25 @@ const Detail = (req,res) => {
     var password  = req.body.password;
     console.log(`Username: ${username}, Password: ${password}`)
 }
-const Booklist = async(req,res) => {
+const Booklist = async (req, res) => {
   try {
     const books = await Book.findAll({
       attributes: [
         [Sequelize.fn("MAX", Sequelize.col("id")), "id"],
-        "category","bookcat_img", "booktypename","booktype_img",
+        "category",
+        "bookcat_img",
+        "booktypename",
+        "booktype_img",
       ],
-      group: ["category", "booktypename"],
+      group: ["category"], // Group by both category and booktypename
     });
     res.json(books);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
-}
+};
+
 // const Booktypelist = async(req,res) => {
 //   try {
 //     const books = await Book.findAll({

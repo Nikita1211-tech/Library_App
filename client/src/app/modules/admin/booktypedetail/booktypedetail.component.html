@@ -4,7 +4,7 @@
             <img src="./../../../assets/images/search_bar.png" alt="">
             <input type="search" placeholder="Search book by type">
         </div>
-        <button>Add New Type</button>
+        <button (click)="showTypeForm = true">Add New Type</button>
     </div>
     <div class="bookcontainer" >
         <!-- <div class="bookcontainer-row1">
@@ -18,7 +18,7 @@
                     <p class="">{{book.booktypename}}</p>
                 </div>
             </div>
-            <div class="bookdes" (click)="showcategoryform()">
+            <!-- <div class="bookdes" (click)="showcategoryform()"> -->
                 <!-- <form action="">
                     <label for="category"></label>
                     <input type="text">
@@ -27,10 +27,10 @@
                     <i class="fas fa-plus fa-lg" style="color: #fb3453;"></i>
                     <button>Add New Category</button>
                 </div> -->
-            </div>
+            <!-- </div> -->
         </div>
     </div>
-    <div class="categoryform" id="categoryform">
+    <div class="typeform" *ngIf="showTypeForm" id="categoryform">
         <h4>Add New Type</h4>
         <form [formGroup]="typeform" (ngSubmit)="onAddingType()" class="form-control" id="categoryform">
             <label for="type">Enter Type Name</label>

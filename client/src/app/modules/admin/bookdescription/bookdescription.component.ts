@@ -4,6 +4,7 @@ import { Book } from '../../../data/interfaces/book.interface';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-bookdescription',
@@ -11,7 +12,8 @@ import { Observable } from 'rxjs';
   styleUrl: './bookdescription.component.css'
 })
 export class BookdescriptionComponent {
-  private apiURL = 'http://localhost:3000/api/users';
+  public environment = environment.IMG_URL
+  private apiURL = environment.API_URL;
   books: Book[]=[];
   bookId: number | undefined;
   bookDetails: any; 

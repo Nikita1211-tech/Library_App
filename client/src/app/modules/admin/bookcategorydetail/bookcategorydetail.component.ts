@@ -14,11 +14,10 @@ import { RegisterService } from '../../../core/services/register.service';
   styleUrl: './bookcategorydetail.component.css'
 })
 export class BookcategorydetailComponent {
-  // x = document.getElementById("categoryform");
-  public environment = environment.IMG_URL
   books: Book[]=[];
+  public environment = environment.IMG_URL
   categoryform: FormGroup
-  // public chart: any;
+  showCategoryForm: boolean = false;
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.categoryform = new FormGroup({
       category: new FormControl('', [Validators.required]),
@@ -32,14 +31,14 @@ export class BookcategorydetailComponent {
     });
   }
 
-  showcategoryform(): void{
-    // if (this.x.style.display === "none") {
-    //   this.x.style.display = "block";
-    // } else {
-    //   x.style.display = "none";
-    // }
-    console.log("true")
-  }
+  // showcategoryform(): void{
+  //   // if (this.x.style.display === "none") {
+  //   //   this.x.style.display = "block";
+  //   // } else {
+  //   //   x.style.display = "none";
+  //   // }
+  //   console.log("true")
+  // }
 
   onAddingCategory(): void{
     if(!this.categoryform.valid) {

@@ -16,6 +16,7 @@ export class BooktypedetailComponent {
   public environment = environment.IMG_URL
   books: Book[]=[];
   typeform: FormGroup
+  showTypeForm: boolean = false;
   // public chart: any;
   constructor(private fb: FormBuilder, private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.typeform = new FormGroup({
@@ -30,14 +31,14 @@ export class BooktypedetailComponent {
     });
   }
 
-  showcategoryform(): void{
-    // if (this.x.style.display === "none") {
-    //   this.x.style.display = "block";
-    // } else {
-    //   x.style.display = "none";
-    // }
-    console.log("true")
-  }
+  // showcategoryform(): void{
+  //   // if (this.x.style.display === "none") {
+  //   //   this.x.style.display = "block";
+  //   // } else {
+  //   //   x.style.display = "none";
+  //   // }
+  //   console.log("true")
+  // }
 
   onAddingType(): void{
     if(!this.typeform.valid) {

@@ -1,6 +1,6 @@
 <div class="bookdescription bk_shadow">
     <div class="bookdescription_sec1">
-        <img [src]="bookDetails.img" class="bookimg" alt="">
+        <img [src]="environment+bookDetails.img" class="bookimg" alt="">
         <div class="bookdescription_sec1_col2">
              <h4>{{bookDetails.bookName}}</h4>
              <div class="writerDetails">
@@ -40,8 +40,8 @@
             <div class="book_section bk_shadow">
                 <div class="book_section_row2">
                       <div class="book_frame" *ngFor="let book of books">
-                        <img [src]="book.img" alt="Card image cap">
-                        <a  [routerLink]="['/bookdescription/', book.id]"><div class="">
+                        <img [src]="environment+book.img" alt="Card image cap">
+                        <a [routerLink]="['/bookdescription/', book.id]"><div class="">
                           <h5 class="">{{book.bookName}}</h5>
                           <p class="writer_name">{{book.writerName}}</p>
                           <p class="price">{{book.sellingprice}}</p>

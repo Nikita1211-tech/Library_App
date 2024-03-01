@@ -17,28 +17,17 @@ export class AddbookComponent {
   public environment = environment.IMG_URL;
   bookId: number;
   books: Book[] = []
-  bookcategories = []
-  booktypes = [
-    {name: 'books', abbrev: 'Books'},
-    {name: 'magazine', abbrev: 'Magazine'},
-    {name: 'journals', abbrev: 'Journals'},
-    {name: 'articles', abbrev: 'Articles'},
-    {name: 'newspaper', abbrev: 'Newspaper'},
-    {name: 'artanddesign', abbrev: 'Art and designs'}
-  ];
-  // bookcategories = []
-  getBookCategory(){
-    this.admin.showbookcategory().subscribe((bookcategory) => {
-      var arr = bookcategory
-      var newarr = arr.map((item: any) => {
-        console.log(item)
-        return {name: item.category, abbrev: item.category}
-      }) 
-      this.bookcategories = newarr
-      console.log("New array is", newarr, this.bookcategories)
-    })
-    return this.bookcategories
-  }
+  bookcategories: { name: string, abbrev: string }[] = []
+  booktypes: { name: string, abbrev: string }[] = []
+  // booktypes = [
+  //   {name: 'books', abbrev: 'Books'},
+  //   {name: 'magazine', abbrev: 'Magazine'},
+  //   {name: 'journals', abbrev: 'Journals'},
+  //   {name: 'articles', abbrev: 'Articles'},
+  //   {name: 'newspaper', abbrev: 'Newspaper'},
+  //   {name: 'artanddesign', abbrev: 'Art and designs'}
+  // ];
+
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private admin: AdminService){
     this.bookId = this.route.snapshot.params['id'];
     // console.log(this.bookId);
@@ -48,6 +37,26 @@ export class AddbookComponent {
     this.getBooks().subscribe((books) => {
       this.books = books
       // console.log(books)
+    })
+    this.getBookCategory().subscribe((bookcategory) => {
+      var arr = bookcategory
+      var bookcategoryarr = arr.map((item: any) => {
+        // console.log(item)
+        return {name: item.category, abbrev: item.category}
+      }) 
+      this.bookcategories = bookcategoryarr
+      // console.log("New array is", newarr, this.bookcategories)
+      return bookcategoryarr
+    })
+    this.getBookType().subscribe((booktype) => {
+      var arr = booktype
+      var booktypearr = arr.map((item: any) => {
+        console.log(item)
+        return {name: item.type, abbrev: item.type}
+      }) 
+      this.booktypes = booktypearr
+      // console.log("New array is", booktypearr, this.bookcategories)
+      return booktypearr
     })
     // this.bookId =  this.route.snapshot.params['id'];
     this.bookId = this.route.snapshot.params['id'];
@@ -62,7 +71,7 @@ export class AddbookComponent {
     booktypeimg: new FormControl('0', Validators.required),
     publishyear: new FormControl('', Validators.required),
     booktype: new FormControl(this.booktypes),
-    // bookcategories: new FormControl(this.bookcategories),
+    bookcategories: new FormControl(this.bookcategories),
     summary: new FormControl('', Validators.required)
   });
   
@@ -112,7 +121,12 @@ getBookById(){
 getBooks(){
   return this.admin.showbook()
 }
-
+getBookCategory(){
+  return this.admin.showbookcategory()
+}
+getBookType(){
+  return this.admin.showbooktype() 
+}
 // onDeleteBook(bookId: number): void {
 //   // Call the deleteBook method from the BookService
 //   this.admin.deleteBook(bookId).subscribe(
