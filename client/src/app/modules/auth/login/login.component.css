@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('./../../../../assets/font-family/Poppins/Poppins-Regular.ttf');
+}
 /* Global classes  */
 a{
     text-decoration: none;
@@ -155,6 +159,9 @@ input[type="checkbox"]:checked:after {
 }
 .form-rules{
     color: #FB3453;
+}
+::placeholder{
+    font-family: Poppins;
 }
   
 /* Media Queries  */

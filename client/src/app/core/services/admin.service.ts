@@ -40,6 +40,17 @@ addBook(formData: FormData, errorCallback: (error: any) => void): void {
       .subscribe(
           (response) => {
               // Handle success
+             Swal.fire({
+               title: response?.error.message,
+               text: response?.error.message,
+               icon: 'success',
+               confirmButtonText: 'Okay',
+               confirmButtonColor: "#fb3453",
+               timer: 3000
+             }).then((result) => {
+               // window.location.reload();
+               // this.router.navigate(['/login']);
+             });
           },
           (error) => {
               errorCallback(error);

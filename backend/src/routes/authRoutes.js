@@ -23,6 +23,7 @@ router.post('/resendotp', Resendotp);
 router.post('/resetpassword', Reset);
 router.post('/otp', Otp);
 router.post('/saveuser', Saveuser);
+router.post('/saveadmin', Saveadmin)
 router.post('/addbook',upload.single('bookimg'), AddBook)
 router.post('/updatepassword',Passwordvalidation , updatePassword);
 router.get('/logout', Logout);

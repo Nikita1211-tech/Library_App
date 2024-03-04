@@ -173,17 +173,12 @@
                <thead>
                    <tr>
                        <th scope="col">Book Id</th>
-                       <th scope="col">Book Name</th>
-                       <th scope="col">Book Image</th>
-                       <th scope="col">Book Category Name</th>
-                       <th scope="col">Book Category Image</th>
-                       <th scope="col">Book Type Name</th>
-                       <th scope="col">Book Type Image</th>
-                       <th scope="col">Cost Price</th>
+                       <th scope="col">Name</th>
+                       <th scope="col">Category</th>
+                       <th scope="col">Type</th>
                        <th scope="col">Selling Price</th>
-                       <th scope="col">Publish year</th>
-                       <th scope="col">Writer Name</th>
-                       <th scope="col" colspan="2" style="text-align: center;">Actions</th>
+                       <th scope="col">Edition</th>
+                       <th scope="col" colspan="3" style="text-align: center;">Actions</th>
                        <!-- <th scope="col">Book Summary</th> -->
                    </tr>
                </thead>
@@ -191,32 +186,13 @@
                    <tr *ngFor="let book of books">
                        <td style="color: #fb3453;">{{book.id}}</td>
                        <td>{{book.bookName}}</td>
-                       <td>
-                          <div class="reader-name">
-                            <p>{{ book.img.substring(8)}} </p>
-                            <!-- <img [src]="environment + book.booktype_img"  alt=""> -->
-                          </div>
-                       </td>
                        <td>{{book.category}}</td>
-                       <td>
-                          <div class="reader-name">
-                              <p>{{book.bookcat_img.substring(8)}}</p>
-                              <!-- <img [src]="environment + book.booktype_img"  alt=""> -->
-                          </div>
-                       </td>
                        <td>{{book.booktypename}}</td>
-                       <td>
-                         <div class="reader-name">
-                             <p>{{book.booktype_img.substring(8)}}</p>
-                             <!-- <img [src]="environment + book.booktype_img"  alt=""> -->
-                         </div>
-                       </td>
-                       <td>Rs. {{book.costprice}}</td>
                        <td>Rs. {{book.sellingprice}}</td>
                        <td>{{book.publishyear}}</td>
-                       <td>{{book.writerName}}</td>
-                       <td class="edit-btn"><a [href]="'/editbook/' + book.id" style="color: #fb3453;;"><p>Edit</p></a></td>
-                       <td class="delete-btn"><a (click)="confirmDelete(book.id)" style="color: #68a900;"><p>Delete</p></a></td>
+                       <td><a href=""><i class="far fa-eye fa-lg" style="color: #fb3453;"></i></a></td>
+                       <td class="edit-btn"><a [href]="'/editbook/' + book.id"><i class="far fa-edit fa-lg" style="color: #fb3453;"></i></a></td>
+                       <td class="delete-btn"><a (click)="confirmDelete(book.id)"><i class="fas fa-trash fa-lg" style="color: #68a900;"></i></a></td>
                        <!-- <td>{{book.booksummary}}</td> -->
                    </tr>
                </tbody>

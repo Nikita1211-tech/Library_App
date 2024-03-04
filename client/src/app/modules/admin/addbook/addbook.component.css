@@ -16,6 +16,7 @@ a{
     text-decoration: none;
     margin: 0px;
     text-align: center;
+    cursor: pointer;
 }
 .bk-shadow{
     box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
@@ -102,7 +103,7 @@ input[type="text"]{
     background: transparent;
     border-bottom: solid 2px black;
     font-family: Poppins;
-    color: #fb3453;
+    color: black;
     /* border-radius: 10px; */
     padding: 15px;
 }
@@ -114,7 +115,7 @@ input[type="number"]{
     background: transparent;
     border-bottom: solid 2px black;
     font-family: Poppins;
-    color: #fb3453;
+    color: black;
     /* border-radius: 10px; */
     padding: 15px;
 }
@@ -127,7 +128,7 @@ input[type="file"]::file-selector-button{
   border: none;
   width: 160px;
   color: white;
-  background-color: #fb3453;
+  background-color: black;
   padding: 15px;
   border-radius: 10px;
   font-family: Poppins;
@@ -206,8 +207,9 @@ textarea{
     border: none;
     margin-top: 20px;
     font-size: 16px;
-    color: #fb3453;
+    color: black;
     background: transparent;
+    font-family: Poppins;
     border: solid 2px black;
     padding: 15px;
     border-radius: 10px;
@@ -234,7 +236,7 @@ textarea{
     font-size: 18px;
 }
 /* Table classes starts  */
-.table-container{
+/* .table-container{
     overflow: scroll;
     overflow-y: hidden;
 }
@@ -250,60 +252,67 @@ textarea{
 .table-container::-webkit-scrollbar-thumb {
   background: #fb3453;
   border-radius: 10px;
-}
+} */
 .table-section{
     display: flex;
     flex-direction: column;
     /* overflow: scroll; */
- }
- table{
-     border-radius: 10px;
-     border: solid 1px #EAEAEA;
-     border-collapse: separate;
-     padding: 10px;
-     border-spacing: 10px 10px;
-     height: 90%;
-     width: 150%;
- }
- tr{
+}
+table{
+    border-radius: 10px;
+    border: solid 1px #EAEAEA;
+    border-collapse: separate;
+    padding: 10px;
+    border-spacing: 0px 10px;
+    height: 90%;
     width: 100%;
- }
- td,th{
+}
+tr{
+   width: 100%;
+}
+th{
+    font-size: 20px;
     border-style: none;
-     text-align: left;
-     vertical-align: center;
- }
- .table-head{
-     display: flex;
-     justify-content: space-between;
- }
- .table-button{
-     display: flex;
-     gap: 20px;
-     align-items: center;
- }
- .table-button a {
-     background-color: #fb34521e;
-     border-radius: 5px;
-     padding: 10px 20px;
- }
- .reader-name{
-     display: flex;
-     align-items: center;
-     justify-content: left;
-     gap: 20px;
-     width: 100%;
-     height: 100%;
- }
- .reader-name img{
-     width: 60px;
-     height: 60px;
-     border-radius: 10px;
-     object-fit: cover;
-     object-position:  start;
-     border-radius: 50%;
- }
- .edit-btn{
+    text-align: left;
+    vertical-align: center;
+}
+td{
+    font-size: 18px;
+    border-style: none;
+    text-align: left;
+    vertical-align: center;
+}
+.table-head{
+    display: flex;
+    justify-content: space-between;
+}
+.table-button{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.table-button a {
+    background-color: #fb34521e;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+.reader-name{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+.reader-name img{
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position:  start;
+    border-radius: 50%;
+}
+/* .edit-btn{
     border-radius: 5px;
     padding: 14px 12px;
     width: 80px;
@@ -314,7 +323,7 @@ textarea{
     width: 80px;
     border-radius: 5px;
     padding: 14px 12px;
- }
+ } */
  .bk-shadow{
     box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
     border: 1px solid #EAEAEA;

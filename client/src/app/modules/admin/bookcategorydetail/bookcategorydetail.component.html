@@ -27,7 +27,6 @@
         </div>
     </div>
     <div class="categoryform" *ngIf="showCategoryForm" id="categoryform">
-        <h4>Add New Category</h4>
         <form [formGroup]="categoryform" (ngSubmit)="onAddingCategory()" class="form-control" id="categoryform">
             <label for="category">Enter Category Name</label>
             <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>

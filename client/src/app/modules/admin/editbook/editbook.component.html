@@ -4,7 +4,7 @@
         <div class="form">
             <div class="form-col1">
                 <div>
-                    <!-- <label for="bookname">Book Name</label> -->
+                    <label for="bookname">Book Name</label>
                     <input class="form-control" formControlName="bookname" type="text" name="bookname"
                         placeholder="Enter Book name">
                     <div
@@ -16,7 +16,7 @@
                 </div>
                 <div class="file-input">
                     <label for="file" class="custom-file-label"><i class="fas fa-upload" style="color: white;"></i>
-                        Upload Book Image</label>
+                        Update Book Image</label>
                     <input class="form-control file" id="file" (change)="onFileSelected($event)"
                         formControlName="bookimg" type="file" name="bookimg" accept="image/*"><br><br> 
                         <span
@@ -30,7 +30,7 @@
                 </div>
                 <div class="book-price-details">
                     <div class="book-price-details-col1">
-                        <!-- <label for="booksellingprice">Book Actual Price</label> -->
+                        <label for="booksellingprice">Book Actual Price</label>
                         <input class="form-control" formControlName="booksellingprice" type="number" inputmode="numeric"
                             name="booksellingprice" placeholder="Enter Book Selling Price">
                         <div
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="book-price-details-col2">
-                        <!-- <label for="bookcostprice">Book Cost Price</label> -->
+                        <label for="bookcostprice">Book Cost Price</label>
                         <input class="form-control" formControlName="bookcostprice" type="number" inputmode="numeric"
                             name="bookcostprice" placeholder="Enter Book Cost Price">
                         <div
@@ -54,7 +54,7 @@
                 </div>
                 <div class="book-price-details">
                     <div class="book-price-details-col1">
-                        <!-- <label for="bookwriter">Book Writer Name</label> -->
+                        <label for="bookwriter">Book Writer Name</label>
                         <input class="form-control" formControlName="bookwriter" type="text" name="booktype"
                             placeholder="Enter Book Writer Name">
                         <div
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="book-price-details-col2">
-                        <!-- <label for="publishyear">Enter Publish Year</label> -->
+                        <label for="publishyear">Enter Publish Year</label>
                         <input class="form-control" formControlName="publishyear" type="number" inputmode="numeric"
                             name="publishyear" placeholder="Enter Publish Year">
                         <div
@@ -80,7 +80,7 @@
             <div class="form-col2">
                 <div class="type">
                     <div class="type-col1">
-                        <!-- <label for="bookcategory">Select Book Category Name</label> -->
+                        <label for="bookcategory">Select Book Category Name</label>
                         <select name="bookcategory" id="bookcategory"
                             formControlName="bookcategories">
                             <option disabled selected value="">Select Book Category</option>
@@ -96,7 +96,7 @@
                         </div>
                     </div>
                     <div class="type-col2">
-                        <!-- <label for="booktype">Select Book Type Name</label> -->
+                        <label for="booktype">Select Book Type Name</label>
                         <select name="booktype" id="booktype"  formControlName="booktype">
                             <option disabled selected value="">Select Book Type</option>
                             <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">
@@ -117,7 +117,7 @@
                         <!-- <div class="bookcategory-img">
                             <img [src]="environment+selectedCategoryImage" alt="Selected Category Image">
                         </div> -->
-                        <!-- <label for="bookcategoryimg">Select Book Category Image</label> -->
+                        <label for="bookcategoryimg">Select Book Category Image</label>
                         <select name="bookcategoryimg"
                             id="bookcategoryimg" formControlName="bookcategoryimg">
                             <option disabled selected value="">Select Book Category Image</option>
@@ -139,7 +139,7 @@
                         <!-- <div class="bookcategory-img">
                             <img [src]="environment+selectedTypeImage" alt="Selected Type Image">
                         </div> -->
-                        <!-- <label for="booktypeimg">Select Book Type Image</label> -->
+                        <label for="booktypeimg">Select Book Type Image</label>
                         <!-- <input class="form-control" (change)="onFileSelected($event, 'booktypeimg')" formControlName="booktypeimg" type="file" name="booktypeimg"
                                 placeholder="Enter Book Type Image"> -->
                         <select class='form-select' name="booktypeimg"
@@ -173,7 +173,7 @@
             </div>
         </div>
         <div>
-            <!-- <label for="summary">Enter Book Summary</label><br> -->
+            <label for="summary">Enter Book Summary</label><br>
             <textarea name="summary" id="" cols="30" rows="4" formControlName="summary"
                 placeholder="Enter Book Summary"></textarea>
             <div

@@ -1,0 +1,224 @@
+/* Global Classes  */
+h4{
+    font-size: 25px;
+    font-weight: 600;
+    margin: 0px;
+}
+h5{
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0px;
+}
+p{
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0px 0px 0px 10px;
+}
+a{
+    text-decoration: none;
+    color: #fb3453;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 600;
+}
+/* Trending Books classes starts  */
+.trendingbooks{
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+   background-color: #eaeaea;
+   padding: 20px;
+}
+.trendingbooks-row1{
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+.trendingbooks-col1{
+  display: flex;
+  justify-content: space-between;
+}
+.trendingbooks-col2{
+    display: flex;
+    gap: 20px;
+}
+.trendingbooks-details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.trendingbooks-details img{
+   width: 250px;
+   height: 350px;
+   border-radius: 10px;
+}
+/* My Books classes starts  */
+.trendingbooks-fav{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.trendingbooks-fav-row1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    background-color: white;
+}
+.likeicon-large{
+    color: #fb3453; 
+    padding: 20px;
+}
+.trendingbooks-fav-col1{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.trendingbooks-fav-col1 img{
+   width: 150px;
+   height: 200px;
+   border-radius: 5px;
+}
+.likeicon-small{
+    display: none;
+}
+/* Media Queries  */
+@media (max-width: 1400px){
+    h4{
+        font-size: 23px;
+        font-weight: 600;
+        margin: 0px;
+    }
+    h5{
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0px;
+    }
+    p{
+        font-size: 17px;
+        font-weight: 600;
+        margin: 0px 0px 0px 10px;
+    }
+    .trendingbooks-col2{
+        overflow: scroll;
+    }
+    .trendingbooks-details img{
+        width: 200px;
+        height: 300px;
+        border-radius: 10px;
+    }
+    .trendingbooks-fav-col1 img{
+        width: 140px;
+        height: 180px;
+        border-radius: 5px;
+    }
+}
+@media (max-width: 1200px){
+    h4{
+        font-size: 23px;
+        font-weight: 600;
+        margin: 0px;
+    }
+    h5{
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0px;
+    }
+    p{
+        font-size: 17px;
+        font-weight: 600;
+        margin: 0px 0px 0px 10px;
+    }
+    .trendingbooks-col2{
+        overflow: scroll;
+        overflow-y: hidden;
+    }
+    .trendingbooks-col2::-webkit-scrollbar {
+       display: none;
+    }
+    /* .trendingbooks-col2::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    .trendingbooks-col2::-webkit-scrollbar-thumb {
+      background: #fb3453;
+      border-radius: 10px;
+    } */
+    .trendingbooks-details img{
+        width: 200px;
+        height: 300px;
+        border-radius: 10px;
+    }
+    .trendingbooks-fav-col1 img{
+        width: 140px;
+        height: 180px;
+        border-radius: 5px;
+    }
+}
+@media (max-width: 992px){
+    h4{
+        font-size: 21px;
+        font-weight: 600;
+        margin: 0px;
+    }
+    h5{
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0px;
+    }
+    p{
+        font-size: 15px;
+        font-weight: 600;
+        margin: 0px 0px 0px 10px;
+    }
+    .trendingbooks-col2{
+        overflow: scroll;
+    }
+    .trendingbooks-details img{
+        width: 180px;
+        height: 250px;
+        border-radius: 10px;
+    }
+    .trendingbooks-fav-col1 img{
+        width: 130px;
+        height: 170px;
+        border-radius: 5px;
+    }
+}
+@media (max-width: 768px){
+    h4{
+        font-size: 19px;
+        font-weight: 600;
+        margin: 0px;
+    }
+    h5{
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0px;
+    }
+    p{
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0px 0px 0px 10px;
+    }
+    .trendingbooks-fav-col1 img{
+        width: 110px;
+        height: 150px;
+    }
+}
+@media (max-width: 576px){
+    .trendingbooks-details img{
+        width: 150px;
+        height: 220px;
+    }
+    .trendingbooks-fav-col1{
+        gap: 10px;
+    }
+    .likeicon-large{
+        display: none;
+    }
+    .likeicon-small{
+        display: flex;
+        padding: 10px;
+        color: #fb3453
+    }
+}
