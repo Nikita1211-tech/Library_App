@@ -1,5 +1,5 @@
 const express = require('express');
-const { Login, Auth, Logout, Register, Reset, Otp, updatePassword, Verifyuser, Verifyotp, Saveuser, Resendotp } = require('../controllers/authControllers');
+const { Login, Auth, Logout, Register, Reset, Otp, updatePassword, Verifyuser, Verifyotp, Saveuser, Resendotp, Saveadmin } = require('../controllers/authControllers');
 const authenticateJWT = require("../middlewares/auth");
 const otpgenerator = require('../services/otpgenerator.service');
 const { Booklist, Bookdesc, AddBook, upload, Updatebook, Deletebook, Bookcategory, Addbookcategory, Showbookcategory, Addbooktype, Showbooktype, Bookcategorylist, Books, Booktypes } = require('../controllers/adminControllers');
@@ -23,7 +23,7 @@ router.post('/resendotp', Resendotp);
 router.post('/resetpassword', Reset);
 router.post('/otp', Otp);
 router.post('/saveuser', Saveuser);
-router.post('/saveadmin', Saveadmin)
+router.post('/saveadmin', Saveadmin);
 router.post('/addbook',upload.single('bookimg'), AddBook)
 router.post('/updatepassword',Passwordvalidation , updatePassword);
 router.get('/logout', Logout);

@@ -24,7 +24,7 @@ export class AuthService {
           if(role === "Admin"){
             this.router.navigate(['/home']);
           }
-          else this.router.navigate(['/main']);
+          else this.router.navigate(['/userhome']);
         },
         (error) => {
           errorCallback(error);

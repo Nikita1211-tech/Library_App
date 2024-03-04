@@ -8,6 +8,7 @@
 }
 h2{
     font-size: 25px;
+    margin: 0px;
 }
 a, button{
     cursor: pointer;
@@ -33,12 +34,17 @@ header{
 .userheader-row div{
     display: none;
 }
-.barcode-reader{
+.userheader-details{
     display: flex;
     gap: 10px;
 }
+.userheader-row2{
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+}
 .search_box{
-    padding: 15px;
+    padding: 10px;
     border: solid 1px #ffffff;
     background-color: #ffffff;
     border-radius: 15px;
@@ -57,12 +63,12 @@ header{
     align-items: center;
     padding: 12px;
 }
-.userheader-row2{
+.userheader-row3{
     display: flex;
     flex-direction: column;
     justify-content: center;
 } 
-.userheader-row2 img{
+.userheader-row3 img{
    width: 70px;
    border-radius: 50%;
 }
@@ -87,13 +93,10 @@ button{
         padding: 15px;
     }
     .search_box{
-        padding: 10px;
-        width: 300px;
-    }
-    .userheader-barcode{
         padding: 5px;
+        /* width: 300px; */
     }
-    .userheader-row2 img{
+    .userheader-row3 img{
         width: 60px;
     }
     ::placeholder{
@@ -111,10 +114,7 @@ button{
         padding: 10px;
         width: 250px;
     }
-    .userheader-barcode{
-        padding: 5px;
-    }
-    .userheader-row2 img{
+    .userheader-row3 img{
         width: 60px;
     }
     ::placeholder{
@@ -135,10 +135,7 @@ button{
         padding: 8px;
         width: 200px;
     }
-    .userheader-barcode{
-        padding: 5px;
-    }
-    .userheader-row2 img{
+    .userheader-row3 img{
         width: 55px;
     }
     ::placeholder{
@@ -150,6 +147,7 @@ button{
         font-size: 32px;
     }
     header{
+        flex-direction: column;
         padding: 15px;
         justify-content: normal;
     }
@@ -158,14 +156,6 @@ button{
         align-items: flex-start;
         justify-content: flex-start;
         gap: 15px;
-        flex: 9;
-    }
-    .userheader-row2{
-        /* flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 15px; */
-        flex: 1;
     }
     .userheader-row{
         display: flex;
@@ -180,9 +170,9 @@ button{
         width: 60px;
         border-radius: 50%;
     }
-    .barcode-reader{
+    /* .userheader-row2{
         width: 100%;
-    }
+    } */
     .search_box{
         padding: 10px;
         width: 100%;
@@ -190,7 +180,7 @@ button{
     .userheader-barcode{
         padding: 5px;
     }
-    .userheader-row2{
+    .userheader-row3{
         display: none;
     }
     ::placeholder{

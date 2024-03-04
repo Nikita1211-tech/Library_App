@@ -26,18 +26,42 @@
             <!-- </div> -->
         </div>
     </div>
-    <div class="categoryform" *ngIf="showCategoryForm" id="categoryform">
-        <form [formGroup]="categoryform" (ngSubmit)="onAddingCategory()" class="form-control" id="categoryform">
-            <label for="category">Enter Category Name</label>
-            <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
-            <div *ngIf="categoryform.controls['category'].invalid && (categoryform.controls['category'].dirty || categoryform.controls['category'].touched)">
-                <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['required']">Category name is
-                    required.</div>
-                <!-- <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['pattern']">Category name must be in alphabets.</div> -->
-            </div>
-            <label for="image">Upload Image</label>
-            <input type="file" class="form-control" name="image" id="image"  formControlName="image" required>
-            <input type="submit">
-        </form>
+    <div class="category-details">
+        <div class="categoryform" *ngIf="showCategoryForm" id="categoryform">
+            <form [formGroup]="categoryform" (ngSubmit)="onAddingCategory()" class="form-control" id="categoryform">
+                <label for="category">Enter Category Name</label>
+                <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
+                <div *ngIf="categoryform.controls['category'].invalid && (categoryform.controls['category'].dirty || categoryform.controls['category'].touched)">
+                    <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['required']">Category name is
+                        required.</div>
+                    <!-- <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['pattern']">Category name must be in alphabets.</div> -->
+                </div>
+                <label for="image">Upload Image</label>
+                <input type="file" class="form-control" name="image" id="image"  formControlName="image" required>
+                <input type="submit" value="Save" (click)="showTable=true">
+            </form>
+        </div>
+        <!-- <div *ngIf="showTable" class="table-container">
+            <table>
+               <thead>
+                   <tr>
+                       <th scope="col">Book Id</th>
+                       <th scope="col">Name</th>
+                       <th scope="col" colspan="3" style="text-align: center;">Actions</th>
+                       <th scope="col">Book Summary</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr *ngFor="let category of categories">
+                       <td style="color: #fb3453;">{{category.id}}</td>
+                       <td>{{category.category}}</td>
+                       <td><a href=""><i class="far fa-eye fa-lg" style="color: #fb3453;"></i></a></td>
+                       <td class="edit-btn"><a [href]="'/editbook/' + book.id"><i class="far fa-edit fa-lg" style="color: #fb3453;"></i></a></td>
+                       <td class="delete-btn"><a (click)="confirmDelete(book.id)"><i class="fas fa-trash fa-lg" style="color: #68a900;"></i></a></td>
+                       <td>{{book.booksummary}}</td>
+                   </tr>
+               </tbody>
+           </table>
+        </div> -->
     </div>
 </div>

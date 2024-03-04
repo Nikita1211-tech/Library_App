@@ -83,7 +83,7 @@
                         <label for="bookcategory">Select Book Category Name</label>
                         <select name="bookcategory" id="bookcategory"
                             formControlName="bookcategories">
-                            <option disabled selected value="">Select Book Category</option>
+                            <option disabled selected value="">Select Book Category Name</option>
                             <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{
                                 bookcategory.abbrev }}
                             </option>
@@ -98,7 +98,7 @@
                     <div class="type-col2">
                         <label for="booktype">Select Book Type Name</label>
                         <select name="booktype" id="booktype"  formControlName="booktype">
-                            <option disabled selected value="">Select Book Type</option>
+                            <option disabled selected value="">Select Book Type Name</option>
                             <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">
                                 {{ booktype.abbrev }}
                             </option>
@@ -122,7 +122,7 @@
                             id="bookcategoryimg" formControlName="bookcategoryimg">
                             <option disabled selected value="">Select Book Category Image</option>
                             <option *ngFor="let bookcategoryimage of bookcategoriesimage"
-                                [ngValue]="bookcategoryimage.name">
+                                [ngValue]="bookcategoryimage.image">
                                 {{ bookcategoryimage.abbrev }}
                             </option>
                         </select>
@@ -133,7 +133,6 @@
                                 <div class="form-validation form-rules">Required Field.</div>
                             </div>
                         </div>
-
                     </div>
                     <div class="type-col2">
                         <!-- <div class="bookcategory-img">
@@ -145,7 +144,7 @@
                         <select class='form-select' name="booktypeimg"
                             id="booktypeimg" formControlName="booktypeimg" placeholder="Select Book Type Image">booktype
                             <option disabled selected value="">Select Book Type Image</option>
-                            <option *ngFor="let booktypeimage of booktypesimage" [ngValue]="booktypeimage.name">{{
+                            <option *ngFor="let booktypeimage of booktypesimage" [ngValue]="booktypeimage.image">{{
                                 booktypeimage.abbrev }}</option>
                         </select>
                         <div

@@ -17,10 +17,9 @@ export class AddbookComponent {
   public environment = environment.IMG_URL;
   bookId: number;
   books: Book[] = []
-  bookcategories: { name: string, abbrev: string}[] = []
-  bookcategoriesimage: {name: string, abbrev: string}[] = []
-  booktypes: { name: string, abbrev: string }[] = []
-  booktypesimage: {name: string, abbrev: string}[] = []
+  bookcategories: { name: string, image: string, abbrev: string}[] = []
+  bookcategoriesimage: { name: string, image: string, abbrev: string}[] = []
+  booktypes: { name: string, image: string, abbrev: string}[] = []
   selectedCategoryImage: string | null = null;
   selectedTypeImage: string | null = null;
   showTable: boolean = false; 
@@ -38,11 +37,12 @@ export class AddbookComponent {
     this.getBookCategory().subscribe((bookcategory) => {
       var arr = bookcategory
       var bookcategoryarr = arr.map((item: any) => {
-        // console.log(item)
-        return {name: item.category, abbrev: item.category}
+        console.log(item)
+        return {name: item.category, image:item.image, abbrev: item.category}
       }) 
       this.bookcategories = bookcategoryarr
-      // console.log("New array is", newarr, this.bookcategories)
+      // console.log("New array is",this.bookcategories = bookcategoryarr
+      // , this.bookcategories)
       return bookcategoryarr
     })
     this.getBookCategory().subscribe((bookcategoryimage) => {
@@ -59,22 +59,22 @@ export class AddbookComponent {
       var arr = booktype
       var booktypearr = arr.map((item: any) => {
         console.log(item)
-        return {name: item.type, abbrev: item.type}
+        return {name: item.type, image:item.image, abbrev: item.type}
       }) 
       this.booktypes = booktypearr
       // console.log("New array is", booktypearr, this.bookcategories)
       return booktypearr
     })
-    this.getBookType().subscribe((booktype) => {
-      var arr = booktype
-      var booktypeimagearr = arr.map((item: any) => {
-        console.log(item)
-        return {name: item.image, abbrev: item.image}
-      }) 
-      this.booktypesimage = booktypeimagearr
-      // console.log("New array is", booktypearr, this.bookcategories)
-      return booktypeimagearr
-    })
+    // this.getBookType().subscribe((booktype) => {
+    //   var arr = booktype
+    //   var booktypeimagearr = arr.map((item: any) => {
+    //     console.log(item)
+    //     return {name: item.image, abbrev: item.image}
+    //   }) 
+    //   this.booktypesimage = booktypeimagearr
+    //   // console.log("New array is", booktypearr, this.bookcategories)
+    //   return booktypeimagearr
+    // })
     // this.bookId =  this.route.snapshot.params['id'];
     this.bookId = this.route.snapshot.params['id'];
     // console.log(this.bookId);

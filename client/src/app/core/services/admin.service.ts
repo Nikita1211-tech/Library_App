@@ -113,6 +113,9 @@ showBookType(bookType: string | null): Observable<any[]> {
 showbook(): Observable<any> {
   return this.http.get<any>(this.API_URL+'/books')
 }
+showcategory(): Observable<any> {
+  return this.http.get<any>(this.API_URL+'/books')
+}
 // showtype(): Observable<any> {
 //   return this.http.get<any>(this.API_URL+'/booktypelist')
 // }

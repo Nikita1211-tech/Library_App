@@ -74,7 +74,7 @@
                         <!-- <label for="bookcategory">Select Book Category Name</label> -->
                         <select name="bookcategory" id="bookcategory" (click)="getBookCategory()" formControlName="bookcategories">
                             <option disabled selected value="">Select Book Category</option>
-                            <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{ bookcategory.abbrev }}
+                            <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{ bookcategory.name }}
                             </option>
                         </select>
                         <div *ngIf="addBookForm.controls['bookcategories'].invalid && (addBookForm.controls['bookcategories'].dirty || addBookForm.controls['bookcategories'].touched)">
@@ -86,7 +86,7 @@
                     <div class="type-col2">
                         <!-- <label for="booktype">Select Book Type Name</label> -->
                         <select name="booktype" id="booktype" (click)="getBookType()" formControlName="booktype">
-                            <option disabled selected value="">Select Book Type</option>
+                            <option disabled selected value="">Select Type</option>
                             <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">
                                 {{ booktype.abbrev }}
                             </option>
@@ -101,14 +101,10 @@
                 </div>
                 <div class="type">
                     <div class="type-col1">
-                        <div *ngIf="selectedCategoryImage" class="bookcategory-img">
-                            <img [src]="environment+selectedCategoryImage" alt="Selected Category Image">
-                        </div>
-                        <!-- <label for="bookcategoryimg">Select Book Category Image</label> -->
-                        <select (change)="onSelectCategory()" (click)="getBookCategory()" name="bookcategoryimg" id="bookcategoryimg" formControlName="bookcategoryimg">
-                            <option disabled selected value="">Select Book Category Image</option>
-                            <option *ngFor="let bookcategoryimg of bookcategoriesimage" [ngValue]="bookcategoryimg.name">
-                                {{ bookcategoryimg.abbrev }}
+                        <!-- <label for="bookcategory">Select Book Category Name</label> -->
+                        <select name="bookcategoryimg" id="bookcategoryimg" (click)="getBookCategory()" formControlName="bookcategoryimg">
+                            <option disabled selected value="">Select Category Image</option>
+                            <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.image">{{ bookcategory.image }}
                             </option>
                         </select>
                         <div *ngIf="addBookForm.controls['bookcategoryimg'].invalid && (addBookForm.controls['bookcategoryimg'].dirty || addBookForm.controls['bookcategoryimg'].touched)">
@@ -116,20 +112,19 @@
                                 <div class="form-validation form-rules">Required Field.</div>
                             </div>
                         </div>
-                       
                     </div>
                     <div class="type-col2">
-                        <div *ngIf="selectedTypeImage" class="bookcategory-img">
+                        <!-- <div *ngIf="selectedTypeImage" class="bookcategory-img">
                             <img [src]="environment+selectedTypeImage" alt="Selected Type Image">
-                        </div>
+                        </div> -->
                         <!-- <label for="booktypeimg">Select Book Type Image</label> -->
                         <!-- <input class="form-control" (change)="onFileSelected($event, 'booktypeimg')" formControlName="booktypeimg" type="file" name="booktypeimg"
                                 placeholder="Enter Book Type Image"> -->
-                        <select class='form-select' (change)="onSelectType()" (click)="getBookType()" name="booktypeimg" id="booktypeimg"
+                        <select class='form-select' (click)="getBookType()" name="booktypeimg" id="booktypeimg"
                             formControlName="booktypeimg" placeholder="Select Book Type Image">booktype
                             <option disabled selected value="">Select Book Type</option>
-                            <option *ngFor="let booktypeimg of booktypesimage" [ngValue]="booktypeimg.name">{{
-                                booktypeimg.abbrev }}</option>
+                            <option *ngFor="let booktype of booktypes" [ngValue]="booktype.image">{{
+                                booktype.image }}</option>
                         </select>
                         <div *ngIf="addBookForm.controls['booktypeimg'].invalid && (addBookForm.controls['booktypeimg'].dirty || addBookForm.controls['booktypeimg'].touched)">
                             <div *ngIf="addBookForm.controls['booktypeimg'].errors?.['required']; ">
@@ -198,5 +193,4 @@
                </tbody>
            </table>
         </div>
-
 </div>

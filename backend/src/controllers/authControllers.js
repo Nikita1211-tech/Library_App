@@ -98,37 +98,29 @@ const Resendotp = async (req, res) => {
     console.log(user);
     users.splice(users.indexOf(user), 1);
   } else {
-    // Remove the used OTP from the database
     res.status(400).json({ message: "Invalid OTP" });
   }
-
-  // res.status(200).json({ message: 'New OTP sent successfully', otp: newOTP });
 };
-// const loginresendotp = async (req, res) => {
-//   const { email, otp } = req.body;
-//   const user =  await Users.findOne({ where: { email: email} })
-//   console.log(user)
-//   if (!user) {
-//     return res.status(400).json({ message: 'User not found' });
-//   }
-
-//   const newOTP = otpgenerator();
-//   otpSender(email, newOTP);
-
-//   user.otp = newOTP;
-//   if (user.otp == otp) {
-//     res.status(200).json({ message: 'OTP verified successfully' });
-//     console.log(user);
-//     users.splice(users.indexOf(user), 1);
-//   } else {
-//     // Remove the used OTP from the database
-//     res.status(400).json({ message: 'Invalid OTP' });
-//   }
-
-//   // res.status(200).json({ message: 'New OTP sent successfully', otp: newOTP });
-// }
 
 const Saveuser = async (req, res) => {
+  console.log(req.body);
+  const user = {
+    email: req.body.email,
+    username: req.body.username,
+    contact: req.body.contact,
+    password: await bcrypt.hash(req.body.password, 10),
+  };
+  const existinguser = await Users.findOne({ where: { email: user.email } });
+  console.log(existinguser);
+  if (existinguser == null) {
+    const newuser = await Users.create(user);
+    console.log(newuser);
+    return res.status(201).json({ message: "User created successfully" });
+  } else {
+    res.status(500).json({ message: "Internal Server error" });
+  }
+};
+const Saveadmin = async (req, res) => {
   console.log(req.body);
   const user = {
     email: req.body.email,
@@ -308,6 +300,7 @@ module.exports = {
   Verifyotp,
   Resendotp,
   Saveuser,
+  Saveadmin,
   Reset,
   updatePassword,
   Otp,

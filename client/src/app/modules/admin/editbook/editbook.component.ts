@@ -19,9 +19,9 @@ export class EditbookComponent{
   // bookCategoryImageUrl: string | null = null;
   // bookTypeImageUrl: string | null = null;
   bookcategories: { name: string, abbrev: string}[] = []
-  bookcategoriesimage: {name: string, abbrev: string}[] = []
+  bookcategoriesimage: {image: string, abbrev: string}[] = []
   booktypes: { name: string, abbrev: string }[] = []
-  booktypesimage: {name: string, abbrev: string}[] = []
+  booktypesimage: {image: string, abbrev: string}[] = []
   constructor(private formBuilder: FormBuilder, private admin: AdminService, private route: ActivatedRoute) {
     this.bookId = this.route.snapshot.params['id'];
     this.editBookForm = this.formBuilder.group({
@@ -51,7 +51,7 @@ export class EditbookComponent{
       var arr = bookcategoryimage
       var bookcategoryimagearr = arr.map((item: any) => {
         // console.log(item)
-        return {name: item.image, abbrev: item.image}
+        return {image: item.image, abbrev: item.image}
       }) 
       this.bookcategoriesimage = bookcategoryimagearr
       // console.log("New array is", bookcategoryimagearr, this.bookcategories)
@@ -67,11 +67,11 @@ export class EditbookComponent{
       // console.log("New array is", booktypearr, this.bookcategories)
       return booktypearr
     })
-    this.getBookType().subscribe((booktype) => {
-      var arr = booktype
+    this.getBookType().subscribe((booktypesimage) => {
+      var arr = booktypesimage
       var booktypeimagearr = arr.map((item: any) => {
         console.log(item)
-        return {name: item.image, abbrev: item.image}
+        return {image: item.image, abbrev: item.image}
       }) 
       this.booktypesimage = booktypeimagearr
       // console.log("New array is", booktypearr, this.bookcategories)
@@ -91,6 +91,7 @@ export class EditbookComponent{
       // this.bookCategoryImageUrl = books.bookcat_img;
       // this.bookTypeImageUrl = books.booktype_img;
       console.log(books)
+      const bookcategoryimg = books.bookcat_img
       // Patch the form with the retrieved book data
       this.editBookForm.patchValue({
         bookname: books.bookName,

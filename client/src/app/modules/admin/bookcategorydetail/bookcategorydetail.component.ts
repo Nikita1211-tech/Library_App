@@ -7,6 +7,7 @@ import { Book } from '../../../data/interfaces/book.interface';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { RegisterService } from '../../../core/services/register.service';
+import { Category } from '../../../data/interfaces/category.interface';
 
 @Component({
   selector: 'app-bookcategorydetail',
@@ -17,8 +18,10 @@ export class BookcategorydetailComponent {
   // x = document.getElementById("categoryform");
   public environment = environment.IMG_URL
   books: Book[]=[];
+  categories: Category[]=[];
   categoryform: FormGroup
   showCategoryForm: Boolean = false
+  showTable: boolean = false; 
   // public chart: any;
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.categoryform = new FormGroup({
@@ -30,6 +33,10 @@ export class BookcategorydetailComponent {
   ngOnInit(): void {
     this.admin.showbook().subscribe((books) => {
       this.books = books;
+      // console.log(books);
+    });
+    this.admin.showbookcategory().subscribe((categories) => {
+      this.categories = categories;
       // console.log(books);
     });
   }

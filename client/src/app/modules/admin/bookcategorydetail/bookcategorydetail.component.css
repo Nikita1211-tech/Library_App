@@ -50,6 +50,9 @@ p{
     width: 250px;
     height: 100%;
 }
+.category-details{
+    display: flex;
+}
 .categoryform{
     display: flex;
     flex-direction: column;
@@ -135,7 +138,63 @@ button{
 .form-rules{
     color: #FB3453;
 }
-/* Add Category Form */
-/* .categoryform{
-    display: none;
-} */
+/* Table classes starts  */
+.table-container{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    height:200px;
+}
+table{
+    border-radius: 10px;
+    border: solid 1px #EAEAEA;
+    border-collapse: separate;
+    padding: 10px;
+    border-spacing: 10px 10px;
+    width: 100%;
+}
+tr{
+   width: 100%;
+}
+th{
+    font-size: 20px;
+    border-style: none;
+    text-align: left;
+    vertical-align: center;
+}
+td{
+    font-size: 18px;
+    border-style: none;
+    text-align: left;
+    vertical-align: center;
+}
+.table-head{
+    display: flex;
+    justify-content: space-between;
+}
+.table-button{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.table-button a {
+    background-color: #fb34521e;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+.reader-name{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+.reader-name img{
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position:  start;
+    border-radius: 50%;
+}
