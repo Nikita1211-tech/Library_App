@@ -12,7 +12,12 @@ const Bookcategory = sequelize.define('Bookcategory',{
     category: {
         type: DataTypes.STRING,
         allowNull: false,
-    }
+    },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: false
+    },
 })
 Bookcategory.sync({ force: false }).then(() => {
     console.log('Bookcategory table synced');

@@ -7,11 +7,12 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
 import { UserLayoutComponent } from './layout/user-layout/user-layout.component';
 import { HashLocationStrategy } from '@angular/common';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { AdminGuard } from './core/guard/adminauth.guard';
+import { UserAuthGuard } from './core/guard/userauth.guard';
 
 const routes: Routes = [
   // Landingpage route 
   { path: '', redirectTo: '/main', pathMatch: 'full' },
-  // Admin routes 
   // Admin Component routing starts 
   {
     path: '',
@@ -113,6 +114,7 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    // canActivate: [UserAuthGuard],
     children: [
       { 
         path: 'userhome', 

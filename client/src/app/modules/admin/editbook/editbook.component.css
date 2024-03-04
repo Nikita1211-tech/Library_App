@@ -1,3 +1,22 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('./../../../../assets/font-family/Poppins/Poppins-Regular.ttf');
+}
+/* *{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+} */
+h4{
+    font-size: 30px;
+    margin: 0px;
+}
+a{
+    text-decoration: none;
+    margin: 0px;
+    text-align: center;
+}
 .bk-shadow{
     box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
     border: 1px solid #EAEAEA;
@@ -7,171 +26,213 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-height: (90vh, 90%);
 }
 /* Form Classes starts */
 .form{
     display: flex;
-    justify-content: space-between;
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
+    gap: 20px;
 }
-.form-elements{
+.form-col1{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     height: 100%;
     width: 48%;
 }
+.book-price-details{
+    display: flex;
+    gap: 40px;
+    /* justify-content: space-between; */
+}
+.book-price-details-col1, .book-price-details-col2{
+    width: 45%;
+}
+/* .book-price-details div{
+    width: 47%;
+} */
+.form-col2{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    width: 55%;
+}
+.type{
+    display: flex;
+    margin-top: 4px;
+    gap: 20px;
+}
+.type-col1, .type-col2{
+    width: 45%;
+}
+.bookcategory-img{
+    display: flex;
+    width: 250px;
+}
+.bookcategory-img img{
+    width: 250px;
+    height: 200px;
+}
+.img-container{
+    display: flex;
+}
 label{
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 500;
     margin-bottom: 5px;
 }
-input{
-    margin-top: 5px;
-    width: 96%;
-    border: none;
-    background: #EAEAEA;
+/* .file {
+    width: 35%;
+    text-align: center;
+    background-color: #fb3453;
+    padding: 15px;
     border-radius: 10px;
+    color: white;
+    cursor: pointer;
+} */
+
+input[type="text"]{
+    margin-top: 5px;
+    width: 94%;
+    border: none;
+    font-size: 16px;
+    background: transparent;
+    border-bottom: solid 2px black;
+    font-family: Poppins;
+    color: black;
+    /* border-radius: 10px; */
     padding: 15px;
 }
+input[type="number"]{
+    margin-top: 5px;
+    width: 94%;
+    font-size: 16px;
+    border: none;
+    background: transparent;
+    border-bottom: solid 2px black;
+    font-family: Poppins;
+    color: black;
+    /* border-radius: 10px; */
+    padding: 15px;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="file"]::file-selector-button{
+  border: none;
+  width: 160px;
+  color: white;
+  background-color: black;
+  padding: 15px;
+  border-radius: 10px;
+  font-family: Poppins;
+  cursor: pointer;
+}
+.file-input {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    width: 350px;
+    padding: 15px 0px;
+    border-radius: 5px;
+}
+  
+  .file-input input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .custom-file-label {
+    background-color: #fb3453; /* Button color */
+    color: #fff;
+    padding: 15px 15px; 
+    border-radius: 5px; 
+    cursor: pointer;
+  }
+  
+  /* Hover effect */
+  .custom-file-label:hover {
+    background-color: #0056b3; /* Darker button color on hover */
+  }
+  
+  /* Focus effect */
+  .custom-file-label:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Add custom focus outline */
+  }
+  
+  /* Disabled state */
+  .custom-file-label:disabled {
+    opacity: 0.65; /* Reduce opacity for disabled state */
+    cursor: not-allowed; /* Change cursor for disabled state */
+  }
+  
 select{
     width: 100%;
     border: none;
     font-size: 16px;
-    border-radius: 10px;
-    background: #EAEAEA;
+    font-family: Poppins;
+    /* border-radius: 10px; */
+    background: transparent;
+    color: black;
+    border-bottom: solid 2px black;
     padding: 15px;
+    /* -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;       Remove default arrow
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%2326749a'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat;
+    background-color: #fb3453 */
+}
+option{
+    color: black;
+    background-color: white;
+    font-family: Poppins;
+    font-size: 20px;
+    padding: 10px;
 }
 textarea{
     width: 98%;
     border: none;
-    border-radius: 10px;
-    background: #EAEAEA;
+    margin-top: 20px;
+    font-size: 16px;
+    color: black;
+    background: transparent;
+    border: solid 2px black;
     padding: 15px;
+    border-radius: 10px;
 }
 .button{
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 .submit{
-    width: 10%;
+    width: 160px;
     color: white;
-    font-size: 16px;
+    cursor: pointer;
+    font-size: 20px;
     padding: 15px;
+    border: none;
     border-radius: 10px;
     background-color: #fb3453;
 }
 ::placeholder{
     font-size: 16px;
+    color: black;
+    font-family: Poppins;
+    font-size: 18px;
 }
-/* Table classes starts  */
-.table-section{
-    display: flex;
-    flex-direction: column;
-    /* gap: 10px; */
- }
- /* .table-container{
-     overflow-x: auto;
- } */
- table{
-     border-radius: 10px;
-     border: solid 1px #EAEAEA;
-     border-collapse: separate;
-     padding: 10px;
-     border-spacing: 0px 10px;
-     height: 90%;
-     width: 100%;
- }
- tr{
-    width: 100%;
- }
- td,th{
-     border-style: none;
-     text-align: left;
-     vertical-align: center;
- }
- .table-head{
-     display: flex;
-     justify-content: space-between;
- }
- .table-button{
-     display: flex;
-     gap: 20px;
-     align-items: center;
- }
- .table-button a {
-     background-color: #fb34521e;
-     border-radius: 5px;
-     padding: 10px 20px;
- }
- .reader-name{
-     display: flex;
-     /* justify-content: center; */
-     align-items: center;
-     gap: 20px;
-     width: 100%;
-     height: 100%;
- }
- .reader-name img{
-     width: 60px;
-     height: 60px;
-     border-radius: 10px;
-     object-fit: cover;
-     object-position:  start;
-     border-radius: 50%;
- }
-
- .bk-shadow{
-    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
-    border: 1px solid #EAEAEA;
-    border-radius: 15px;
-    padding: 20px;
-    background-color: white;
-}
- h4{
-    margin: 0px;
- }
- p{
-    margin: 0px;
- }
- .editbook-page{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    border: 1.5px solid black;
-    padding: 10px;
-    border-radius: 10px;
- }
- .book-name{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
- }
- .book-details{
-    display: flex;
-    justify-content: space-between;
- }
-.book-img img{
-    width: 100px;
-}
- .book-img{
-    display: flex;
-    justify-content: space-between;
- }
- .book-img-height img{
-    width: 80px;
-    height: 90%;
-    border-radius: 10px;
- }
- .btn{
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
- }
- button{
-    border: none;
-    padding: 20px 30px;
-    border-radius: 10px;
-    background-color: #fb3453;
-    color: white;
-    cursor: pointer;
+.form-rules{
+    color: #fb3453;
  }

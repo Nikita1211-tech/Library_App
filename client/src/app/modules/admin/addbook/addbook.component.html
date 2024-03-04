@@ -1,88 +1,141 @@
 <div class="bk-shadow">
+    <h4>Add New Book</h4>
     <form [formGroup]="addBookForm" (ngSubmit)="onAddBook()" class="form-control" enctype="multipart/form-data">
         <div class="form">
             <div class="form-col1">
                 <div>
-                    <!-- <mat-form-field class="col-12">
-                        <input matInput placeholder="Name" value="Tudip">
-                     </mat-form-field> -->
-                    <label for="bookname">Book Name</label>
+                    <!-- <label for="bookname">Book Name</label> -->
                     <input class="form-control" formControlName="bookname" type="text" name="bookname"
                         placeholder="Enter Book name">
+                        <div *ngIf="addBookForm.controls['bookname'].invalid && (addBookForm.controls['bookname'].dirty || addBookForm.controls['bookname'].touched)">
+                            <div *ngIf="addBookForm.controls['bookname'].errors?.['required']; ">
+                                <div class="form-validation form-rules">Required Field.</div>
+                            </div>
+                        </div>
                 </div>
-                <!-- <div>
-                    <label for="bookimg">Upload Book Image</label>
-                    <input style="margin-left: 10px" class="form-control file" id="file"
-                        (change)="onFileSelected($event, 'bookimg')" formControlName="bookimg" type="file"
-                        name="bookimg" placeholder="Enter Book Image">
-                </div> -->
-                <!-- <div class="file-input">
-                    <label for="bookimg">Upload Book Image</label>
-                    <input class="form-control file" id="file" (change)="onFileSelected($event, 'bookimg')" formControlName="bookimg" type="file" name="bookimg"
-                        placeholder="Enter Book Image">
-                </div> -->
+                <div class="file-input">
+                    <label for="file" class="custom-file-label"><i class="fas fa-upload" style="color: white;"></i> Upload Book Image</label>
+                    <input class="form-control file" id="file" (change)="onFileSelected($event, 'bookimg')" formControlName="bookimg" type="file" name="bookimg" accept="image/*"> <span class="file-name">{{ addBookForm.get('bookimg')?.value ? addBookForm.get('bookimg')?.value?.name : '' }}</span>
+                    <div *ngIf="addBookForm.controls['bookimg'].invalid && (addBookForm.controls['bookimg'].dirty || addBookForm.controls['bookimg'].touched)">
+                        <div *ngIf="addBookForm.controls['bookimg'].errors?.['required']; ">
+                            <div class="form-validation form-rules">Required Field.</div>
+                        </div>
+                    </div>
+                    
+                </div>
                 <div class="book-price-details">
-                    <div>
-                        <label for="booksellingprice">Book Actual Price</label>
-                        <input class="form-control" formControlName="booksellingprice" type="number" name="booksellingprice"
+                    <div class="book-price-details-col1">
+                        <!-- <label for="booksellingprice">Book Actual Price</label> -->
+                        <input class="form-control" formControlName="booksellingprice" type="number" inputmode="numeric" name="booksellingprice"
                             placeholder="Enter Book Selling Price">
+                            <div *ngIf="addBookForm.controls['booksellingprice'].invalid && (addBookForm.controls['booksellingprice'].dirty || addBookForm.controls['booksellingprice'].touched)">
+                                <div *ngIf="addBookForm.controls['booksellingprice'].errors?.['required']; ">
+                                    <div class="form-validation form-rules">Required Field.</div>
+                                </div>
+                            </div>
                     </div>
-                    <div>
-                        <label for="bookcostprice">Book Cost Price</label>
-                        <input class="form-control" formControlName="bookcostprice" type="number" name="bookcostprice"
+                    <div class="book-price-details-col2">
+                        <!-- <label for="bookcostprice">Book Cost Price</label> -->
+                        <input class="form-control" formControlName="bookcostprice" type="number" inputmode="numeric" name="bookcostprice"
                             placeholder="Enter Book Cost Price">
+                            <div *ngIf="addBookForm.controls['bookcostprice'].invalid && (addBookForm.controls['bookcostprice'].dirty || addBookForm.controls['booksellingprice'].touched)">
+                                <div *ngIf="addBookForm.controls['bookcostprice'].errors?.['required']; ">
+                                    <div class="form-validation form-rules">Required Field.</div>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <div class="book-price-details">
-                    <div>
-                        <label for="bookwriter">Book Writer Name</label>
+                    <div class="book-price-details-col1">
+                        <!-- <label for="bookwriter">Book Writer Name</label> -->
                         <input class="form-control" formControlName="bookwriter" type="text" name="booktype"
                             placeholder="Enter Book Writer Name">
+                            <div *ngIf="addBookForm.controls['bookwriter'].invalid && (addBookForm.controls['bookwriter'].dirty || addBookForm.controls['bookwriter'].touched)">
+                                <div *ngIf="addBookForm.controls['bookwriter'].errors?.['required']; ">
+                                    <div class="form-validation form-rules">Required Field.</div>
+                                </div>
+                            </div>
                     </div>
-                    <div>
-                        <label for="publishyear">Enter Publish Year</label>
-                        <input class="form-control" formControlName="publishyear" type="text" name="publishyear"
+                    <div class="book-price-details-col2">
+                        <!-- <label for="publishyear">Enter Publish Year</label> -->
+                        <input class="form-control" formControlName="publishyear" type="number" inputmode="numeric" name="publishyear"
                             placeholder="Enter Publish Year">
+                            <div *ngIf="addBookForm.controls['publishyear'].invalid && (addBookForm.controls['publishyear'].dirty || addBookForm.controls['publishyear'].touched)">
+                                <div *ngIf="addBookForm.controls['publishyear'].errors?.['required']; ">
+                                    <div class="form-validation form-rules">Required Field.</div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
             <div class="form-col2">
                 <div class="type">
-                    <div>
-                        <label for="bookcategory">Select Book Category Name</label>
+                    <div class="type-col1">
+                        <!-- <label for="bookcategory">Select Book Category Name</label> -->
                         <select name="bookcategory" id="bookcategory" (click)="getBookCategory()" formControlName="bookcategories">
+                            <option disabled selected value="">Select Book Category</option>
                             <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{ bookcategory.abbrev }}
                             </option>
                         </select>
+                        <div *ngIf="addBookForm.controls['bookcategories'].invalid && (addBookForm.controls['bookcategories'].dirty || addBookForm.controls['bookcategories'].touched)">
+                            <div *ngIf="addBookForm.controls['bookcategories'].errors?.['required']; ">
+                                <div class="form-validation form-rules">Required Field.</div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <label for="bookcategoryimg">Select Book Category Image</label>
-                        <!-- <input class="form-control" (change)="onFileSelected($event, 'booktypeimg')" formControlName="booktypeimg" type="file" name="booktypeimg"
-                                placeholder="Enter Book Type Image"> -->
-                        <select class='form-select' (click)="getBookCategory()" name="bookcategory" id="bookcategory"
-                            formControlName="bookcategories">
-                            <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{
-                                bookcategory.abbrev }}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="type">
-                    <div>
-                        <label for="booktype">Select Book Type Name</label>
+                    <div class="type-col2">
+                        <!-- <label for="booktype">Select Book Type Name</label> -->
                         <select name="booktype" id="booktype" (click)="getBookType()" formControlName="booktype">
-                            <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">{{ booktype.abbrev }}
+                            <option disabled selected value="">Select Book Type</option>
+                            <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">
+                                {{ booktype.abbrev }}
                             </option>
                         </select>
+                        <div *ngIf="addBookForm.controls['booktype'].invalid && (addBookForm.controls['booktype'].dirty || addBookForm.controls['booktype'].touched)">
+                            <div *ngIf="addBookForm.controls['booktype'].errors?.['required']; ">
+                                <div class="form-validation form-rules">Required Field.</div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <label for="booktypeimg">Select Book Type Image</label>
+                    
+                </div>
+                <div class="type">
+                    <div class="type-col1">
+                        <div *ngIf="selectedCategoryImage" class="bookcategory-img">
+                            <img [src]="environment+selectedCategoryImage" alt="Selected Category Image">
+                        </div>
+                        <!-- <label for="bookcategoryimg">Select Book Category Image</label> -->
+                        <select (change)="onSelectCategory()" (click)="getBookCategory()" name="bookcategoryimg" id="bookcategoryimg" formControlName="bookcategoryimg">
+                            <option disabled selected value="">Select Book Category Image</option>
+                            <option *ngFor="let bookcategoryimg of bookcategoriesimage" [ngValue]="bookcategoryimg.name">
+                                {{ bookcategoryimg.abbrev }}
+                            </option>
+                        </select>
+                        <div *ngIf="addBookForm.controls['bookcategoryimg'].invalid && (addBookForm.controls['bookcategoryimg'].dirty || addBookForm.controls['bookcategoryimg'].touched)">
+                            <div *ngIf="addBookForm.controls['bookcategoryimg'].errors?.['required']; ">
+                                <div class="form-validation form-rules">Required Field.</div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="type-col2">
+                        <div *ngIf="selectedTypeImage" class="bookcategory-img">
+                            <img [src]="environment+selectedTypeImage" alt="Selected Type Image">
+                        </div>
+                        <!-- <label for="booktypeimg">Select Book Type Image</label> -->
                         <!-- <input class="form-control" (change)="onFileSelected($event, 'booktypeimg')" formControlName="booktypeimg" type="file" name="booktypeimg"
                                 placeholder="Enter Book Type Image"> -->
-                        <select class='form-select' (click)="getBookType()" name="booktype" id="bookcategory"
-                            formControlName="booktypes" placeholder="Select Book Type Image">booktype
-                            <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">{{
-                                booktype.abbrev }}</option>
+                        <select class='form-select' (change)="onSelectType()" (click)="getBookType()" name="booktypeimg" id="booktypeimg"
+                            formControlName="booktypeimg" placeholder="Select Book Type Image">booktype
+                            <option disabled selected value="">Select Book Type</option>
+                            <option *ngFor="let booktypeimg of booktypesimage" [ngValue]="booktypeimg.name">{{
+                                booktypeimg.abbrev }}</option>
                         </select>
+                        <div *ngIf="addBookForm.controls['booktypeimg'].invalid && (addBookForm.controls['booktypeimg'].dirty || addBookForm.controls['booktypeimg'].touched)">
+                            <div *ngIf="addBookForm.controls['booktypeimg'].errors?.['required']; ">
+                                <div class="form-validation form-rules">Required Field.</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- <div>
@@ -103,120 +156,71 @@
         </div>
         <div>
             <!-- <label for="summary">Enter Book Summary</label><br> -->
-            <textarea name="summary" id="" cols="30" rows="7" formControlName="summary"
+            <textarea name="summary" id="" cols="30" rows="4" formControlName="summary"
                 placeholder="Enter Book Summary"></textarea>
+                <div *ngIf="addBookForm.controls['summary'].invalid && (addBookForm.controls['summary'].dirty || addBookForm.controls['summary'].touched)">
+                    <div *ngIf="addBookForm.controls['summary'].errors?.['required']; ">
+                        <div class="form-validation form-rules">Required Field.</div>
+                    </div>
+                </div>
         </div>
         <div class="button">
-            <input type="submit" name="submit" value="Submit" class="submit">
+            <input type="submit" name="submit" value="Submit" (click)="showTable=true" class="submit">
         </div>
     </form>
-    <!-- <div>
-        <div *ngFor="let book of books" class="editbook-page">
-            <div class="book-name">
-                <div class="book-details">
-                    <div>
-                        <h4>Book Name</h4>
-                        <p>{{book.bookName}}</p>
-                    </div>
-                   
-                    <div>
-                        <h4>Book Category Name</h4>
-                        <p>{{book.category}}</p>
-        
-                    </div>
-                    <div>
-                        <h4>Book Type Name</h4>
-                        <p>{{book.booktypename}}</p>
-            
-                    </div>
-                    <div>
-                        <h4>Publish Year</h4>
-                        <p>{{book.publishyear}}</p>
-        
-                    </div>
-                    <div>
-                        <h4>Writer Name</h4>
-                        <p>{{book.writerName}}</p>
-        
-                    </div>
-                </div>
-                <div class="book-img">
-                    <div  class="book-img-height">
-                        <h4>Book Image</h4>
-                        <img [src]="environment + book.img" alt="">
-        
-                    </div>
-                    <div  class="book-img-height">
-                        <h4>Book Category Image</h4>
-                        <img [src]="environment + book.bookcat_img" alt="">
-        
-                    </div>
-                    <div class="book-img-height">
-                        <h4>Book Type Image</h4>
-                        <img [src]="environment + book.booktype_img" alt="">
-        
-                    </div>
-                    <div>
-                        <h4>Cost Price</h4>
-                        <p>{{book.costprice}}</p>
-        
-                    </div>
-                    <div>
-                        <h4>Selling Price</h4>
-                        <p>{{book.sellingprice}}</p>
-        
-                    </div>
-                </div>
-                <div class="book-summary">
-                    <h4>Book Summary</h4>
-                    <td>{{book.booksummary}}</td>
-                </div>
-            </div>
-            <div class="btn">
-                <a [href]="'/editbook/' + book.id"><button>Edit</button></a>
-                <a (click)="confirmDelete(book.id)"><button>Delete</button></a>
-            </div>
-        </div> 
-    </div> -->
+        <div *ngIf="showTable" class="table-container">
+            <table>
+               <thead>
+                   <tr>
+                       <th scope="col">Book Id</th>
+                       <th scope="col">Book Name</th>
+                       <th scope="col">Book Image</th>
+                       <th scope="col">Book Category Name</th>
+                       <th scope="col">Book Category Image</th>
+                       <th scope="col">Book Type Name</th>
+                       <th scope="col">Book Type Image</th>
+                       <th scope="col">Cost Price</th>
+                       <th scope="col">Selling Price</th>
+                       <th scope="col">Publish year</th>
+                       <th scope="col">Writer Name</th>
+                       <th scope="col" colspan="2" style="text-align: center;">Actions</th>
+                       <!-- <th scope="col">Book Summary</th> -->
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr *ngFor="let book of books">
+                       <td style="color: #fb3453;">{{book.id}}</td>
+                       <td>{{book.bookName}}</td>
+                       <td>
+                          <div class="reader-name">
+                            <p>{{ book.img.substring(8)}} </p>
+                            <!-- <img [src]="environment + book.booktype_img"  alt=""> -->
+                          </div>
+                       </td>
+                       <td>{{book.category}}</td>
+                       <td>
+                          <div class="reader-name">
+                              <p>{{book.bookcat_img.substring(8)}}</p>
+                              <!-- <img [src]="environment + book.booktype_img"  alt=""> -->
+                          </div>
+                       </td>
+                       <td>{{book.booktypename}}</td>
+                       <td>
+                         <div class="reader-name">
+                             <p>{{book.booktype_img.substring(8)}}</p>
+                             <!-- <img [src]="environment + book.booktype_img"  alt=""> -->
+                         </div>
+                       </td>
+                       <td>Rs. {{book.costprice}}</td>
+                       <td>Rs. {{book.sellingprice}}</td>
+                       <td>{{book.publishyear}}</td>
+                       <td>{{book.writerName}}</td>
+                       <td class="edit-btn"><a [href]="'/editbook/' + book.id" style="color: #fb3453;;"><p>Edit</p></a></td>
+                       <td class="delete-btn"><a (click)="confirmDelete(book.id)" style="color: #68a900;"><p>Delete</p></a></td>
+                       <!-- <td>{{book.booksummary}}</td> -->
+                   </tr>
+               </tbody>
+           </table>
+        </div>
 
 </div>
-<!-- <div class="table-container">
-    <table>
-       <thead>
-           <tr>
-               <th scope="col">Book Name</th>
-               <th scope="col">Book Image</th>
-               <th scope="col">Book Category Name</th>
-               <th scope="col">Book Category Image</th>
-               <th scope="col">Book Type Name</th>
-               <th scope="col">Book Type Image</th>
-               <th scope="col">Cost Price</th>
-               <th scope="col">Selling Price</th>
-               <th scope="col">Publish year</th>
-               <th scope="col">Writer Name</th>
-               <th scope="col">Book Summary</th>
-           </tr>
-       </thead>
-       <tbody>
-           <tr *ngFor="let book of books">
-               <td>{{book.bookName}}</td>
-               <div class="reader-name">
-                   <img [src]="book.bookcat_img" alt="">
-               </div>
-               <td>{{book.category}}</td>
-               <div class="reader-name">
-                   <img [src]="book.img" alt="">
-               </div>
-               <td>{{book.booktypename}}</td>
-               <div class="reader-name">
-                   <img [src]="book.booktype_img" alt="">
-               </div>
-               <td>{{book.costprice}}</td>
-               <td>{{book.sellingprice}}</td>
-               <td>{{book.publishyear}}</td>
-               <td>{{book.writerName}}</td>
-               <td>{{book.booksummary}}</td>
-           </tr>
-       </tbody>
-   </table>
-</div> -->

@@ -36,33 +36,25 @@ const upload = multer({
 })
 const AddBook = async (req, res) => {
   try {
-    console.log(req.files)
-    const obj = {
-      bookName: req.body.bookname,
-      sellingprice: req.body.booksellingprice,
-      costprice: req.body.bookcostprice,
-      writerName: req.body.bookwriter,
-      publishyear: req.body.publishyear,
-      booktypename: req.body.booktype,
-      category: req.body.bookcategories,
-      booksummary: req.body.summary
-    };
-    if (req.files) {
-      // Assuming req.files contains uploaded files for both fields
-      if (req.files['bookimg'] && req.files['bookimg'].length > 0) {
-        obj.img = req.files['bookimg'][0].path;
-      }
-      if (req.files['bookcategoryimg'] && req.files['bookcategoryimg'].length > 0) {
-        obj.bookcat_img = req.files['bookcategoryimg'][0].path;
-      }
-      if (req.files['booktypeimg'] && req.files['booktypeimg'].length > 0) {
-        obj.booktype_img = req.files['booktypeimg'][0].path;
-      }
-    }
-    // const bookimg = req.file.path; // Assuming the image path is saved in 'uploads/'
+    console.log(req.file)
+    if (req.file) {
+      const obj = {
+        bookName: req.body.bookname,
+        sellingprice: req.body.booksellingprice,
+        costprice: req.body.bookcostprice,
+        writerName: req.body.bookwriter,
+        publishyear: req.body.publishyear,
+        booktypename: req.body.booktype,
+        bookcat_img: req.body.bookcategoryimg,
+        booktype_img: req.body.booktypeimg,
+        category: req.body.bookcategories,
+        booksummary: req.body.summary,
+        img: req.file.path // Assuming 'bookimg' is the name of the file input field
+      };
 
-    const newBook = await Book.create(obj);
-    res.status(201).json(newBook);
+      const newBook = await Book.create(obj);
+      res.status(201).json(newBook);
+    }
   } catch (error) {
     console.error('Error adding book:', error);
     res.status(500).json({ error: 'Internal server error' });
@@ -260,48 +252,103 @@ const Booktypes = async (req, res) => {
   }
 }
 
+// const Addbookcategory = async (req, res) => {
+//   const obj = {
+//     category: req.body.category 
+//   }
+//   console.log(obj)
+//   try {
+//     const existingcategory = await BookCategory.findOne({ where: { category: obj.category } });
+//     if (existingcategory != null) {
+//       return res.status(409).json({ message: "Book category already exists" });
+//     }
+//     const newBook = await BookCategory.create(obj);
+//     return res.status(201).json({ message: "Book category added successfully" });
+//   } catch (error) {
+//     return res.status(500).json({ message: error.message });
+//   }
+// }
+
 const Addbookcategory = async (req, res) => {
-  const obj = {
-    category: req.body.category 
-  }
-  console.log(obj)
   try {
-    const existingcategory = await BookCategory.findOne({ where: { category: obj.category } });
-    if (existingcategory != null) {
+    const category = req.body.category;
+    if (!category) {
+      return res.status(400).json({ message: "Category name not provided" });
+    }
+
+    // Check if category already exists
+    const existingCategory = await BookCategory.findOne({ where: { category: category } });
+    if (existingCategory) {
       return res.status(409).json({ message: "Book category already exists" });
     }
-    const newBook = await BookCategory.create(obj);
-    return res.status(201).json({ message: "Book category added successfully" });
+
+    // Save the uploaded image
+    const imagePath = req.file ? req.file.path : null;
+    if (!imagePath) {
+      return res.status(400).json({ message: "Image not provided" });
+    }
+
+    // Save the category details to the database
+    const newCategory = await BookCategory.create({ category: category, image: imagePath });
+    return res.status(201).json({ message: "Book category added successfully", category: newCategory });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
-}
+};
 
 const Showbookcategory = async (req,res) => {
   try {
     const Bookcategory = await BookCategory.findAll();
+    console.log(BookCategory)
     return res.status(201).json(Bookcategory);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 }
 
+// const Addbooktype = async (req, res) => {
+//   const obj = {
+//     type: req.body.type 
+//   }
+//   console.log(obj.type)
+//   try {
+//     const existingtype = await Booktype.findOne({ where: { type: obj.type } });
+//     if (existingtype != null) {
+//       return res.status(409).json({ message: "Book type already exists" });
+//     }
+//     const newBook = await Booktype.create(obj);
+//     return res.status(201).json({ message: "Book type added successfully" });
+//   } catch (error) {
+//     return res.status(500).json({ message: error.message });
+//   }
+// }
+
 const Addbooktype = async (req, res) => {
-  const obj = {
-    type: req.body.type 
-  }
-  console.log(obj.type)
   try {
-    const existingtype = await Booktype.findOne({ where: { type: obj.type } });
-    if (existingtype != null) {
+    const type = req.body.type;
+    if (!type) {
+      return res.status(400).json({ message: "Type name not provided" });
+    }
+
+    // Check if type already exists
+    const existingType = await Booktype.findOne({ where: { type: type } });
+    if (existingType) {
       return res.status(409).json({ message: "Book type already exists" });
     }
-    const newBook = await Booktype.create(obj);
+
+    // Save the uploaded image path
+    const imagePath = req.file ? req.file.path : null;
+    if (!imagePath) {
+      return res.status(400).json({ message: "Image not provided" });
+    }
+
+    // Save the type details to the database
+    const newType = await Booktype.create({ type: type, image: imagePath });
     return res.status(201).json({ message: "Book type added successfully" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
-}
+};
 
 const Showbooktype = async (req,res) => {
   try {

@@ -12,6 +12,14 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
 import { UserLayoutComponent } from './layout/user-layout/user-layout.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
+import { PrimeIcons } from 'primeng/api';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -25,6 +33,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    AccordionModule.forRoot(),
+    SidebarModule,
+    ButtonModule,
+    DropdownModule,
+    MatButtonModule,
+    MatInputModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule

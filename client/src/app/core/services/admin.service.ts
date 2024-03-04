@@ -100,50 +100,44 @@ showBookType(bookType: string | null): Observable<any[]> {
   return this.http.post<any[]>(`${this.API_URL}/booktype`, { booktype: bookType })
 }
 showbook(): Observable<any> {
-  return this.http.get<any>(this.API_URL+'/booklist')
+  return this.http.get<any>(this.API_URL+'/books')
 }
 // showtype(): Observable<any> {
 //   return this.http.get<any>(this.API_URL+'/booktypelist')
 // }
-addbookcategory(category: string, errorCallback: (error: any) => void){
-  const obj = {
-    category: category
-  }
-  console.log(obj)
-   this.http.post(this.API_URL+'/addbookcategory', obj)
-   .subscribe(
-    (response)=>{
-      Swal.fire({
-        icon: 'success',
-        iconColor: '#fb3453',
-        text: "Book category added successfully",
-        showCancelButton: false,
-        showConfirmButton: false,
-        timer: 1500,
-      })
-         console.log(response)
-    },
-    (error) => {
-      Swal.fire({
-        icon: 'info',
-        iconColor: '#fb3453',
-        text: "Book category already exists",
-        showCancelButton: false,
-        showConfirmButton: false,
-        timer: 1500,
-      })
-    }
-   )
-  }
+addbookcategory(formData: FormData, errorCallback: (error: any) => void): void {
+  this.http.post(this.API_URL + '/addbookcategory', formData)
+    .subscribe(
+      (response) => {
+        Swal.fire({
+          icon: 'success',
+          iconColor: '#fb3453',
+          text: "Book category added successfully",
+          showCancelButton: false,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        console.log(response);
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'info',
+          iconColor: '#fb3453',
+          text: "Book category already exists",
+          showCancelButton: false,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        errorCallback(error);
+      }
+    );
+}
   showbookcategory(): Observable<any>{
     return this.http.get<any>(this.API_URL+'/showbookcategory')
   }
-addbooktype(type: string, errorCallback: (error: any) => void){
-  const obj = {
-    type: type
-  }
+addbooktype(formData: FormData, errorCallback: (error: any) => void){
   // console.log(category)
-   this.http.post(this.API_URL+'/addbooktype', obj)
+   this.http.post(this.API_URL+'/addbooktype', formData)
    .subscribe(
     (response)=>{
       Swal.fire({

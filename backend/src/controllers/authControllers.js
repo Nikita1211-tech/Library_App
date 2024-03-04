@@ -174,12 +174,14 @@ const Auth = async (req, res) => {
         return res.status(401).json({ message: "Please enter password" });
       } else if (validPassword) {
         const token = tokengenerator(Users.email);
+        const role = user.role;
+        console.log(role);
         res.cookie("jwt", token, { httpOnly: true, secure: true });
-        return res.json({ token });
+        return res.json({ token, role });
       } else return res.status(400).json({ message: "Incorrect Password" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: {error} });
   }
 };
 const Reset = async (req, res) => {

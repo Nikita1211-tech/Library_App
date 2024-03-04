@@ -15,11 +15,16 @@ export class AuthService {
       email: email,
       password: password
     };
-    this.http.post<{token: string}>(this.API_URL+'/login',obj)
+    this.http.post<{token: string, role: string}>(this.API_URL+'/login',obj)
       .subscribe(
         (response) => {
           localStorage.setItem('token', response.token );
-          this.router.navigate(['/main']);
+          localStorage.setItem('role', response.role);
+          var role = localStorage.getItem('role');
+          if(role === "Admin"){
+            this.router.navigate(['/home']);
+          }
+          else this.router.navigate(['/main']);
         },
         (error) => {
           errorCallback(error);
@@ -28,7 +33,14 @@ export class AuthService {
   }
   logout(): void{
       localStorage.removeItem('token');
+      localStorage.removeItem('role');
       this.router.navigate(['/login']);
+  }
+  getRole(): string | null {
+    return localStorage.getItem('role');
+  }
+  isAdmin(): boolean {
+    return this.getRole() === 'Admin';
   }
   resetPassword(email: string | null, errorCallback: (error: any) => void): any{
     const obj = {

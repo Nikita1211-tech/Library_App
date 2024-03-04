@@ -18,35 +18,42 @@ export class AddbookComponent {
   bookId: number;
   books: Book[] = []
   bookcategories: { name: string, abbrev: string}[] = []
+  bookcategoriesimage: {name: string, abbrev: string}[] = []
   booktypes: { name: string, abbrev: string }[] = []
-  // booktypes = [
-  //   {name: 'books', abbrev: 'Books'},
-  //   {name: 'magazine', abbrev: 'Magazine'},
-  //   {name: 'journals', abbrev: 'Journals'},
-  //   {name: 'articles', abbrev: 'Articles'},
-  //   {name: 'newspaper', abbrev: 'Newspaper'},
-  //   {name: 'artanddesign', abbrev: 'Art and designs'}
-  // ];
-
+  booktypesimage: {name: string, abbrev: string}[] = []
+  selectedCategoryImage: string | null = null;
+  selectedTypeImage: string | null = null;
+  showTable: boolean = false; 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private admin: AdminService){
     this.bookId = this.route.snapshot.params['id'];
     // console.log(this.bookId);
     this.getBookById().subscribe((books) => {
       this.books = books;
+      console.log(books)
     });
     this.getBooks().subscribe((books) => {
       this.books = books
-      // console.log(books)
+      console.log(books)
     })
     this.getBookCategory().subscribe((bookcategory) => {
       var arr = bookcategory
       var bookcategoryarr = arr.map((item: any) => {
         // console.log(item)
-        return {name: item.category, abbrev: item.category, value:"Select Book Category"}
+        return {name: item.category, abbrev: item.category}
       }) 
       this.bookcategories = bookcategoryarr
       // console.log("New array is", newarr, this.bookcategories)
       return bookcategoryarr
+    })
+    this.getBookCategory().subscribe((bookcategoryimage) => {
+      var arr = bookcategoryimage
+      var bookcategoryimagearr = arr.map((item: any) => {
+        // console.log(item)
+        return {name: item.image, abbrev: item.image}
+      }) 
+      this.bookcategoriesimage = bookcategoryimagearr
+      // console.log("New array is", newarr, this.bookcategories)
+      return bookcategoryimagearr
     })
     this.getBookType().subscribe((booktype) => {
       var arr = booktype
@@ -58,6 +65,16 @@ export class AddbookComponent {
       // console.log("New array is", booktypearr, this.bookcategories)
       return booktypearr
     })
+    this.getBookType().subscribe((booktype) => {
+      var arr = booktype
+      var booktypeimagearr = arr.map((item: any) => {
+        console.log(item)
+        return {name: item.image, abbrev: item.image}
+      }) 
+      this.booktypesimage = booktypeimagearr
+      // console.log("New array is", booktypearr, this.bookcategories)
+      return booktypeimagearr
+    })
     // this.bookId =  this.route.snapshot.params['id'];
     this.bookId = this.route.snapshot.params['id'];
     // console.log(this.bookId);
@@ -66,12 +83,12 @@ export class AddbookComponent {
     bookimg: new FormControl('0', [ Validators.required, Validators.minLength(8)]),
     booksellingprice: new FormControl('', [ Validators.required]),
     bookcostprice: new FormControl('', Validators.required),
-    bookcategoryimg: new FormControl('0',Validators.required),
+    bookcategoryimg: new FormControl('',Validators.required),
     bookwriter: new FormControl('', Validators.required),
-    booktypeimg: new FormControl('0', Validators.required),
+    booktypeimg: new FormControl('', Validators.required),
     publishyear: new FormControl('', Validators.required),
-    booktype: new FormControl(this.booktypes),
-    bookcategories: new FormControl(this.bookcategories),
+    booktype: new FormControl(this.booktypes, Validators.required),
+    bookcategories: new FormControl(this.bookcategories, Validators.required),
     summary: new FormControl('', Validators.required)
   });
   
@@ -82,8 +99,19 @@ export class AddbookComponent {
     const control = this.addBookForm.get(formControlName);
     if (control) {
       control.setValue(file);
+      console.log(control.value); 
     }       
+    console.log(file)
   }
+}
+
+onSelectCategory(): void {
+  const selectedValue = this.addBookForm.get('bookcategoryimg')?.value;
+  this.selectedCategoryImage = selectedValue ? selectedValue : null;
+}
+onSelectType(): void {
+  const selectedValue = this.addBookForm.get('booktypeimg')?.value;
+  this.selectedTypeImage = selectedValue ? selectedValue : null;
 }
 // onFileSelected(event: any) {
 //   if (event.target.files && event.target.files.length > 0) {
@@ -96,23 +124,37 @@ export class AddbookComponent {
 // }
 
 onAddBook() {
-  const formData = new FormData();
-  Object.keys(this.addBookForm.value).forEach(key => {
-    const value = this.addBookForm.value[key];
-    formData.append(key, value);
-  });
-
-  this.admin.addBook(formData, (error) => {
-    Swal.fire({
-      title: error?.error.message,
-      text: error?.error.message,
-      icon: 'success',
-      confirmButtonText: 'Okay',
-      confirmButtonColor: "#fb3453",
-      timer: 3000
-    }).then((result) => {
-      // this.router.navigate(['/login']);
+  if(!this.addBookForm.valid) {
+    this.markFormGroupTouched(this.addBookForm);
+  } 
+  else{
+    const formData = new FormData();
+    Object.keys(this.addBookForm.value).forEach(key => {
+      const value = this.addBookForm.value[key];
+      formData.append(key, value);
     });
+    this.admin.addBook(formData, (error) => {
+      Swal.fire({
+        title: error?.error.message,
+        text: error?.error.message,
+        icon: 'success',
+        confirmButtonText: 'Okay',
+        confirmButtonColor: "#fb3453",
+        timer: 3000
+      }).then((result) => {
+        window.location.reload();
+        // this.router.navigate(['/login']);
+      });
+    });
+  }
+}
+markFormGroupTouched(formGroup: FormGroup) {
+  Object.values(formGroup.controls).forEach(control => {
+    control.markAsTouched();
+
+    if (control instanceof FormGroup) {
+      this.markFormGroupTouched(control);
+    }
   });
 }
 getBookById(){
@@ -140,32 +182,42 @@ getBookType(){
 //     }
 //   );
 // }
-  // edit book
-  
-  confirmDelete(bookId: number): void {
-    const confirmDelete = confirm('Are you sure you want to delete this book?');
-    if (confirmDelete) {
-      this.admin.deleteBook(bookId).subscribe(
-        (response) => {
-          if(response.message == 'Book deleted successfully'){
-            Swal.fire({
-              title: 'Deleted',
-              text: response?.message,
-              icon: 'success',
-              confirmButtonText: 'Okay',
-              confirmButtonColor: "#fb3453",
-              timer: 3000
-            }).then((result) => {
-              // this.router.navigate(['/otp']);
-            });
+  // Deletes Book Record
+  confirmDelete(bookId: any): void {
+    Swal.fire({
+      title: 'Are you sure you want to delete this?',
+      icon: 'question',
+      iconColor: '#fb3453',
+      showCancelButton: true,
+      confirmButtonColor: '#68a900',
+      cancelButtonColor: '#fb3453',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.admin.deleteBook(bookId).subscribe(
+          (response) => {
+            if(response.message == 'Book deleted successfully'){
+              Swal.fire({
+                title: 'Deleted',
+                text: response?.message,
+                icon: 'success',
+                showConfirmButton:false,
+                confirmButtonColor: "#fb3453",
+                timer: 1500
+              }).then((result) => {
+                window.location.reload();
+              });
+            }
+          },
+          error => {
+            console.error('Failed to delete book:', error);
           }
-        },
-        error => {
-          console.error('Failed to delete book:', error);
-        }
-      );
-    }
+        );
+      }
+    });
   }
+
     
 }
 

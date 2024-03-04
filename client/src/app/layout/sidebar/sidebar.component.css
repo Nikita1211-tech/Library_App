@@ -25,20 +25,57 @@ button{
 .navbarContainer{
     font-family: 'Poppins', sans-serif;
     padding: 30px;
-    width: fit-content;
+    width: 100%;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 90vh;
+    height: 90%;
     justify-content: space-between;
-    position: fixed;
+    /* position: fixed; */
 }
 .menuContainer{
     display: flex;
     flex-direction: column;
+    height: 100%;
     width: 250px;
     gap: 40px;
 }
+.menuButton {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 10px;
+}
+
+.navbarContainer.showMenu {
+    display: flex; 
+}
+/* .menuContainer {
+    display: none; 
+    width: 250px; 
+    background-color: #f1f1f1; 
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.menuButton {
+    display: none; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 10px;
+}
+
+.menuContainer.showMenu {
+    display: block; 
+} */
 .toggle{
     display: none;
 }
@@ -56,7 +93,7 @@ button{
     background-color: #fb345227;
     padding: 15px;
     border-radius: 5px;
-    width: 80%;
+    width: 200px;
 }
 .toggle_btn{
     display: flex;
@@ -85,6 +122,7 @@ button{
 /* User sidebar classes starts  */
 .user-sidebar{
     display: none;
+    height: 90vh;
 }
 /* Media Queries starts */
 
@@ -95,6 +133,43 @@ button{
     .user-sidebar{
       display: flex;
     }
+}
+@media (max-width: 992px) {
+    .navbarContainer{
+        display: none;
+    }
+    .sidebarContainer {
+        background-color: white;
+        top: 0;
+        display: flex;
+        font-family: 'Poppins', sans-serif;
+        padding: 30px;
+        width: 230px;
+        flex-grow: 1;
+        flex-direction: column;
+        height: 90vh;
+        justify-content: space-between;
+        position: fixed;
+    }
+    .menuButton{
+        display: flex;
+        /* flex-direction: column; */
+        /* justify-content: center; */
+        /* align-items: space-evenly; */
+        background-color: white;
+        width: 100%;
+        height: 74px;
+        padding: 10px;
+        border: none;
+    }
+    .user-sidebar{
+        display: flex;
+        padding: 0px;
+        width: 32px;
+    }
+    /* .menuButton i{
+        width: 30px;
+    } */
 }
 /* @media(max-width: 754px){
     .navbarContainer{
@@ -152,3 +227,5 @@ button{
         align-self: center;
     }
 } */
+
+  

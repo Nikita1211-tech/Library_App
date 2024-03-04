@@ -21,6 +21,7 @@ export class BooktypedetailComponent {
   constructor(private fb: FormBuilder, private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.typeform = new FormGroup({
       type: new FormControl('', [Validators.required]),
+      image: new FormControl('', Validators.required)
     })
   }
     
@@ -46,13 +47,15 @@ export class BooktypedetailComponent {
     } 
     else{
       const type = this.typeform.value.type
-      // console.log(username);
-      // console.log(email);
-      // console.log(contact);
-      // localStorage.setItem('registeruser', email);
-      // localStorage.setItem('registerusername', username);
-      // localStorage.setItem('number', contact);
-      this.admin.addbooktype(type, (error: any) => {
+      const imageInput = document.getElementById('image') as HTMLInputElement;
+      if (!imageInput || !imageInput.files || !imageInput.files[0]) {
+        console.error('No image selected.');
+        return;
+      }
+      const formData = new FormData();
+      formData.append('type', type);
+      formData.append('image', imageInput.files[0]);
+      this.admin.addbooktype(formData, (error: any) => {
        
       })
 

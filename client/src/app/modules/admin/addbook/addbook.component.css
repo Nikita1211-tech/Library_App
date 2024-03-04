@@ -8,6 +8,15 @@
     box-sizing: border-box;
     font-family: 'Poppins';
 } */
+h4{
+    font-size: 30px;
+    margin: 0px;
+}
+a{
+    text-decoration: none;
+    margin: 0px;
+    text-align: center;
+}
 .bk-shadow{
     box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
     border: 1px solid #EAEAEA;
@@ -17,7 +26,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    height: 90vh;
+    min-height: (90vh, 90%);
 }
 /* Form Classes starts */
 .form{
@@ -38,6 +47,9 @@
     gap: 40px;
     /* justify-content: space-between; */
 }
+.book-price-details-col1, .book-price-details-col2{
+    width: 45%;
+}
 /* .book-price-details div{
     width: 47%;
 } */
@@ -52,6 +64,17 @@
     display: flex;
     margin-top: 4px;
     gap: 20px;
+}
+.type-col1, .type-col2{
+    width: 45%;
+}
+.bookcategory-img{
+    display: flex;
+    width: 250px;
+}
+.bookcategory-img img{
+    width: 250px;
+    height: 200px;
 }
 .img-container{
     display: flex;
@@ -77,7 +100,7 @@ input[type="text"]{
     border: none;
     font-size: 16px;
     background: transparent;
-    border-bottom: solid 1px black;
+    border-bottom: solid 2px black;
     font-family: Poppins;
     color: #fb3453;
     /* border-radius: 10px; */
@@ -89,11 +112,16 @@ input[type="number"]{
     font-size: 16px;
     border: none;
     background: transparent;
-    border-bottom: solid 1px black;
+    border-bottom: solid 2px black;
     font-family: Poppins;
     color: #fb3453;
     /* border-radius: 10px; */
     padding: 15px;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 input[type="file"]::file-selector-button{
   border: none;
@@ -105,6 +133,51 @@ input[type="file"]::file-selector-button{
   font-family: Poppins;
   cursor: pointer;
 }
+.file-input {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    width: 350px;
+    padding: 15px 0px;
+    border-radius: 5px;
+}
+  
+  .file-input input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .custom-file-label {
+    background-color: #fb3453; /* Button color */
+    color: #fff;
+    padding: 15px 15px; 
+    border-radius: 5px; 
+    cursor: pointer;
+  }
+  
+  /* Hover effect */
+  .custom-file-label:hover {
+    background-color: #0056b3; /* Darker button color on hover */
+  }
+  
+  /* Focus effect */
+  .custom-file-label:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Add custom focus outline */
+  }
+  
+  /* Disabled state */
+  .custom-file-label:disabled {
+    opacity: 0.65; /* Reduce opacity for disabled state */
+    cursor: not-allowed; /* Change cursor for disabled state */
+  }
+  
 select{
     width: 100%;
     border: none;
@@ -112,8 +185,8 @@ select{
     font-family: Poppins;
     /* border-radius: 10px; */
     background: transparent;
-    color: #fb3453;
-    border-bottom: solid 1px black;
+    color: black;
+    border-bottom: solid 2px black;
     padding: 15px;
     /* -webkit-appearance: none;
     -moz-appearance: none;
@@ -128,20 +201,16 @@ option{
     font-size: 20px;
     padding: 10px;
 }
-/* option:hover{
-    background: #fb3453;
-    color: red;
-} */
 textarea{
     width: 98%;
     border: none;
     margin-top: 20px;
     font-size: 16px;
     color: #fb3453;
-    /* border-radius: 10px; */
     background: transparent;
-    border: solid 1px black;
+    border: solid 2px black;
     padding: 15px;
+    border-radius: 10px;
 }
 .button{
     display: flex;
@@ -151,6 +220,7 @@ textarea{
 .submit{
     width: 160px;
     color: white;
+    cursor: pointer;
     font-size: 20px;
     padding: 15px;
     border: none;
@@ -159,34 +229,47 @@ textarea{
 }
 ::placeholder{
     font-size: 16px;
-    /* border: solid 1px #fb3453; */
     color: black;
     font-family: Poppins;
     font-size: 18px;
 }
 /* Table classes starts  */
+.table-container{
+    overflow: scroll;
+    overflow-y: hidden;
+}
+.table-container::-webkit-scrollbar {
+  width: 6px;
+  scrollbar-width: thin;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #fb3453;
+  border-radius: 10px;
+}
 .table-section{
     display: flex;
     flex-direction: column;
-    /* gap: 10px; */
+    /* overflow: scroll; */
  }
- /* .table-container{
-     overflow-x: auto;
- } */
  table{
      border-radius: 10px;
      border: solid 1px #EAEAEA;
      border-collapse: separate;
      padding: 10px;
-     border-spacing: 0px 10px;
+     border-spacing: 10px 10px;
      height: 90%;
-     width: 100%;
+     width: 150%;
  }
  tr{
     width: 100%;
  }
  td,th{
-     border-style: none;
+    border-style: none;
      text-align: left;
      vertical-align: center;
  }
@@ -206,8 +289,8 @@ textarea{
  }
  .reader-name{
      display: flex;
-     /* justify-content: center; */
      align-items: center;
+     justify-content: left;
      gap: 20px;
      width: 100%;
      height: 100%;
@@ -220,7 +303,18 @@ textarea{
      object-position:  start;
      border-radius: 50%;
  }
-
+ .edit-btn{
+    border-radius: 5px;
+    padding: 14px 12px;
+    width: 80px;
+    background-color: #fb34523b;
+ }
+ .delete-btn{
+    background-color: #68a9004f;
+    width: 80px;
+    border-radius: 5px;
+    padding: 14px 12px;
+ }
  .bk-shadow{
     box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
     border: 1px solid #EAEAEA;
@@ -275,4 +369,7 @@ textarea{
     background-color: #fb3453;
     color: white;
     cursor: pointer;
+ }
+ .form-rules{
+    color: #fb3453;
  }

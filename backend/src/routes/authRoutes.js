@@ -22,12 +22,8 @@ router.post('/verifyotp', Verifyotp);
 router.post('/resendotp', Resendotp);
 router.post('/resetpassword', Reset);
 router.post('/otp', Otp);
-router.post('/saveuser', saveUserHandler, Saveuser);
-router.post('/addbook',upload.fields([
-    { name: 'bookimg', maxCount: 1 },
-    { name: 'bookcategoryimg', maxCount: 1 },
-    { name: 'booktypeimg', maxCount: 1 }
-  ]), AddBook)
+router.post('/saveuser', Saveuser);
+router.post('/addbook',upload.single('bookimg'), AddBook)
 router.post('/updatepassword',Passwordvalidation , updatePassword);
 router.get('/logout', Logout);
 // Dashboard routes 
@@ -36,8 +32,8 @@ router.get('/bookdescription/:book_id', Bookdesc);
 router.post('/updatebook/:book_id', Updatebook);
 router.post('/bookcategory', Bookcategory)
 router.post('/booktype', Booktypes)
-router.post('/addbookcategory', Addbookcategory)
-router.post('/addbooktype', Addbooktype)
+router.post('/addbookcategory', upload.single('image'), Addbookcategory)
+router.post('/addbooktype', upload.single('image'), Addbooktype)
 router.get('/showbookcategory', Showbookcategory)
 router.get('/showbooktype', Showbooktype)
 router.delete('/deletebook/:book_id', Deletebook);

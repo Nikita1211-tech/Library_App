@@ -16,41 +16,69 @@ export class EditbookComponent{
   books: Book[] = []
   editBookForm: FormGroup;
   bookImageUrl: string | null = null;
-  bookCategoryImageUrl: string | null = null;
-  bookTypeImageUrl: string | null = null;
-  booktypes = [
-    {name: 'books', abbrev: 'Books'},
-    {name: 'magazine', abbrev: 'Magazine'},
-    {name: 'journals', abbrev: 'Journals'},
-    {name: 'articles', abbrev: 'Articles'},
-    {name: 'newspaper', abbrev: 'Newspaper'},
-    {name: 'artanddesign', abbrev: 'Art and designs'}
-  ];
-  bookcategories = [
-    {name: 'academic', abbrev: 'Academic'},
-    {name: 'art', abbrev: 'Art and Desgin'},
-    {name: 'mythological', abbrev: 'Mythological'},
-    {name: 'motivational', abbrev: 'Motivational'},
-    {name: 'biographies', abbrev: 'Biographies'},
-    {name: 'fiction', abbrev: 'Fiction'}
-  ];
+  // bookCategoryImageUrl: string | null = null;
+  // bookTypeImageUrl: string | null = null;
+  bookcategories: { name: string, abbrev: string}[] = []
+  bookcategoriesimage: {name: string, abbrev: string}[] = []
+  booktypes: { name: string, abbrev: string }[] = []
+  booktypesimage: {name: string, abbrev: string}[] = []
   constructor(private formBuilder: FormBuilder, private admin: AdminService, private route: ActivatedRoute) {
     this.bookId = this.route.snapshot.params['id'];
     this.editBookForm = this.formBuilder.group({
       bookname: ['', Validators.required],
       booksellingprice: ['', Validators.required],
       bookcostprice: ['', Validators.required],
-      bookcategory: ['', Validators.required],
+      bookcategories: ['', Validators.required],
       booktype: ['', Validators.required],
       bookwriter: ['', Validators.required],
       publishyear: ['', Validators.required],
       summary: ['', Validators.required],
-      bookimg: [''],
-      bookcategoryimg: [''],
-      booktypeimg: ['']
+      bookimg: ['', Validators.required],
+      bookcategoryimg: ['', Validators.required],
+      booktypeimg: ['', Validators.required]
     });
+    this.getBookCategory().subscribe((bookcategory) => {
+      var arr = bookcategory
+      var bookcategoryarr = arr.map((item: any) => {
+        // console.log(item)
+        return {name: item.category, abbrev: item.category}
+      }) 
+      this.bookcategories = bookcategoryarr
+      // console.log("New array is", newarr, this.bookcategories)
+      return bookcategoryarr
+    })
+    this.getBookCategory().subscribe((bookcategoryimage) => {
+      var arr = bookcategoryimage
+      var bookcategoryimagearr = arr.map((item: any) => {
+        // console.log(item)
+        return {name: item.image, abbrev: item.image}
+      }) 
+      this.bookcategoriesimage = bookcategoryimagearr
+      // console.log("New array is", bookcategoryimagearr, this.bookcategories)
+      return bookcategoryimagearr
+    })
+    this.getBookType().subscribe((booktype) => {
+      var arr = booktype
+      var booktypearr = arr.map((item: any) => {
+        console.log(item)
+        return {name: item.type, abbrev: item.type}
+      }) 
+      this.booktypes = booktypearr
+      // console.log("New array is", booktypearr, this.bookcategories)
+      return booktypearr
+    })
+    this.getBookType().subscribe((booktype) => {
+      var arr = booktype
+      var booktypeimagearr = arr.map((item: any) => {
+        console.log(item)
+        return {name: item.image, abbrev: item.image}
+      }) 
+      this.booktypesimage = booktypeimagearr
+      // console.log("New array is", booktypearr, this.bookcategories)
+      return booktypeimagearr
+    })
   }
-
+   
   ngOnInit(): void {
     // Fetch the book data by its ID and patch the form with the retrieved data
     this.getBookData();
@@ -60,18 +88,19 @@ export class EditbookComponent{
     this.admin.getBookById(this.bookId).subscribe((books) => {
       this.books = books
       this.bookImageUrl = books.img;
-      this.bookCategoryImageUrl = books.bookcat_img;
-      this.bookTypeImageUrl = books.booktype_img;
+      // this.bookCategoryImageUrl = books.bookcat_img;
+      // this.bookTypeImageUrl = books.booktype_img;
+      console.log(books)
       // Patch the form with the retrieved book data
       this.editBookForm.patchValue({
         bookname: books.bookName,
         booksellingprice: books.sellingprice,
         bookcostprice: books.costprice,
-        bookcategory: books.category,
+        bookcategories: books.category,
         booktype: books.booktypename,
         bookwriter: books.writerName,
         publishyear: books.publishyear,
-        summary: books.summary,
+        summary: books.booksummary,
         bookimg: books.img,
         bookcategoryimg: books.bookcat_img,
         booktypeimg: books.booktype_img
@@ -93,5 +122,10 @@ onEditBook() {
         console.error('Failed to update book:', error)});
         console.log(updatedData);
 }
-
+getBookCategory(){
+  return this.admin.showbookcategory()
+}
+getBookType(){
+  return this.admin.showbooktype() 
+}
 }

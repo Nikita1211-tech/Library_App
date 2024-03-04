@@ -39,6 +39,8 @@
                 <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['required']">Type name is
                     required.</div>
             </div>
+            <label for="image">Upload Image</label>
+            <input type="file" class="form-control" name="image" id="image"  formControlName="image" required>
             <input type="submit">
         </form>
     </div>

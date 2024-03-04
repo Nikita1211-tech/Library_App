@@ -39,6 +39,57 @@
         </div>
     </div>
 </div>
+<!-- <button class="menuButton" (click)="toggleMenu()">
+    <i class="fas fa-bars fa-2x" style="color: #fb3453;height: 45px;"></i>
+</button> -->
+<div class="user-sidebar">
+    <div class="card flex justify-content-center gap-2">
+    <p-sidebar [(visible)]="sidebarVisible" position="left" class="p-sidebar">
+        <div class="sidebarContainer">
+           <div class="menuContainer">
+               <div class="logoContainer">
+                   <img src="./../../../assets/images/logo.png" alt="">
+                   <h4>Book Library</h4>
+               </div>
+               <div>
+                   <a href="/home" class="menu">
+                       <img src="./../../../assets/images/dash_icon.png" alt="">
+                       <p>Dashboard</p>
+                   </a>
+               </div>
+               <div>
+                   <a href="/reader" class="menu">
+                       <img src="./../../../assets/images/reader_icon.png" alt="">
+                       <p>Reader Management</p>
+                   </a>
+               </div>
+               <div>
+                   <a href="/book" class="menu">
+                       <img src="./../../../assets/images/reader_icon.png" alt="">
+                       <p>Book Management</p>
+                   </a>
+               </div>
+               <div>
+                   <a href="/reports" class="menu">
+                       <img src="./../../../assets/images/report_icon.png" alt="">
+                       <p>Reports</p>
+                   </a>
+               </div>
+           </div>
+           <div>
+               <div>
+                   <a href="/settings" class="menu setting">
+                       <img src="./../../../assets/images/settings_icon.png" alt="">
+                       <a>Settings</a>
+                   </a>
+               </div>
+           </div>
+       </div>
+   </p-sidebar>
+   <!-- <button pButton type="button" icon="pi pi-times" class="p-sidebar-close" (click)="sidebarVisible = false"></button> -->
+   <p-button (click)="sidebarVisible = true" icon="pi pi-arrow-left" class="menuButton"><i class="fas fa-bars fa-2x" style="color: #fb3453;height: 45px;"></i></p-button>
+</div>
+</div>
 <!-- <div class="responsivenavbarContainer">
     <div class="menuContainer">
         <div class="logoContainer">

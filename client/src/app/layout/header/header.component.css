@@ -23,7 +23,7 @@ header{
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    box-shadow: 2px 2px 12px  rgba(128, 128, 128, 0.308);
+    /* box-shadow: 2px 2px 12px  rgba(128, 128, 128, 0.308); */
     /* position: fixed; */
 }
 .search_box{
@@ -102,7 +102,7 @@ input{
 button{
     background: transparent;
     border: none;
-}
+} 
 /* Show the dropdown content on hover */
 .dropdown:hover .dropdown-content {
     display: block;
@@ -111,14 +111,14 @@ button{
 }
 /* Media Queries  */
 @media (max-width: 576px) {
-    .admin-header{
+    /* .admin-header{
         display: none;
-    }
-    .user-header{
+    } */
+    /* .user-header{
         display: flex;
         flex-direction: column;
         gap: 20px;
-    }
+    } */
    /* .search_box{
     display: none;
    }
@@ -129,4 +129,9 @@ button{
     border-radius: 5px;
     display: flex;
    } */
+}
+@media (max-width: 992px){
+    .search_box{
+        margin-left: 50px;
+    }
 }

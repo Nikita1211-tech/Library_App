@@ -49,9 +49,18 @@ export class BookcategorydetailComponent {
     } 
     else{
       const category = this.categoryform.value.category
-      this.admin.addbookcategory(category, (error: any) => {
-       
-      })
+      const imageInput = document.getElementById('image') as HTMLInputElement;
+      if (!imageInput || !imageInput.files || !imageInput.files[0]) {
+        console.error('No image selected.');
+        return;
+      }
+      const formData = new FormData();
+      formData.append('category', category);
+      formData.append('image', imageInput.files[0]);
+  
+      this.admin.addbookcategory(formData, (error: any) => {
+        // Handle error if needed
+      });
 
     }
   }
