@@ -1,0 +1,14 @@
+<div class="edittypeform" id="typeform">
+    <form [formGroup]="edittypeform" (ngSubmit)="onEditingType()" class="form-control" id="categoryform"  enctype="multipart/form-data">
+        <label for="category">Enter Category Name</label>
+        <input type="text" class="form-control" name="type" id="type"  formControlName="type" placeholder="Enter Type name" required>
+        <div *ngIf="edittypeform.controls['type'].invalid && (edittypeform.controls['type'].dirty || edittypeform.controls['type'].touched)">
+            <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['required']">Type name is
+                required.</div>
+        </div>
+        <img *ngIf="edittypeform.get('image')?.value" [src]="environment+booktypeimg" alt="type Image" style="max-width: 100px; max-height: 100px;">
+        <label for="image">Upload Image</label>
+        <input type="file" class="form-control" name="image" id="image" (change)="onFileChange($event)" formControlName="image" required>
+        <input type="submit" value="Update">
+    </form>
+</div>

@@ -6,6 +6,8 @@ import { AuthService } from '../../../core/services/auth.service';
 import { RegisterService } from '../../../core/services/register.service';
 import { AdminService } from '../../../core/services/admin.service';
 import { Router } from '@angular/router';
+import { Type } from '../../../data/interfaces/category.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-booktypedetail',
@@ -14,9 +16,11 @@ import { Router } from '@angular/router';
 })
 export class BooktypedetailComponent {
   public environment = environment.IMG_URL
-  books: Book[]=[];
+  books: Book[] = [];
+  types: Type[] = []
   typeform: FormGroup
   showTypeForm: boolean = false;
+  showTable: boolean = false; 
   // public chart: any;
   constructor(private fb: FormBuilder, private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.typeform = new FormGroup({
@@ -30,6 +34,10 @@ export class BooktypedetailComponent {
       this.books = books;
       console.log(books);
     });
+    this.admin.showbooktype().subscribe((types) => {
+      this.types = types;
+      // console.log(books);
+    });
   }
 
   // showcategoryform(): void{
@@ -40,6 +48,11 @@ export class BooktypedetailComponent {
   //   // }
   //   console.log("true")
   // }
+  getImageFileName(): string {
+    const fullPath = this.typeform.get('image')?.value;
+    if (!fullPath) return ''; // Return empty string if no file is selected
+    return fullPath.split('\\').pop() || ''; // Extract file name from full path
+  }
 
   onAddingType(): void{
     if(!this.typeform.valid) {
@@ -69,5 +82,40 @@ export class BooktypedetailComponent {
         this.markFormGroupTouched(control);
       }
     });
-}
+  }
+
+  confirmDelete(id: any): void {
+    Swal.fire({
+      title: 'Are you sure you want to delete this?',
+      icon: 'question',
+      iconColor: '#fb3453',
+      showCancelButton: true,
+      confirmButtonColor: '#68a900',
+      cancelButtonColor: '#fb3453',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.admin.deleteBookType(id).subscribe(
+          (response) => {
+            if(response.message == 'Book Type deleted successfully'){
+              Swal.fire({
+                title: 'Deleted',
+                text: response?.message,
+                icon: 'success',
+                showConfirmButton:false,
+                confirmButtonColor: "#fb3453",
+                timer: 1500
+              }).then((result) => {
+                window.location.reload();
+              });
+            }
+          },
+          error => {
+            console.error('Failed to delete book:', error);
+          }
+        );
+      }
+    });
+  }
 }

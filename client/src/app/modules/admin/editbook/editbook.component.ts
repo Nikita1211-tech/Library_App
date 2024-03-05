@@ -16,6 +16,7 @@ export class EditbookComponent{
   books: Book[] = []
   editBookForm: FormGroup;
   bookImageUrl: string | null = null;
+  selectedFile: File | null = null;
   // bookCategoryImageUrl: string | null = null;
   // bookTypeImageUrl: string | null = null;
   bookcategories: { name: string, abbrev: string}[] = []
@@ -109,8 +110,11 @@ export class EditbookComponent{
     });
   }
 
-onFileSelected(e: any){
-  console.log(e)
+onFileSelected(event: any){
+  if (event.target.files.length > 0) {
+    const file = event.target.files[0];
+    this.selectedFile = file;
+  }
 }
 onEditBook() {
   const updatedData = new FormData();
@@ -118,10 +122,13 @@ onEditBook() {
     const value = this.editBookForm.value[key];
     updatedData.append(key, value);
   });
-
-      this.admin.updateBook(this.bookId, updatedData, (error) => {
-        console.error('Failed to update book:', error)});
-        console.log(updatedData);
+  if (this.selectedFile) {
+    updatedData.append('bookimg', this.selectedFile);
+  }
+  this.admin.updateBook(this.bookId, updatedData, (error) => {
+    console.error('Failed to update book:', error)
+  });
+    console.log(updatedData);
 }
 getBookCategory(){
   return this.admin.showbookcategory()

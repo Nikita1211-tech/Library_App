@@ -59,7 +59,7 @@ addBook(formData: FormData, errorCallback: (error: any) => void): void {
 }
 
 updateBook(id: number, updatedData: FormData, errorCallback: (error: any) => void): void{
-  this.http.post<any>(`${this.API_URL}/updatebook/${id}`, updatedData)
+  this.http.put<any>(`${this.API_URL}/updatebook/${id}`, updatedData)
       .subscribe(
           (response) => {
               // Handle success
@@ -78,6 +78,14 @@ deleteBook(bookId: number): Observable<any> {
 
 getBookById(id: number){
  return this.http.get<any>(`${this.API_URL}/bookdescription/${id}`); 
+}
+
+getBookCategoryById(id: number){
+  return this.http.get<any>(`${this.API_URL}/bookcategorydescription/${id}`); 
+}
+
+getBookTypeById(id: number){
+  return this.http.get<any>(`${this.API_URL}/booktypedescription/${id}`); 
 }
 
 bookcategory(bookcategory: String | null, errorCallback: (error: any) => void){
@@ -146,9 +154,23 @@ addbookcategory(formData: FormData, errorCallback: (error: any) => void): void {
       }
     );
 }
-  showbookcategory(): Observable<any>{
-    return this.http.get<any>(this.API_URL+'/showbookcategory')
-  }
+
+updatebookcategory(formdata: FormData, id: number){
+  this.http.put<any>(`${this.API_URL}/updatebookcategory/${id}`, formdata)
+  .subscribe(response => {
+    console.log('Category updated successfully:', response);
+  }, error => {
+    console.error('Error updating category:', error);
+  });
+}
+
+deleteBookCategory(bookId: number): Observable<any> {
+  return this.http.delete<any>(`${this.API_URL}/deletebookcategory/${bookId}`);
+}
+
+showbookcategory(): Observable<any>{
+  return this.http.get<any>(this.API_URL+'/showbookcategory')
+}
 addbooktype(formData: FormData, errorCallback: (error: any) => void){
   // console.log(category)
    this.http.post(this.API_URL+'/addbooktype', formData)
@@ -177,6 +199,20 @@ addbooktype(formData: FormData, errorCallback: (error: any) => void){
     }
    )
 }
+
+updatebooktype(formdata: FormData, id: number){
+  this.http.put<any>(`${this.API_URL}/updatebooktype/${id}`, formdata)
+  .subscribe(response => {
+    console.log('Category updated successfully:', response);
+  }, error => {
+    console.error('Error updating category:', error);
+  });
+}
+
+deleteBookType(bookId: number): Observable<any> {
+  return this.http.delete<any>(`${this.API_URL}/deletebooktype/${bookId}`);
+}
+
 showbooktype(): Observable<any>{
   return this.http.get<any>(this.API_URL+'/showbooktype')
 }

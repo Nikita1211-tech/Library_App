@@ -4,7 +4,7 @@
             <img src="./../../../assets/images/search_bar.png" alt="">
             <input type="search" placeholder="Search book by type">
         </div>
-        <button (click)="showTypeForm = true">Add New Type</button>
+        <button (click)="showTypeForm = true">Type  <i class="fas fa-plus fa-md" style="color: white; margin-left: 10px;"></i></button>
     </div>
     <div class="bookcontainer" >
         <!-- <div class="bookcontainer-row1">
@@ -12,10 +12,10 @@
             <a href="/bookcategorydetail">View All</a>
         </div> -->
         <div class="bookcontainer-row2">
-            <div class="bookdes" *ngFor="let book of books">
-                <img [src]="environment+book.booktype_img" alt="">
+            <div class="bookdes" *ngFor="let type of types">
+                <img [src]="environment+type.image" alt="">
                 <div class="">
-                    <p class="">{{book.booktypename}}</p>
+                    <p class="">{{type.type}}</p>
                 </div>
             </div>
             <!-- <div class="bookdes" (click)="showcategoryform()"> -->
@@ -30,18 +30,46 @@
             <!-- </div> -->
         </div>
     </div>
+   <div style="display: flex;flex-direction: column; gap: 20px;">
     <div class="typeform" *ngIf="showTypeForm" id="categoryform">
-        <h4>Add New Type</h4>
         <form [formGroup]="typeform" (ngSubmit)="onAddingType()" class="form-control" id="categoryform">
-            <label for="type">Enter Type Name</label>
+            <!-- <label for="type">Enter Type Name</label> -->
             <input type="text" class="form-control" name="type" id="category"  formControlName="type" placeholder="Enter book type name" required>
             <div *ngIf="typeform.controls['type'].invalid && (typeform.controls['type'].dirty || typeform.controls['type'].touched)">
                 <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['required']">Type name is
                     required.</div>
             </div>
-            <label for="image">Upload Image</label>
-            <input type="file" class="form-control" name="image" id="image"  formControlName="image" required>
-            <input type="submit">
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <label for="image" class="custom-file-upload">
+                    <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Upload Image</span>
+                    <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
+                </label>
+                <p *ngIf="typeform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageFileName() }}</p>
+            </div>
+            <!-- <label for="image">Upload Image</label>
+            <input type="file" class="form-control" name="image" id="image"  formControlName="image" required> -->
+            <input type="submit" value="Save" (click)="showTable=true">
         </form>
     </div>
+    <div *ngIf="showTable" class="table-container">
+        <table>
+           <thead>
+               <tr>
+                   <th scope="col">Book Id</th>
+                   <th scope="col">Name</th>
+                   <th scope="col" colspan="3" style="text-align: center;">Actions</th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr *ngFor="let type of types">
+                   <td style="color: #fb3453;">{{type.id}}</td>
+                   <td>{{type.type}}</td>
+                   <td><a href=""><i class="far fa-eye fa-lg" style="color: #fb3453;"></i></a></td>
+                   <td class="edit-btn"><a [href]="'/editbooktype/' + type.id"><i class="far fa-edit fa-lg" style="color: #fb3453;"></i></a></td>
+                   <td class="delete-btn"><a (click)="confirmDelete(type.id)"><i class="fas fa-trash fa-lg" style="color: #68a900;"></i></a></td>
+               </tr>
+           </tbody>
+       </table>
+    </div>
+   </div>
 </div>

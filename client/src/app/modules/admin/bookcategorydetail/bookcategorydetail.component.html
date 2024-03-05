@@ -8,10 +8,10 @@
     </div>
     <div class="bookcontainer" >
         <div class="bookcontainer-row2">
-            <div class="bookdes" *ngFor="let book of books">
-                <img [src]="environment+book.bookcat_img" alt="">
+            <div class="bookdes" *ngFor="let category of categories">
+                <img [src]="environment+category.image" alt="">
                 <div class="">
-                    <p class="">{{book.category}}</p>
+                    <p class="">{{category.category}}</p>
                 </div>
             </div>
             <!-- <div class="bookdes" (click)="showcategoryform()"> -->
@@ -29,26 +29,36 @@
     <div class="category-details">
         <div class="categoryform" *ngIf="showCategoryForm" id="categoryform">
             <form [formGroup]="categoryform" (ngSubmit)="onAddingCategory()" class="form-control" id="categoryform">
-                <label for="category">Enter Category Name</label>
+                <!-- <label for="category">Enter Category Name</label> -->
                 <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
                 <div *ngIf="categoryform.controls['category'].invalid && (categoryform.controls['category'].dirty || categoryform.controls['category'].touched)">
                     <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['required']">Category name is
                         required.</div>
                     <!-- <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['pattern']">Category name must be in alphabets.</div> -->
                 </div>
-                <label for="image">Upload Image</label>
-                <input type="file" class="form-control" name="image" id="image"  formControlName="image" required>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <label for="image" class="custom-file-upload">
+                        <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Upload Image</span>
+                        <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
+                    </label>
+                    <p *ngIf="categoryform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageFileName() }}</p>
+                </div>
+                <div *ngIf="categoryform.get('image')?.invalid && (categoryform.get('image')?.dirty || categoryform.get('image')?.touched)">
+                    <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['required']">Please upload an image.</div>
+                    <!-- <span *ngIf="categoryform.get('image')?.errors?.['invalidImageExtension']">Invalid file type. Please upload an image with extension: jpg, jpeg, png, gif.</span> -->
+                </div>
+                <!-- <label for="image">Upload Image</label>
+                <input type="file" class="form-control" name="image" id="image"  formControlName="image" required> -->
                 <input type="submit" value="Save" (click)="showTable=true">
             </form>
         </div>
-        <!-- <div *ngIf="showTable" class="table-container">
+        <div *ngIf="showTable" class="table-container">
             <table>
                <thead>
                    <tr>
                        <th scope="col">Book Id</th>
                        <th scope="col">Name</th>
                        <th scope="col" colspan="3" style="text-align: center;">Actions</th>
-                       <th scope="col">Book Summary</th>
                    </tr>
                </thead>
                <tbody>
@@ -56,12 +66,11 @@
                        <td style="color: #fb3453;">{{category.id}}</td>
                        <td>{{category.category}}</td>
                        <td><a href=""><i class="far fa-eye fa-lg" style="color: #fb3453;"></i></a></td>
-                       <td class="edit-btn"><a [href]="'/editbook/' + book.id"><i class="far fa-edit fa-lg" style="color: #fb3453;"></i></a></td>
-                       <td class="delete-btn"><a (click)="confirmDelete(book.id)"><i class="fas fa-trash fa-lg" style="color: #68a900;"></i></a></td>
-                       <td>{{book.booksummary}}</td>
+                       <td class="edit-btn"><a [href]="'/editbookcategory/' + category.id"><i class="far fa-edit fa-lg" style="color: #68a900;"></i></a></td>
+                       <td class="delete-btn"><a (click)="confirmDelete(category.id)"><i class="fas fa-trash fa-lg" style="color: #fb3453;"></i></a></td>
                    </tr>
                </tbody>
            </table>
-        </div> -->
+        </div>
     </div>
 </div>

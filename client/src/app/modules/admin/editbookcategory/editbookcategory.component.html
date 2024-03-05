@@ -1,0 +1,14 @@
+<div class="editcategoryform" id="categoryform">
+    <form [formGroup]="editcategoryform" (ngSubmit)="onEditingCategory()" class="form-control" id="categoryform"  enctype="multipart/form-data">
+        <label for="category">Enter Category Name</label>
+        <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
+        <div *ngIf="editcategoryform.controls['category'].invalid && (editcategoryform.controls['category'].dirty || editcategoryform.controls['category'].touched)">
+            <div class="form-validation form-rules" *ngIf="editcategoryform.controls['category'].errors?.['required']">Category name is
+                required.</div>
+        </div>
+        <img *ngIf="editcategoryform.get('image')?.value" [src]="environment+bookcategoryimg" alt="Category Image" style="max-width: 100px; max-height: 100px;">
+        <label for="image">Upload Image</label>
+        <input type="file" class="form-control" name="image" id="image" (change)="onFileChange($event)" formControlName="image" required>
+        <input type="submit" value="Update">
+    </form>
+</div>

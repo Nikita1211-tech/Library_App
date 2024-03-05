@@ -100,7 +100,8 @@ p{
 }
 .book-section-row2{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    gap: 20px;
     overflow-x: auto;
     overflow-y: hidden;
     height: 100%;
@@ -149,16 +150,18 @@ td,th{
 .table-head{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .table-button{
     display: flex;
     gap: 20px;
     align-items: center;
+    margin-bottom: 10px;
 }
 .table-button a {
     background-color: #fb34521e;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 15px 20px;
 }
 .reader-name{
     display: flex;

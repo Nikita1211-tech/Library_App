@@ -157,42 +157,84 @@ const Bookdesc = async(req,res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
-const Updatebook = async(req, res)=>{
-  try {
-    const bookId = req.params.book_id;
-    console.log(bookId)
-    const book = await Book.findByPk(bookId);
-    console.log(req.body)
-    const obj = { 
-      bookName: req.body.bookname, 
-      img: req.body.img, 
-      sellingprice: req.body.booksellingprice, 
-      costprice: req.body.bookcostprice,  
-      bookcat_img : req.body.bookcategoryimg, 
-      writerName: req.body.bookwriter, 
-      booktype_img : req.body.booktypeimg,
-      publishyear: req.body.publishyear,
-      booktypename: req.body.booktype,
-      category: req.body.bookcategories,
-      booksummary: req.body.summary
-    };
-    if (book) {
-      console.log(obj)
-      const updatebook = await book.update(obj);
-      if(updatebook){
-        console.log("Updated")
-      }
-      else{
-        console.log("Not updated")
-      }
-      return res.status(200).json({ message: 'Book updated successfully', book });
-    }
-    else return res.status(404).json({ error: 'Book not found' });
+// const Updatebook = async(req, res)=>{
+//   const bookId = req.params.book_id;
+//   console.log(bookId)
+//   const book = await Book.findByPk(bookId);
+//   console.log(req.body)
+//   try {
+//     const obj = { 
+//       bookName: req.body.bookname, 
+//       img: req.file.path, 
+//       sellingprice: req.body.booksellingprice, 
+//       costprice: req.body.bookcostprice,  
+//       bookcat_img : req.body.bookcategoryimg, 
+//       writerName: req.body.bookwriter, 
+//       booktype_img : req.body.booktypeimg,
+//       publishyear: req.body.publishyear,
+//       booktypename: req.body.booktype,
+//       category: req.body.bookcategories,
+//       booksummary: req.body.summary
+//     };
+//     if (book) {
+//       console.log(obj)
+//       const updatebook = await book.update(obj);
+//       if(updatebook){
+//         console.log("Updated")
+//         return res.status(200).json({ message: 'Book updated successfully', book });
+//       }
+//       else{
+//         console.log("Not updated")
+//       }
+//     }
+//     else return res.status(404).json({ error: 'Book not found' });
 
-} catch (error) {
-    console.error('Failed to update book:', error);
-    return res.status(500).json({ error: 'Failed to update book' });
-}
+// } catch (error) {
+//     console.error('Failed to update book:', error);
+//     return res.status(500).json({ error: 'Failed to update book' });
+// }
+// }
+
+const Updatebook = async(req,res) => {
+  console.log(req.file)
+  const bookid = req.params.book_id;
+  const obj = { 
+    bookName: req.body.bookname, 
+    img: req.file.path, 
+    sellingprice: req.body.booksellingprice, 
+    costprice: req.body.bookcostprice,  
+    bookcat_img : req.body.bookcategoryimg, 
+    writerName: req.body.bookwriter, 
+    booktype_img : req.body.booktypeimg,
+    publishyear: req.body.publishyear,
+    booktypename: req.body.booktype,
+    category: req.body.bookcategories,
+    booksummary: req.body.summary
+  };
+  try {
+    const book = await Book.findByPk(bookid);
+    if (!book) {
+      return res.status(404).json({ error: 'Category not found' });
+    }
+    book.bookName = req.body.bookname, 
+    book.img = req.file.path, 
+    book.sellingprice = req.body.booksellingprice, 
+    book.costprice = req.body.bookcostprice,  
+    book.bookcat_img = req.body.bookcategoryimg, 
+    book.writerName = req.body.bookwriter, 
+    book.booktype_img = req.body.booktypeimg,
+    book.publishyear = req.body.publishyear,
+    book.booktypename = req.body.booktype,
+    book.category = req.body.bookcategories,
+    book.booksummary = req.body.summary
+    console.log(book)
+    
+    await book.save();
+    res.status(200).json({ message: 'Category updated successfully' });
+  } catch (error) {
+    console.error('Error updating category:', error);
+    res.status(500).json({ error: 'Failed to update category' });
+  }
 }
 
 const Deletebook = async (req, res) => {
@@ -231,6 +273,46 @@ const Bookcategory = async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Failed to load books' });
+  }
+}
+
+const Bookcategorydesc = async(req,res) => {
+  const bookId = req.params.book_id;
+  try {
+    const bookcategory = await BookCategory.findOne({
+      where: {
+        id: bookId,
+      },
+    });
+
+    if (bookcategory) {
+      res.json(bookcategory);
+    } else {
+      res.status(404).json({ message: 'Book not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+const Booktypedesc = async(req,res) => {
+  const bookId = req.params.book_id;
+  try {
+    const booktype = await Booktype.findOne({
+      where: {
+        id: bookId,
+      },
+    });
+
+    if (booktype) {
+      res.json(booktype);
+    } else {
+      res.status(404).json({ message: 'Book not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 }
 
@@ -306,6 +388,71 @@ const Showbookcategory = async (req,res) => {
   }
 }
 
+const Updatebookcategory = async(req,res) => {
+  console.log(req.file)
+  const categoryid = req.params.id;
+  const categoryname = req.body.category;
+  const image = req.file.path;
+  try {
+    const category = await BookCategory.findByPk(categoryid);
+    if (!category) {
+      return res.status(404).json({ error: 'Category not found' });
+    }
+    category.category = categoryname;
+    category.image = image;
+
+    await category.save();
+    console.log(category)
+    res.status(200).json({ message: 'Category updated successfully' });
+  } catch (error) {
+    console.error('Error updating category:', error);
+    res.status(500).json({ error: 'Failed to update category' });
+  }
+}
+
+const Updatebooktype = async(req,res) => {
+  console.log(req.file)
+  const typeid = req.params.id;
+  const typename = req.body.type;
+  const image = req.file.path;
+  try {
+    const type = await Booktype.findByPk(typeid);
+    if (!type) {
+      return res.status(404).json({ error: 'Type not found' });
+    }
+    type.type = typename;
+    type.image = image;
+
+    await type.save();
+    console.log(type)
+    res.status(200).json({ message: 'Category updated successfully' });
+  } catch (error) {
+    console.error('Error updating category:', error);
+    res.status(500).json({ error: 'Failed to update category' });
+  }
+}
+
+const Deletebookcategory = async (req, res) => {
+  const bookId = req.params.book_id;
+
+  try {
+    const category = await BookCategory.findByPk(bookId);
+
+    if (!category) {
+      return res.status(404).json({ error: 'Book Category not found' });
+    }
+
+    else {
+      await category.destroy();
+
+      return res.status(200).json({ message: 'Book Category deleted successfully' });
+    }
+  } catch (error) {
+    console.error('Failed to delete book:', error);
+    return res.status(500).json({ error: 'Failed to delete book' });
+  }
+}
+
 // const Addbooktype = async (req, res) => {
 //   const obj = {
 //     type: req.body.type 
@@ -359,4 +506,25 @@ const Showbooktype = async (req,res) => {
   }
 }
 
-module.exports = { AddBook, Detail, Books, upload, Booklist, Bookdesc, Updatebook, Deletebook, Bookcategory, Booktypes, Addbookcategory, Showbookcategory, Addbooktype, Showbooktype } 
+const Deletebooktype = async (req, res) => {
+  const bookId = req.params.book_id;
+
+  try {
+    const type = await Booktype.findByPk(bookId);
+
+    if (!type) {
+      return res.status(404).json({ error: 'Book Type not found' });
+    }
+
+    else {
+      await type.destroy();
+
+      return res.status(200).json({ message: 'Book Type deleted successfully' });
+    }
+  } catch (error) {
+    console.error('Failed to delete book:', error);
+    return res.status(500).json({ error: 'Failed to delete book' });
+  }
+}
+
+module.exports = { AddBook, Detail, Books, upload, Booklist, Bookdesc, Updatebook, Deletebook, Bookcategory, Bookcategorydesc, Updatebookcategory, Deletebookcategory, Booktypes, Booktypedesc, Addbookcategory, Updatebooktype, Showbookcategory, Deletebooktype, Addbooktype, Showbooktype } 

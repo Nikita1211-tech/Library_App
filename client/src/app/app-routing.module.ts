@@ -44,8 +44,16 @@ const routes: Routes = [
         loadChildren: () => import('./modules/admin/bookcategories/bookcategories.module').then(m => m.BookcategoriesModule) 
       },
       { 
+        path: 'editbookcategory/:id', 
+        loadChildren: () => import('./modules/admin/editbookcategory/editbookcategory.module').then(m => m.EditbookcategoryModule) 
+      },
+      { 
         path: 'booktypes', 
         loadChildren: () => import('./modules/admin/booktypes/booktypes.module').then(m => m.BooktypesModule) 
+      },
+      { 
+        path: 'editbooktype/:id', 
+        loadChildren: () => import('./modules/admin/editbooktype/editbooktype.module').then(m => m.EditbooktypeModule) 
       },
       { 
         path: 'bookdescription/:id', 

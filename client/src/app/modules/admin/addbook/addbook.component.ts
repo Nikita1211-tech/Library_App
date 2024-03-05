@@ -171,7 +171,7 @@ getBookType(){
 //     }
 //   );
 // }
-  // Deletes Book Record
+// Deletes Book Record
   confirmDelete(bookId: any): void {
     Swal.fire({
       title: 'Are you sure you want to delete this?',
