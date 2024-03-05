@@ -8,6 +8,8 @@ import { AdminService } from '../../../core/services/admin.service';
 import { Router } from '@angular/router';
 import { Type } from '../../../data/interfaces/category.interface';
 import Swal from 'sweetalert2';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { valueOrDefault } from 'chart.js/dist/helpers/helpers.core';
 
 @Component({
   selector: 'app-booktypedetail',
@@ -24,8 +26,8 @@ export class BooktypedetailComponent {
   // public chart: any;
   constructor(private fb: FormBuilder, private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.typeform = new FormGroup({
-      type: new FormControl('', [Validators.required]),
-      image: new FormControl('', Validators.required)
+      type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]),
+      image: new FormControl('', [Validators.required,  RxwebValidators.extension({extensions:["jpeg","jpg", "png"]}), RxwebValidators.fileSize({maxSize:5000000 })])
     })
   }
     

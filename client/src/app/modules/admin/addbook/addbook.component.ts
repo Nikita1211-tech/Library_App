@@ -80,7 +80,7 @@ export class AddbookComponent {
     // console.log(this.bookId);
     this.addBookForm =  new FormGroup({
     bookname: new FormControl('',[ Validators.required, Validators.minLength(8)]),
-    bookimg: new FormControl('0', [ Validators.required, Validators.minLength(8)]),
+    bookimg: new FormControl('', [ Validators.required, Validators.minLength(8)]),
     booksellingprice: new FormControl('', [ Validators.required]),
     bookcostprice: new FormControl('', Validators.required),
     bookcategoryimg: new FormControl('',Validators.required),
@@ -93,6 +93,13 @@ export class AddbookComponent {
   });
   
  } 
+
+ getImageFileName(): string {
+  const fullPath = this.addBookForm.get('bookimg')?.value;
+  console.log(fullPath)
+  if (!fullPath) return ''; 
+  return fullPath.split('\\').pop() || ''; 
+}
  onFileSelected(event: any, formControlName: string) {
   if (event.target.files && event.target.files.length > 0) {
     const file = event.target.files[0];

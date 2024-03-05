@@ -9,7 +9,14 @@
     <div class="bookcontainer" >
         <div class="bookcontainer-row2">
             <div class="bookdes" *ngFor="let category of categories">
-                <img [src]="environment+category.image" alt="">
+                <div class="show-button">
+                    <img [src]="environment+category.image" alt="">
+                    <div class="show-icon">
+                        <a href="" class="view"><i class="far fa-eye fa-lg" style="color: #fb3453;"></i></a>
+                        <a [href]="'/editbookcategory/' + category.id" class="edit"><i class="far fa-edit fa-lg" style="color: #68a900;"></i></a>
+                        <a (click)="confirmDelete(category.id)" class="delete"><i class="fas fa-trash fa-lg" style="color: #fb3453;"></i></a>
+                    </div>
+                </div>
                 <div class="">
                     <p class="">{{category.category}}</p>
                 </div>
@@ -34,17 +41,20 @@
                 <div *ngIf="categoryform.controls['category'].invalid && (categoryform.controls['category'].dirty || categoryform.controls['category'].touched)">
                     <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['required']">Category name is
                         required.</div>
+                        <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['pattern']">Name must be alphanumeric.</div>
                     <!-- <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['pattern']">Category name must be in alphabets.</div> -->
                 </div>
                 <div style="display: flex; gap: 10px; align-items: center;">
-                    <label for="image" class="custom-file-upload">
-                        <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Upload Image</span>
+                    <label for="image" class="custom-file-upload" style="display: flex; flex-direction: column;text-align: center;">
+                        <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
                         <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
                     </label>
                     <p *ngIf="categoryform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageFileName() }}</p>
                 </div>
                 <div *ngIf="categoryform.get('image')?.invalid && (categoryform.get('image')?.dirty || categoryform.get('image')?.touched)">
                     <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['required']">Please upload an image.</div>
+                    <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['extension']">Invalid image, Accepted image format is .png, .jpg, .jpeg</div>
+                    <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['fileSize']">Image size should be less than 5mb</div>
                     <!-- <span *ngIf="categoryform.get('image')?.errors?.['invalidImageExtension']">Invalid file type. Please upload an image with extension: jpg, jpeg, png, gif.</span> -->
                 </div>
                 <!-- <label for="image">Upload Image</label>

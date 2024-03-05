@@ -12,7 +12,7 @@
             <a href="/bookcategorydetail">View All</a>
         </div> -->
         <div class="bookcontainer-row2">
-            <div class="bookdes" *ngFor="let type of types">
+            <div class="bookdes" *ngFor="let type of types | slice:0:5; let i=index">
                 <img [src]="environment+type.image" alt="">
                 <div class="">
                     <p class="">{{type.type}}</p>
@@ -38,13 +38,20 @@
             <div *ngIf="typeform.controls['type'].invalid && (typeform.controls['type'].dirty || typeform.controls['type'].touched)">
                 <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['required']">Type name is
                     required.</div>
+                    <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['pattern']">Invalid name.</div>
             </div>
             <div style="display: flex; gap: 10px; align-items: center;">
-                <label for="image" class="custom-file-upload">
-                    <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Upload Image</span>
+                <label for="image" class="custom-file-upload" style="display: flex; justify-content: center; align-items: center">
+                    <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
                     <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
                 </label>
                 <p *ngIf="typeform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageFileName() }}</p>
+            </div>
+            <div *ngIf="typeform.get('image')?.invalid && (typeform.get('image')?.dirty || typeform.get('image')?.touched)">
+                <div class="form-validation form-rules" *ngIf="typeform.get('image')?.errors?.['required']">Please upload an image.</div>
+                <div class="form-validation form-rules" *ngIf="typeform.get('image')?.errors?.['extension']">Invalid image, Accepted image format is .png, .jpg, .jpeg</div>
+                <div class="form-validation form-rules" *ngIf="typeform.get('image')?.errors?.['fileSize']">Image size should be less than 5mb</div>
+                <!-- <span *ngIf="categoryform.get('image')?.errors?.['invalidImageExtension']">Invalid file type. Please upload an image with extension: jpg, jpeg, png, gif.</span> -->
             </div>
             <!-- <label for="image">Upload Image</label>
             <input type="file" class="form-control" name="image" id="image"  formControlName="image" required> -->

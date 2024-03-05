@@ -29,7 +29,7 @@ button{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 90%;
+    height: 92%;
     justify-content: space-between;
     /* position: fixed; */
 }
@@ -147,7 +147,7 @@ button{
         width: 230px;
         flex-grow: 1;
         flex-direction: column;
-        height: 90vh;
+        height: 95vh;
         justify-content: space-between;
         position: fixed;
     }

@@ -54,25 +54,23 @@ p{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 202px;
+    width: 100%;
 }
 .bookdes img{
-    border-radius: 5px;
     box-shadow: 2px 2px 6px #EAEAEA;
-    width: 202px;
-    height: 292px;
+    width: 250px;
+    height: 350px;
 }
 .booktype{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 192px;
+    width: 200px;
 }
 .booktype img{
-    border-radius: 10px;
     box-shadow: 2px 2px 6px #EAEAEA;
-    width: 192px;
-    height: 200px;
+    width: 200px;
+    height: 250px;
 }
 /* media queries starts  */
 @media (max-width: 417px) { 
@@ -134,7 +132,7 @@ p{
         width: 100%;
     }
     .bookdes img{
-        width: 230px;
+        width: 200px;
         height: 320px;
     }
     .booktype{
@@ -142,7 +140,7 @@ p{
     }
     .booktype img{
         width: 200px;
-        height: 220px;
+        height: 200px;
     }
     h4{
         font-size: 18px;

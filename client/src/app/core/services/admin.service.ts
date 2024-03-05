@@ -39,35 +39,27 @@ addBook(formData: FormData, errorCallback: (error: any) => void): void {
   this.http.post<any>(this.API_URL+'/addbook', formData)
       .subscribe(
           (response) => {
-              // Handle success
+            console.log(response)
              Swal.fire({
-               title: response?.error.message,
-               text: response?.error.message,
+               title: "Book added successfully",
                icon: 'success',
-               confirmButtonText: 'Okay',
-               confirmButtonColor: "#fb3453",
-               timer: 3000
+               showCancelButton: false,
+               showConfirmButton: false,
+               timer: 1500
              }).then((result) => {
                // window.location.reload();
                // this.router.navigate(['/login']);
              });
           },
           (error) => {
+            console.log(error)
               errorCallback(error);
           }
       );
 }
 
-updateBook(id: number, updatedData: FormData, errorCallback: (error: any) => void): void{
+updateBook(id: number, updatedData: FormData){
   this.http.put<any>(`${this.API_URL}/updatebook/${id}`, updatedData)
-      .subscribe(
-          (response) => {
-              // Handle success
-          },
-          (error) => {
-              errorCallback(error);
-          }
-      );
       // console.log(updatedData)
       // console.log(`${this.API_URL}/updatebook/${id}`);
 }
@@ -158,8 +150,30 @@ addbookcategory(formData: FormData, errorCallback: (error: any) => void): void {
 updatebookcategory(formdata: FormData, id: number){
   this.http.put<any>(`${this.API_URL}/updatebookcategory/${id}`, formdata)
   .subscribe(response => {
-    console.log('Category updated successfully:', response);
+    if(response){
+      Swal.fire({
+        title: 'Category updated successfully',
+        icon: 'success',
+        showCancelButton: false,
+        showConfirmButton:false,
+        timer: 1500
+      }).then((result) => {
+        // window.location.reload();
+        this.router.navigate(['/bookcategorydetail'])
+      });
+    }
+    console.log(response.message)
   }, error => {
+    if(error){
+      console.log(error.message)
+      Swal.fire({
+        title: 'Category already exists',
+        icon: 'error',
+        showCancelButton: false,
+        showConfirmButton:false,
+        timer: 1500
+      })
+    }
     console.error('Error updating category:', error);
   });
 }
@@ -203,8 +217,33 @@ addbooktype(formData: FormData, errorCallback: (error: any) => void){
 updatebooktype(formdata: FormData, id: number){
   this.http.put<any>(`${this.API_URL}/updatebooktype/${id}`, formdata)
   .subscribe(response => {
-    console.log('Category updated successfully:', response);
+    if(response){
+      Swal.fire({
+        title: 'Type updated successfully',
+        icon: 'success',
+        showCancelButton: false,
+        showConfirmButton:false,
+        timer: 1500
+      }).then((result) => {
+        // window.location.reload();
+        this.router.navigate(['/booktypedetail'])
+      });
+
+    }
+    console.log(response.message)
+    // console.log('Type updated successfully:', response);
   }, error => {
+    console.log(error.message)
+    if(error){
+      Swal.fire({
+        title: 'Type already exists',
+        icon: 'error',
+        showCancelButton: false,
+        showConfirmButton:false,
+        timer: 1500
+      })
+
+    }
     console.error('Error updating category:', error);
   });
 }

@@ -9,6 +9,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { RegisterService } from '../../../core/services/register.service';
 import { Category } from '../../../data/interfaces/category.interface';
 import Swal from 'sweetalert2';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 // import { imageExtensionValidator } from './../../../shared/validators/imageextensionvalidator.ts';
 
 @Component({
@@ -27,8 +28,8 @@ export class BookcategorydetailComponent {
   // public chart: any;
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.categoryform = new FormGroup({
-      category: new FormControl('', [Validators.required, Validators.pattern(/[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]/)]),
-      image: new FormControl('', [Validators.required])
+      category: new FormControl('', [Validators.required, Validators.pattern(/^[ A-Za-z0-9./]*$/)]),
+      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:["jpeg","jpg", "png"]}), RxwebValidators.fileSize({maxSize:5000000 })])
     })
   }
   ngOnInit(): void {
@@ -54,7 +55,7 @@ export class BookcategorydetailComponent {
   
   //   const fileName = file.name;
   //   const fileExtension = fileName.split('.').pop()?.toLowerCase();
-  //   const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+  //   const allowedExtensions = ['jpg', 'jpeg', 'gif'];
   
   //   if (!fileExtension || allowedExtensions.indexOf(fileExtension) === -1) {
   //     return { invalidImageExtension: true };
@@ -73,8 +74,8 @@ export class BookcategorydetailComponent {
   
   getImageFileName(): string {
     const fullPath = this.categoryform.get('image')?.value;
-    if (!fullPath) return ''; // Return empty string if no file is selected
-    return fullPath.split('\\').pop() || ''; // Extract file name from full path
+    if (!fullPath) return ''; 
+    return fullPath.split('\\').pop() || ''; 
   }
   
   onAddingCategory(): void{

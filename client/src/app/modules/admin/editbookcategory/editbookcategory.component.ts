@@ -6,6 +6,7 @@ import { AdminService } from '../../../core/services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../../../data/interfaces/category.interface';
 import { environment } from '../../../../environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editbookcategory',
@@ -38,6 +39,12 @@ export class EditbookcategoryComponent implements OnInit{
       });
     })
   }
+  
+  getImageFileName(): string {
+    const fullPath = this.editcategoryform.get('image')?.value;
+    if (!fullPath) return ''; // Return empty string if no file is selected
+    return fullPath.split('\\').pop() || ''; // Extract file name from full path
+  }
 
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
@@ -45,17 +52,31 @@ export class EditbookcategoryComponent implements OnInit{
       this.selectedFile = file;
     }
   }
+  markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+  
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
   // Form Submission Function
   onEditingCategory(): void{
-    const formData = new FormData();
-    const id =this.bookcategoryid
-    Object.keys(this.editcategoryform.value).forEach(key => {
-      const value = this.editcategoryform.value[key];
-      formData.append(key, value);
-    });
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile);
-    }
-    this.admin.updatebookcategory(formData, id)
+    // if(!this.editcategoryform.valid) {
+    //   this.markFormGroupTouched(this.editcategoryform);
+    // } 
+    // else{
+      const formData = new FormData();
+      const id =this.bookcategoryid
+      Object.keys(this.editcategoryform.value).forEach(key => {
+        const value = this.editcategoryform.value[key];
+        formData.append(key, value);
+      });
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile);
+      }
+      this.admin.updatebookcategory(formData, id)
+    // }
   }
 } 
