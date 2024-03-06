@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AdminService } from '../../../core/services/admin.service';
 import { environment } from '../../../../environments/environment';
+import { Category, Type } from '../../../data/interfaces/category.interface';
 
 @Component({
   selector: 'app-book',
@@ -14,6 +15,8 @@ import { environment } from '../../../../environments/environment';
 export class BookComponent {
   public environment = environment.IMG_URL
   books: Book[]=[];
+  categories : Category[]=[];
+  types: Type[]=[];
   // public chart: any;
   constructor(private router:Router, private http: HttpClient, private admin: AdminService){}
 
@@ -31,6 +34,14 @@ export class BookComponent {
     this.admin.showbook().subscribe((books) => {
       this.books = books;
       console.log(books);
+    });
+    this.admin.showbookcategory().subscribe((categories) => {
+      this.categories = categories;
+      console.log(categories);
+    });
+    this.admin.showbooktype().subscribe((types) => {
+      this.types = types;
+      console.log(types);
     });
   }
   onClickCategory(data: string): void{

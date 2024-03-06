@@ -6,7 +6,11 @@ import { AdminService } from '../../../core/services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../../../data/interfaces/category.interface';
 import { environment } from '../../../../environments/environment';
+<<<<<<< HEAD
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
+=======
+import Swal from 'sweetalert2';
+>>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
 
 @Component({
   selector: 'app-editbookcategory',
@@ -39,6 +43,12 @@ export class EditbookcategoryComponent implements OnInit{
       });
     })
   }
+  
+  getImageFileName(): string {
+    const fullPath = this.editcategoryform.get('image')?.value;
+    if (!fullPath) return ''; // Return empty string if no file is selected
+    return fullPath.split('\\').pop() || ''; // Extract file name from full path
+  }
 
   getImageFileName(): string {
     const fullPath = this.editcategoryform.get('image')?.value;
@@ -52,7 +62,10 @@ export class EditbookcategoryComponent implements OnInit{
       this.selectedFile = file;
     }
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
   markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
       control.markAsTouched();
@@ -60,6 +73,7 @@ export class EditbookcategoryComponent implements OnInit{
       if (control instanceof FormGroup) {
         this.markFormGroupTouched(control);
       }
+<<<<<<< HEAD
     })
   }
   // Form Submission Function
@@ -77,13 +91,31 @@ export class EditbookcategoryComponent implements OnInit{
           value = value.trim();
         }
       
+=======
+    });
+  }
+  // Form Submission Function
+  onEditingCategory(): void{
+    // if(!this.editcategoryform.valid) {
+    //   this.markFormGroupTouched(this.editcategoryform);
+    // } 
+    // else{
+      const formData = new FormData();
+      const id =this.bookcategoryid
+      Object.keys(this.editcategoryform.value).forEach(key => {
+        const value = this.editcategoryform.value[key];
+>>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
         formData.append(key, value);
       });
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);
       }
       this.admin.updatebookcategory(formData, id)
+<<<<<<< HEAD
       }
+=======
+    // }
+>>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
   }
 
   getImageUrl(): string | ArrayBuffer | null {

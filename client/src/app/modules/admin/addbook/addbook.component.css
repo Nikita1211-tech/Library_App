@@ -98,10 +98,9 @@ label{
 input[type="text"]{
     margin-top: 5px;
     width: 94%;
-    border: none;
+    border: solid 2px black;
     font-size: 16px;
     background: transparent;
-    border-bottom: solid 2px black;
     font-family: Poppins;
     color: black;
     /* border-radius: 10px; */
@@ -111,9 +110,8 @@ input[type="number"]{
     margin-top: 5px;
     width: 94%;
     font-size: 16px;
-    border: none;
+    border: solid 2px black;
     background: transparent;
-    border-bottom: solid 2px black;
     font-family: Poppins;
     color: black;
     /* border-radius: 10px; */
@@ -124,7 +122,7 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-input[type="file"]::file-selector-button{
+/* input[type="file"]::file-selector-button{
   border: none;
   width: 160px;
   color: white;
@@ -133,6 +131,30 @@ input[type="file"]::file-selector-button{
   border-radius: 10px;
   font-family: Poppins;
   cursor: pointer;
+} */
+input[type="file"]::file-selector-button{
+    border: none;
+    color: black;
+    background-color: #EAEAEA;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Poppins;
+    font-size: 18px;
+    /* width: 400px; */
+}  
+.custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+    width: 180px;
+    padding: 12px;
+    border: 1px solid #68a900;
+    border-radius: 5px;
+    color: white;
+    background-color: #68a900;;
+}
+.custom-file-upload span{
+    font-size: 18px;
 }
 .file-input {
     position: relative;
@@ -140,7 +162,6 @@ input[type="file"]::file-selector-button{
     display: inline-block;
     cursor: pointer;
     width: 350px;
-    padding: 15px 0px;
     border-radius: 5px;
 }
   
@@ -181,13 +202,12 @@ input[type="file"]::file-selector-button{
   
 select{
     width: 100%;
-    border: none;
+    border: solid 2px black;
     font-size: 16px;
     font-family: Poppins;
     /* border-radius: 10px; */
     background: transparent;
     color: black;
-    border-bottom: solid 2px black;
     padding: 15px;
     /* -webkit-appearance: none;
     -moz-appearance: none;
@@ -203,7 +223,7 @@ option{
     padding: 10px;
 }
 textarea{
-    width: 98%;
+    width: 94%;
     border: none;
     margin-top: 20px;
     font-size: 16px;
@@ -212,7 +232,6 @@ textarea{
     font-family: Poppins;
     border: solid 2px black;
     padding: 15px;
-    border-radius: 10px;
 }
 .button{
     display: flex;

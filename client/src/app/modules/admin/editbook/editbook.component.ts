@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AdminService } from '../../../core/services/admin.service';
 import { Book } from '../../../data/interfaces/book.interface';
 import { environment } from '../../../../environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editbook',
@@ -23,7 +24,7 @@ export class EditbookComponent{
   bookcategoriesimage: {image: string, abbrev: string}[] = []
   booktypes: { name: string, abbrev: string }[] = []
   booktypesimage: {image: string, abbrev: string}[] = []
-  constructor(private formBuilder: FormBuilder, private admin: AdminService, private route: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private router: RouterOutlet, private admin: AdminService, private route: ActivatedRoute) {
     this.bookId = this.route.snapshot.params['id'];
     this.editBookForm = this.formBuilder.group({
       bookname: ['', Validators.required],
@@ -125,10 +126,8 @@ onEditBook() {
   if (this.selectedFile) {
     updatedData.append('bookimg', this.selectedFile);
   }
-  this.admin.updateBook(this.bookId, updatedData, (error) => {
-    console.error('Failed to update book:', error)
-  });
-    console.log(updatedData);
+  this.admin.updateBook(this.bookId, updatedData)
+  console.log(updatedData);
 }
 getBookCategory(){
   return this.admin.showbookcategory()

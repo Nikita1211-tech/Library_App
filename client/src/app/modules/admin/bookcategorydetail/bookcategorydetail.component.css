@@ -47,12 +47,43 @@ a{
 .bookdes{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     width: 250px;
 }
 .bookdes img{
     width: 250px;
-    height: 100%;
+    height: 350px;
+}
+div.show-button{
+    position: relative;
+    display: flex;
+    margin:5px;
+}
+.show-icon{
+    display: flex;
+    padding: 20px;
+}
+div.show-button:hover img{
+    opacity:0.4;
+}
+div.show-button:hover a {
+    display: block;
+}
+div.show-button a {
+    position:absolute;
+    /* display:none; */
+}
+div.show-button a.view {
+    top:0;
+    left:0;
+}
+div.show-button a.edit{
+    top:0;
+    left:49%;
+}
+div.show-button a.delete{
+    top:0;
+    left:98%;
 }
 .image-container {
     position: relative;
@@ -150,19 +181,20 @@ input[type="search"]{
 input[type="file"]::file-selector-button{
     border: none;
     color: black;
+    text-align: center;
     background-color: #EAEAEA;
     padding: 15px;
-    border-radius: 10px;
     cursor: pointer;
     font-family: Poppins;
+    border-radius: 10px;
     font-size: 18px;
     /* width: 400px; */
 }  
 .custom-file-upload {
     display: inline-block;
     cursor: pointer;
-    width: 180px;
-    padding: 15px;
+    width: 130px;
+    padding: 10px;
     border: 1px solid #68a900;
     border-radius: 5px;
     color: white;
@@ -174,6 +206,7 @@ input[type="file"]::file-selector-button{
 ::placeholder{
     font-size: 18px;
     color: black;
+    font-family: Poppins;
 }
 /* .addcategory i{
     width: 50px;

@@ -40,6 +40,12 @@ export class EditbooktypeComponent {
     
     console.log(this.edittypeform.get('image')?.value)
   }
+   
+  getImageFileName(): string {
+    const fullPath = this.edittypeform.get('image')?.value;
+    if (!fullPath) return ''; // Return empty string if no file is selected
+    return fullPath.split('\\').pop() || ''; // Extract file name from full path
+  }
 
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
@@ -48,29 +54,42 @@ export class EditbooktypeComponent {
     }
     console.log(this.selectedFile)
   }
+  markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
   
+<<<<<<< HEAD
   getImageFileName(): string {
     const fullPath = this.edittypeform.get('image')?.value;
     if (!fullPath) return ''; // Return empty string if no file is selected
     return fullPath.split('\\').pop() || ''; // Extract file name from full path
+=======
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+>>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
   }
   // Form Submission Function
   onEditingType(): void{
-    const formData = new FormData();
-    const id =this.booktypeid
-    Object.keys(this.edittypeform.value).forEach(key => {
-      const value = this.edittypeform.value[key];
-      formData.append(key, value);
-    });
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile);
-    }
-    else {
-      const currentImageValue = this.environment + this.booktypeimg;
-      console.log(currentImageValue)
-      if (currentImageValue) {
-          formData.append('image', currentImageValue);
+    // if(!this.edittypeform.valid) {
+    //   this.markFormGroupTouched(this.edittypeform);
+    // } 
+    // else{
+      const formData = new FormData();
+      const id =this.booktypeid
+      Object.keys(this.edittypeform.value).forEach(key => {
+        const value = this.edittypeform.value[key];
+        formData.append(key, value);
+      });
+      if (!this.selectedFile) {
+        const currentImageValue = this.environment + this.booktypeimg;
+        console.log(currentImageValue)
+        if (currentImageValue) {
+            formData.append('image', currentImageValue);
+         }
       }
+<<<<<<< HEAD
   }
     this.admin.updatebooktype(formData, id)
   }
@@ -83,4 +102,12 @@ export class EditbooktypeComponent {
       return this.environment + this.booktypeimg;
     }
   }
+=======
+      else{
+        formData.append('image', this.selectedFile);
+      }
+      this.admin.updatebooktype(formData, id)
+    // }
+    }
+>>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
 }

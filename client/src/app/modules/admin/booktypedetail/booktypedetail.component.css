@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    min-height: (90vh, 90%);
+    min-height: (100vh, 90%);
 }
 h4{
     font-size: 24px;
@@ -42,6 +42,7 @@ a{
 .bookcontainer-row2{
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 .bookdes{
     display: flex;
@@ -139,13 +140,14 @@ input[type="file"]::file-selector-button{
     cursor: pointer;
     font-family: Poppins;
     font-size: 18px;
+    width: 150px;
     /* width: 400px; */
 }  
 .custom-file-upload {
     display: inline-block;
     cursor: pointer;
-    width: 180px;
-    padding: 15px;
+    width: 130px;
+    padding: 10px;
     border: 1px solid #68a900;
     border-radius: 5px;
     color: white;
@@ -191,3 +193,63 @@ button{
 /* .categoryform{
     display: none;
 } */
+/* Table classes starts  */
+.table-container{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height:200px;
+}
+.table-container::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scrollbar track */
+}
+.table-container::-webkit-scrollbar-thumb {
+    background: #fb3453; /* Color of the scrollbar handle */
+    border-radius: 10px;
+}
+.table-container::-webkit-scrollbar-corner {
+    background: transparent; /* Color of the scrollbar corner */
+}
+.table-container::-webkit-scrollbar-button {
+    display: none; /* Hide scrollbar buttons */
+}
+table{
+    border-radius: 10px;
+    border: solid 1px #EAEAEA;
+    border-collapse: separate;
+    padding: 10px;
+    border-spacing: 10px 10px;
+    width: 100%;
+}
+tr{
+   width: 100%;
+}
+th{
+    font-size: 20px;
+    border-style: none;
+    text-align: left;
+    vertical-align: center;
+}
+td{
+    font-size: 18px;
+    border-style: none;
+    text-align: left;
+    vertical-align: center;
+}
+.table-head{
+    display: flex;
+    justify-content: space-between;
+}
+.table-button{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.table-button a {
+    background-color: #fb34521e;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
