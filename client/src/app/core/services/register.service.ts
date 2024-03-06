@@ -94,7 +94,7 @@ export class RegisterService {
             showConfirmButton: false,
             timer: 1500,
           })
-          this.router.navigate(['/']);
+          this.router.navigate(['/usrehome']);
         },
         (error) => {
           errorCallback(error);

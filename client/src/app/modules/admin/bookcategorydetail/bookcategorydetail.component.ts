@@ -28,13 +28,11 @@ export class BookcategorydetailComponent {
   // public chart: any;
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.categoryform = new FormGroup({
-<<<<<<< HEAD
-      category: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/),  Validators.minLength(6), Validators.maxLength(20)]),
-      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg','gif']}), RxwebValidators.fileSize({maxSize:51000000 })])
-=======
-      category: new FormControl('', [Validators.required, Validators.pattern(/^[ A-Za-z0-9./]*$/)]),
+// <<<<<<< HEAD
+// =======
+      category: new FormControl('', [Validators.required, Validators.pattern(/^[ A-Za-z0-9./]*$/), Validators.minLength(6), Validators.maxLength(20)]),
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:["jpeg","jpg", "png"]}), RxwebValidators.fileSize({maxSize:5000000 })])
->>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
+// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
     })
   }
   ngOnInit(): void {

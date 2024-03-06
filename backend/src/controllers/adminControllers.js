@@ -391,14 +391,8 @@ const Showbookcategory = async (req,res) => {
   }
 }
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 const Showcategoryimage = async (req,res) => {
-=======
-const Updatebookcategory = async(req,res) => {
-  const categoryid = req.params.id;
-  const categoryname = req.body.category;
-  const image = req?.file?.path;
->>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
   try {
     const categoryName = req.params.categoryName;
     
@@ -465,7 +459,7 @@ const Updatebookcategory = async (req, res) => {
     const category = await BookCategory.findByPk(categoryid);
     if (!category) {
       return res.status(404).json({ message: 'Category not found' });
-<<<<<<< HEAD
+// <<<<<<< HEAD
     }
 
     // If User Exist
@@ -476,30 +470,14 @@ const Updatebookcategory = async (req, res) => {
       }
       // Update category name
     }
-    
-    // Update category
-      category.category = categoryname;
-      if (image) {
-        category.image = image;
-      }
-      await category.save();
-      console.log(category);
-      res.status(200).json({ message: 'Category updated successfully'});
-=======
+    category.category = categoryname;
+    if(image){
+      category.image = image;
     }
-    else if(category.category == categoryname){
-      return res.status(404).json({ message: 'Category already exists' });
-    }
-    else{
-      category.category = categoryname;
-      if(image){
-        category.image = image;
-      }
-      await category.save();
-    }
+    await category.save();
     console.log(category)
     res.status(200).json({ message: 'Category updated successfully' });
->>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
+// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
   } catch (error) {
     console.error('Error updating category:', error);
     res.status(500).json({ error: 'Failed to update category' });
@@ -509,32 +487,33 @@ const Updatebookcategory = async (req, res) => {
 
 const Updatebooktype = async(req,res) => {
   // console.log(req?.file)
-  const typeid = req.params.id;
-  const typename = req.body.type;
-  const image = req?.file?.path;
   try {
+    console.log(req?.file);
+    const typeid = req.params.id;
+    const typename = req.body.type;
+    const image = req?.file?.path;
     const type = await Booktype.findByPk(typeid);
-    const typedetail = await Booktype.findAll()
-    console.log(type)
-    console.log(typedetail)
     if (!type) {
-      return res.status(404).json({ error: 'Type not found' });
+      return res.status(404).json({ message: 'Type not found' });
+// <<<<<<< HEAD
     }
-    else {
-      if(typedetail){
-        if(typedetail.type == req.body.type)
-        return res.status(404).json({ message: 'Type already exists' });
+
+    // If User Exist
+    if (typename) {
+      const existingType = await Booktype.findOne({ where: { type: typename } });
+      if (existingType && existingType.id !== typeid) {
+        return res.status(400).json({ message: 'Type name already exists' });
       }
-      else{
-        type.type = typename;
-        if(image){
-          type.image = image;
-        }
-        await type.save();
+      // Update category name
     }
+    type.type = typename;
+    if(image){
+      type.image = image;
     }
+    await type.save();
     console.log(type)
-    res.status(200).json({ message: 'Type updated successfully' });
+    res.status(200).json({ message: 'Type name updated successfully' });
+// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
   } catch (error) {
     console.error('Error updating category:', error);
     res.status(500).json({ error: 'Failed to update category' });

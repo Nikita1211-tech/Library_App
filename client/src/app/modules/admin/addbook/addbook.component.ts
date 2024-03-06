@@ -80,13 +80,11 @@ export class AddbookComponent {
     this.bookId = this.route.snapshot.params['id'];
     // console.log(this.bookId);
     this.addBookForm =  new FormGroup({
-<<<<<<< HEAD
+// <<<<<<< HEAD
     bookname: new FormControl('',[ Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/), Validators.minLength(6), Validators.maxLength(20)]),
     bookimg: new FormControl('0', [ Validators.required, RxwebValidators.extension({extensions: [".png", ".jpg", ".jpeg", ".gif"]}), RxwebValidators.fileSize({maxSize: 5242880})]),
-=======
-    bookname: new FormControl('',[ Validators.required, Validators.minLength(8)]),
-    bookimg: new FormControl('', [ Validators.required, Validators.minLength(8)]),
->>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
+// =======
+// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
     booksellingprice: new FormControl('', [ Validators.required]),
     bookcostprice: new FormControl('', Validators.required),
     bookcategoryimg: new FormControl('',Validators.required),

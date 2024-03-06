@@ -167,10 +167,9 @@ updatebookcategory(formdata: FormData, id: number){
   .subscribe(response => {
     if(response){
       Swal.fire({
-<<<<<<< HEAD
         icon: 'success',
         iconColor: '#fb3453',
-        text: "Book category updated successfully",
+        text: "Category updated successfully",
         showCancelButton: false,
         showConfirmButton: false,
         timer: 1500,
@@ -179,23 +178,12 @@ updatebookcategory(formdata: FormData, id: number){
         this.router.navigate(['/bookcategorydetail']);
       });
     }
-    console.log('Category updated successfully:', response);
-  }, error => {
+  },(error) => {
     if(error){
       Swal.fire({
-        icon: 'error',
         iconColor: '#fb3453',
-        text: error?.error?.message,
-        showCancelButton: false,
-        showConfirmButton: false,
-        timer: 1500,
-      }).then((result) => {
-        // window.location.reload();
-        // this.router.navigate(['/login']);
-      });
-=======
-        title: 'Category updated successfully',
-        icon: 'success',
+        title: 'Category already exists',
+        icon: 'info',
         showCancelButton: false,
         showConfirmButton:false,
         timer: 1500
@@ -204,22 +192,9 @@ updatebookcategory(formdata: FormData, id: number){
         this.router.navigate(['/bookcategorydetail'])
       });
     }
-    console.log(response.message)
-  }, error => {
-    if(error){
-      console.log(error.message)
-      Swal.fire({
-        title: 'Category already exists',
-        icon: 'error',
-        showCancelButton: false,
-        showConfirmButton:false,
-        timer: 1500
-      })
->>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
-    }
-    console.error('Error updating category:', error);
-  });
+  })
 }
+
 
 deleteBookCategory(bookId: number): Observable<any> {
   return this.http.delete<any>(`${this.API_URL}/deletebookcategory/${bookId}`);
@@ -240,6 +215,8 @@ addbooktype(formData: FormData, errorCallback: (error: any) => void){
         showCancelButton: false,
         showConfirmButton: false,
         timer: 1500,
+      }).then((result) => {
+        window.location.reload();
       })
          console.log(response)
     },
@@ -279,7 +256,7 @@ updatebooktype(formdata: FormData, id: number){
     console.log(error.message)
     if(error){
       Swal.fire({
-        title: 'Type already exists',
+        title: 'Type name already exists',
         icon: 'error',
         showCancelButton: false,
         showConfirmButton:false,

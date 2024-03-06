@@ -6,6 +6,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { RegisterService } from '../../../core/services/register.service';
 import { AdminService } from '../../../core/services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-editbooktype',
@@ -23,8 +24,8 @@ export class EditbooktypeComponent {
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private admin: AdminService, private route: ActivatedRoute, private router: Router){
     this.booktypeid = this.route.snapshot.params['id'];
     this.edittypeform = new FormGroup({
-      type: new FormControl('', [Validators.required, Validators.pattern(/[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]/)]),
-      image: new FormControl('',[ Validators.required,])
+      type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0\s]+$/), Validators.minLength(6), Validators.maxLength(20)]),
+      image: new FormControl('', [RxwebValidators.extension({extensions:['png','jpg','jpeg','gif']}), RxwebValidators.fileSize({maxSize: 5242880}) ])
     })
   }
   ngOnInit(): void {
@@ -57,57 +58,36 @@ export class EditbooktypeComponent {
   markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
       control.markAsTouched();
-  
-<<<<<<< HEAD
-  getImageFileName(): string {
-    const fullPath = this.edittypeform.get('image')?.value;
-    if (!fullPath) return ''; // Return empty string if no file is selected
-    return fullPath.split('\\').pop() || ''; // Extract file name from full path
-=======
       if (control instanceof FormGroup) {
         this.markFormGroupTouched(control);
       }
     });
->>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
   }
-  // Form Submission Function
   onEditingType(): void{
-    // if(!this.edittypeform.valid) {
-    //   this.markFormGroupTouched(this.edittypeform);
-    // } 
-    // else{
+    if(!this.edittypeform.valid) {
+      this.markFormGroupTouched(this.edittypeform);
+    } 
+    else{
       const formData = new FormData();
       const id =this.booktypeid
       Object.keys(this.edittypeform.value).forEach(key => {
         const value = this.edittypeform.value[key];
         formData.append(key, value);
       });
-      if (!this.selectedFile) {
-        const currentImageValue = this.environment + this.booktypeimg;
-        console.log(currentImageValue)
-        if (currentImageValue) {
-            formData.append('image', currentImageValue);
-         }
-      }
-<<<<<<< HEAD
-  }
-    this.admin.updatebooktype(formData, id)
-  }
-  getImageUrl(): string | ArrayBuffer | null {
-    if (this.selectedFile) {
-      console.log(this.environment+this.selectedFile.name)
-      return this.environment+'uploads/'+this.selectedFile.name;
-    } else {
-      console.log(this.environment + this.booktypeimg)
-      return this.environment + this.booktypeimg;
-    }
-  }
-=======
-      else{
+      if (this.selectedFile) {
         formData.append('image', this.selectedFile);
       }
       this.admin.updatebooktype(formData, id)
     // }
     }
->>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
+}
+getImageUrl(): string | ArrayBuffer | null {
+  if (this.selectedFile) {
+    console.log(this.environment+this.selectedFile.name)
+    return this.environment+'uploads/'+this.selectedFile.name;
+  } else {
+    console.log(this.environment + this.booktypeimg)
+    return this.environment + this.booktypeimg;
+  }
+}
 }

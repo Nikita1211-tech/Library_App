@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 import { Type } from '../../../data/interfaces/category.interface';
 import Swal from 'sweetalert2';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
 import { valueOrDefault } from 'chart.js/dist/helpers/helpers.core';
->>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
+// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
 
 @Component({
   selector: 'app-booktypedetail',
@@ -29,13 +29,11 @@ export class BooktypedetailComponent {
   // public chart: any;
   constructor(private fb: FormBuilder, private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.typeform = new FormGroup({
-<<<<<<< HEAD
+// <<<<<<< HEAD
       type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/),  Validators.minLength(6), Validators.maxLength(20)]),
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg','gif']}), RxwebValidators.fileSize({maxSize:51000000 })])
-=======
-      type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]),
-      image: new FormControl('', [Validators.required,  RxwebValidators.extension({extensions:["jpeg","jpg", "png"]}), RxwebValidators.fileSize({maxSize:5000000 })])
->>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
+// =======
+// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
     })
   }
     
@@ -102,7 +100,7 @@ export class BooktypedetailComponent {
       showCancelButton: true,
       confirmButtonColor: '#68a900',
       cancelButtonColor: '#fb3453',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Delete',
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.isConfirmed) {
