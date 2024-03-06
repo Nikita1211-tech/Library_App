@@ -24,7 +24,7 @@ export class EditbooktypeComponent {
     this.booktypeid = this.route.snapshot.params['id'];
     this.edittypeform = new FormGroup({
       type: new FormControl('', [Validators.required, Validators.pattern(/[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]/)]),
-      image: new FormControl('', Validators.required)
+      image: new FormControl('',[ Validators.required,])
     })
   }
   ngOnInit(): void {
@@ -49,6 +49,11 @@ export class EditbooktypeComponent {
     console.log(this.selectedFile)
   }
   
+  getImageFileName(): string {
+    const fullPath = this.edittypeform.get('image')?.value;
+    if (!fullPath) return ''; // Return empty string if no file is selected
+    return fullPath.split('\\').pop() || ''; // Extract file name from full path
+  }
   // Form Submission Function
   onEditingType(): void{
     const formData = new FormData();
@@ -68,5 +73,14 @@ export class EditbooktypeComponent {
       }
   }
     this.admin.updatebooktype(formData, id)
+  }
+  getImageUrl(): string | ArrayBuffer | null {
+    if (this.selectedFile) {
+      console.log(this.environment+this.selectedFile.name)
+      return this.environment+'uploads/'+this.selectedFile.name;
+    } else {
+      console.log(this.environment + this.booktypeimg)
+      return this.environment + this.booktypeimg;
+    }
   }
 }

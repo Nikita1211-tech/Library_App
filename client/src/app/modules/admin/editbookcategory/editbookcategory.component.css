@@ -1,3 +1,14 @@
+.bk-shadow{
+    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
+    border: 1px solid #EAEAEA;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: (90vh, 90%);
+}
 .categoryform{
     display: flex;
     flex-direction: column;
@@ -14,8 +25,8 @@ label{
 }
 input[type="text"]{
     padding: 15px;
-    background-color: #EAEAEA;
-    border: none;
+    background-color: transparent;
+    border: solid 2px black;
     width:400px;
     border-radius: 10px;
     font-family: Poppins;
@@ -62,6 +73,19 @@ input[type="file"]::file-selector-button{
     font-size: 18px;
     /* width: 400px; */
 }  
+.custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+    width: 180px;
+    padding: 15px;
+    border: 1px solid #68a900;
+    border-radius: 5px;
+    color: white;
+    background-color: #68a900;;
+}
+.custom-file-upload span{
+    font-size: 18px;
+}
 ::placeholder{
     font-size: 18px;
     color: black;

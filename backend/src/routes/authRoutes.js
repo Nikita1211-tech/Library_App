@@ -2,7 +2,7 @@ const express = require('express');
 const { Login, Auth, Logout, Register, Reset, Otp, updatePassword, Verifyuser, Verifyotp, Saveuser, Resendotp, Saveadmin } = require('../controllers/authControllers');
 const authenticateJWT = require("../middlewares/auth");
 const otpgenerator = require('../services/otpgenerator.service');
-const { Booklist, Bookdesc, AddBook, upload, Updatebook, Deletebook, Bookcategory, Addbookcategory, Showbookcategory, Addbooktype, Showbooktype, Bookcategorylist, Books, Booktypes, Bookcategorydesc, Updatebookcategory, Booktypedesc, Updatebooktype, Deletebookcategory, Deletebooktype } = require('../controllers/adminControllers');
+const { Booklist, Bookdesc, AddBook, upload, Updatebook, Deletebook, Bookcategory, Addbookcategory, Showbookcategory, Addbooktype, Showbooktype, Bookcategorylist, Books, Booktypes, Bookcategorydesc, Updatebookcategory, Booktypedesc, Updatebooktype, Deletebookcategory, Deletebooktype, Showcategoryimage, Showtypeimage } = require('../controllers/adminControllers');
 // const validationMiddleware = require('../middlewares/validations/registervalidation');
 const Registervalidation = require('../middlewares/validations/registervalidation');
 const saveUserHandler = require('../services/registervalidation');
@@ -40,6 +40,8 @@ router.get('/bookcategory', Bookcategory);
 router.get('/bookcategorydescription/:book_id', Bookcategorydesc);
 router.get('/booktypedescription/:book_id', Booktypedesc);
 router.get('/booklist', Booklist);
+router.get('/categoryimage/:categoryName', Showcategoryimage);
+router.get('/typeimage/:typeName', Showtypeimage);
 router.put('/updatebook/:book_id', upload.single('bookimg'), Updatebook);
 router.put('/updatebookcategory/:id', upload.single('image'),Updatebookcategory)
 router.put('/updatebooktype/:id', upload.single('image'),Updatebooktype)

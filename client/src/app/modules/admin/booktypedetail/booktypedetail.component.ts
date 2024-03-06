@@ -8,6 +8,7 @@ import { AdminService } from '../../../core/services/admin.service';
 import { Router } from '@angular/router';
 import { Type } from '../../../data/interfaces/category.interface';
 import Swal from 'sweetalert2';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-booktypedetail',
@@ -24,8 +25,8 @@ export class BooktypedetailComponent {
   // public chart: any;
   constructor(private fb: FormBuilder, private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.typeform = new FormGroup({
-      type: new FormControl('', [Validators.required]),
-      image: new FormControl('', Validators.required)
+      type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/),  Validators.minLength(6), Validators.maxLength(20)]),
+      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg','gif']}), RxwebValidators.fileSize({maxSize:51000000 })])
     })
   }
     
@@ -59,7 +60,7 @@ export class BooktypedetailComponent {
       this.markFormGroupTouched(this.typeform);
     } 
     else{
-      const type = this.typeform.value.type
+      const type = this.typeform.value.type.trim()
       const imageInput = document.getElementById('image') as HTMLInputElement;
       if (!imageInput || !imageInput.files || !imageInput.files[0]) {
         console.error('No image selected.');

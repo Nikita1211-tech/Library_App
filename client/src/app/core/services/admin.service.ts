@@ -88,6 +88,12 @@ getBookTypeById(id: number){
   return this.http.get<any>(`${this.API_URL}/booktypedescription/${id}`); 
 }
 
+getCategoryImage(name: string){
+  return this.http.get<any>(`${this.API_URL}/categoryimage/${name}`)
+}
+getTypeImage(name: string){
+  return this.http.get<any>(`${this.API_URL}/typeimage/${name}`)
+}
 bookcategory(bookcategory: String | null, errorCallback: (error: any) => void){
   this.http.post(this.API_URL+'/bookcategory',  { bookcategory }).subscribe(
     (response) => {
@@ -131,25 +137,34 @@ addbookcategory(formData: FormData, errorCallback: (error: any) => void): void {
   this.http.post(this.API_URL + '/addbookcategory', formData)
     .subscribe(
       (response) => {
-        Swal.fire({
-          icon: 'success',
-          iconColor: '#fb3453',
-          text: "Book category added successfully",
-          showCancelButton: false,
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        if(response){
+
+          Swal.fire({
+            icon: 'success',
+            iconColor: '#fb3453',
+            text: "Book category added successfully",
+            showCancelButton: false,
+            showConfirmButton: false,
+            timer: 1500,
+          }).then((result) => {
+            window.location.reload();
+            // this.router.navigate(['/login']);
+          });
+        }
         console.log(response);
       },
       (error) => {
-        Swal.fire({
-          icon: 'info',
-          iconColor: '#fb3453',
-          text: "Book category already exists",
-          showCancelButton: false,
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        if(error){
+
+          Swal.fire({
+            icon: 'info',
+            iconColor: '#fb3453',
+            text: "Book category already exists",
+            showCancelButton: false,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
         errorCallback(error);
       }
     );
@@ -158,8 +173,34 @@ addbookcategory(formData: FormData, errorCallback: (error: any) => void): void {
 updatebookcategory(formdata: FormData, id: number){
   this.http.put<any>(`${this.API_URL}/updatebookcategory/${id}`, formdata)
   .subscribe(response => {
+    if(response){
+      Swal.fire({
+        icon: 'success',
+        iconColor: '#fb3453',
+        text: "Book category updated successfully",
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 1500,
+      }).then((result) => {
+        // window.location.reload();
+        this.router.navigate(['/bookcategorydetail']);
+      });
+    }
     console.log('Category updated successfully:', response);
   }, error => {
+    if(error){
+      Swal.fire({
+        icon: 'error',
+        iconColor: '#fb3453',
+        text: error?.error?.message,
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 1500,
+      }).then((result) => {
+        // window.location.reload();
+        // this.router.navigate(['/login']);
+      });
+    }
     console.error('Error updating category:', error);
   });
 }

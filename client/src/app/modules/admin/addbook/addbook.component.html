@@ -11,18 +11,33 @@
                             <div *ngIf="addBookForm.controls['bookname'].errors?.['required']; ">
                                 <div class="form-validation form-rules">Required Field.</div>
                             </div>
+                            <div *ngIf="addBookForm.controls['bookname'].errors?.['pattern']; ">
+                                <div class="form-validation form-rules">Name must be aplhanumeric.</div>
+                            </div>
+                            <div *ngIf="addBookForm.controls['bookname'].errors?.['minlength']; ">
+                                <div class="form-validation form-rules">Name must be 6 to 20 characters long.</div>
+                            </div>
+                            <div *ngIf="addBookForm.controls['bookname'].errors?.['maxlength']; ">
+                                <div class="form-validation form-rules">Name must be 6 to 20 characters long</div>
+                            </div>
                         </div>
                 </div>
-                <div class="file-input">
+                <!-- <div class="file-input">
                     <label for="file" class="custom-file-label"><i class="fas fa-upload" style="color: white;"></i> Upload Book Image</label>
                     <input class="form-control file" id="file" (change)="onFileSelected($event, 'bookimg')" formControlName="bookimg" type="file" name="bookimg" accept="image/*"> <span class="file-name">{{ addBookForm.get('bookimg')?.value ? addBookForm.get('bookimg')?.value?.name : '' }}</span>
                     <div *ngIf="addBookForm.controls['bookimg'].invalid && (addBookForm.controls['bookimg'].dirty || addBookForm.controls['bookimg'].touched)">
                         <div *ngIf="addBookForm.controls['bookimg'].errors?.['required']; ">
                             <div class="form-validation form-rules">Required Field.</div>
                         </div>
+                        <div *ngIf="addBookForm.controls['bookimg'].errors?.['extension']; ">
+                            <div class="form-validation form-rules">Invalid image format, Accepted format is .png, .jpg, .jpeg, .gif</div>
+                        </div>
+                        <div *ngIf="addBookForm.controls['bookimg'].errors?.['fileSize']; ">
+                            <div class="form-validation form-rules">Image size should be less than 5mb</div>
+                        </div>
                     </div>
                     
-                </div>
+                </div> -->
                 <div class="book-price-details">
                     <div class="book-price-details-col1">
                         <!-- <label for="booksellingprice">Book Actual Price</label> -->
@@ -54,6 +69,9 @@
                                 <div *ngIf="addBookForm.controls['bookwriter'].errors?.['required']; ">
                                     <div class="form-validation form-rules">Required Field.</div>
                                 </div>
+                                <div *ngIf="addBookForm.controls['bookwriter'].errors?.['pattern']; ">
+                                    <div class="form-validation form-rules">Invalid Name</div>
+                                </div>
                             </div>
                     </div>
                     <div class="book-price-details-col2">
@@ -69,10 +87,26 @@
                 </div>
             </div>
             <div class="form-col2">
+                <div class="file-input">
+                    <label for="file" class="custom-file-label"><i class="fas fa-upload" style="color: white;"></i> Upload Book Image</label>
+                    <input class="form-control file" id="file" (change)="onFileSelected($event, 'bookimg')" formControlName="bookimg" type="file" name="bookimg" accept="image/*"> <span class="file-name">{{ addBookForm.get('bookimg')?.value ? addBookForm.get('bookimg')?.value?.name : '' }}</span>
+                    <div *ngIf="addBookForm.controls['bookimg'].invalid && (addBookForm.controls['bookimg'].dirty || addBookForm.controls['bookimg'].touched)">
+                        <div *ngIf="addBookForm.controls['bookimg'].errors?.['required']; ">
+                            <div class="form-validation form-rules">Required Field.</div>
+                        </div>
+                        <div *ngIf="addBookForm.controls['bookimg'].errors?.['extension']; ">
+                            <div class="form-validation form-rules">Invalid image format, Accepted format is .png, .jpg, .jpeg, .gif</div>
+                        </div>
+                        <div *ngIf="addBookForm.controls['bookimg'].errors?.['fileSize']; ">
+                            <div class="form-validation form-rules">Image size should be less than 5mb</div>
+                        </div>
+                    </div>
+                    
+                </div>
                 <div class="type">
                     <div class="type-col1">
                         <!-- <label for="bookcategory">Select Book Category Name</label> -->
-                        <select name="bookcategory" id="bookcategory" (click)="getBookCategory()" formControlName="bookcategories">
+                        <select name="bookcategory" id="bookcategory" (click)="getBookCategory()" (change)="getBookCategoryImage()" formControlName="bookcategories">
                             <option disabled selected value="">Select Book Category</option>
                             <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{ bookcategory.name }}
                             </option>
@@ -85,7 +119,7 @@
                     </div>
                     <div class="type-col2">
                         <!-- <label for="booktype">Select Book Type Name</label> -->
-                        <select name="booktype" id="booktype" (click)="getBookType()" formControlName="booktype">
+                        <select name="booktype" id="booktype" (click)="getBookType()" (change)="getBookTypeImage()" formControlName="booktype">
                             <option disabled selected value="">Select Type</option>
                             <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">
                                 {{ booktype.abbrev }}
@@ -101,11 +135,11 @@
                 </div>
                 <div class="type">
                     <div class="type-col1">
-                        <!-- <label for="bookcategory">Select Book Category Name</label> -->
-                        <select name="bookcategoryimg" id="bookcategoryimg" (click)="getBookCategory()" formControlName="bookcategoryimg">
+                        <select name="bookcategoryimg" id="bookcategoryimg" formControlName="bookcategoryimg">
                             <option disabled selected value="">Select Category Image</option>
-                            <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.image">{{ bookcategory.image }}
-                            </option>
+                            <!-- <option *ngIf="getBookCategoryImage() | async as categoryImage" [value]="categoryImage">
+                                {{ categoryImage }}
+                            </option> -->
                         </select>
                         <div *ngIf="addBookForm.controls['bookcategoryimg'].invalid && (addBookForm.controls['bookcategoryimg'].dirty || addBookForm.controls['bookcategoryimg'].touched)">
                             <div *ngIf="addBookForm.controls['bookcategoryimg'].errors?.['required']; ">
@@ -113,18 +147,26 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <div class="type-col1">
+                        <select name="bookcategoryimg" id="bookcategoryimg" formControlName="bookcategoryimg">
+                            <option disabled selected value="">Select Category Image</option>
+                            <option *ngFor="let bookcategory of bookcategories" [value]="bookcategory.image">
+                                {{ bookcategory.image }}
+                            </option>
+                        </select>
+                        <div *ngIf="addBookForm.controls['bookcategoryimg'].invalid && (addBookForm.controls['bookcategoryimg'].dirty || addBookForm.controls['bookcategoryimg'].touched)">
+                            <div *ngIf="addBookForm.controls['bookcategoryimg'].errors?.['required']; ">
+                                <div class="form-validation form-rules">Required Field.</div>
+                            </div>
+                        </div>
+                    </div> -->
+                    
                     <div class="type-col2">
-                        <!-- <div *ngIf="selectedTypeImage" class="bookcategory-img">
-                            <img [src]="environment+selectedTypeImage" alt="Selected Type Image">
-                        </div> -->
-                        <!-- <label for="booktypeimg">Select Book Type Image</label> -->
-                        <!-- <input class="form-control" (change)="onFileSelected($event, 'booktypeimg')" formControlName="booktypeimg" type="file" name="booktypeimg"
-                                placeholder="Enter Book Type Image"> -->
-                        <select class='form-select' (click)="getBookType()" name="booktypeimg" id="booktypeimg"
-                            formControlName="booktypeimg" placeholder="Select Book Type Image">booktype
-                            <option disabled selected value="">Select Book Type</option>
-                            <option *ngFor="let booktype of booktypes" [ngValue]="booktype.image">{{
-                                booktype.image }}</option>
+                        <select name="booktypeimg" id="booktypeimg" formControlName="booktypeimg" placeholder="Select Book Type Image">
+                            <option disabled selected value="">Select Book Type Image</option>
+                            <option *ngFor="let booktype of booktypes" [ngValue]="booktype.image">
+                                {{ booktype.image }}
+                            </option>
                         </select>
                         <div *ngIf="addBookForm.controls['booktypeimg'].invalid && (addBookForm.controls['booktypeimg'].dirty || addBookForm.controls['booktypeimg'].touched)">
                             <div *ngIf="addBookForm.controls['booktypeimg'].errors?.['required']; ">
@@ -133,20 +175,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div>
-                    <label for="bookcategory">Book Category Name</label><br>
-                    <select class='form-select' (click)="getBookCategory()" name="bookcategory" id="bookcategory" formControlName="bookcategories">
-                        <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{
-                            bookcategory.abbrev }}</option>
-                    </select>
-                </div> -->
-                <!-- <div>
-                    <label for="booktype">Book Type Name</label>
-                    <select name="booktype" id="booktype" (click)="getBookType()" formControlName="booktype">
-                        <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">{{ booktype.abbrev }}
-                        </option>
-                    </select>
-                </div> -->
+                
             </div>
         </div>
         <div>

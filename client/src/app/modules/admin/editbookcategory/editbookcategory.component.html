@@ -1,14 +1,33 @@
-<div class="editcategoryform" id="categoryform">
+<div class="editcategoryform bk-shadow" id="categoryform">
     <form [formGroup]="editcategoryform" (ngSubmit)="onEditingCategory()" class="form-control" id="categoryform"  enctype="multipart/form-data">
-        <label for="category">Enter Category Name</label>
+        <label for="category">Category Name</label>
         <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
         <div *ngIf="editcategoryform.controls['category'].invalid && (editcategoryform.controls['category'].dirty || editcategoryform.controls['category'].touched)">
             <div class="form-validation form-rules" *ngIf="editcategoryform.controls['category'].errors?.['required']">Category name is
                 required.</div>
+            <div class="form-validation form-rules" *ngIf="editcategoryform.controls['category'].errors?.['pattern']">Name must be alphanumeric.</div>
+            <div class="form-validation form-rules" *ngIf="editcategoryform.controls['category'].errors?.['minlength']">Name must be 6 to 20 characters long</div>
+            <div class="form-validation form-rules" *ngIf="editcategoryform.controls['category'].errors?.['maxlength']">Name must be 6 to 20 characters long</div>
         </div>
-        <img *ngIf="editcategoryform.get('image')?.value" [src]="environment+bookcategoryimg" alt="Category Image" style="max-width: 100px; max-height: 100px;">
-        <label for="image">Upload Image</label>
-        <input type="file" class="form-control" name="image" id="image" (change)="onFileChange($event)" formControlName="image" required>
+        <h5 style="font-size: 22px; margin: 0px;font-weight: 500;">Image</h5>
+        <img *ngIf="selectedFile" [src]="getImageUrl()" alt="Uploaded Image" style="max-width: 100px; max-height: 100px;">
+
+        <!-- Show pre-filled image if no new image is selected -->
+        <img *ngIf="!selectedFile && editcategoryform.get('image')?.value" [src]="getImageUrl()" alt="Category Image" style="max-width: 100px; max-height: 100px;">
+       <div style="display: flex; gap:20px">
+          <label for="image" class="custom-file-upload">
+              <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Upload Image</span>
+              <input type="file" id="image" name="image" (change)="onFileChange($event)"  formControlName="image" style="display: none;" required>
+          </label>
+          <p *ngIf="editcategoryform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageFileName() }}</p>
+       </div>
+       <div *ngIf="editcategoryform.get('image')?.invalid && (editcategoryform.get('image')?.dirty || editcategoryform.get('image')?.touched)">
+          <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['required']">Please upload an image.</div>
+          <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png, .gif.</div>
+          <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['fileSize']">Image size should be less than 5 mb.</div>
+       </div>
+        <!-- <label for="image">Upload Image</label>
+        <input type="file" class="form-control" name="image" id="image" (change)="onFileChange($event)" formControlName="image" required> -->
         <input type="submit" value="Update">
     </form>
 </div>

@@ -6,6 +6,7 @@ import { AdminService } from '../../../core/services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../../../data/interfaces/category.interface';
 import { environment } from '../../../../environments/environment';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-editbookcategory',
@@ -23,8 +24,8 @@ export class EditbookcategoryComponent implements OnInit{
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private admin: AdminService, private route: ActivatedRoute, private router: Router){
     this.bookcategoryid = this.route.snapshot.params['id'];
     this.editcategoryform = new FormGroup({
-      category: new FormControl('', [Validators.required, Validators.pattern(/[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]/)]),
-      image: new FormControl('', Validators.required)
+      category: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/),  Validators.minLength(6), Validators.maxLength(20)]),
+      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg','gif']}), RxwebValidators.fileSize({maxSize: 5242880}) ])
     })
   }
   ngOnInit(): void {
@@ -39,23 +40,60 @@ export class EditbookcategoryComponent implements OnInit{
     })
   }
 
+  getImageFileName(): string {
+    const fullPath = this.editcategoryform.get('image')?.value;
+    if (!fullPath) return ''; // Return empty string if no file is selected
+    return fullPath.split('\\').pop() || ''; // Extract file name from full path
+  }
+
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.selectedFile = file;
     }
   }
+
+  markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+  
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    })
+  }
   // Form Submission Function
   onEditingCategory(): void{
-    const formData = new FormData();
-    const id =this.bookcategoryid
-    Object.keys(this.editcategoryform.value).forEach(key => {
-      const value = this.editcategoryform.value[key];
-      formData.append(key, value);
-    });
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile);
-    }
-    this.admin.updatebookcategory(formData, id)
+    if(!this.editcategoryform.valid) {
+      this.markFormGroupTouched(this.editcategoryform);
+    } 
+    else{
+      const formData = new FormData();
+      const id =this.bookcategoryid
+      Object.keys(this.editcategoryform.value).forEach(key => {
+        let value = this.editcategoryform.value[key];
+        
+        if (typeof value === 'string') {
+          value = value.trim();
+        }
+      
+        formData.append(key, value);
+      });
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile);
+      }
+      this.admin.updatebookcategory(formData, id)
+      }
   }
+
+  getImageUrl(): string | ArrayBuffer | null {
+    if (this.selectedFile) {
+      console.log(this.environment+this.selectedFile.name)
+      return this.environment+'uploads/'+this.selectedFile.name;
+    } else {
+      console.log(this.environment + this.bookcategoryimg)
+      return this.environment + this.bookcategoryimg;
+    }
+  }
+  
 } 

@@ -6,6 +6,7 @@ import { Book } from '../../../data/interfaces/book.interface';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import Swal from "sweetalert2"
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-addbook',
@@ -79,12 +80,12 @@ export class AddbookComponent {
     this.bookId = this.route.snapshot.params['id'];
     // console.log(this.bookId);
     this.addBookForm =  new FormGroup({
-    bookname: new FormControl('',[ Validators.required, Validators.minLength(8)]),
-    bookimg: new FormControl('0', [ Validators.required, Validators.minLength(8)]),
+    bookname: new FormControl('',[ Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/), Validators.minLength(6), Validators.maxLength(20)]),
+    bookimg: new FormControl('0', [ Validators.required, RxwebValidators.extension({extensions: [".png", ".jpg", ".jpeg", ".gif"]}), RxwebValidators.fileSize({maxSize: 5242880})]),
     booksellingprice: new FormControl('', [ Validators.required]),
     bookcostprice: new FormControl('', Validators.required),
     bookcategoryimg: new FormControl('',Validators.required),
-    bookwriter: new FormControl('', Validators.required),
+    bookwriter: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]),
     booktypeimg: new FormControl('', Validators.required),
     publishyear: new FormControl('', Validators.required),
     booktype: new FormControl(this.booktypes, Validators.required),
@@ -112,6 +113,26 @@ onSelectCategory(): void {
 onSelectType(): void {
   const selectedValue = this.addBookForm.get('booktypeimg')?.value;
   this.selectedTypeImage = selectedValue ? selectedValue : null;
+}
+// Auto fetch values 
+getBookCategoryImage(){
+  const selectedCategory = this.addBookForm.controls['bookcategories'].value;
+  const category = this.bookcategories.find(cat => cat.name === selectedCategory);
+  if (category) {
+      return this.admin.getCategoryImage(category.name);
+  }
+  return ('');  
+}
+
+getBookTypeImage() {
+  const selectedType = this.addBookForm.controls['booktype'].value;
+  const type = this.booktypes.find(typ => typ.name === selectedType);
+  if (type) {
+    this.admin.getTypeImage(type.name).subscribe((image: string) => {
+        // console.log(image)
+        this.addBookForm.controls['booktypeimg'].setValue(image); 
+    });
+}
 }
 // onFileSelected(event: any) {
 //   if (event.target.files && event.target.files.length > 0) {

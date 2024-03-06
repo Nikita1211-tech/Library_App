@@ -16,7 +16,7 @@ h4{
 p{
     font-size: 18px;
     font-weight: bold;
-    margin: 0px;
+    margin: 0px 0px 0px 10px;
 }
 a{
     cursor: pointer;
@@ -42,6 +42,7 @@ a{
 .bookcontainer-row2{
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 .bookdes{
     display: flex;
@@ -52,6 +53,41 @@ a{
 .bookdes img{
     width: 250px;
     height: 100%;
+}
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+.button-container {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.button-container a {
+    display: inline-block;
+    margin: 5px; 
+    padding: 5px; 
+}
+.image-container:hover .button-container {
+  opacity: 1;
+}
+.image-container:hover img{ 
+    opacity: 0.2;
+}
+.category-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 120px;
+    transition: width 0.3s; 
+}
+
+.category-text:hover {
+    width: auto; 
 }
 .category-details{
     display: flex;

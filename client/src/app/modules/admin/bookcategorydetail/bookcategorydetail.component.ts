@@ -9,6 +9,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { RegisterService } from '../../../core/services/register.service';
 import { Category } from '../../../data/interfaces/category.interface';
 import Swal from 'sweetalert2';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 // import { imageExtensionValidator } from './../../../shared/validators/imageextensionvalidator.ts';
 
 @Component({
@@ -27,8 +28,8 @@ export class BookcategorydetailComponent {
   // public chart: any;
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.categoryform = new FormGroup({
-      category: new FormControl('', [Validators.required, Validators.pattern(/[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]/)]),
-      image: new FormControl('', [Validators.required])
+      category: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/),  Validators.minLength(6), Validators.maxLength(20)]),
+      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg','gif']}), RxwebValidators.fileSize({maxSize:51000000 })])
     })
   }
   ngOnInit(): void {
@@ -77,12 +78,22 @@ export class BookcategorydetailComponent {
     return fullPath.split('\\').pop() || ''; // Extract file name from full path
   }
   
+  markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+  
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
+
   onAddingCategory(): void{
     if(!this.categoryform.valid) {
       this.markFormGroupTouched(this.categoryform);
     } 
     else{
-      const category = this.categoryform.value.category
+      const category = this.categoryform.value.category.trim()
       const imageInput = document.getElementById('image') as HTMLInputElement;
       if (!imageInput || !imageInput.files || !imageInput.files[0]) {
         console.error('No image selected.');
@@ -98,15 +109,7 @@ export class BookcategorydetailComponent {
 
     }
   }
-  markFormGroupTouched(formGroup: FormGroup) {
-    Object.values(formGroup.controls).forEach(control => {
-      control.markAsTouched();
-  
-      if (control instanceof FormGroup) {
-        this.markFormGroupTouched(control);
-      }
-    });
-  }
+
   confirmDelete(id: any): void {
     Swal.fire({
       title: 'Are you sure you want to delete this?',
@@ -115,7 +118,7 @@ export class BookcategorydetailComponent {
       showCancelButton: true,
       confirmButtonColor: '#68a900',
       cancelButtonColor: '#fb3453',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Delete',
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.isConfirmed) {
