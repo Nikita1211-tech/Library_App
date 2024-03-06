@@ -95,16 +95,11 @@
                 </div>
             </div>
             <div class="form-col2">
-                <!-- <<<<<<< HEAD -->
-                <!-- <div class="file-input">
-                    <label for="file" class="custom-file-label"><i class="fas fa-upload" style="color: white;"></i> Upload Book Image</label>
-                    <input class="form-control file" id="file" (change)="onFileSelected($event, 'bookimg')" formControlName="bookimg" type="file" name="bookimg" accept="image/*"> <span class="file-name">{{ addBookForm.get('bookimg')?.value ? addBookForm.get('bookimg')?.value?.name : '' }}</span> -->
-                <!-- ======= -->
 
                 <div>
                     <div style="display: flex; gap: 10px; align-items: center;">
                         <label for="file" class="custom-file-upload">
-                            <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Upload Image</span>
+                            <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
                             <input type="file" id="file" name="file" (change)="onFileSelected($event, 'bookimg')"
                                 formControlName="bookimg" style="display: none;" required>
                         </label>
@@ -115,7 +110,6 @@
                         formControlName="bookimg" type="file" name="bookimg" accept="image/*"> <span
                         class="file-name">{{ addBookForm.get('bookimg')?.value ? addBookForm.get('bookimg')?.value?.name
                         : '' }}</span>
-                    <!-- >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb -->
                     <div
                         *ngIf="addBookForm.controls['bookimg'].invalid && (addBookForm.controls['bookimg'].dirty || addBookForm.controls['bookimg'].touched)">
                         <div *ngIf="addBookForm.controls['bookimg'].errors?.['required']; ">
