@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -10,6 +10,7 @@ import { RegisterService } from '../../../core/services/register.service';
 import { Category } from '../../../data/interfaces/category.interface';
 import Swal from 'sweetalert2';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { PrimeNGConfig } from 'primeng/api';
 // import { imageExtensionValidator } from './../../../shared/validators/imageextensionvalidator.ts';
 
 @Component({
@@ -17,7 +18,7 @@ import { RxwebValidators } from '@rxweb/reactive-form-validators';
   templateUrl: './bookcategorydetail.component.html',
   styleUrl: './bookcategorydetail.component.css'
 })
-export class BookcategorydetailComponent {
+export class BookcategorydetailComponent implements OnInit{
   // x = document.getElementById("categoryform");
   public environment = environment.IMG_URL
   books: Book[]=[];
@@ -25,17 +26,20 @@ export class BookcategorydetailComponent {
   categoryform: FormGroup
   showCategoryForm: Boolean = false
   showTable: boolean = false; 
+  display: boolean = false;
+
   // public chart: any;
-  constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
+  constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router, private primengconfig: PrimeNGConfig){
     this.categoryform = new FormGroup({
 // <<<<<<< HEAD
 // =======
-      category: new FormControl('', [Validators.required, Validators.pattern(/^[ A-Za-z0-9./]*$/), Validators.minLength(6), Validators.maxLength(20)]),
+      category: new FormControl('', [Validators.required, Validators.pattern(/^[ A-Za-z0-9./]*$/), Validators.minLength(3), Validators.maxLength(40)]),
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:["jpeg","jpg", "png"]}), RxwebValidators.fileSize({maxSize:5000000 })])
 // >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
     })
   }
   ngOnInit(): void {
+
     this.admin.showbook().subscribe((books) => {
       this.books = books;
       // console.log(books);
@@ -44,6 +48,7 @@ export class BookcategorydetailComponent {
       this.categories = categories;
       // console.log(books);
     });
+    this.primengconfig.ripple = true; 
   }
   // imageExtensionValidator(control: AbstractControl): ValidationErrors | null {
   //   if (!control.value) {
@@ -66,6 +71,11 @@ export class BookcategorydetailComponent {
   
   //   return null;
   // }
+  // Edit Form 
+  showDialog() {
+    this.display = true;
+  }
+
   showcategoryform(): void{
     // if (this.x.style.display === "none") {
     //   this.x.style.display = "block";

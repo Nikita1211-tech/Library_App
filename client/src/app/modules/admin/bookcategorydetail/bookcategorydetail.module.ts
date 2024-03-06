@@ -5,6 +5,7 @@ import { BookcategorydetailRoutingModule } from './bookcategorydetail-routing.mo
 import { BookcategorydetailComponent } from './bookcategorydetail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
     CommonModule,
     BookcategorydetailRoutingModule,
     ReactiveFormsModule,
-    RxReactiveFormsModule
+    RxReactiveFormsModule,
+    DialogModule
   ]
 })
 export class BookcategorydetailModule { }
