@@ -8,6 +8,9 @@
     box-sizing: border-box;
     font-family: 'Poppins';
 }
+ngx-ui-loader .spinner {
+    border-color: pink !important; /* Change border color to pink */
+}
 .swal2-popup {
     font-family: 'Poppins';
 }

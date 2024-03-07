@@ -1,7 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../dbconfig");
 
-
 const Book = sequelize.define('Book',{
     id: {
         type: DataTypes.INTEGER,
@@ -41,6 +40,7 @@ const Book = sequelize.define('Book',{
     bookcat_img: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true // Set to true to enforce uniqueness
     },
     category: {
         type: DataTypes.STRING,
@@ -49,12 +49,14 @@ const Book = sequelize.define('Book',{
     booktype_img: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true // Set to true to enforce uniqueness
     },
     booktypename: {
         type: DataTypes.STRING,
         allowNull: false,
     }
-})
+});
+
 Book.sync({ force: false }).then(() => {
     console.log('Book table synced');
 });

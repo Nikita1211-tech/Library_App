@@ -419,7 +419,7 @@ const Showtypeimage = async (req,res) => {
     }
 
     // Return the image URL of the category
-    return res.status(200).json({ image: category.image });
+    return res.status(200).json({ image: type.image });
 } catch (error) {
     return res.status(500).json({ message: error.message });
 }

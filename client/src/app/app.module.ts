@@ -21,18 +21,17 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { UserHeaderComponent } from './layout/user/user-header/user-header.component';
 import { MainLayoutComponent } from './layout/user/main-layout/main-layout.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgxUiLoaderBlurredDirective, NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule, PB_DIRECTION, POSITION, SPINNER } from 'ngx-ui-loader';
 
-const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-  bgsColor: "red",
-  bgsPosition: POSITION.bottomCenter,
-  bgsSize: 40,
-  bgsType: SPINNER.rectangleBounce, 
-  fgsType: SPINNER.chasingDots, 
-  pbDirection: PB_DIRECTION.leftToRight, 
-  pbThickness: 5,
-};
+// const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+//   bgsColor: "red",
+//   bgsPosition: POSITION.bottomCenter,
+//   bgsSize: 40,
+//   bgsType: SPINNER.rectangleBounce, 
+//   fgsType: SPINNER.chasingDots, 
+//   pbDirection: PB_DIRECTION.leftToRight, 
+//   pbThickness: 5,
+// };
 
 @NgModule(
   {
@@ -58,7 +57,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ReactiveFormsModule,
     HttpClientModule,
     RouterOutlet,
-    NgbModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule.forRoot({
       showForeground: true

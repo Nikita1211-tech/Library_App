@@ -125,25 +125,35 @@ onSelectType(): void {
   this.selectedTypeImage = selectedValue ? selectedValue : null;
 }
 // Auto fetch values 
-getBookCategoryImage(){
+getBookCategoryImage() {
   const selectedCategory = this.addBookForm.controls['bookcategories'].value;
   const category = this.bookcategories.find(cat => cat.name === selectedCategory);
   if (category) {
-      return this.admin.getCategoryImage(category.name);
+    this.admin.getCategoryImage(category.name).subscribe((data: any) => {
+      this.selectedCategoryImage = this.getImageNameFromData(data);
+    });
   }
-  return ('');  
 }
 
 getBookTypeImage() {
   const selectedType = this.addBookForm.controls['booktype'].value;
   const type = this.booktypes.find(typ => typ.name === selectedType);
   if (type) {
-    this.admin.getTypeImage(type.name).subscribe((image: string) => {
-        // console.log(image)
-        this.addBookForm.controls['booktypeimg'].setValue(image); 
+    this.admin.getTypeImage(type.name).subscribe((data: any) => {
+      this.selectedTypeImage = this.getImageNameFromData(data);
     });
+  }
 }
+
+getImageNameFromData(data: any): string {
+  if (data && data.image) {
+    const parts = data.image.split('\\'); // Split by backslash
+    return parts[parts.length - 1]; // Get the last part of the split, which represents the image name
+  }
+  return ''; // Return empty string if data or image property is missing
 }
+
+
 // onFileSelected(event: any) {
 //   if (event.target.files && event.target.files.length > 0) {
 //     const file = event.target.files[0];
@@ -155,10 +165,10 @@ getBookTypeImage() {
 // }
 
 onAddBook() {
-  if(!this.addBookForm.valid) {
-    this.markFormGroupTouched(this.addBookForm);
-  } 
-  else{
+  // if(!this.addBookForm.valid) {
+  //   this.markFormGroupTouched(this.addBookForm);
+  // } 
+  // else{
     const formData = new FormData();
     Object.keys(this.addBookForm.value).forEach(key => {
       const value = this.addBookForm.value[key];
@@ -166,7 +176,8 @@ onAddBook() {
     });
     this.admin.addBook(formData, (error) => {
     });
-  }
+    console.log(this.addBookForm.value.bookcategoryimg)
+  // }
 }
 markFormGroupTouched(formGroup: FormGroup) {
   Object.values(formGroup.controls).forEach(control => {
