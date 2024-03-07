@@ -26,16 +26,13 @@ export class BookcategorydetailComponent implements OnInit{
   categoryform: FormGroup
   showCategoryForm: Boolean = false
   showTable: boolean = false; 
-  display: boolean = false;
+  visible: boolean = false;
 
   // public chart: any;
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router, private primengconfig: PrimeNGConfig){
     this.categoryform = new FormGroup({
-// <<<<<<< HEAD
-// =======
       category: new FormControl('', [Validators.required, Validators.pattern(/^[ A-Za-z0-9./]*$/), Validators.minLength(3), Validators.maxLength(40)]),
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:["jpeg","jpg", "png"]}), RxwebValidators.fileSize({maxSize:5000000 })])
-// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
     })
   }
   ngOnInit(): void {
@@ -71,19 +68,11 @@ export class BookcategorydetailComponent implements OnInit{
   
   //   return null;
   // }
-  // Edit Form 
+  // Displays Edit Form 
   showDialog() {
-    this.display = true;
+    this.visible = true;
   }
-
-  showcategoryform(): void{
-    // if (this.x.style.display === "none") {
-    //   this.x.style.display = "block";
-    // } else {
-    //   x.style.display = "none";
-    // }
-    console.log("true")
-  }
+  // Edit Form 
   
   getImageFileName(): string {
     const fullPath = this.categoryform.get('image')?.value;

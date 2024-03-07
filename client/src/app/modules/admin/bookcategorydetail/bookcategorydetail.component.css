@@ -11,7 +11,7 @@
 }
 h4{
     font-size: 26px;
-    margin: 0px;
+    margin: 0px 0px 10px 0px;
 }
 p{
     font-size: 18px;
@@ -54,36 +54,10 @@ a{
     width: 250px;
     height: 350px;
 }
-div.show-button{
-    position: relative;
-    display: flex;
-    margin:5px;
-}
-.show-icon{
-    display: flex;
-    padding: 20px;
-}
-div.show-button:hover img{
-    opacity:0.4;
-}
-div.show-button:hover a {
-    display: block;
-}
-div.show-button a {
-    position:absolute;
-    /* display:none; */
-}
-div.show-button a.view {
-    top:0;
-    left:0;
-}
-div.show-button a.edit{
-    top:0;
-    left:49%;
-}
-div.show-button a.delete{
-    top:0;
-    left:98%;
+:host ::ng-deep .p-dialog{ 
+    background-color: white;
+    padding: 20px; 
+    border-radius: 5px;
 }
 .image-container {
     position: relative;

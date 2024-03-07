@@ -36,7 +36,7 @@ const upload = multer({
 })
 const AddBook = async (req, res) => {
   try {
-    console.log(req.file)
+    // console.log(req.file)
     if (req.file) {
       const obj = {
         bookName: req.body.bookname,
@@ -51,7 +51,8 @@ const AddBook = async (req, res) => {
         booksummary: req.body.summary,
         img: req.file.path 
       };
-
+      console.log(obj)
+      const existingBook = await Book.findOne({where: {  bookName: bookName}});
       const newBook = await Book.create(obj);
       if(newBook){
          return res.status(200).json({ message: 'Book added successfully' })

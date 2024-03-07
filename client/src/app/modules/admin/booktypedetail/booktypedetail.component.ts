@@ -29,11 +29,9 @@ export class BooktypedetailComponent {
   // public chart: any;
   constructor(private fb: FormBuilder, private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.typeform = new FormGroup({
-// <<<<<<< HEAD
       type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/),  Validators.minLength(6), Validators.maxLength(20)]),
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg','gif']}), RxwebValidators.fileSize({maxSize:51000000 })])
-// =======
-// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
+
     })
   }
     

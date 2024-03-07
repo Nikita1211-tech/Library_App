@@ -2,14 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './modules/admin/home/home.component';
 import { LoginComponent } from './modules/auth/login/login.component';
-import { AuthGuard } from './core/guard/auth.guard';
 import { AdminLayoutComponent } from './layout/admin/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layout/auth/user-layout/user-layout.component';
 import { HashLocationStrategy } from '@angular/common';
+import { MainLayoutComponent } from './layout/user/main-layout/main-layout.component';
+import { AuthGuard } from './core/guard/auth.guard';
 import { AdminGuard } from './core/guard/adminauth.guard';
 import { UserAuthGuard } from './core/guard/userauth.guard';
-import { MainLayoutComponent } from './layout/user/main-layout/main-layout.component';
-
 const routes: Routes = [
   // Landingpage route 
   { path: '', redirectTo: '/main', pathMatch: 'full' },
