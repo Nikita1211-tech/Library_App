@@ -23,6 +23,8 @@ export class AddbookComponent {
   booktypes: { name: string, image: string, abbrev: string}[] = []
   selectedCategoryImage: string | null = null;
   selectedTypeImage: string | null = null;
+  selectedCategoryImagePath : string | null = null
+  selectedTypeImagePath : string | null = null
   showTable: boolean = false; 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private admin: AdminService){
     this.bookId = this.route.snapshot.params['id'];
@@ -110,6 +112,7 @@ getBookCategoryImage() {
   if (category) {
     this.admin.getCategoryImage(category.name).subscribe((data: any) => {
       this.selectedCategoryImage = this.getImageNameFromData(data);
+      this.selectedCategoryImagePath = this.getImagePath(data);
     });
   }
 }
@@ -120,6 +123,7 @@ getBookTypeImage() {
   if (type) {
     this.admin.getTypeImage(type.name).subscribe((data: any) => {
       this.selectedTypeImage = this.getImageNameFromData(data);
+      this.selectedTypeImagePath = this.getImagePath(data);
       return this.selectedTypeImage
     });
   }
@@ -132,6 +136,14 @@ getImageNameFromData(data: any): string {
   }
   return ''; 
 }
+
+getImagePath(data: any): string {
+  if (data && data.image) {
+    return data.image; 
+  }
+  return ''; 
+}
+
 markFormGroupTouched(formGroup: FormGroup) {
   Object.values(formGroup.controls).forEach(control => {
     control.markAsTouched();
@@ -155,7 +167,10 @@ onAddBook() {
     // formData.append('bookwriter', writer);
     // formData.append('summary', summary);
     Object.keys(this.addBookForm.value).forEach(key => {
-      const value = this.addBookForm.value[key];
+      let value = this.addBookForm.value[key];
+      if (typeof value === 'string') {
+        value = value.replace(/\s{2,}/g, ' ').trim(); 
+      }
       formData.append(key, value);
     });
     this.admin.addBook(formData, (error) => {

@@ -52,7 +52,19 @@ const AddBook = async (req, res) => {
         img: req.file.path 
       };
       console.log(obj)
-      const existingBook = await Book.findOne({where: {  bookName: bookName}});
+      const existingBook = await Book.findOne({
+        where: {
+          bookName: req.body.bookname,
+          writerName: req.body.bookwriter,
+          publishyear: req.body.publishyear,
+          booktypename: req.body.booktype,
+          category: req.body.bookcategories
+        }
+      });
+
+      if (existingBook) {
+        return res.status(404).json({ error: 'Book already exists' });
+      }
       const newBook = await Book.create(obj);
       if(newBook){
          return res.status(200).json({ message: 'Book added successfully' })

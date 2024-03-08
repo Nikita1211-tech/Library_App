@@ -4,7 +4,7 @@
             <img src="./../../../assets/images/search_bar.png" alt="">
             <input type="search" placeholder="Search book by type">
         </div>
-        <button (click)="showTypeForm = true">Type  <i class="fas fa-plus fa-md" style="color: white; margin-left: 10px;"></i></button>
+        <button (click)="showDialog()" icon="pi pi-external-link" label="Show">Type  <i class="fas fa-plus fa-md" style="color: white; margin-left: 10px;"></i></button>
     </div>
     <div class="bookcontainer" >
         <!-- <div class="bookcontainer-row1">
@@ -37,59 +37,36 @@
             <!-- </div> -->
         </div>
     </div>
-   <div style="display: flex;flex-direction: column; gap: 20px;">
-    <div class="typeform" *ngIf="showTypeForm" id="categoryform">
-        <form [formGroup]="typeform" (ngSubmit)="onAddingType()" class="form-control" id="categoryform">
-            <!-- <label for="type">Enter Type Name</label> -->
-            <input type="text" class="form-control" name="type" id="category"  formControlName="type" placeholder="Enter book type name" required>
-            <div *ngIf="typeform.controls['type'].invalid && (typeform.controls['type'].dirty || typeform.controls['type'].touched)">
-                <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['required']">Name is
-                    required.</div>
-<!-- <<<<<<< HEAD -->
-                <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['pattern']">Name cannot be alphanumeric.</div>
-                <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['minlength']">Name must be 6 to 20 characters long.</div>
-                <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['maxlength']">Name must be 6 to 20 characters long.</div>
-<!-- ======= -->
-                    <!-- <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['pattern']">Invalid name.</div> -->
-<!-- >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb -->
-            </div>
-            <div style="display: flex; gap: 10px; align-items: center;">
-                <label for="image" class="custom-file-upload" style="display: flex; justify-content: center; align-items: center">
-                    <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
-                    <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
-                </label>
-                <p *ngIf="typeform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageFileName() }}</p>
-            </div>
-<!-- <<<<<<< HEAD -->
-            <div *ngIf="typeform.controls['image'].invalid && (typeform.controls['image'].dirty || typeform.controls['image'].touched)">
-                <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['required']">Image is required.</div>
-                <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png, .gif.</div>
-                <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['fileSize']">Image size should be lessthan 5mb.</div>
-            </div>
-            <!-- <label for="image">Upload Image</label>
-            <input type="file" class="form-control" name="image" id="image"  formControlName="image" required> -->
-            <input type="submit" value="Save" (click)="showTable=true">
-        </form>
+    <div class="card flex justify-content-center">
+        <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
+        <p-dialog [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
+                <h4 style="font-size: 26px; margin: 0px 0px 10px 0px">Add Type</h4>
+                <form [formGroup]="typeform" (ngSubmit)="onAddingType()" class="form-control" id="categoryform">
+                    <!-- <label for="type">Enter Type Name</label> -->
+                    <input type="text" class="form-control" name="type" id="category"  formControlName="type" placeholder="Enter book type name" required>
+                    <div *ngIf="typeform.controls['type'].invalid && (typeform.controls['type'].dirty || typeform.controls['type'].touched)">
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['required']">Name is
+                            required.</div>
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['pattern']">Name cannot be alphanumeric.</div>
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['minlength']">Name must be 3 to 20 characters long.</div>
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['maxlength']">Name must be 3 to 20 characters long.</div>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <label for="image" class="custom-file-upload" style="display: flex; justify-content: center; align-items: center">
+                            <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
+                            <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
+                        </label>
+                        <p *ngIf="typeform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageFileName() }}</p>
+                    </div>
+                    <div *ngIf="typeform.controls['image'].invalid && (typeform.controls['image'].dirty || typeform.controls['image'].touched)">
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['required']">Image is required.</div>
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png, .gif.</div>
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['fileSize']">Image size should be lessthan 5mb.</div>
+                    </div>
+                    <!-- <label for="image">Upload Image</label>
+                    <input type="file" class="form-control" name="image" id="image"  formControlName="image" required> -->
+                    <input type="submit" value="Save" >
+                </form>
+        </p-dialog>
     </div>
-    <!-- <div *ngIf="showTable" class="table-container">
-        <table>
-           <thead>
-               <tr>
-                   <th scope="col">Book Id</th>
-                   <th scope="col">Name</th>
-                   <th scope="col" colspan="3" style="text-align: center;">Actions</th>
-               </tr>
-           </thead>
-           <tbody>
-               <tr *ngFor="let type of types">
-                   <td style="color: #fb3453;">{{type.id}}</td>
-                   <td>{{type.type}}</td>
-                   <td><a href=""><i class="far fa-eye fa-lg" style="color: #fb3453;"></i></a></td>
-                   <td class="edit-btn"><a [href]="'/editbooktype/' + type.id"><i class="far fa-edit fa-lg" style="color: #fb3453;"></i></a></td>
-                   <td class="delete-btn"><a (click)="confirmDelete(type.id)"><i class="fas fa-trash fa-lg" style="color: #68a900;"></i></a></td>
-               </tr>
-           </tbody>
-       </table>
-    </div> -->
-   </div>
 </div>

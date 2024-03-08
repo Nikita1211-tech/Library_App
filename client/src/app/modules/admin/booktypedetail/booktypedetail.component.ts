@@ -26,10 +26,11 @@ export class BooktypedetailComponent {
   typeform: FormGroup
   showTypeForm: boolean = false;
   showTable: boolean = false; 
+  visible: boolean = false;
   // public chart: any;
   constructor(private fb: FormBuilder, private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.typeform = new FormGroup({
-      type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/),  Validators.minLength(6), Validators.maxLength(20)]),
+      type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/),  Validators.minLength(3), Validators.maxLength(20)]),
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg','gif']}), RxwebValidators.fileSize({maxSize:51000000 })])
 
     })
@@ -59,7 +60,10 @@ export class BooktypedetailComponent {
     if (!fullPath) return ''; // Return empty string if no file is selected
     return fullPath.split('\\').pop() || ''; // Extract file name from full path
   }
-
+  // Edit form Modal 
+  showDialog() {
+    this.visible = true;
+  }
   onAddingType(): void{
     if(!this.typeform.valid) {
       this.markFormGroupTouched(this.typeform);

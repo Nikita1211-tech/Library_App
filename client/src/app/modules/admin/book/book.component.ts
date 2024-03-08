@@ -44,6 +44,14 @@ export class BookComponent {
       console.log(types);
     });
   }
+  // Dropdown menu 
+  isDropdownOpen: boolean = false;
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+    console.log('Dropdown status:', this.isDropdownOpen);
+  }
+  // Dropdown menu ends 
   onClickCategory(data: string): void{
     const bookcategory = data
     localStorage.setItem('bookcategory', bookcategory);

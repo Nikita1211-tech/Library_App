@@ -40,19 +40,29 @@ addBook(formData: FormData, errorCallback: (error: any) => void): void {
       .subscribe(
           (response) => {
             console.log(response)
-             Swal.fire({
-               title: "Book added successfully",
-               icon: 'success',
-               showCancelButton: false,
-               showConfirmButton: false,
-               timer: 1500
-             }).then((result) => {
-               // window.location.reload();
-               // this.router.navigate(['/login']);
-             });
+              Swal.fire({
+                title: "Book added successfully",
+                icon: 'success',
+                showCancelButton: false,
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                // window.location.reload();
+                // this.router.navigate(['/login']);
+              });
           },
           (error) => {
             console.log(error)
+              Swal.fire({
+                title: "Book already exists",
+                icon: 'info',
+                showCancelButton: false,
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                // window.location.reload();
+                // this.router.navigate(['/login']);
+              });
               errorCallback(error);
           }
       );

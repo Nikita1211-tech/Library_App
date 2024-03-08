@@ -1,8 +1,18 @@
-<!-- <div class="bookpage">
+<div class="bookpage">
     <div class="bookcontainer bk-shadow" >
         <div class="bookcontainer-row1">
             <h4>Books Category</h4>
-            <a href="/bookcategorydetail">View All</a>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <a href="/bookcategorydetail">View All</a>
+                <div class="dropdown" (click)="toggleDropdown()">
+                    <i class="fas fa-ellipsis-v fa-1x" style="color: #fb3453; cursor: pointer;"></i>
+                    <div class="dropdown-content" *ngIf="isDropdownOpen">
+                        <a href="/addbook">Add Book</a>
+                    </div>
+                </div>
+            </div>
+            
+            
         </div>
         <div class="bookcontainer-row2">
             <div class="bookdes" *ngFor="let category of categories | slice:0:5; let i=index">
@@ -27,8 +37,8 @@
             </div>
         </div>
     </div>
-</div> -->
-<div class="bookpage">
+</div>
+<!-- <div class="bookpage">
     <div class="bookcontainer bk-shadow" >
         <div class="bookcontainer-row1">
             <h4>Books Category</h4>
@@ -85,4 +95,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

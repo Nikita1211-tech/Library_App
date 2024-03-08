@@ -37,7 +37,7 @@
     <div class="card flex justify-content-center">
         <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
         <p-dialog [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
-                <h4>Update Category</h4>
+                <h4>Add Category</h4>
                 <form [formGroup]="categoryform" (ngSubmit)="onAddingCategory()" class="form-control" id="categoryform">
                     <!-- <label for="category">Enter Category Name</label> -->
                     <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
