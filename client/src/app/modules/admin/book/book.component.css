@@ -42,33 +42,42 @@ p{
     display: flex;
     justify-content: space-between;
 }
-/* Dropdown classes starts  */
+/* Dropdown button classes starts */
 .dropdown {
     position: relative;
+    display: inline-block;
 }
-
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+button{
+    background: transparent;
+    border: none;
+} 
+.dropdown:hover .dropdown-content {
+    display: block;
+    right: 100%;
+    left: auto;
+}
+/* Dropdown button classes ends */
+/* Modal class starts */
+:host ::ng-deep .p-dialog{ 
+    background-color: white;
+    padding: 20px; 
     border-radius: 5px;
 }
-
-.dropdown-content a {
-    display: block;
-    color: black;
-    padding: 5px 0;
-    text-decoration: none;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-/* Dropdown classes ends  */
+/* Modal class ends */
 .bookcontainer-row2{
     display: flex;
     flex-wrap: wrap;
@@ -93,6 +102,108 @@ p{
     width: 200px;
     height: 250px;
 }
+/* Form classes starts  */
+.categoryform{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0px;
+}
+label{
+    font-size: 22px;
+}
+input[type="text"]{
+    padding: 15px;
+    background-color: transparent;
+    border: solid 1px black;
+    border-radius: 5px;
+    width:400px;
+    font-family: Poppins;
+}
+input[type="submit"]{
+    padding: 15px;
+    border: none;
+    background-color: #fb3453;
+    color: white;
+    border-radius: 10px;
+    width: 150px;
+    cursor: pointer;
+    font-family: Poppins;
+    font-size: 18px;
+}
+input[type="search"]{
+    padding: 10px;
+    background-color: #EAEAEA;
+    border: none;
+    font-family: Poppins;
+    width:400px;
+    border-radius: 10px;
+}
+.addcategory{
+    /* background-image: url(./../../../../assets/images/categoryimg.avif); */
+    background-position: start;
+    border: dashed 2px #fb3453;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+input[type="file"]::file-selector-button{
+    border: none;
+    color: black;
+    text-align: center;
+    background-color: #EAEAEA;
+    padding: 15px;
+    cursor: pointer;
+    font-family: Poppins;
+    border-radius: 10px;
+    font-size: 18px;
+    /* width: 400px; */
+}  
+.custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+    width: 130px;
+    padding: 10px;
+    border: 1px solid #68a900;
+    border-radius: 5px;
+    color: white;
+    background-color: #68a900;;
+}
+.custom-file-upload span{
+    font-size: 18px;
+}
+::placeholder{
+    font-size: 18px;
+    color: black;
+    font-family: Poppins;
+}
+/* .addcategory i{
+    width: 50px;
+} */
+button{
+    border: none;
+    background-color: #fb3453;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 150px;
+    font-family: Poppins;
+}
+.form-rules{
+    color: #FB3453;
+}
+/* Form classes ends  */
 /* Media queries  */
 /* @media(max-width: 1200px){
     .bookcontainer-row2{

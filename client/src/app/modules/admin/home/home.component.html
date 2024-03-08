@@ -33,7 +33,7 @@
       </a>
     </div>
     <div class="book-section-row2">
-      <div class="book-frame" *ngFor="let book of books">
+      <div class="book-frame" *ngFor="let book of books | slice:0:5; let i=index">
         <!-- <div class="image-container">
           <img [src]="environment+category.image" alt="">
           <div class="button-container">
@@ -54,7 +54,6 @@
         <div class="book-detail">
           <h5 class="">{{book.bookName}}</h5>
           <p class="writer-name">{{book.writerName}}</p>
-          <p class="price">${{book.sellingprice}}</p>
         </div>
       </div>
     </div>

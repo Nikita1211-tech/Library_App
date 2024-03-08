@@ -45,7 +45,6 @@ export class BookcategorydetailComponent implements OnInit{
       this.categories = categories;
       // console.log(books);
     });
-    this.primengconfig.ripple = true; 
   }
   // imageExtensionValidator(control: AbstractControl): ValidationErrors | null {
   //   if (!control.value) {
@@ -106,7 +105,6 @@ export class BookcategorydetailComponent implements OnInit{
       formData.append('image', imageInput.files[0]);
   
       this.admin.addbookcategory(formData, (error: any) => {
-        // Handle error if needed
       });
 
     }

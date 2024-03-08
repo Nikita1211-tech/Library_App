@@ -81,12 +81,11 @@ input{
     width: 48px;
     border-radius: 50%;
 }
-/* Dropdown button  */
+/* Dropdown button classes starts */
 .dropdown {
     position: relative;
     display: inline-block;
 }
-
 .dropdown-content {
     display: none;
     position: absolute;
@@ -106,12 +105,12 @@ button{
     background: transparent;
     border: none;
 } 
-/* Show the dropdown content on hover */
 .dropdown:hover .dropdown-content {
     display: block;
     right: 100%;
     left: auto;
 }
+/* Dropdown button classes ends */
 /* Media Queries  */
 @media (max-width: 576px) {
     /* .admin-header{

@@ -7,10 +7,10 @@ const multer = require('multer');
 // const Booktype = require("../model/bookType.model");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // Save files to the 'uploads' directory
+        cb(null, 'uploads/'); 
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname); // Use the original filename
+        cb(null, file.originalname); 
     }
 });
 const filefilter = (req, file, cb) => {
@@ -36,7 +36,7 @@ const upload = multer({
 })
 const AddBook = async (req, res) => {
   try {
-    // console.log(req.file)
+    console.log(req.body)
     if (req.file) {
       const obj = {
         bookName: req.body.bookname,
@@ -46,7 +46,7 @@ const AddBook = async (req, res) => {
         publishyear: req.body.publishyear,
         booktypename: req.body.booktype,
         bookcat_img: req.body.bookcategoryimg,
-        booktype_img: req.body.booktypeimg,
+        booktype_img: req.file.path,
         category: req.body.bookcategories,
         booksummary: req.body.summary,
         img: req.file.path 
@@ -76,36 +76,6 @@ const AddBook = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
-
-// const Addbook = async(req,res)=>{
-//    try {
-//     let obj = { 
-//         bookName: req.body.bookname, 
-//         img: req.body.bookimg, 
-//         sellingprice: req.body.booksellingprice, 
-//         costprice: req.body.bookcostprice,  
-//         bookcat_img : req.body.bookcategoryimg, 
-//         writerName: req.body.bookwriter, 
-//         booktype_img : req.body.booktypeimg,
-//         publishyear: req.body.publishyear,
-//         booktypename: req.body.booktype,
-//         category: req.body.bookcategories,
-//         booksummary: req.body.summary
-//     }
-//     let newbook = await Book.create(obj);
-//     if(newbook){
-//         console.log("Inserted successfully")
-//         res.status(200).json({message: "Inserted"})
-//     }
-//     else{
-//         console.log("Not Inserted")
-//         res.status(400).json({message: "Not Inserted"})
-//     }
-//    } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Internal server error' });
-//    }
-// }
 const Detail = (req,res) => {
     var username = req.body.username;
     var password  = req.body.password;
@@ -130,7 +100,7 @@ const Booklist = async (req, res) => {
         "booktypename",
         "booktype_img",
       ],
-      group: ["category"], // Group by both category and booktypename
+      group: ["category"], 
     });
     res.json(books);
   } catch (error) {

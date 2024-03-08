@@ -7,7 +7,7 @@
                     <div style="display: flex; flex-direction: column; gap: 10px;">
                         <div>
                             <input class="form-control" formControlName="bookname" type="text" name="bookname"
-                            maxlength="20" placeholder="Enter Book name *">
+                            maxlength="40" placeholder="Enter Book name *">
                         </div>
                         
                         <div *ngIf="addBookForm.controls['bookname'].invalid && (addBookForm.controls['bookname'].dirty || addBookForm.controls['bookname'].touched)">
@@ -124,26 +124,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="type-col1">
-                        <select name="booktype" id="booktype" (click)="getBookType()" (change)="getBookTypeImage()"
-                            formControlName="booktype">
-                            <option disabled selected value="">Select Type *</option>
-                            <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">
-                                {{ booktype.abbrev }}
-                            </option>
-                        </select>
-                        <div  style="margin-top: 10px;"
-                            *ngIf="addBookForm.controls['booktype'].invalid && (addBookForm.controls['booktype'].dirty || addBookForm.controls['booktype'].touched)">
-                            <div *ngIf="addBookForm.controls['booktype'].errors?.['required']; ">
-                                <div class="form-validation form-rules">Required Field.</div>
-                            </div>
-                        </div>
+                    <div>
+                        <div style="border: solid 2px black; padding: 15px; width: 292px;">
+                            <h5 *ngIf="selectedCategoryImage; else elseCategoryBlock">{{selectedCategoryImage}}</h5>
+                            <ng-template #elseCategoryBlock>Category Image *</ng-template>
+                         </div>
+                         <div *ngIf="addBookForm.controls['bookcategoryimg'].invalid && (addBookForm.controls['bookcategoryimg'].dirty || addBookForm.controls['bookcategoryimg'].touched)">
+                             <div *ngIf="addBookForm.controls['bookcategoryimg'].errors?.['required']; ">
+                                 <div class="form-validation form-rules">Required Field.</div>
+                             </div>
+                         </div>
                     </div>
                </div>
                 <div class="type">
                     <div class="type-col1">
                         <input type="hidden" formControlName="bookcategoryimg" [ngModel]="selectedCategoryImagePath">
-                        <input type="hidden" formControlName="booktypeimg" [ngModel]="selectedTypeImagePath">
+                        <!-- <input type="hidden" formControlName="booktypeimg" [ngModel]="selectedTypeImagePath"> -->
                     </div>
                     <!-- <div class="type-col2">
                         <div formControlName="booktypeimg">    
@@ -153,27 +149,33 @@
             </div>
              
             <div class="book-category-image">
-                <div style="display: flex; flex-direction: column;">
-                    <div style="border: solid 2px black; padding: 15px;">
-                        <h5 *ngIf="selectedCategoryImage; else elseCategoryBlock">{{selectedCategoryImage}}</h5>
-                        <ng-template #elseCategoryBlock>Category Image *</ng-template>
-                     </div>
-                     <div *ngIf="addBookForm.controls['bookcategoryimg'].invalid && (addBookForm.controls['bookcategoryimg'].dirty || addBookForm.controls['bookcategoryimg'].touched)">
-                         <div *ngIf="addBookForm.controls['bookcategoryimg'].errors?.['required']; ">
-                             <div class="form-validation form-rules">Required Field.</div>
-                         </div>
-                     </div>
+                <div>
+                    <select name="booktype" id="booktype" formControlName="booktype">
+                        <option disabled selected value="">Select Type *</option>
+                        <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">
+                            {{ booktype.name }}
+                        </option>
+                        <!-- <option *ngFor="let state of states" [ngValue]="state">
+                            {{ state.abbrev }}
+                          </option> -->
+                    </select>
+                    <div  style="margin-top: 10px;"
+                        *ngIf="addBookForm.controls['booktype'].invalid && (addBookForm.controls['booktype'].dirty || addBookForm.controls['booktype'].touched)">
+                        <div *ngIf="addBookForm.controls['booktype'].errors?.['required']; ">
+                            <div class="form-validation form-rules">Required Field.</div>
+                        </div>
+                    </div>
                 </div>
-                <div style="display: flex; flex-direction: column;">
-                    <div style="border: solid 2px black; padding: 15px;">
-                        <h5 *ngIf="selectedTypeImage;  else elseTypeBlock">{{selectedTypeImage}}</h5>
-                        <ng-template #elseTypeBlock>Type Image *</ng-template>
-                     </div>
-                     <div *ngIf="addBookForm.controls['booktypeimg'].invalid && (addBookForm.controls['booktypeimg'].dirty || addBookForm.controls['booktypeimg'].touched)">
-                         <div *ngIf="addBookForm.controls['booktypeimg'].errors?.['required']; ">
-                             <div class="form-validation form-rules">Required Field.</div>
-                         </div>
-                     </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <label for="booktypeimg" class="custom-file-upload">
+                        <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
+                        <input type="file" id="booktypeimg" name="booktypeimg" 
+                            formControlName="booktypeimg" style="display: none;" required>
+                    </label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <!-- <i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> -->
+                        <p>{{ addBookForm.get('booktypeimg')?.value ? addBookForm.get('booktypeimg')?.value?.name : '' }}</p>
+                    </div>
                 </div>
             </div>
 
@@ -194,18 +196,19 @@
         <div>
         </div>
         <div class="button">
-            <input type="submit" name="submit" value="Submit" (click)="showTable=true" class="submit">
+            <input type="submit" name="submit" value="Submit" class="submit">
         </div>
     </form>
     <!-- <div class="vertical"></div> -->
     <div class="form-image-container">
-        <div class="image-shadow">
+       <!-- <img src="./../../../../assets/images/avatar.jpg" alt=""> -->
+        <!-- <div class="image-shadow">
             <h6 *ngIf="selectedCategoryImage">Category Image</h6>
             <img *ngIf="selectedCategoryImage" [src]="environment +'uploads/' + selectedCategoryImage" alt="">
         </div>
         <div class="image-shadow">
             <h6 *ngIf="selectedTypeImage">Type Image</h6>
             <img *ngIf="selectedTypeImage" [src]="environment +'uploads/' + selectedTypeImage" alt="">
-        </div>
+        </div> -->
     </div>
 </div>

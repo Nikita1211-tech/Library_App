@@ -20,11 +20,18 @@ export class AddbookComponent {
   books: Book[] = []
   bookcategories: { name: string, image: string, abbrev: string}[] = []
   bookcategoriesimage: { name: string, image: string, abbrev: string}[] = []
-  booktypes: { name: string, image: string, abbrev: string}[] = []
+  booktypes = [
+    {name: 'Novel', abbrev: 'Novel'},
+    {name: 'Newspaper', abbrev: 'Newspaper'},
+    {name: 'Hypothetical', abbrev: 'Hypothetical'},
+    {name: 'Research', abbrev: 'Research'},
+    {name: 'Article', abbrev: 'Article'},
+    {name: 'Magazine', abbrev: 'Magazine'},
+    {name: 'Page 3', abbrev: 'Page 3'}
+  ];
   selectedCategoryImage: string | null = null;
   selectedTypeImage: string | null = null;
   selectedCategoryImagePath : string | null = null
-  selectedTypeImagePath : string | null = null
   showTable: boolean = false; 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private admin: AdminService){
     this.bookId = this.route.snapshot.params['id'];
@@ -53,15 +60,15 @@ export class AddbookComponent {
       this.bookcategoriesimage = bookcategoryimagearr
       return bookcategoryimagearr
     })
-    this.getBookType().subscribe((booktype) => {
-      var arr = booktype
-      var booktypearr = arr.map((item: any) => {
-        console.log(item)
-        return {name: item.type, image:item.image, abbrev: item.type}
-      }) 
-      this.booktypes = booktypearr
-      return booktypearr
-    })
+    // this.getBookType().subscribe((booktype) => {
+    //   var arr = booktype
+    //   var booktypearr = arr.map((item: any) => {
+    //     console.log(item)
+    //     return {name: item.type, image:item.image, abbrev: item.type}
+    //   }) 
+    //   this.booktypes = booktypearr
+    //   return booktypearr
+    // })
     this.bookId = this.route.snapshot.params['id'];
     this.addBookForm =  new FormGroup({
     bookname: new FormControl('',[ Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/), Validators.minLength(3), Validators.maxLength(40)]),
@@ -72,19 +79,19 @@ export class AddbookComponent {
     bookwriter: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/), Validators.minLength(3), Validators.maxLength(40)]),
     booktypeimg: new FormControl('', Validators.required),
     publishyear: new FormControl('', Validators.required),
-    booktype: new FormControl(this.booktypes, Validators.required),
+    booktype: new FormControl(this.booktypes[3], Validators.required),
     bookcategories: new FormControl(this.bookcategories, Validators.required),
     summary: new FormControl('', [Validators.required, Validators.maxLength(256)])
   });
   
  } 
 
- getImageFileName(): string {
-  const fullPath = this.addBookForm.get('bookimg')?.value;
-  console.log(fullPath)
-  if (!fullPath) return ''; 
-  return fullPath.split('\\').pop() || ''; 
-}
+//  getImageFileName(): string {
+//   const fullPath = this.addBookForm.get('bookimg')?.value;
+//   console.log(fullPath)
+//   if (!fullPath) return ''; 
+//   return fullPath.split('\\').pop() || ''; 
+// }
  onFileSelected(event: any, formControlName: string) {
   if (event.target.files && event.target.files.length > 0) {
     const file = event.target.files[0];
@@ -113,18 +120,6 @@ getBookCategoryImage() {
     this.admin.getCategoryImage(category.name).subscribe((data: any) => {
       this.selectedCategoryImage = this.getImageNameFromData(data);
       this.selectedCategoryImagePath = this.getImagePath(data);
-    });
-  }
-}
-
-getBookTypeImage() {
-  const selectedType = this.addBookForm.controls['booktype'].value;
-  const type = this.booktypes.find(typ => typ.name === selectedType);
-  if (type) {
-    this.admin.getTypeImage(type.name).subscribe((data: any) => {
-      this.selectedTypeImage = this.getImageNameFromData(data);
-      this.selectedTypeImagePath = this.getImagePath(data);
-      return this.selectedTypeImage
     });
   }
 }
@@ -159,13 +154,7 @@ onAddBook() {
     this.markFormGroupTouched(this.addBookForm);
   } 
   else{
-    // const book = this.addBookForm.value.bookname.trim()
-    // const writer = this.addBookForm.value.bookwriter.trim()
-    // const summary = this.addBookForm.value.summary.trim()
     const formData = new FormData();
-    // formData.append('bookname', book);
-    // formData.append('bookwriter', writer);
-    // formData.append('summary', summary);
     Object.keys(this.addBookForm.value).forEach(key => {
       let value = this.addBookForm.value[key];
       if (typeof value === 'string') {
@@ -175,7 +164,8 @@ onAddBook() {
     });
     this.admin.addBook(formData, (error) => {
     });
-    console.log(this.addBookForm.value.bookcategoryimg)
+    // console.log(this.addBookForm.value.bookimg)
+    // console.log(this.addBookForm.value.booktypeimg)
   }
 }
 getBookById(){
@@ -189,19 +179,6 @@ getBookCategory(){
 }
 getBookType(){
   return this.admin.showbooktype() 
-}
-// onDeleteBook(bookId: number): void {
-//   // Call the deleteBook method from the BookService
-//   this.admin.deleteBook(bookId).subscribe(
-//     () => {
-//       console.log('Book deleted successfully');
-//       // Optionally, you can perform additional actions after deletion, such as updating the UI
-//     },
-//     (error) => {
-//       console.error('Failed to delete book:', error);
-//       // Handle error, e.g., show an error message to the user
-//     }
-//   );
-// }    
+} 
 }
 
