@@ -6,11 +6,8 @@ import { AdminService } from '../../../core/services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../../../data/interfaces/category.interface';
 import { environment } from '../../../../environments/environment';
-// <<<<<<< HEAD
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
-// =======
 import Swal from 'sweetalert2';
-// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
 
 @Component({
   selector: 'app-editbookcategory',
@@ -46,9 +43,9 @@ export class EditbookcategoryComponent implements OnInit{
   
   getImageFileName(): string {
     const fullPath = this.editcategoryform.get('image')?.value;
-    if (!fullPath) return ''; // Return empty string if no file is selected
+    if (!fullPath) return ''; 
     console.log(fullPath)
-    return fullPath.split('\\').pop() || ''; // Extract file name from full path
+    return fullPath.split('\\').pop() || ''; 
   }
 
   onFileChange(event: any) {

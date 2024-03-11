@@ -23,6 +23,15 @@ export class BooktypedetailComponent {
   public environment = environment.IMG_URL
   books: Book[] = [];
   types: Type[] = []
+  booktypes = [
+    {name: 'Novel', abbrev: 'Novel'},
+    {name: 'Newspaper', abbrev: 'Newspaper'},
+    {name: 'Hypothetical', abbrev: 'Hypothetical'},
+    {name: 'Research', abbrev: 'Research'},
+    {name: 'Article', abbrev: 'Article'},
+    {name: 'Magazine', abbrev: 'Magazine'},
+    {name: 'Page 3', abbrev: 'Page 3'}
+  ];
   typeform: FormGroup
   showTypeForm: boolean = false;
   showTable: boolean = false; 
@@ -31,7 +40,7 @@ export class BooktypedetailComponent {
   constructor(private fb: FormBuilder, private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.typeform = new FormGroup({
       type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/),  Validators.minLength(3), Validators.maxLength(20)]),
-      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg','gif']}), RxwebValidators.fileSize({maxSize:51000000 })])
+      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg']}), RxwebValidators.fileSize({maxSize:51000000 })])
 
     })
   }
@@ -64,6 +73,14 @@ export class BooktypedetailComponent {
   showDialog() {
     this.visible = true;
   }
+  onClickType(data: string): void{
+    const booktype = data
+    localStorage.setItem('booktype', booktype);
+    console.log(booktype)
+    this.admin.booktype(booktype, (error) => {
+      console.log(error);
+    })
+   }
   onAddingType(): void{
     if(!this.typeform.valid) {
       this.markFormGroupTouched(this.typeform);

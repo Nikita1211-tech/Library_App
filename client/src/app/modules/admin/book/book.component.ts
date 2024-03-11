@@ -17,15 +17,31 @@ import { RxwebValidators } from '@rxweb/reactive-form-validators';
 export class BookComponent {
   public environment = environment.IMG_URL
   categoryform: FormGroup
+  typeform: FormGroup
   books: Book[]=[];
   categories : Category[]=[];
   types: Type[]=[];
+  booktypes = [
+    {name: 'Novel', abbrev: 'Novel'},
+    {name: 'Newspaper', abbrev: 'Newspaper'},
+    {name: 'Hypothetical', abbrev: 'Hypothetical'},
+    {name: 'Research', abbrev: 'Research'},
+    {name: 'Article', abbrev: 'Article'},
+    {name: 'Magazine', abbrev: 'Magazine'},
+    {name: 'Page 3', abbrev: 'Page 3'}
+  ];
   visible: boolean = false;
+  visibletypeform: boolean = false;
   // public chart: any;
   constructor(private router:Router, private http: HttpClient, private admin: AdminService){
     this.categoryform = new FormGroup({
       category: new FormControl('', [Validators.required, Validators.pattern(/^[ A-Za-z0-9./]*$/), Validators.minLength(3), Validators.maxLength(40)]),
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:["jpeg","jpg", "png"]}), RxwebValidators.fileSize({maxSize:5000000 })])
+    })
+    this.typeform = new FormGroup({
+      type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/),  Validators.minLength(3), Validators.maxLength(20)]),
+      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg']}), RxwebValidators.fileSize({maxSize:51000000 })])
+
     })
   }
   
@@ -46,6 +62,14 @@ export class BookComponent {
   // Modal of edit book form  
   showDialog() {
     this.visible = true;
+  }
+  showTypeDialog() {
+    this.visibletypeform = true;
+  }
+  getTypeFileName(): string {
+    const fullPath = this.typeform.get('image')?.value;
+    if (!fullPath) return '';
+    return fullPath.split('\\').pop() || ''; 
   }
   onClickCategory(data: string): void{
     const bookcategory = data
@@ -78,7 +102,7 @@ export class BookComponent {
       }
     });
   }
-//  Form submission API 
+//  Form submission API  of book category
   onAddingCategory(): void{
     if(!this.categoryform.valid) {
       this.markFormGroupTouched(this.categoryform);
@@ -96,6 +120,27 @@ export class BookComponent {
   
       this.admin.addbookcategory(formData, (error: any) => {
       });
+
+    }
+  }
+  //  Form submission API  of book type
+  onAddingType(): void{
+    if(!this.typeform.valid) {
+      this.markFormGroupTouched(this.typeform);
+    } 
+    else{
+      const type = this.typeform.value.type.trim()
+      const imageInput = document.getElementById('image') as HTMLInputElement;
+      if (!imageInput || !imageInput.files || !imageInput.files[0]) {
+        console.error('No image selected.');
+        return;
+      }
+      const formData = new FormData();
+      formData.append('type', type);
+      formData.append('image', imageInput.files[0]);
+      this.admin.addbooktype(formData, (error: any) => {
+       
+      })
 
     }
   }

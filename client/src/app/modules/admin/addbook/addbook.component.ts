@@ -21,18 +21,12 @@ export class AddbookComponent {
   bookcategories: { name: string, image: string, abbrev: string}[] = []
   bookcategoriesimage: { name: string, image: string, abbrev: string}[] = []
   bookImgPreview: string | ArrayBuffer | null = null;
-  booktypes = [
-    {name: 'Novel', abbrev: 'Novel'},
-    {name: 'Newspaper', abbrev: 'Newspaper'},
-    {name: 'Hypothetical', abbrev: 'Hypothetical'},
-    {name: 'Research', abbrev: 'Research'},
-    {name: 'Article', abbrev: 'Article'},
-    {name: 'Magazine', abbrev: 'Magazine'},
-    {name: 'Page 3', abbrev: 'Page 3'}
-  ];
+  bookTypeImgPreview: string | ArrayBuffer | null = null;
+  booktypes: { name: string, image: string, abbrev: string}[] = [];
   selectedCategoryImage: string | null = null;
   selectedTypeImage: string | null = null;
-  selectedCategoryImagePath : string | null = null
+  selectedCategoryImagePath : string | null = null;
+  selectedTypeImagePath : string | null = null;
   showTable: boolean = false; 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private admin: AdminService){
     this.bookId = this.route.snapshot.params['id'];
@@ -61,15 +55,15 @@ export class AddbookComponent {
       this.bookcategoriesimage = bookcategoryimagearr
       return bookcategoryimagearr
     })
-    // this.getBookType().subscribe((booktype) => {
-    //   var arr = booktype
-    //   var booktypearr = arr.map((item: any) => {
-    //     console.log(item)
-    //     return {name: item.type, image:item.image, abbrev: item.type}
-    //   }) 
-    //   this.booktypes = booktypearr
-    //   return booktypearr
-    // })
+    this.getBookType().subscribe((booktype) => {
+      var arr = booktype
+      var booktypearr = arr.map((item: any) => {
+        console.log(item)
+        return {name: item.type, image:item.image, abbrev: item.type}
+      }) 
+      this.booktypes = booktypearr
+      return booktypearr
+    })
     this.bookId = this.route.snapshot.params['id'];
     this.addBookForm =  new FormGroup({
     bookname: new FormControl('',[ Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/), Validators.minLength(3), Validators.maxLength(40)]),
@@ -80,7 +74,7 @@ export class AddbookComponent {
     bookwriter: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/), Validators.minLength(3), Validators.maxLength(40)]),
     booktypeimg: new FormControl('', Validators.required),
     publishyear: new FormControl('', Validators.required),
-    booktype: new FormControl(this.booktypes[3], Validators.required),
+    booktype: new FormControl(this.booktypes, Validators.required),
     bookcategories: new FormControl(this.bookcategories, Validators.required),
     summary: new FormControl('', [Validators.required, Validators.maxLength(256)])
   });
@@ -111,9 +105,11 @@ onFileSelected(event: any, controlName: string): void {
     reader.readAsDataURL(file);
     reader.onload = () => {
       this.bookImgPreview = reader.result;
+      // this.bookTypeImgPreview = reader.result;
     };
+    console.log(this.bookImgPreview)
+    // console.log(this.bookTypeImgPreview)
   }
-  // Update form control with selected file
   this.addBookForm.get(controlName)?.setValue(file);
 }
 
@@ -133,6 +129,19 @@ getBookCategoryImage() {
     this.admin.getCategoryImage(category.name).subscribe((data: any) => {
       this.selectedCategoryImage = this.getImageNameFromData(data);
       this.selectedCategoryImagePath = this.getImagePath(data);
+    });
+  }
+  console.log(this.selectedCategoryImagePath)
+}
+getBookTypeImage() {
+  const selectedType= this.addBookForm.controls['booktype'].value;
+  const type = this.booktypes.find(type => type.name === selectedType);
+  // console.log(type)
+  if (type) {
+    this.admin.getTypeImage(type.name).subscribe((data: any) => {
+      // console.log(data)
+      this.selectedTypeImage = this.getImageNameFromData(data);
+      this.selectedTypeImagePath = this.getImagePath(data);
     });
   }
 }
@@ -174,22 +183,22 @@ onAddBook() {
       }
       formData.append(key, value);
     });
-    const bookImgInput = this.addBookForm.get('bookimg');
-    const bookTypeImgInput = this.addBookForm.get('booktypeimg');
+    // const bookImgInput = this.addBookForm.get('bookimg');
+    // const bookTypeImgInput = this.addBookForm.get('booktypeimg');
     
-    if (bookImgInput && bookImgInput.value && bookImgInput.value.files) {
-      const files = bookImgInput.value.files;
-      if (files.length > 0) {
-        formData.append('bookimg', files[0]);
-      }
-    }
+    // if (bookImgInput && bookImgInput.value && bookImgInput.value.files) {
+    //   const files = bookImgInput.value.files;
+    //   if (files.length > 0) {
+    //     formData.append('bookimg', files[0]);
+    //   }
+    // }
     
-    if (bookTypeImgInput && bookTypeImgInput.value && bookTypeImgInput.value.files) {
-      const files = bookTypeImgInput.value.files;
-      if (files.length > 0) {
-        formData.append('booktypeimg', files[0]);
-      }
-    }
+    // if (bookTypeImgInput && bookTypeImgInput.value && bookTypeImgInput.value.files) {
+    //   const files = bookTypeImgInput.value.files;
+    //   if (files.length > 0) {
+    //     formData.append('booktypeimg', files[0]);
+    //   }
+    // }
 
     this.admin.addBook(formData, (error) => {
     });

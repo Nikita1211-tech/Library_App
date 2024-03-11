@@ -19,19 +19,16 @@ export class EditbookComponent{
   bookImageUrl: string | null = null;
   booktypeImageUrl :  string | null = null;
   selectedFile: File | null = null;
+  selectedCategoryImage: string | null = null;
+  selectedTypeImage: string | null = null;
+  selectedCategoryImagePath : string | null = null;
+  selectedTypeImagePath : string | null = null;
   // bookCategoryImageUrl: string | null = null;
   // bookTypeImageUrl: string | null = null;
   bookcategories: { name: string, abbrev: string}[] = []
   bookcategoriesimage: {image: string, abbrev: string}[] = []
-  booktypes = [
-    {name: 'Novel', abbrev: 'Novel'},
-    {name: 'Newspaper', abbrev: 'Newspaper'},
-    {name: 'Hypothetical', abbrev: 'Hypothetical'},
-    {name: 'Research', abbrev: 'Research'},
-    {name: 'Article', abbrev: 'Article'},
-    {name: 'Magazine', abbrev: 'Magazine'},
-    {name: 'Page 3', abbrev: 'Page 3'}
-  ];
+  booktypes: {name: string, abbrev: string}[] = [];
+  booktypesimage: {image: string, abbrev: string}[] = []
   constructor(private formBuilder: FormBuilder, private router: RouterOutlet, private admin: AdminService, private route: ActivatedRoute) {
     this.bookId = this.route.snapshot.params['id'];
     this.editBookForm = this.formBuilder.group({
@@ -67,30 +64,29 @@ export class EditbookComponent{
       // console.log("New array is", bookcategoryimagearr, this.bookcategories)
       return bookcategoryimagearr
     })
-    // this.getBookType().subscribe((booktype) => {
-    //   var arr = booktype
-    //   var booktypearr = arr.map((item: any) => {
-    //     console.log(item)
-    //     return {name: item.type, abbrev: item.type}
-    //   }) 
-    //   this.booktypes = booktypearr
-    //   console.log("New array is", booktypearr, this.bookcategories)
-    //   return booktypearr
-    // })
-    // this.getBookType().subscribe((booktypesimage) => {
-    //   var arr = booktypesimage
-    //   var booktypeimagearr = arr.map((item: any) => {
-    //     console.log(item)
-    //     return {image: item.image, abbrev: item.image}
-    //   }) 
-    //   this.booktypesimage = booktypeimagearr
-    //   console.log("New array is", booktypearr, this.bookcategories)
-    //   return booktypeimagearr
-    // })
+    this.getBookType().subscribe((booktype) => {
+      var arr = booktype
+      var booktypearr = arr.map((item: any) => {
+        console.log(item)
+        return {name: item.type, abbrev: item.type}
+      }) 
+      this.booktypes = booktypearr
+      console.log("New array is", booktypearr, this.bookcategories)
+      return booktypearr
+    })
+    this.getBookType().subscribe((booktypesimage) => {
+      var arr = booktypesimage
+      var booktypeimagearr = arr.map((item: any) => {
+        console.log(item)
+        return {image: item.image, abbrev: item.image}
+      }) 
+      this.booktypesimage = booktypeimagearr
+      console.log("New array is", booktypeimagearr, this.bookcategories)
+      return booktypeimagearr
+    })
   }
    
   ngOnInit(): void {
-    // Fetch the book data by its ID and patch the form with the retrieved data
     this.getBookData();
   }
 
@@ -119,18 +115,63 @@ export class EditbookComponent{
     });
   }
 
-onFileSelected(event: any){
-  if (event.target.files.length > 0) {
-    const file = event.target.files[0];
-    this.selectedFile = file;
+  onFileSelected(event: any, formControlName: string) {
+      if (event.target.files && event.target.files.length > 0) {
+        const file = event.target.files[0];
+        const control = this.editBookForm.get(formControlName);
+        if (control) {
+          control.setValue(file);
+          console.log(control.value); 
+        }       
+        console.log(file)
+      }
+    }
+getBookCategoryImage() {
+  const selectedCategory = this.editBookForm.controls['bookcategories'].value;
+  const category = this.bookcategories.find(cat => cat.name === selectedCategory);
+  if (category) {
+    this.admin.getCategoryImage(category.name).subscribe((data: any) => {
+      this.selectedCategoryImage = this.getImageNameFromData(data);
+      this.selectedCategoryImagePath = this.getImagePath(data);
+    });
   }
+  console.log(this.selectedCategoryImagePath)
+}
+getBookTypeImage() {
+  const selectedType= this.editBookForm.controls['booktype'].value;
+  const type = this.booktypes.find(type => type.name === selectedType);
+  // console.log(type)
+  if (type) {
+    this.admin.getTypeImage(type.name).subscribe((data: any) => {
+      // console.log(data)
+      this.selectedTypeImage = this.getImageNameFromData(data);
+      this.selectedTypeImagePath = this.getImagePath(data);
+    });
+  }
+}
+
+getImageNameFromData(data: any): string {
+  if (data && data.image) {
+    const parts = data.image.split('\\'); 
+    return parts[parts.length - 1];
+  }
+  return ''; 
+}
+
+getImagePath(data: any): string {
+  if (data && data.image) {
+    return data.image; 
+  }
+  return ''; 
 }
 onEditBook() {
   const updatedData = new FormData();
   Object.keys(this.editBookForm.value).forEach(key => {
     const value = this.editBookForm.value[key];
+    this.bookImageUrl = this.editBookForm.value[key];
     updatedData.append(key, value);
   });
+  // let value = this.addBookForm.value[key];
   if (this.selectedFile) {
     updatedData.append('bookimg', this.selectedFile);
   }

@@ -6,6 +6,7 @@
                 <div class="book-details">
                     <div style="display: flex; flex-direction: column; gap: 10px;">
                         <div>
+                            <label for="bookname">Book Name</label>
                             <input class="form-control" formControlName="bookname" type="text" name="bookname"
                             maxlength="40" placeholder="Enter Book name *">
                         </div>
@@ -25,7 +26,8 @@
                                </div>
                         </div>
                     </div>
-                    <div style="display: flex;flex-direction: column; gap: 10px">
+                    <div style="display: flex;flex-direction: column;">
+                        <label for="bookname" style="display: block;">Image</label>
                         <div style="display: flex; gap: 10px; align-items: center;">
                             <label for="file" class="custom-file-upload">
                                 <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
@@ -55,6 +57,7 @@
                 </div>
                 <div class="book-details">
                     <div>
+                        <label for="booksellingprice">Selling Price</label>
                         <input class="form-control" formControlName="booksellingprice" type="number" inputmode="numeric"
                             name="booksellingprice" placeholder="Enter Book Selling Price *">
                         <div
@@ -65,6 +68,7 @@
                         </div>
                     </div>
                     <div>
+                        <label for="bookcostprice">Cost Price</label>
                         <input class="form-control" formControlName="bookcostprice" type="number" inputmode="numeric"
                             name="bookcostprice" placeholder="Enter Book Cost Price *">
                         <div
@@ -77,6 +81,7 @@
                 </div>
                 <div class="book-details">
                     <div>
+                        <label for="bookwriter">Writer Name</label>
                         <input class="form-control" maxlength="40" formControlName="bookwriter" type="text" name="booktype"
                             placeholder="Enter Book Writer Name">
                         <div style="margin-top: 10px;"
@@ -96,6 +101,7 @@
                         </div>
                     </div>
                     <div>
+                        <label for="publishyear">Publish Year</label>
                         <input class="form-control" formControlName="publishyear" type="number" inputmode="numeric"
                             name="publishyear" placeholder="Enter Publish Year *">
                         <div  style="margin-top: 10px;"
@@ -110,6 +116,7 @@
             <div class="form-col2">
                 <div class="book-details">
                     <div class="type-col1">
+                        <label for="bookcategory">Category Name</label>
                         <select name="bookcategory" id="bookcategory" (click)="getBookCategory()"
                             (change)="getBookCategoryImage()" formControlName="bookcategories">
                             <option disabled selected value="">Select Category *</option>
@@ -125,6 +132,7 @@
                         </div>
                     </div>
                     <div>
+                        <label for="categoryimage">Category Image</label>
                         <div style="border: solid 2px black; padding: 15px; width: 292px;">
                             <h5 *ngIf="selectedCategoryImage; else elseCategoryBlock">{{selectedCategoryImage}}</h5>
                             <ng-template #elseCategoryBlock>Category Image *</ng-template>
@@ -139,7 +147,7 @@
                 <div class="type">
                     <div class="type-col1">
                         <input type="hidden" formControlName="bookcategoryimg" [ngModel]="selectedCategoryImagePath">
-                        <!-- <input type="hidden" formControlName="booktypeimg" [ngModel]="selectedTypeImagePath"> -->
+                        <input type="hidden" formControlName="booktypeimg" [ngModel]="selectedTypeImagePath">
                     </div>
                     <!-- <div class="type-col2">
                         <div formControlName="booktypeimg">    
@@ -150,7 +158,8 @@
              
             <div class="book-category-image">
                 <div>
-                    <select name="booktype" id="booktype" formControlName="booktype">
+                    <label for="booktype">Type</label><br>
+                    <select name="booktype" id="booktype" formControlName="booktype" (click)="getBookType()" (change)="getBookTypeImage()">
                         <option disabled selected value="">Select Type *</option>
                         <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">
                             {{ booktype.name }}
@@ -166,20 +175,22 @@
                         </div>
                     </div>
                 </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <label for="booktypeimg" class="custom-file-upload">
-                        <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
-                        <input type="file" id="booktypeimg" name="booktypeimg" (change)="onFileSelected($event, 'booktypeimg')"
-                            formControlName="booktypeimg" style="display: none;" required>
-                    </label>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <!-- <i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> -->
-                        <p>{{ addBookForm.get('booktypeimg')?.value ? addBookForm.get('booktypeimg')?.value?.name : '' }}</p>
-                    </div>
+                <div>
+                    <label for="booktypeimage">Type Image</label>
+                    <div style="border: solid 2px black; padding: 15px; width: 292px;">
+                        <h5 *ngIf="selectedTypeImage; else elseTypeBlock">{{selectedTypeImage}}</h5>
+                        <ng-template #elseTypeBlock>Type Image *</ng-template>
+                     </div>
+                     <div *ngIf="addBookForm.controls['booktypeimg'].invalid && (addBookForm.controls['booktypeimg'].dirty || addBookForm.controls['bookcategoryimg'].touched)">
+                         <div *ngIf="addBookForm.controls['booktypeimg'].errors?.['required']; ">
+                             <div class="form-validation form-rules">Required Field.</div>
+                         </div>
+                     </div>
                 </div>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label for="summary">Summary</label>
                 <textarea name="summary" id="" cols="30" rows="4" formControlName="summary"  maxlength="256"    
                     placeholder="Enter Book Summary *"></textarea>
                 <div
@@ -201,8 +212,10 @@
     </form>
     <!-- <div class="vertical"></div> -->
     <div class="form-image-container">
-        <img *ngIf="!bookImgPreview" src="./../../../../assets/images/avatar.jpg" alt="" style="width: 500px; height: 500px;">
-        <img *ngIf="bookImgPreview" [src]="bookImgPreview" alt="Book Image Preview" style="max-width: 100px; max-height: 100px;">
+        <img *ngIf="!bookImgPreview" src="./../../../../assets/images/bookavatar.jpg" alt="" class="avatar">
+        <img *ngIf="bookImgPreview" [src]="bookImgPreview" alt="Book Image Preview"  class="avatar">
+        
+        <!-- <img *ngIf="bookTypeImgPreview" [src]="bookTypeImgPreview" alt="Book Image Preview"  class="avatar"> -->
        <!-- <img src="./../../../../assets/images/avatar.jpg" alt=""> -->
         <!-- <div class="image-shadow">
             <h6 *ngIf="selectedCategoryImage">Category Image</h6>

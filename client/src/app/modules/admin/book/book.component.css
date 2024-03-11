@@ -9,7 +9,8 @@
 a{
     text-decoration: none;
     color: #FB3453;
-    display: flex;
+    /* display: flex; */
+    text-align: right;
     align-items: center;
     font-weight: 500;
     font-size: 18px;
@@ -17,7 +18,7 @@ a{
 }
 h4{
     font-size: 24px;
-    margin: 0px;
+    margin: 0px 0px 20px 0px;
 }
 p{
     font-size: 18px;
@@ -41,6 +42,7 @@ p{
 .bookcontainer-row1{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 /* Dropdown button classes starts */
 .dropdown {
@@ -130,7 +132,7 @@ input[type="submit"]{
     border: none;
     background-color: #fb3453;
     color: white;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 150px;
     cursor: pointer;
     font-family: Poppins;
@@ -143,6 +145,25 @@ input[type="search"]{
     font-family: Poppins;
     width:400px;
     border-radius: 10px;
+}
+select{
+    margin-top: 5px;
+    width: 328px;
+    border: solid 2px black;
+    font-size: 16px;
+    background: transparent;
+    /* border-bottom: solid 2px black; */
+    font-family: Poppins;
+    color: black;
+    /* border-radius: 10px; */
+    padding: 15px;
+}
+option{
+    color: black;
+    background-color: white;
+    font-family: Poppins;
+    font-size: 20px;
+    padding: 10px;
 }
 .addcategory{
     /* background-image: url(./../../../../assets/images/categoryimg.avif); */
@@ -172,7 +193,7 @@ input[type="file"]::file-selector-button{
     display: inline-block;
     cursor: pointer;
     width: 130px;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #68a900;
     border-radius: 5px;
     color: white;
@@ -202,6 +223,11 @@ button{
 }
 .form-rules{
     color: #FB3453;
+}
+:host ::ng-deep .p-dialog{ 
+    background-color: white;
+    padding: 20px; 
+    border-radius: 5px;
 }
 /* Form classes ends  */
 /* Media queries  */

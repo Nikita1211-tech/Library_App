@@ -6,6 +6,7 @@ import { BookcategorydetailComponent } from './bookcategorydetail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { DialogModule } from 'primeng/dialog';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 
 
@@ -18,6 +19,7 @@ import { ButtonModule } from 'primeng/button';
     BookcategorydetailRoutingModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,
+    DynamicDialogModule,
     DialogModule,
     ButtonModule
   ]

@@ -19,22 +19,20 @@ a{
     margin: 0px;
     text-align: center;
 }
-/* >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb */
 .bk-shadow{
     box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
     border: 1px solid #EAEAEA;
     border-radius: 15px;
     padding: 20px;
     background-color: white;
-/* <<<<<<< HEAD */
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    /* justify-content: space-between; */
+    /* flex-direction: column; */
+    gap: 280px;
     min-height: (90vh, 90%);
 }
 .categoryform{
-/* ======= */
-/* >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb */
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -43,16 +41,19 @@ a{
 /* Form Classes starts */
 .form{
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
     /* justify-content: space-between; */
     gap: 20px;
 }
 .form-col1{
     display: flex;
+    /* flex-direction: column; */
+    gap: 200px;
+}
+.form-col1-details{
+    display: flex;
     flex-direction: column;
-    gap: 20px;
-    height: 100%;
-    width: 48%;
+    gap: 40px;
 }
 .book-price-details{
     display: flex;
@@ -101,12 +102,6 @@ label{
     text-align: center;
     background-color: #fb3453;
     padding: 15px;
-<<<<<<< HEAD
-    background-color: transparent;
-    border: solid 2px black;
-    width:400px;
-=======
->>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
     border-radius: 10px;
     color: white;
     cursor: pointer;
@@ -118,7 +113,7 @@ input[type="text"]{
     border: none;
     font-size: 16px;
     background: transparent;
-    border-bottom: solid 2px black;
+    border: solid 2px black;
     font-family: Poppins;
     color: black;
     /* border-radius: 10px; */
@@ -151,6 +146,10 @@ input[type="file"]::file-selector-button{
   font-family: Poppins;
   cursor: pointer;
 }
+.button{
+    display: flex;
+    justify-content: center;
+}
 input[type="submit"]{
     padding: 15px;
     border: none;
@@ -181,7 +180,7 @@ input[type="submit"]{
     width: 100%;
     height: 100%;
   }
-  
+/*   
   .custom-file-upload {
     display: flex;
     justify-content: center;
@@ -193,7 +192,7 @@ input[type="submit"]{
     border-radius: 5px;
     color: white;
     background-color: #68a900;;
-}
+} */
 .custom-file-upload span{
     font-size: 18px;
 }
@@ -232,16 +231,17 @@ textarea{
     border: solid 2px black;
     padding: 15px;
     border-radius: 10px;
-/* <<<<<<< HEAD */
     cursor: pointer;
     font-family: Poppins;
     font-size: 18px;
     /* width: 400px; */
 }  
 .custom-file-upload {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    width: 180px;
+    width: 150px;
     padding: 15px;
     border: 1px solid #68a900;
     border-radius: 5px;
@@ -254,8 +254,6 @@ textarea{
 ::placeholder{
     font-size: 18px;
     color: black;
-/* ======= */
-/* >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb */
 }
 .button{
     display: flex;
@@ -277,6 +275,15 @@ textarea{
     color: black;
     font-family: Poppins;
     font-size: 18px;
+}
+.image-preview{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-preview img{
+   width: 300px;
+   height: 450px;
 }
 .form-rules{
     color: #fb3453;

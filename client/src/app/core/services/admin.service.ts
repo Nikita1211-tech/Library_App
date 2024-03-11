@@ -142,6 +142,7 @@ addbookcategory(formData: FormData, errorCallback: (error: any) => void): void {
         if(response){
 
           Swal.fire({
+            position: "top",
             icon: 'success',
             iconColor: '#fb3453',
             text: "Book category added successfully",
@@ -159,6 +160,7 @@ addbookcategory(formData: FormData, errorCallback: (error: any) => void): void {
         if(error){
 
           Swal.fire({
+            position: "top",
             icon: 'info',
             iconColor: '#fb3453',
             text: "Book category already exists",
@@ -219,6 +221,7 @@ addbooktype(formData: FormData, errorCallback: (error: any) => void){
    .subscribe(
     (response)=>{
       Swal.fire({
+        position: 'top',
         icon: 'success',
         iconColor: '#fb3453',
         text: "Book type added successfully",
@@ -232,6 +235,7 @@ addbooktype(formData: FormData, errorCallback: (error: any) => void){
     },
     (error) => {
       Swal.fire({
+        position: 'top',
         icon: 'info',
         iconColor: '#fb3453',
         text: "Book type already exists",

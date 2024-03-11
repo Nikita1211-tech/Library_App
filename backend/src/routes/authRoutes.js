@@ -24,10 +24,7 @@ router.post('/resetpassword', Reset);
 router.post('/otp', Otp);
 router.post('/saveuser', Saveuser);
 router.post('/saveadmin', Saveadmin);
-router.post('/addbook',  upload.fields([
-    { name: 'bookimg', maxCount: 1 }, 
-    { name: 'booktypeimg', maxCount: 1 } 
-]), AddBook);
+router.post('/addbook',  upload.single('bookimg'), AddBook);
 router.post('/updatepassword',Passwordvalidation , updatePassword);
 router.get('/logout', Logout);
 // Dashboard routes 

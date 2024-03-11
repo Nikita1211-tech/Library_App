@@ -36,12 +36,11 @@ p{
     box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
     border: 1px solid #EAEAEA;
     display: flex;
-    flex-direction: column;
     /* justify-content: space-between; */
     border-radius: 15px;
     padding: 20px;
     background-color: white;
-    gap: 20px;
+    gap: 300px;
     min-height: (90vh, 90%);
 }
 /* Form Classes starts */
@@ -58,7 +57,7 @@ form{
 }
 .form-col1{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 20px;
     height: 100%;
     width: 48%;
@@ -191,14 +190,15 @@ input[type="submit"]{
 .type{
     display: flex;
     align-items: center;
-    width: 500px;
+    gap: 20px;
+    /* width: 500px; */
 }
 .type-col2{
-    width: 45%;
+    /* width: 45%; */
 }
 select{
     margin-top: 5px;
-    width: 328px;
+    width: 296px;
     border: solid 2px black;
     font-size: 16px;
     background: transparent;
@@ -217,7 +217,7 @@ option{
 }
 textarea{
     border: none;
-    width: 95%;
+    width: 638px;
     font-family: Poppins;
     font-size: 18px;
     color: black;
@@ -389,13 +389,21 @@ td{
     left: 58%;
 }
 /* Form Image Container classes starts  */
-/* .form-image-container{
-    width: 500px;
-}
+/* 
 .form-image-container img{
     display: flex;
     width: 80%;
 } */
+.form-image-container{
+   display: flex;
+   flex-direction: column;
+   align-items: space-around;
+   justify-content: space-around;
+}
+.avatar{
+    width: 400px;
+    height: 70%;
+}
 .image-shadow{
     display: flex;
     flex-direction: column;

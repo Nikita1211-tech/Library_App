@@ -40,7 +40,7 @@ p{
     border-radius: 15px;
     padding: 20px;
     background-color: white;
-    gap: 20px;
+    gap: 100px;
     min-height: (90vh, 90%);
 }
 /* Form Classes starts */
@@ -197,7 +197,7 @@ input[type="submit"]{
 }
 select{
     margin-top: 5px;
-    width: 328px;
+    width: 296px;
     border: solid 2px black;
     font-size: 16px;
     background: transparent;
@@ -216,7 +216,7 @@ option{
 }
 textarea{
     border: none;
-    width: 95%;
+    width: 630px;
     font-family: Poppins;
     font-size: 18px;
     color: black;
@@ -388,13 +388,23 @@ td{
     left: 58%;
 }
 /* Form Image Container classes starts  */
-/* .form-image-container{
-    width: 500px;
-}
+/* 
 .form-image-container img{
     display: flex;
     width: 80%;
 } */
+.form-image-container{
+   display: flex;
+   flex-direction: column;
+   align-items: space-around;
+   justify-content: space-around;
+}
+.avatar{
+    border: solid 1px;
+    color: grey;
+    width: 400px;
+    height: 70%;
+}
 .image-shadow{
     display: flex;
     flex-direction: column;

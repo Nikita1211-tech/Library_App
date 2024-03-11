@@ -44,9 +44,9 @@
       </div> -->
     <!-- <p>{{environment}}{{book.img[5]}}</p> -->
         <div class="image-container">
-           <a [routerLink]="['/bookdescription/', book.id]"><img [src]="environment + book.img"  alt="Card image cap"></a>
+           <img [src]="environment + book.img"  alt="Card image cap">
            <div class="button-container">
-            <a href=""><i class="far fa-eye fa-2x" style="color: #fb3453;"></i></a>
+            <a [routerLink]="['/bookdescription/', book.id]"><i class="far fa-eye fa-2x" style="color: #fb3453;"></i></a>
             <a [href]="'/editbook/' + book.id"><i class="far fa-edit fa-2x" style="color: #68a900;"></i></a>
             <a (click)="confirmDelete(book.id)"><i class="fas fa-trash fa-2x" style="color: #fb3453;"></i></a>
            </div>  

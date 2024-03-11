@@ -1,9 +1,17 @@
 <div class="bookpage">
     <div class="bookcontainer bk-shadow" >
         <div class="bookcontainer-row1">
-            <h4>Books Category</h4>
             <div style="display: flex; gap: 20px; align-items: center;">
-                <a href="/bookcategorydetail">View All</a>
+                 <h4>Books Category</h4>
+                 <!-- <button (click)="showDialog()" icon="pi pi-external-link" label="Show" type="button">
+                    Add Category
+                 </button> -->
+            </div>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <button (click)="showDialog()" icon="pi pi-external-link" label="Show" type="button">
+                    Add Category
+                 </button>
+                <!-- <a href="/bookcategorydetail">View All</a> -->
                 <!-- <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Dropdown button
@@ -14,14 +22,6 @@
                       <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                   </div> -->
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" style="background: transparent; padding: 0px; width: 20px;" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <i class="fas fa-plus dropbtn" style="color: #fb3453"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a (click)="showDialog()" icon="pi pi-external-link" label="Show">Add Book</a>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="bookcontainer-row2">
@@ -32,11 +32,16 @@
                 </div>
             </div>
         </div>
+        <a href="/bookcategorydetail">View All</a>
     </div>
     <div class="bookcontainer bk-shadow" >
         <div class="bookcontainer-row1">
-            <h4>Type</h4>
-            <a href="/booktypedetail">View All</a>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <h4>Type</h4>
+            </div>
+            <button (click)="showTypeDialog()" icon="pi pi-external-link" label="Show" type="button">
+                Add Type
+            </button>
         </div>
         <div class="bookcontainer-row2">
             <div class="booktype" *ngFor="let type of types | slice:0:5; let i=index">
@@ -46,13 +51,15 @@
                 </div>
             </div>
         </div>
+        
+        <a href="/booktypedetail">View All</a>
     </div>
 </div>
 <!-- Modal of add category form starts -->
 <div class="card flex justify-content-center">
     <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
-    <p-dialog [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false" [ngClass]="{'blur-background': visible, 'non-scrollable': visible}">
-            <h4>Add Category</h4>
+    <p-dialog header="Add Category" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
+            <!-- <h4>Add Category</h4> -->
             <form [formGroup]="categoryform" (ngSubmit)="onAddingCategory()" class="form-control" id="categoryform">
                 <!-- <label for="category">Enter Category Name</label> -->
                 <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
@@ -63,21 +70,82 @@
                     <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['minlength']">Name must be 3 to 40 characters long</div>
                     <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['maxlength']">Name must be 3 to 40 characters long</div>
                 </div>
+                <div style="display: flex; justify-content: space-between;">
+                   <div>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <label for="image" class="custom-file-upload" style="display: flex; flex-direction: column;text-align: center;">
+                            <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
+                            <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
+                        </label>
+                    </div>
+                   </div>
+                    <!-- <label for="image">Upload Image</label>
+                    <input type="file" class="form-control" name="image" id="image"  formControlName="image" required> -->
+                    <input type="submit" value="Save">
+                </div>
+                
+                <div>
+                    <p *ngIf="categoryform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900; margin: 10px 0px 0px 0px;"></i> {{getImageFileName() }}</p>
+                    <div *ngIf="categoryform.get('image')?.invalid && (categoryform.get('image')?.dirty || categoryform.get('image')?.touched)">
+                        <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['required']">Please upload an image.</div>
+                        <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png.</div>
+                        <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['fileSize']">Image size should be lessthan 5mb.</div>
+                    </div>
+                </div>
+            </form>
+    </p-dialog>
+</div>
+<!-- Modal of add type form  -->
+<div class="card flex justify-content-center">
+    <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
+    <p-dialog header="Add Type" [(visible)]="visibletypeform" [modal]="true" [draggable]="false" [resizable]="false">
+            <!-- <h4 style="font-size: 26px; margin: 0px 0px 10px 0px">Add Type</h4> -->
+            <form [formGroup]="typeform" (ngSubmit)="onAddingType()" class="form-control" id="categoryform">
+                <!-- <label for="type">Enter Type Name</label> -->
+                <div>
+                    <select name="type" id="type" formControlName="type">
+                        <option disabled selected value="">Select Type *</option>
+                        <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">
+                            {{ booktype.name }}
+                        </option>
+                        <!-- <option *ngFor="let state of states" [ngValue]="state">
+                            {{ state.abbrev }}
+                          </option> -->
+                    </select>
+                    <!-- <div  style="margin-top: 10px;"
+                        *ngIf="addBookForm.controls['booktype'].invalid && (addBookForm.controls['booktype'].dirty || addBookForm.controls['booktype'].touched)">
+                        <div *ngIf="addBookForm.controls['booktype'].errors?.['required']; ">
+                            <div class="form-validation form-rules">Required Field.</div>
+                        </div>
+                    </div> -->
+                    <div *ngIf="typeform.controls['type'].invalid && (typeform.controls['type'].dirty || typeform.controls['type'].touched)">
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['required']">Name is
+                            required.</div>
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['pattern']">Name cannot be alphanumeric.</div>
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['minlength']">Name must be 3 to 20 characters long.</div>
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['maxlength']">Name must be 3 to 20 characters long.</div>
+                    </div>
+                </div>
+                <!-- <input type="text" class="form-control" name="type" id="category"  formControlName="type" placeholder="Enter book type name" required> -->
+               <div style="display: flex; justify-content: space-between;">
                 <div style="display: flex; gap: 10px; align-items: center;">
-                    <label for="image" class="custom-file-upload" style="display: flex; flex-direction: column;text-align: center;">
+                    <label for="image" class="custom-file-upload" style="display: flex; justify-content: center; align-items: center">
                         <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
                         <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
                     </label>
-                    <p *ngIf="categoryform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageFileName() }}</p>
-                </div>
-                <div *ngIf="categoryform.get('image')?.invalid && (categoryform.get('image')?.dirty || categoryform.get('image')?.touched)">
-                    <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['required']">Please upload an image.</div>
-                    <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png, .gif.</div>
-                    <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['fileSize']">Image size should be lessthan 5mb.</div>
                 </div>
                 <!-- <label for="image">Upload Image</label>
-                <input type="file" class="form-control" name="image" id="image"  formControlName="image" required> -->
-                <input type="submit" value="Save">
+                    <input type="file" class="form-control" name="image" id="image"  formControlName="image" required> -->
+                <input type="submit" value="Save" >
+               </div>
+                    <div>
+                        <p *ngIf="typeform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getTypeFileName() }}</p>
+                        <div *ngIf="typeform.controls['image'].invalid && (typeform.controls['image'].dirty || typeform.controls['image'].touched)">
+                            <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['required']">Image is required.</div>
+                            <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png, .gif.</div>
+                            <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['fileSize']">Image size should be lessthan 5mb.</div>
+                        </div>
+                    </div>
             </form>
     </p-dialog>
 </div>

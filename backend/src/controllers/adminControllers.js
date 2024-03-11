@@ -36,10 +36,11 @@ const upload = multer({
 })
 const AddBook = async (req, res) => {
   try {
-    console.log(req.files['bookimg'][0].path)
-    console.log(req.files['booktypeimg'][0].path)
+    // console.log(req.files['bookimg'][0].path)
+    // console.log(req.files['booktypeimg'][0].path)
+    console.log(req.file)
     console.log(req.body)
-    if (req.files) {
+    if (req.file) {
       const obj = {
         bookName: req.body.bookname,
         sellingprice: req.body.booksellingprice,
@@ -48,10 +49,10 @@ const AddBook = async (req, res) => {
         publishyear: req.body.publishyear,
         booktypename: req.body.booktype,
         bookcat_img: req.body.bookcategoryimg,
-        booktype_img: req.files['booktypeimg'][0].path,
+        booktype_img: req.body.booktypeimg,
         category: req.body.bookcategories,
         booksummary: req.body.summary,
-        img: req.files['bookimg'][0].path,
+        img: req.file.path,
       };
       console.log(obj)
       const existingBook = await Book.findOne({
@@ -184,28 +185,29 @@ const Bookdesc = async(req,res) => {
 // }
 
 const Updatebook = async(req,res) => {
-  console.log(req.file)
-  const bookid = req.params.book_id;
-  const obj = { 
-    bookName: req.body.bookname, 
-    img: req.file.path, 
-    sellingprice: req.body.booksellingprice, 
-    costprice: req.body.bookcostprice,  
-    bookcat_img : req.body.bookcategoryimg, 
-    writerName: req.body.bookwriter, 
-    booktype_img : req.body.booktypeimg,
-    publishyear: req.body.publishyear,
-    booktypename: req.body.booktype,
-    category: req.body.bookcategories,
-    booksummary: req.body.summary
-  };
   try {
+    console.log(req.file)
+    const bookid = req.params.book_id;
+    console.log(bookid)
+    const obj = { 
+      bookName: req.body.bookname, 
+      img: req.body.img, 
+      sellingprice: req.body.booksellingprice, 
+      costprice: req.body.bookcostprice,  
+      bookcat_img : req.body.bookcategoryimg, 
+      writerName: req.body.bookwriter, 
+      booktype_img : req.body.booktypeimg,
+      publishyear: req.body.publishyear,
+      booktypename: req.body.booktype,
+      category: req.body.bookcategories,
+      booksummary: req.body.summary
+    };
     const book = await Book.findByPk(bookid);
     if (!book) {
       return res.status(404).json({ error: 'Category not found' });
     }
     book.bookName = req.body.bookname, 
-    book.img = req.file.path, 
+    book.img = req.body.img, 
     book.sellingprice = req.body.booksellingprice, 
     book.costprice = req.body.bookcostprice,  
     book.bookcat_img = req.body.bookcategoryimg, 
