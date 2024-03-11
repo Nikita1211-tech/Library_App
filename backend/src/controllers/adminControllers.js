@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
         cb(null, file.originalname); 
     }
 });
-const filefilter = (req, file, cb) => {
+const fileFilter = (req, file, cb) => {
     if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
       cb(null,true)
     }
@@ -32,12 +32,14 @@ const upload = multer({
    limits:{
       fileSize: 1024*1024*5
    },
-   filefilter: filefilter
+   fileFilter: fileFilter
 })
 const AddBook = async (req, res) => {
   try {
+    console.log(req.files['bookimg'][0].path)
+    console.log(req.files['booktypeimg'][0].path)
     console.log(req.body)
-    if (req.file) {
+    if (req.files) {
       const obj = {
         bookName: req.body.bookname,
         sellingprice: req.body.booksellingprice,
@@ -46,10 +48,10 @@ const AddBook = async (req, res) => {
         publishyear: req.body.publishyear,
         booktypename: req.body.booktype,
         bookcat_img: req.body.bookcategoryimg,
-        booktype_img: req.file.path,
+        booktype_img: req.files['booktypeimg'][0].path,
         category: req.body.bookcategories,
         booksummary: req.body.summary,
-        img: req.file.path 
+        img: req.files['bookimg'][0].path,
       };
       console.log(obj)
       const existingBook = await Book.findOne({

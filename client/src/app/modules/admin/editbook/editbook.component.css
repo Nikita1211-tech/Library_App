@@ -1,41 +1,116 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('./../../../../assets/font-family/Poppins/Poppins-Regular.ttf');
+}
+/* *{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+} */
+h4{
+    font-size: 30px;
+    margin: 0px;
+}
+h5{
+    font-size: 18px;
+    margin: 0px;
+    font-weight: 200;
+}
+h6{
+    font-size: 25px;
+    margin: 0px;
+    font-weight: 200;
+}
+a{
+    text-decoration: none;
+    margin: 0px;
+    text-align: center;
+    cursor: pointer;
+}
+p{
+    font-size: 20px;
+    margin: 0px;
+}
 .bk-shadow{
     box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
     border: 1px solid #EAEAEA;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
     border-radius: 15px;
     padding: 20px;
     background-color: white;
-    display: flex;
-    flex-direction: column;
     gap: 20px;
     min-height: (90vh, 90%);
 }
-.categoryform{
+/* Form Classes starts */
+form{
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-form{
+.form{
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin: 0px;
+    /* justify-content: space-between; */
+    gap: 20px;
+}
+.form-col1{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    width: 48%;
+}
+.book-details{
+    display: flex;
+    gap: 40px;
+    /* justify-content: space-between; */
+}
+.book-details-col1, .book-details-col2{
+    width: 45%;
+}
+.form-col2{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    width: 48%;
+}
+.bookcategory-img{
+    display: flex;
+    width: 250px;
+}
+.bookcategory-img img{
+    width: 250px;
+    height: 200px;
+}
+.img-container{
+    display: flex;
 }
 label{
     font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 5px;
 }
-input[type="text"]{
+/* .file {
+    width: 35%;
+    text-align: center;
+    background-color: #fb3453;
     padding: 15px;
-/* <<<<<<< HEAD */
-    background-color: transparent;
-/* ======= */
-}
-input[type="number"]{
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+} */
+
+input{
     margin-top: 5px;
-    width: 94%;
+    width: 294px;
+    border: solid 2px black;
     font-size: 16px;
-    border: none;
     background: transparent;
-    border-bottom: solid 2px black;
+    /* border-bottom: solid 2px black; */
     font-family: Poppins;
     color: black;
     /* border-radius: 10px; */
@@ -45,7 +120,17 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
+} 
+/* input[type="file"]::file-selector-button{
+  border: none;
+  width: 150px;
+  color: white;
+  background-color: black;
+  padding: 15px;
+  border-radius: 10px;
+  font-family: Poppins;
+  cursor: pointer;
+} */
 input[type="submit"]{
     padding: 15px;
     border: none;
@@ -56,16 +141,6 @@ input[type="submit"]{
     cursor: pointer;
     font-family: Poppins;
     font-size: 18px;
-}
-input[type="file"]::file-selector-button{
-  border: none;
-  width: 160px;
-  color: white;
-  background-color: black;
-  padding: 15px;
-  border-radius: 10px;
-  font-family: Poppins;
-  cursor: pointer;
 }
 .file-input {
     position: relative;
@@ -87,46 +162,51 @@ input[type="file"]::file-selector-button{
     height: 100%;
   }
   
-  .custom-file-label {
-    background-color: #fb3453; /* Button color */
-    color: #fff;
-    padding: 15px 15px; 
-    border-radius: 5px; 
+  .custom-file-upload {
+    display: inline-block;
     cursor: pointer;
-  }
-  
-  /* Hover effect */
-  .custom-file-label:hover {
-    background-color: #0056b3; /* Darker button color on hover */
-  }
-  
-  /* Focus effect */
-  .custom-file-label:focus {
-    outline: none; /* Remove default focus outline */
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Add custom focus outline */
-  }
-  
-  /* Disabled state */
-  .custom-file-label:disabled {
-    opacity: 0.65; /* Reduce opacity for disabled state */
-    cursor: not-allowed; /* Change cursor for disabled state */
-  }
-  
+    width: 130px;
+    padding: 10px;
+    border: 1px solid #68a900;
+    border-radius: 5px;
+    color: white;
+    background-color: #68a900;;
+}
+.custom-file-upload span{
+    font-size: 18px;
+}
+.book-category-image{
+    display: flex;
+    /* flex-direction: column; */
+    gap: 40px;
+    /* justify-content: space-between; */
+    /* width: 700px; */
+}
+.book-category-image div{
+    /* display: flex; */
+    margin: solid 2px black;
+    /* flex-direction: column; */
+    gap: 10px;
+}
+.type{
+    display: flex;
+    align-items: center;
+    width: 500px;
+}
+.type-col2{
+    width: 45%;
+}
 select{
-    width: 100%;
-    border: none;
+    margin-top: 5px;
+    width: 328px;
+    border: solid 2px black;
     font-size: 16px;
-    font-family: Poppins;
-    /* border-radius: 10px; */
     background: transparent;
+    /* border-bottom: solid 2px black; */
+    font-family: Poppins;
     color: black;
-    border-bottom: solid 2px black;
+    /* border-radius: 10px; */
     padding: 15px;
-    /* -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;       Remove default arrow
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%2326749a'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat;
-    background-color: #fb3453 */
 }
 option{
     color: black;
@@ -136,96 +216,194 @@ option{
     padding: 10px;
 }
 textarea{
-    width: 98%;
     border: none;
-    margin-top: 20px;
-    font-size: 16px;
+    width: 95%;
     font-family: Poppins;
+    font-size: 18px;
     color: black;
     background: transparent;
-/* >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb */
     border: solid 2px black;
-    width:400px;
-    border-radius: 10px;
-    font-family: Poppins;
+    padding: 15px;
 }
-input[type="submit"]{
+.button{
+    display: flex;
+    justify-content: center;
+}
+.submit{
+    width: 160px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
     padding: 15px;
     border: none;
-    background-color: #fb3453;
-    color: white;
     border-radius: 10px;
-    width: 150px;
-    cursor: pointer;
+    background-color: #fb3453;
+}
+::placeholder{
+    font-size: 16px;
+    color: black;
     font-family: Poppins;
     font-size: 18px;
 }
-input[type="search"]{
-    padding: 10px;
-    background-color: #EAEAEA;
-    border: none;
-    font-family: Poppins;
-    width:400px;
-    border-radius: 10px;
+/* Table classes starts  */
+/* .table-container{
+    overflow: scroll;
+    overflow-y: hidden;
 }
-.addcategory{
-    /* background-image: url(./../../../../assets/images/categoryimg.avif); */
-    background-position: start;
-    border: dashed 2px #fb3453;
+.table-container::-webkit-scrollbar {
+  width: 6px;
+  scrollbar-width: thin;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #fb3453;
+  border-radius: 10px;
+} */
+.table-section{
+    display: flex;
+    flex-direction: column;
+    /* overflow: scroll; */
+}
+table{
+    border-radius: 10px;
+    border: solid 1px #EAEAEA;
+    border-collapse: separate;
+    padding: 10px;
+    border-spacing: 0px 10px;
     height: 90%;
+    width: 100%;
+}
+tr{
+   width: 100%;
+}
+th{
+    font-size: 20px;
+    border-style: none;
+    text-align: left;
+    vertical-align: center;
+}
+td{
+    font-size: 18px;
+    border-style: none;
+    text-align: left;
+    vertical-align: center;
+}
+.table-head{
+    display: flex;
+    justify-content: space-between;
+}
+.table-button{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.table-button a {
+    background-color: #fb34521e;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+.reader-name{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+.reader-name img{
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position:  start;
+    border-radius: 50%;
+}
+/* .edit-btn{
+    border-radius: 5px;
+    padding: 14px 12px;
+    width: 80px;
+    background-color: #fb34523b;
+ }
+ .delete-btn{
+    background-color: #68a9004f;
+    width: 80px;
+    border-radius: 5px;
+    padding: 14px 12px;
+ } */
+ h4{
+    margin: 0px;
+ }
+ p{
+    margin: 0px;
+ }
+ .editbook-page{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    border: 1.5px solid black;
+    padding: 10px;
+    border-radius: 10px;
+ }
+ .book-name{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+ }
+.book-img img{
+    width: 100px;
 }
-input[type="file"]::file-selector-button{
-    border: none;
-    color: black;
-    background-color: #EAEAEA;
-    padding: 15px;
+ .book-img{
+    display: flex;
+    justify-content: space-between;
+ }
+ .book-img-height img{
+    width: 80px;
+    height: 90%;
     border-radius: 10px;
-    cursor: pointer;
-    font-family: Poppins;
-    font-size: 18px;
-    /* width: 400px; */
-}  
-.custom-file-upload {
-    display: inline-block;
-    cursor: pointer;
-    width: 180px;
-    padding: 15px;
-    border: 1px solid #68a900;
-    border-radius: 5px;
-    color: white;
-    background-color: #68a900;;
-}
-.custom-file-upload span{
-    font-size: 18px;
-}
-::placeholder{
-    font-size: 18px;
-    color: black;
-}
-/* .addcategory i{
-    width: 50px;
-} */
-button{
+ }
+ .btn{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+ }
+ button{
     border: none;
+    padding: 20px 30px;
+    border-radius: 10px;
     background-color: #fb3453;
     color: white;
-    padding: 12px;
-    border-radius: 10px;
     cursor: pointer;
-    font-size: 18px;
-    width: 150px;
-    font-family: Poppins;
-}
-.form-rules{
-/* <<<<<<< HEAD */
-    color: #FB3453;
-/* ======= */
+ }
+ .form-rules{
     color: #fb3453;
-/* >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb */
+ }
+ .vertical {
+    border-left: 3px solid #fb34523f;
+    border-radius: 10px;
+    height: 570px;
+    position: absolute;
+    left: 58%;
+}
+/* Form Image Container classes starts  */
+/* .form-image-container{
+    width: 500px;
+}
+.form-image-container img{
+    display: flex;
+    width: 80%;
+} */
+.image-shadow{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.342), 0 6px 20px 0 rgba(0, 0, 0, 0.342); */
+    /* height: 400px; */
+}
+.image-shadow img{
+    width: 300px;
+    height: 400px;
 }

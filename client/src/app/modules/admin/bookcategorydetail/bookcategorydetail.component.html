@@ -36,7 +36,7 @@
     <!-- Modal -->
     <div class="card flex justify-content-center">
         <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
-        <p-dialog [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
+        <p-dialog [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false" [ngClass]="{'blur-background': visible, 'non-scrollable': visible}">
                 <h4>Add Category</h4>
                 <form [formGroup]="categoryform" (ngSubmit)="onAddingCategory()" class="form-control" id="categoryform">
                     <!-- <label for="category">Enter Category Name</label> -->

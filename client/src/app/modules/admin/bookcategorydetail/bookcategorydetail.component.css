@@ -90,7 +90,13 @@ a{
     width: 120px;
     transition: width 0.3s; 
 }
+.blur-background {
+    filter: blur(4px);
+}
 
+.non-scrollable {
+  overflow: hidden;
+}
 .category-text:hover {
     width: auto; 
 }

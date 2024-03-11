@@ -17,13 +17,21 @@ export class EditbookComponent{
   books: Book[] = []
   editBookForm: FormGroup;
   bookImageUrl: string | null = null;
+  booktypeImageUrl :  string | null = null;
   selectedFile: File | null = null;
   // bookCategoryImageUrl: string | null = null;
   // bookTypeImageUrl: string | null = null;
   bookcategories: { name: string, abbrev: string}[] = []
   bookcategoriesimage: {image: string, abbrev: string}[] = []
-  booktypes: { name: string, abbrev: string }[] = []
-  booktypesimage: {image: string, abbrev: string}[] = []
+  booktypes = [
+    {name: 'Novel', abbrev: 'Novel'},
+    {name: 'Newspaper', abbrev: 'Newspaper'},
+    {name: 'Hypothetical', abbrev: 'Hypothetical'},
+    {name: 'Research', abbrev: 'Research'},
+    {name: 'Article', abbrev: 'Article'},
+    {name: 'Magazine', abbrev: 'Magazine'},
+    {name: 'Page 3', abbrev: 'Page 3'}
+  ];
   constructor(private formBuilder: FormBuilder, private router: RouterOutlet, private admin: AdminService, private route: ActivatedRoute) {
     this.bookId = this.route.snapshot.params['id'];
     this.editBookForm = this.formBuilder.group({
@@ -59,26 +67,26 @@ export class EditbookComponent{
       // console.log("New array is", bookcategoryimagearr, this.bookcategories)
       return bookcategoryimagearr
     })
-    this.getBookType().subscribe((booktype) => {
-      var arr = booktype
-      var booktypearr = arr.map((item: any) => {
-        console.log(item)
-        return {name: item.type, abbrev: item.type}
-      }) 
-      this.booktypes = booktypearr
-      // console.log("New array is", booktypearr, this.bookcategories)
-      return booktypearr
-    })
-    this.getBookType().subscribe((booktypesimage) => {
-      var arr = booktypesimage
-      var booktypeimagearr = arr.map((item: any) => {
-        console.log(item)
-        return {image: item.image, abbrev: item.image}
-      }) 
-      this.booktypesimage = booktypeimagearr
-      // console.log("New array is", booktypearr, this.bookcategories)
-      return booktypeimagearr
-    })
+    // this.getBookType().subscribe((booktype) => {
+    //   var arr = booktype
+    //   var booktypearr = arr.map((item: any) => {
+    //     console.log(item)
+    //     return {name: item.type, abbrev: item.type}
+    //   }) 
+    //   this.booktypes = booktypearr
+    //   console.log("New array is", booktypearr, this.bookcategories)
+    //   return booktypearr
+    // })
+    // this.getBookType().subscribe((booktypesimage) => {
+    //   var arr = booktypesimage
+    //   var booktypeimagearr = arr.map((item: any) => {
+    //     console.log(item)
+    //     return {image: item.image, abbrev: item.image}
+    //   }) 
+    //   this.booktypesimage = booktypeimagearr
+    //   console.log("New array is", booktypearr, this.bookcategories)
+    //   return booktypeimagearr
+    // })
   }
    
   ngOnInit(): void {
@@ -90,11 +98,11 @@ export class EditbookComponent{
     this.admin.getBookById(this.bookId).subscribe((books) => {
       this.books = books
       this.bookImageUrl = books.img;
+      this.booktypeImageUrl = books.booktype_img
       // this.bookCategoryImageUrl = books.bookcat_img;
       // this.bookTypeImageUrl = books.booktype_img;
       console.log(books)
       const bookcategoryimg = books.bookcat_img
-      // Patch the form with the retrieved book data
       this.editBookForm.patchValue({
         bookname: books.bookName,
         booksellingprice: books.sellingprice,

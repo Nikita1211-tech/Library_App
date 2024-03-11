@@ -19,7 +19,7 @@
                          <i class="fas fa-plus dropbtn" style="color: #fb3453"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Book</a>
+                        <a (click)="showDialog()" icon="pi pi-external-link" label="Show">Add Book</a>
                     </div>
                 </div>
             </div>
@@ -49,16 +49,10 @@
     </div>
 </div>
 <!-- Modal of add category form starts -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
+<div class="card flex justify-content-center">
+    <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
+    <p-dialog [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false" [ngClass]="{'blur-background': visible, 'non-scrollable': visible}">
+            <h4>Add Category</h4>
             <form [formGroup]="categoryform" (ngSubmit)="onAddingCategory()" class="form-control" id="categoryform">
                 <!-- <label for="category">Enter Category Name</label> -->
                 <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
@@ -85,6 +79,44 @@
                 <input type="file" class="form-control" name="image" id="image"  formControlName="image" required> -->
                 <input type="submit" value="Save">
             </form>
+    </p-dialog>
+</div>
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="categoryform" (ngSubmit)="onAddingCategory()" class="form-control" id="categoryform">
+                <label for="category">Enter Category Name</label>
+                <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
+                <div *ngIf="categoryform.controls['category'].invalid && (categoryform.controls['category'].dirty || categoryform.controls['category'].touched)">
+                    <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['required']">Category name is
+                        required.</div>
+                    <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['pattern']">Name must be alphanumeric.</div>
+                    <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['minlength']">Name must be 3 to 40 characters long</div>
+                    <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['maxlength']">Name must be 3 to 40 characters long</div>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <label for="image" class="custom-file-upload" style="display: flex; flex-direction: column;text-align: center;">
+                        <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
+                        <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
+                    </label>
+                    <p *ngIf="categoryform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageFileName() }}</p>
+                </div>
+                <div *ngIf="categoryform.get('image')?.invalid && (categoryform.get('image')?.dirty || categoryform.get('image')?.touched)">
+                    <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['required']">Please upload an image.</div>
+                    <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png, .gif.</div>
+                    <div class="form-validation form-rules" *ngIf="categoryform.get('image')?.errors?.['fileSize']">Image size should be lessthan 5mb.</div>
+                </div>
+                <label for="image">Upload Image</label>
+                <input type="file" class="form-control" name="image" id="image"  formControlName="image" required>
+                <input type="submit" value="Save">
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -92,7 +124,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 <!-- <div class="card flex justify-content-center">
     <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button>
     <p-dialog [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">

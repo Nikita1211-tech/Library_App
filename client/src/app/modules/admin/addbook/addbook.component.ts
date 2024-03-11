@@ -20,6 +20,7 @@ export class AddbookComponent {
   books: Book[] = []
   bookcategories: { name: string, image: string, abbrev: string}[] = []
   bookcategoriesimage: { name: string, image: string, abbrev: string}[] = []
+  bookImgPreview: string | ArrayBuffer | null = null;
   booktypes = [
     {name: 'Novel', abbrev: 'Novel'},
     {name: 'Newspaper', abbrev: 'Newspaper'},
@@ -92,16 +93,28 @@ export class AddbookComponent {
 //   if (!fullPath) return ''; 
 //   return fullPath.split('\\').pop() || ''; 
 // }
- onFileSelected(event: any, formControlName: string) {
-  if (event.target.files && event.target.files.length > 0) {
-    const file = event.target.files[0];
-    const control = this.addBookForm.get(formControlName);
-    if (control) {
-      control.setValue(file);
-      console.log(control.value); 
-    }       
-    console.log(file)
+//  onFileSelected(event: any, formControlName: string) {
+//   if (event.target.files && event.target.files.length > 0) {
+//     const file = event.target.files[0];
+//     const control = this.addBookForm.get(formControlName);
+//     if (control) {
+//       control.setValue(file);
+//       console.log(control.value); 
+//     }       
+//     console.log(file)
+//   }
+// }
+onFileSelected(event: any, controlName: string): void {
+  const file: File = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.bookImgPreview = reader.result;
+    };
   }
+  // Update form control with selected file
+  this.addBookForm.get(controlName)?.setValue(file);
 }
 
 onSelectCategory(): void {
@@ -150,10 +163,9 @@ markFormGroupTouched(formGroup: FormGroup) {
 }
 
 onAddBook() {
-  if(!this.addBookForm.valid) {
+  if (!this.addBookForm.valid) {
     this.markFormGroupTouched(this.addBookForm);
-  } 
-  else{
+  } else {
     const formData = new FormData();
     Object.keys(this.addBookForm.value).forEach(key => {
       let value = this.addBookForm.value[key];
@@ -162,12 +174,28 @@ onAddBook() {
       }
       formData.append(key, value);
     });
+    const bookImgInput = this.addBookForm.get('bookimg');
+    const bookTypeImgInput = this.addBookForm.get('booktypeimg');
+    
+    if (bookImgInput && bookImgInput.value && bookImgInput.value.files) {
+      const files = bookImgInput.value.files;
+      if (files.length > 0) {
+        formData.append('bookimg', files[0]);
+      }
+    }
+    
+    if (bookTypeImgInput && bookTypeImgInput.value && bookTypeImgInput.value.files) {
+      const files = bookTypeImgInput.value.files;
+      if (files.length > 0) {
+        formData.append('booktypeimg', files[0]);
+      }
+    }
+
     this.admin.addBook(formData, (error) => {
     });
-    // console.log(this.addBookForm.value.bookimg)
-    // console.log(this.addBookForm.value.booktypeimg)
   }
 }
+
 getBookById(){
   return this.admin.getBookById(this.bookId)
 }
