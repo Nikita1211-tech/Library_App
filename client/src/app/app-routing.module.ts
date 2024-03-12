@@ -133,6 +133,7 @@ const routes: Routes = [
       },
     ]
   },
+  // { path: 'layout/user/user-sidebar', loadChildren: () => import('./layout/user/user-sidebar/user-sidebar.module').then(m => m.UserSidebarModule) },
   
   
   

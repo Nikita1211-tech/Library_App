@@ -5,6 +5,7 @@ a{
 }
 p{
     font-size: 0.9rem;
+    font-weight: 500;
     margin: 0px;
 }
 h3{
@@ -25,7 +26,7 @@ h5{
 }
 h6{
     font-size: 1.2rem;
-    font-weight: 200;
+    font-weight: 500;
     margin: 0px;
 }
 th{
@@ -43,20 +44,26 @@ td{
 .readercontainer-sec1{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 40px;
     width: 60%;
 }
 .readerconatiner-row1{
     display: flex;
     gap: 10px;
+    /* justify-content: space-between; */
+
 }
 .reader-info{
-    width: 47%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
     padding: 15px;
 }
 .reader-info img{
-    background-color: #fb345223;
-    padding: 12px;
+    width: 150px;
+    /* background-color: #fb345223; */
+    /* padding: 12px; */
     border-radius: 12px;
 }
 .bk-shadow{
@@ -64,6 +71,9 @@ td{
     border: 1px solid #EAEAEA;
     border-radius: 15px;
     padding: 20px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    gap: 20px;
     background-color: white;
 }
 .graph{
@@ -81,19 +91,21 @@ td{
     border-radius: 5px;
 }
 .total-info img{
+    width: 50px;
     background-color: transparent;
 }
 .bk-clr{
     background-color: #FB3453;
     color: white;
 }
-.bk-clr img{
-    background-color: #ffffff3a;
-}
 /* ReaderContainer table classes start  */
 .readerconatiner-row2{
-    padding: 15px;
-    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* gap: 20px; */
+    /* height: 100%; */
 }
 .view{
     display: flex;
@@ -105,14 +117,14 @@ td{
    flex-direction: column;
    gap: 20px;
 }
-.table-container{
+/* .table-container{
     overflow-x: auto;
-}
+} */
 table{
     border-radius: 10px;
     border: solid 1px #EAEAEA;
     border-collapse: separate;
-    border-spacing: 10px 10px;
+    border-spacing: 10px 30px;
     height: 90%;
     width: 100%;
 }
@@ -126,12 +138,14 @@ td,th{
     background-color: #68a9004f;
     border-radius: 5px;
     padding: 12px 10px;
+    text-align: center;
 }
 .inactive{
     color: #fb3452;
     border-radius: 5px;
     padding: 12px 10px;
     background-color: #fb34523b;
+    text-align: center;
 }
 .table-head{
     display: flex;
@@ -149,8 +163,9 @@ td,th{
 }
 .reader-name{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
+    justify-content: center;
     gap: 20px;
 }
 .reader-name img{
@@ -165,9 +180,20 @@ td,th{
     gap: 40px;
     width: 40%;
 }
+.graph-container {
+    display: flex;
+    flex-direction: column;
+    /* flex-grow: 1; */
+}
 /* .graphWidth{
     flex: 1;
 } */
+.subscribed-viewers-col{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+}
 .cardcontainer{
     display: flex;
     overflow-x: auto;
@@ -178,11 +204,12 @@ td,th{
     text-align: center;
     border: solid 1px #EAEAEA;
     border-radius: 10px;
+    padding: 10px;
 }
 .sub-detail img{
      border-radius: 50%;
      margin: auto;
-     width: 150px;
+     width: 170px;
      padding: 20px 20px;
 }
 .sub-date{
@@ -214,7 +241,32 @@ td,th{
     width: 150px;
    }
 }
-@media (max-width: 992px) { 
+@media only screen and (max-width: 992px){
+    .reader-container{
+        /* width: 100vw; */
+        height: 100%;
+        flex-direction: column;
+    }
+    .active{
+        width: 100px;
+        padding: 10px;
+    }
+    .inactive{
+        width: 100px;
+    }
+    .reader-info{
+        /* width: 100%; */
+        gap: 10px;
+    }
+    .readercontainer-sec1{
+        width: 100%;
+    }
+    .readercontainer-sec2{
+        width: 100%;
+        /* flex-direction: row; */
+    }
+}
+/* @media (max-width: 992px) { 
     p{
         font-size: 0.7rem;
     }
@@ -239,15 +291,17 @@ td,th{
     td{
         font-size: 0.5rem;
     }
-    .graph{
-        flex-direction: column;
-        align-items: flex-start;
-    }
     .sub-detail img{
         width: 100px;
         padding: 10px 10px;
     }
- }
+    .reader-name{
+        gap: 10px;
+    }
+    .reader-name img{
+        width: 40px;
+    }
+ } */
 @media (max-width: 1200px) { 
     p{
         font-size: 0.8rem;
@@ -273,8 +327,27 @@ td,th{
     td{
         font-size: 0.8rem;
     }
+    table{
+        border-spacing: 0px;
+        padding: 15px;
+    }
     .sub-detail img{
         width: 110px;
         padding: 10px 10px;
+    }
+}
+@media (max-width: 1400px) {
+    /* .readerconatiner-row1{
+        flex-direction: column;
+    } */
+    table{
+        border-spacing: 0px;
+        padding: 15px;
+    }
+    .reader-info img{
+        width: 80px;
+    }
+    .total-info img{
+        width: 40px;
     }
 }

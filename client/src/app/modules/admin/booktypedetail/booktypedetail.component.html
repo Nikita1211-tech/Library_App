@@ -73,7 +73,7 @@
                         <div style="display: flex; gap: 10px; align-items: center;">
                             <label for="image" class="custom-file-upload" style="display: flex; justify-content: center; align-items: center">
                                 <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
-                                <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
+                                <input type="file" id="image" name="image" formControlName="image" style="display: none;" required accept="image/png, image/jpeg, image/jpg">
                             </label>
                         </div>
                         <!-- <label for="image">Upload Image</label>
@@ -129,7 +129,7 @@
                     <div style="display: flex; justify-content: space-between;">
                         <label for="image" class="custom-file-upload">
                             <span><i class="fas fa-upload" style="margin-right: 10px;"></i> Image</span>
-                            <input type="file" id="image" name="image" (change)="onFileChange($event)"  formControlName="image" style="display: none;" required>
+                            <input type="file" id="image" name="image" (change)="onFileChange($event)"  formControlName="image" style="display: none;" required accept="image/png, image/jpeg, image/jpg">
                         </label>
                         <input type="submit" value="Update">
                     </div>

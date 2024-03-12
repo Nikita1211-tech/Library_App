@@ -55,7 +55,7 @@
                             <div style="display: flex; gap: 10px; align-items: center;">
                                 <label for="image" class="custom-file-upload" style="display: flex; flex-direction: column;text-align: center;">
                                     <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
-                                    <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
+                                    <input type="file" id="image" name="image" formControlName="image" style="display: none;" required accept="image/png, image/jpeg, image/jpg">
                                 </label>
                             </div>
                             <!-- <label for="image">Upload Image</label>
@@ -96,23 +96,28 @@
                        <div>
                          <label for="image" class="custom-file-upload">
                              <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
-                             <input type="file" id="image" name="image" (change)="onFileChange($event)"  formControlName="image" style="display: none;" required>
+                             <input type="file" id="image" name="image" (change)="onFileChange($event)"  formControlName="image" style="display: none;" required accept="image/png, image/jpeg, image/jpg">
                          </label>
+                         <div *ngIf="editcategoryform.get('image')?.invalid && (editcategoryform.get('image')?.dirty || editcategoryform.get('image')?.touched)">
+                            <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['required']">Please upload an image.</div>
+                            <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png.</div>
+                            <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['fileSize']">Image size should be less than 5 mb.</div>
+                        </div>
                        </div>
                         <div>
                              <input type="submit" value="Update">
                         </div>
                     </div>
                     <div>
+                        <!-- <p *ngIf="!selectedFile && editcategoryform.get('image')?.value">{{getImageUrl()}}</p> -->
+                        <!-- <div *ngIf="editcategoryform.get('image')?.invalid && (editcategoryform.get('image')?.dirty || editcategoryform.get('image')?.touched)">
+                            <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['required']">Please upload an image.</div>
+                            <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png.</div>
+                            <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['fileSize']">Image size should be less than 5 mb.</div>
+                        </div> -->
                         <div style="display: flex; gap: 10px;">
                             <p *ngIf="!selectedFile && editcategoryform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageUrl()}}</p>
-                            <p *ngIf="selectedFile" style="margin-left: 10px;"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i>{{getImageUrl()}}</p>
-                        </div>
-                        <!-- <p *ngIf="!selectedFile && editcategoryform.get('image')?.value">{{getImageUrl()}}</p> -->
-                        <div *ngIf="editcategoryform.get('image')?.invalid && (editcategoryform.get('image')?.dirty || editcategoryform.get('image')?.touched)">
-                           <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['required']">Please upload an image.</div>
-                           <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png.</div>
-                           <div class="form-validation form-rules" *ngIf="editcategoryform.get('image')?.errors?.['fileSize']">Image size should be less than 5 mb.</div>
+                            <p *ngIf="selectedFile"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i>{{getImageUrl()}}</p>
                         </div>
                     </div>
                 </form>

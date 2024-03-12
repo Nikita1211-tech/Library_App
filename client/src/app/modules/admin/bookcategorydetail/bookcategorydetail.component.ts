@@ -114,7 +114,13 @@ export class BookcategorydetailComponent implements OnInit{
       return this.selectedFile.name;
     } else {
       console.log(this.environment + this.bookcategoryimg)
-      return this.bookcategoryimg;
+      let parts = this.bookcategoryimg?.split("\\");
+      if (parts && parts.length > 0) {
+        let fileName = parts[parts.length - 1];
+        return fileName;
+      } else {
+        return ""; 
+      }
     }
   }
   markFormGroupTouched(formGroup: FormGroup) {
