@@ -362,6 +362,7 @@ const Addbookcategory = async (req, res) => {
 
     // Save the category details to the database
     const newCategory = await BookCategory.create({ category: category, image: imagePath });
+    console.log(newCategory)
     return res.status(201).json({ message: "Book category added successfully", category: newCategory });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -370,7 +371,7 @@ const Addbookcategory = async (req, res) => {
 
 const Showbookcategory = async (req,res) => {
   try {
-    const Bookcategory = await BookCategory.findAll();
+    const Bookcategory = (await BookCategory.findAll()).sort({createdAt: -1});
     console.log(BookCategory)
     return res.status(201).json(Bookcategory);
   } catch (error) {
@@ -378,7 +379,6 @@ const Showbookcategory = async (req,res) => {
   }
 }
 
-// <<<<<<< HEAD
 const Showcategoryimage = async (req,res) => {
   try {
     const categoryName = req.params.categoryName;
