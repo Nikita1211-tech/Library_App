@@ -33,15 +33,24 @@ export class BooktypedetailComponent {
     {name: 'Page 3', abbrev: 'Page 3'}
   ];
   typeform: FormGroup
+  edittypeform: FormGroup;
   showTypeForm: boolean = false;
   showTable: boolean = false; 
   visible: boolean = false;
+  visibleeditform: boolean = false;
+  id!: number;
+  type: Type[] = []
+  booktypeimg: string | null = null;
+  selectedFile: File | null = null;
   // public chart: any;
   constructor(private fb: FormBuilder, private auth: AuthService, private register: RegisterService, private admin: AdminService, private router: Router){
     this.typeform = new FormGroup({
-      type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/),  Validators.minLength(3), Validators.maxLength(20)]),
-      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg']}), RxwebValidators.fileSize({maxSize:51000000 })])
-
+      type: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg']}), RxwebValidators.fileSize({maxSize:5242880 })])
+    })
+    this.edittypeform = new FormGroup({
+      type: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
+      image: new FormControl('', [RxwebValidators.extension({extensions:['png','jpg','jpeg']}), RxwebValidators.fileSize({maxSize: 5242880}) ])
     })
   }
     
@@ -66,13 +75,29 @@ export class BooktypedetailComponent {
   // }
   getImageFileName(): string {
     const fullPath = this.typeform.get('image')?.value;
-    if (!fullPath) return ''; // Return empty string if no file is selected
-    return fullPath.split('\\').pop() || ''; // Extract file name from full path
+    if (!fullPath) return ''; 
+    return fullPath.split('\\').pop() || ''; 
   }
   // Edit form Modal 
   showDialog() {
     this.visible = true;
   }
+  
+  showEditDialog(id: number) {
+    // console.log(id)
+    this.visibleeditform = true;
+    this.id = id;
+    this.admin.getBookTypeById(id).subscribe((type) => {
+      this.type = type
+      this.booktypeimg = type.image
+      console.log(type.image)
+      this.edittypeform.patchValue({ 
+        type: type.type, 
+        image: type.image
+      });
+    })
+  }
+
   onClickType(data: string): void{
     const booktype = data
     localStorage.setItem('booktype', booktype);
@@ -81,6 +106,30 @@ export class BooktypedetailComponent {
       console.log(error);
     })
    }
+   onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.selectedFile = file;
+    }
+    console.log(this.selectedFile)
+  }
+   getImageUrl(): string | ArrayBuffer | null {
+    if (this.selectedFile) {
+      console.log(this.environment+this.selectedFile.name)
+      console.log(this.selectedFile.name)
+      return this.selectedFile.name;
+    } else {
+      console.log(this.environment + this.booktypeimg)
+      console.log(this.booktypeimg)
+      let parts = this.booktypeimg?.split("\\");
+      if (parts && parts.length > 0) {
+        let fileName = parts[parts.length - 1];
+        return fileName;
+      } else {
+        return ""; 
+      }
+    }
+  }
   onAddingType(): void{
     if(!this.typeform.valid) {
       this.markFormGroupTouched(this.typeform);
@@ -101,6 +150,24 @@ export class BooktypedetailComponent {
 
     }
   }
+  onEditingType(): void{
+    if(!this.edittypeform.valid) {
+      this.markFormGroupTouched(this.edittypeform);
+    } 
+    else{
+      const formData = new FormData();
+      // const id = this.id
+      Object.keys(this.edittypeform.value).forEach(key => {
+        const value = this.edittypeform.value[key];
+        formData.append(key, value);
+      });
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile);
+      }
+      this.admin.updatebooktype(formData, this.id)
+    // }
+    }
+}
   markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
       control.markAsTouched();

@@ -33,6 +33,7 @@ export class BookcategorydetailComponent implements OnInit{
   category: Category[] = []
   bookcategoryimg: string | null = null;
   selectedFile: File | null = null;
+  id!: number;
   // public chart: any;
   constructor(private fb: FormBuilder,private auth: AuthService, private register: RegisterService, private route: ActivatedRoute, private admin: AdminService, private router: Router, private primengconfig: PrimeNGConfig){
     this.bookcategoryid = this.route.snapshot.params['id'];
@@ -43,7 +44,7 @@ export class BookcategorydetailComponent implements OnInit{
     })
     this.editcategoryform = new FormGroup({
       category: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/),  Validators.minLength(6), Validators.maxLength(20)]),
-      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg','gif']}), RxwebValidators.fileSize({maxSize: 5242880}) ])
+      image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg']}), RxwebValidators.fileSize({maxSize: 5242880}) ])
     })
   }
   ngOnInit(): void {
@@ -54,7 +55,7 @@ export class BookcategorydetailComponent implements OnInit{
     });
     this.admin.showbookcategory().subscribe((categories) => {
       this.categories = categories;
-      console.log(categories)
+      // console.log(categories.id)
     });
     // this.admin.getBookCategoryById(this.bookcategoryid).subscribe((category) => {
     //   this.category = category
@@ -73,6 +74,7 @@ export class BookcategorydetailComponent implements OnInit{
   showEditDialog(id: number) {
     // console.log(id)
     this.visibleeditform = true;
+    this.id = id;
     this.admin.getBookCategoryById(id).subscribe((category) => {
       this.category = category
       this.bookcategoryimg = category.image
@@ -147,14 +149,13 @@ export class BookcategorydetailComponent implements OnInit{
     }
   }
 
-  onEditingCategory(id: number): void{
+  onEditingCategory(): void{
     if(!this.editcategoryform.valid) {
       this.markFormGroupTouched(this.editcategoryform);
     } 
     else{
       const formData = new FormData();
-      console.log(id)
-      // const id =this.bookcategoryid
+      console.log(this.id)
       Object.keys(this.editcategoryform.value).forEach(key => {
         const value = this.editcategoryform.value[key];
         formData.append(key, value);
@@ -162,7 +163,7 @@ export class BookcategorydetailComponent implements OnInit{
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);
       }
-      this.admin.updatebookcategory(formData, id)
+      this.admin.updatebookcategory(formData, this.id)
   }
 
  }

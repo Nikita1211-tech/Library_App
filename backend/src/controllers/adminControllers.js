@@ -191,7 +191,7 @@ const Updatebook = async(req,res) => {
     console.log(bookid)
     const obj = { 
       bookName: req.body.bookname, 
-      img: req.body.img, 
+      img: req.file.path, 
       sellingprice: req.body.booksellingprice, 
       costprice: req.body.bookcostprice,  
       bookcat_img : req.body.bookcategoryimg, 
@@ -455,7 +455,6 @@ const Updatebookcategory = async (req, res) => {
       if (existingCategory && existingCategory.id !== categoryid) {
         return res.status(400).json({ message: 'Category name already exists' });
       }
-      // Update category name
     }
     category.category = categoryname;
     if(image){
@@ -464,7 +463,6 @@ const Updatebookcategory = async (req, res) => {
     await category.save();
     console.log(category)
     res.status(200).json({ message: 'Category updated successfully' });
-// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
   } catch (error) {
     console.error('Error updating category:', error);
     res.status(500).json({ error: 'Failed to update category' });
@@ -473,7 +471,6 @@ const Updatebookcategory = async (req, res) => {
 
 
 const Updatebooktype = async(req,res) => {
-  // console.log(req?.file)
   try {
     console.log(req?.file);
     const typeid = req.params.id;
@@ -482,16 +479,12 @@ const Updatebooktype = async(req,res) => {
     const type = await Booktype.findByPk(typeid);
     if (!type) {
       return res.status(404).json({ message: 'Type not found' });
-// <<<<<<< HEAD
     }
-
-    // If User Exist
     if (typename) {
       const existingType = await Booktype.findOne({ where: { type: typename } });
       if (existingType && existingType.id !== typeid) {
         return res.status(400).json({ message: 'Type name already exists' });
       }
-      // Update category name
     }
     type.type = typename;
     if(image){
@@ -500,7 +493,6 @@ const Updatebooktype = async(req,res) => {
     await type.save();
     console.log(type)
     res.status(200).json({ message: 'Type name updated successfully' });
-// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
   } catch (error) {
     console.error('Error updating category:', error);
     res.status(500).json({ error: 'Failed to update category' });

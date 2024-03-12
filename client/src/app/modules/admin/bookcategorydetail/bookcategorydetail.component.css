@@ -16,7 +16,7 @@ h4{
 p{
     font-size: 18px;
     font-weight: bold;
-    margin: 0px 0px 0px 10px;
+    margin: 0px ;
 }
 a{
     cursor: pointer;
@@ -98,13 +98,6 @@ a{
     width: 120px;
     transition: width 0.3s; 
 }
-.blur-background {
-    filter: blur(4px);
-}
-
-.non-scrollable {
-  overflow: hidden;
-}
 .category-text:hover {
     width: auto; 
 }
@@ -119,10 +112,13 @@ a{
     flex-direction: column;
     gap: 20px;
 }
+/* ::ng-deep .ui-dialog .ui-dialog-title {
+    font-size: 34px !important; 
+} */
 form{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
     margin: 0px;
 }
 label{

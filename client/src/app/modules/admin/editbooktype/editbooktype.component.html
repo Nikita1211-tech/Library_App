@@ -1,9 +1,6 @@
 <div class="edittypeform bk-shadow" id="typeform">
     <form [formGroup]="edittypeform" (ngSubmit)="onEditingType()" class="form-control" id="categoryform"  enctype="multipart/form-data">
-<!-- <<<<<<< HEAD -->
-<!-- ======= -->
         <label for="type">Type Name</label><br>
-<!-- >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb -->
         <input type="text" class="form-control" name="type" id="type"  formControlName="type" placeholder="Enter Type name" required>
         <div *ngIf="edittypeform.controls['type'].invalid && (edittypeform.controls['type'].dirty || edittypeform.controls['type'].touched)">
             <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['required']">Type name is
@@ -12,7 +9,6 @@
             <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['minlength']">Name must be 6 to 20 characters long</div>
             <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['maxlength']">Name must be 6 to 20 characters long</div>
         </div>
-<!-- <<<<<<< HEAD -->
         <h5 style="font-size: 22px; margin: 10px 0px 10px 0px;font-weight: 500;">Image</h5>
         <img *ngIf="selectedFile" [src]="getImageUrl()" alt="Uploaded Image" style="max-width: 100px; max-height: 100px;">
 
@@ -30,19 +26,6 @@
             <div class="form-validation form-rules" *ngIf="edittypeform.get('image')?.errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png, .gif.</div>
             <div class="form-validation form-rules" *ngIf="edittypeform.get('image')?.errors?.['fileSize']">Image size should be less than 5 mb.</div>
          </div>
-<!-- ======= -->
-        <!-- <h5 style="font-size: 22px; margin: 10px 0px 10px 0px; font-weight: 500;">Image</h5>
-        <img *ngIf="edittypeform.get('image')?.value" [src]="environment+booktypeimg" alt="type Image" style="max-width: 100px; max-height: 100px;">
-        <div style="display: flex; gap: 10px;">
-            <label for="image" class="custom-file-upload" style="display: flex;flex-direction: coluumn;align-items: center;justify-content: center; text-align: center;">
-                <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
-                <input type="file" id="image" name="image" formControlName="image" (change)="onFileChange($event)" style="display: none;" required>
-            </label>
-            <p *ngIf="edittypeform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageFileName() }}</p>
-        </div> -->
-<!-- >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb -->
-        <!-- <label for="image">Upload Image</label>
-        <input type="file" class="form-control" name="image" id="image" (change)="onFileChange($event)" formControlName="image" required> -->
         <input type="submit" value="Update">
     </form>
 </div>

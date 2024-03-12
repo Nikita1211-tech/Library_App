@@ -57,13 +57,13 @@
                         <div style="display: flex; gap: 10px; align-items: center;">
                             <label for="bookimg" class="custom-file-upload">
                                 <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
-                                <input id="bookimg" (change)="onFileSelected($event, 'bookimg')"
+                                <input id="bookimg" (change)="onFileSelected($event)"
                                     formControlName="bookimg" type="file" name="bookimg" style="display: none;"><br><br> 
                             </label>
                             <div style="display: flex; gap: 10px; align-items: center;">
                                 <!-- <i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> -->
-                                <!-- <p>{{bookImageUrl}}</p> -->
-                                <p>{{ editBookForm.get('bookimg')?.value ? editBookForm.get('bookimg')?.value?.name : '' }}</p>
+                                <p *ngIf="!selectedFile">{{bookImageUrl}}</p>
+                                <p *ngIf="selectedFile">{{getImageUrl()}}</p>
                             </div>
                         </div>
                         <div
@@ -100,12 +100,12 @@
             <div class="form-col2">
                 <div class="type">
                     <div class="type-col1">
-                        <label for="bookcategory">Book Category Name</label>
-                        <select name="bookcategory" id="bookcategory"  (click)="getBookCategory()"
+                        <label for="bookcategories">Book Category Name</label>
+                        <select name="bookcategories" id="bookcategories"  (click)="getBookCategory()"
                         (change)="getBookCategoryImage()" formControlName="bookcategories">
                             <option disabled selected value="">Select Book Category Name</option>
                             <option *ngFor="let bookcategory of bookcategories" [ngValue]="bookcategory.name">{{
-                                bookcategory.abbrev }}
+                                bookcategory.name }}
                             </option>
                         </select>
                         <div
@@ -174,8 +174,8 @@
                     </div>
                     <div class="type-col2">
                         <div>
-                            <input type="hidden" formControlName="bookcategoryimg" [ngModel]="selectedCategoryImagePath">
-                            <input type="hidden" formControlName="booktypeimg" [ngModel]="selectedTypeImagePath">
+                            <input type="hidden" formControlName="bookcategoryimg" [ngModel]="selectedCategoryImage">
+                            <input type="hidden" formControlName="booktypeimg" [ngModel]="selectedTypeImage">
                         </div>
                         <!-- <div class="bookcategory-img">
                             <img [src]="environment+selectedTypeImage" alt="Selected Type Image">

@@ -17,6 +17,7 @@ export class EditbookComponent{
   books: Book[] = []
   editBookForm: FormGroup;
   bookImageUrl: string | null = null;
+  bookimg: string | null = null;
   booktypeImageUrl :  string | null = null;
   selectedFile: File | null = null;
   selectedCategoryImage: string | null = null;
@@ -31,6 +32,7 @@ export class EditbookComponent{
   booktypesimage: {image: string, abbrev: string}[] = []
   constructor(private formBuilder: FormBuilder, private router: RouterOutlet, private admin: AdminService, private route: ActivatedRoute) {
     this.bookId = this.route.snapshot.params['id'];
+    console.log(this.bookId)
     this.editBookForm = this.formBuilder.group({
       bookname: ['', Validators.required],
       booksellingprice: ['', Validators.required],
@@ -71,7 +73,7 @@ export class EditbookComponent{
         return {name: item.type, abbrev: item.type}
       }) 
       this.booktypes = booktypearr
-      console.log("New array is", booktypearr, this.bookcategories)
+      console.log("New array is", booktypearr, this.booktypes)
       return booktypearr
     })
     this.getBookType().subscribe((booktypesimage) => {
@@ -84,13 +86,6 @@ export class EditbookComponent{
       console.log("New array is", booktypeimagearr, this.bookcategories)
       return booktypeimagearr
     })
-  }
-   
-  ngOnInit(): void {
-    this.getBookData();
-  }
-
-  getBookData(): void {
     this.admin.getBookById(this.bookId).subscribe((books) => {
       this.books = books
       this.bookImageUrl = books.img;
@@ -98,7 +93,8 @@ export class EditbookComponent{
       // this.bookCategoryImageUrl = books.bookcat_img;
       // this.bookTypeImageUrl = books.booktype_img;
       console.log(books)
-      const bookcategoryimg = books.bookcat_img
+      // console.log('Book Categories:', this.editBookForm.value.bookcategories);
+      console.log('Book Categories:', books.category);
       this.editBookForm.patchValue({
         bookname: books.bookName,
         booksellingprice: books.sellingprice,
@@ -113,17 +109,39 @@ export class EditbookComponent{
         booktypeimg: books.booktype_img
       });
     });
+    
+    console.log('Book Categories:', this.editBookForm.value.bookcategories);
   }
+   
+  // ngOnInit(): void {
+    
+  // }
 
-  onFileSelected(event: any, formControlName: string) {
-      if (event.target.files && event.target.files.length > 0) {
+  // onFileSelected(event: any, formControlName: string) {
+  //     if (event.target.files && event.target.files.length > 0) {
+  //       const file = event.target.files[0];
+  //       const control = this.editBookForm.get(formControlName);
+  //       if (control) {
+  //         control.setValue(file);
+  //         console.log(control.value); 
+  //       }       
+  //       console.log(file)
+  //     }
+  //   }
+    onFileSelected(event: any) {
+      if (event.target.files.length > 0) {
         const file = event.target.files[0];
-        const control = this.editBookForm.get(formControlName);
-        if (control) {
-          control.setValue(file);
-          console.log(control.value); 
-        }       
-        console.log(file)
+        this.selectedFile = file.name;
+      }
+      console.log(this.selectedFile)
+    }
+    getImageUrl(): string | ArrayBuffer | null {
+      if (this.selectedFile) {
+        console.log(this.environment+this.selectedFile)
+        return this.environment+'uploads/'+this.selectedFile;
+      } else {
+        console.log(this.environment + this.bookimg)
+        return this.environment + this.bookimg;
       }
     }
 getBookCategoryImage() {

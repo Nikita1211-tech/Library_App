@@ -179,6 +179,7 @@ updatebookcategory(formdata: FormData, id: number){
   .subscribe(response => {
     if(response){
       Swal.fire({
+        position: 'top',
         icon: 'success',
         iconColor: '#fb3453',
         text: "Category updated successfully",
@@ -186,13 +187,14 @@ updatebookcategory(formdata: FormData, id: number){
         showConfirmButton: false,
         timer: 1500,
       }).then((result) => {
-        // window.location.reload();
+        window.location.reload();
         this.router.navigate(['/bookcategorydetail']);
       });
     }
   },(error) => {
     if(error){
       Swal.fire({
+        position: 'top',
         iconColor: '#fb3453',
         title: 'Category already exists',
         icon: 'info',
@@ -201,7 +203,7 @@ updatebookcategory(formdata: FormData, id: number){
         timer: 1500
       }).then((result) => {
         // window.location.reload();
-        this.router.navigate(['/bookcategorydetail'])
+        // this.router.navigate(['/bookcategorydetail'])
       });
     }
   })
@@ -253,6 +255,7 @@ updatebooktype(formdata: FormData, id: number){
   .subscribe(response => {
     if(response){
       Swal.fire({
+        position: 'top',
         title: 'Type updated successfully',
         icon: 'success',
         showCancelButton: false,
@@ -270,6 +273,7 @@ updatebooktype(formdata: FormData, id: number){
     console.log(error.message)
     if(error){
       Swal.fire({
+        position: 'top',
         title: 'Type name already exists',
         icon: 'error',
         showCancelButton: false,

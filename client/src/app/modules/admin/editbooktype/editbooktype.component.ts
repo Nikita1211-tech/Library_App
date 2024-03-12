@@ -41,7 +41,7 @@ export class EditbooktypeComponent {
     
     console.log(this.edittypeform.get('image')?.value)
   }
-   
+
   getImageFileName(): string {
     const fullPath = this.edittypeform.get('image')?.value;
     if (!fullPath) return ''; // Return empty string if no file is selected

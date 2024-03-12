@@ -17,7 +17,7 @@
                     <img [src]="environment+type.image" alt="">
                     <div class="button-container">
                       <a (click)="onClickType(type.type)"><i class="far fa-eye fa-lg" style="color: #fb3453;"></i></a>
-                      <a [href]="'/editbooktype/' + type.id"><i class="far fa-edit fa-lg" style="color: #fb3453;"></i></a>
+                      <a (click)="showEditDialog(type.id)"><i class="far fa-edit fa-lg" style="color: #fb3453;"></i></a>
                       <a (click)="confirmDelete(type.id)"><i class="fas fa-trash fa-lg" style="color: #68a900;"></i></a>
                     </div>
                 </div>
@@ -37,6 +37,7 @@
             <!-- </div> -->
         </div>
     </div>
+    <!-- Add type Modal  -->
     <div class="card flex justify-content-center">
         <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
         <p-dialog header="Add Type" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
@@ -62,7 +63,7 @@
                         <div *ngIf="typeform.controls['type'].invalid && (typeform.controls['type'].dirty || typeform.controls['type'].touched)">
                             <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['required']">Name is
                                 required.</div>
-                            <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['pattern']">Name cannot be alphanumeric.</div>
+                            <!-- <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['pattern']">Name cannot be alphanumeric.</div> -->
                             <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['minlength']">Name must be 3 to 20 characters long.</div>
                             <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['maxlength']">Name must be 3 to 20 characters long.</div>
                         </div>
@@ -93,6 +94,58 @@
                            </div> -->
                        </div>
                 </form>
+        </p-dialog>
+    </div>
+    <!-- Edit Type Modal  -->
+    <div class="card flex justify-content-center">
+        <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
+        <p-dialog header="Edit Category" [(visible)]="visibleeditform" [modal]="true" [draggable]="false" [resizable]="false">
+            <div class="edittypeform" id="typeform">
+                <form [formGroup]="edittypeform" (ngSubmit)="onEditingType()" class="form-control" id="categoryform"  enctype="multipart/form-data">
+                    <h5 style="font-size: 22px; margin: 10px 0px 10px 0px;font-weight: 500;">Select Type</h5>
+                    <select name="type" id="type" formControlName="type">
+                        <option disabled selected value="">Select Type *</option>
+                        <option *ngFor="let booktype of booktypes" [ngValue]="booktype.name">
+                            {{ booktype.name }}
+                        </option>
+                        <!-- <option *ngFor="let state of states" [ngValue]="state">
+                            {{ state.abbrev }}
+                          </option> -->
+                    </select>
+                    <!-- <label for="type">Type Name</label><br>
+                    <input type="text" class="form-control" name="type" id="type"  formControlName="type" placeholder="Enter Type name" required>
+                    <div *ngIf="edittypeform.controls['type'].invalid && (edittypeform.controls['type'].dirty || edittypeform.controls['type'].touched)">
+                        <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['required']">Type name is
+                            required.</div>
+                        <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['pattern']">Name can contain only alphabets.</div>
+                        <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['minlength']">Name must be 6 to 20 characters long</div>
+                        <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['maxlength']">Name must be 6 to 20 characters long</div>
+                    </div> -->
+                    <h5 style="font-size: 22px; margin: 10px 0px 10px 0px;font-weight: 500;">Image</h5>
+                    <!-- <img *ngIf="selectedFile" [src]="getImageUrl()" alt="Uploaded Image" style="max-width: 100px; max-height: 100px;"> -->
+            
+                    <!-- Show pre-filled image if no new image is selected -->
+                    <!-- <img *ngIf="!selectedFile && edittypeform.get('image')?.value" [src]="getImageUrl()" alt="Type Image" style="max-width: 100px; max-height: 100px;"> -->
+                    <div style="display: flex; justify-content: space-between;">
+                        <label for="image" class="custom-file-upload">
+                            <span><i class="fas fa-upload" style="margin-right: 10px;"></i> Image</span>
+                            <input type="file" id="image" name="image" (change)="onFileChange($event)"  formControlName="image" style="display: none;" required>
+                        </label>
+                        <input type="submit" value="Update">
+                    </div>
+                    <div>
+                        <p *ngIf="!selectedFile && edittypeform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageUrl()}}</p>
+                        <p *ngIf="selectedFile"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageUrl()}}</p>
+                    </div>
+                    <div *ngIf="edittypeform.get('image')?.invalid && (edittypeform.get('image')?.dirty || edittypeform.get('image')?.touched)">
+                        <!-- <div class="form-validation form-rules" *ngIf="edittypeform.get('image')?.errors?.['required']">Please upload an image.</div> -->
+                        <div class="form-validation form-rules" *ngIf="edittypeform.get('image')?.errors?.['extension']">Invalid image format, Accepted format: .jpg, .jpeg, .png.</div>
+                        <div class="form-validation form-rules" *ngIf="edittypeform.get('image')?.errors?.['fileSize']">Image size should be less than 5 mb.</div>
+                     </div>
+                </form>
+            </div>
+            
+            
         </p-dialog>
     </div>
 </div>
