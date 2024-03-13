@@ -8,6 +8,11 @@
     box-sizing: border-box;
     font-family: 'Poppins';
 }
-.header{
-    /* position: fixed; */
+.container{
+    display: flex;
+}
+.main-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }

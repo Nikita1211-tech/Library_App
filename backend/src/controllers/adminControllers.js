@@ -186,46 +186,46 @@ const Bookdesc = async(req,res) => {
 
 const Updatebook = async(req,res) => {
   console.log('reached')
-  // try {
-  //   console.log(req.body)
-  //   const bookid = req.params.book_id;
-  //   console.log(bookid)
-  //   const obj = { 
-  //     bookName: req.body.bookname, 
-  //     img: req.files.path, 
-  //     sellingprice: req.body.booksellingprice, 
-  //     costprice: req.body.bookcostprice,  
-  //     bookcat_img : req.body.bookcategoryimg, 
-  //     writerName: req.body.bookwriter, 
-  //     booktype_img : req.body.booktypeimg,
-  //     publishyear: req.body.publishyear,
-  //     booktypename: req.body.booktype,
-  //     category: req.body.bookcategories,
-  //     booksummary: req.body.summary
-  //   };
-  //   const book = await Book.findByPk(bookid);
-  //   if (!book) {
-  //     return res.status(404).json({ error: 'Category not found' });
-  //   }
-  //   book.bookName = req.body.bookname, 
-  //   book.img = req.body.img, 
-  //   book.sellingprice = req.body.booksellingprice, 
-  //   book.costprice = req.body.bookcostprice,  
-  //   book.bookcat_img = req.body.bookcategoryimg, 
-  //   book.writerName = req.body.bookwriter, 
-  //   book.booktype_img = req.body.booktypeimg,
-  //   book.publishyear = req.body.publishyear,
-  //   book.booktypename = req.body.booktype,
-  //   book.category = req.body.bookcategories,
-  //   book.booksummary = req.body.summary
-  //   console.log(book)
+  try {
+    console.log(req.body)
+    const bookid = req.params.book_id;
+    console.log(bookid)
+    const obj = { 
+      bookName: req.body.bookname, 
+      img: req.files.path, 
+      sellingprice: req.body.booksellingprice, 
+      costprice: req.body.bookcostprice,  
+      bookcat_img : req.body.bookcategoryimg, 
+      writerName: req.body.bookwriter, 
+      booktype_img : req.body.booktypeimg,
+      publishyear: req.body.publishyear,
+      booktypename: req.body.booktype,
+      category: req.body.bookcategories,
+      booksummary: req.body.summary
+    };
+    const book = await Book.findByPk(bookid);
+    if (!book) {
+      return res.status(404).json({ error: 'Book not found' });
+    }
+    book.bookName = req.body.bookname, 
+    book.img = req.body.img, 
+    book.sellingprice = req.body.booksellingprice, 
+    book.costprice = req.body.bookcostprice,  
+    book.bookcat_img = req.body.bookcategoryimg, 
+    book.writerName = req.body.bookwriter, 
+    book.booktype_img = req.body.booktypeimg,
+    book.publishyear = req.body.publishyear,
+    book.booktypename = req.body.booktype,
+    book.category = req.body.bookcategories,
+    book.booksummary = req.body.summary
+    console.log(book)
     
-  //   await book.save();
-  //   res.status(200).json({ message: 'Category updated successfully' });
-  // } catch (error) {
-  //   console.error('Error updating category:', error);
-  //   res.status(500).json({ error: 'Failed to update category' });
-  // }
+    await book.save();
+    res.status(200).json({ message: 'Book updated successfully' });
+  } catch (error) {
+    console.error('Error updating category:', error);
+    res.status(500).json({ error: 'Failed to update Book' });
+  }
 }
 
 const Deletebook = async (req, res) => {

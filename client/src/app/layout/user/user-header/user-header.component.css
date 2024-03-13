@@ -19,7 +19,7 @@ header{
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    background-color: #EAEAEA;
+    background-color: white;
     /* z-index: 99;
     width: 98%;
     height: 60px;
@@ -83,6 +83,7 @@ input{
 }
 button{
     border: none;
+    background-color: transparent;
 }
 /* Media Queries  */
 @media (max-width: 1200px){

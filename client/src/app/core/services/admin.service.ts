@@ -70,7 +70,37 @@ addBook(formData: FormData, errorCallback: (error: any) => void): void {
 
 updateBook(id: number, formdata: FormData){
   console.log(`${this.API_URL}/updatebook/${id}`)
-  this.http.put<any>(`${this.API_URL}/updatebook/${id}`, formdata)
+  this.http.put<any>(`${this.API_URL}/updatebook/${id}`, formdata) .subscribe(response => {
+    if(response){
+      Swal.fire({
+        position: 'top-right',
+        icon: 'success',
+        iconColor: '#fb3453',
+        text: "Category updated successfully",
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 1500,
+      }).then((result) => {
+        window.location.reload();
+        this.router.navigate(['/bookcategorydetail']);
+      });
+    }
+  },(error) => {
+    if(error){
+      Swal.fire({
+        position: 'top-right',
+        iconColor: '#fb3453',
+        title: 'Category already exists',
+        icon: 'info',
+        showCancelButton: false,
+        showConfirmButton:false,
+        timer: 1500
+      }).then((result) => {
+        // window.location.reload();
+        // this.router.navigate(['/bookcategorydetail'])
+      });
+    }
+  })
       // console.log(updatedData)
       // console.log(`${this.API_URL}/updatebook/${id}`);
 }

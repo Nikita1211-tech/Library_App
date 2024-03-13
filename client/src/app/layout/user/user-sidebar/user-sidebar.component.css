@@ -1,6 +1,20 @@
 ul, li{
     list-style: none;
 }
+span{
+    font-size: 24px;
+}
+:host ::ng-deep .p-sidebar{ 
+    background-color: rgb(255, 253, 253);
+    padding: 20px; 
+    border-radius: 5px;
+}
+:host ::ng-deep .p-button{ 
+    background-color: rgb(255, 253, 253);
+    border: none;
+    padding: 20px; 
+    border-radius: 5px;
+}
 .sidebar-container{
     padding: 20px;
     height: 100vh;
