@@ -119,7 +119,7 @@
                         <label for="bookcategoryimg">Book Category Image</label>
                         <div style="border: solid 2px black; padding: 15px; width: 292px;">
                             <h5 *ngIf="selectedCategoryImage; else elseCategoryBlock">{{selectedCategoryImage}}</h5>
-                            <ng-template #elseCategoryBlock>Category Image *</ng-template>
+                            <ng-template #elseCategoryBlock>{{bookCategoryImageUrl}}</ng-template>
                          </div>
                          <div *ngIf="editBookForm.controls['bookcategoryimg'].invalid && (editBookForm.controls['bookcategoryimg'].dirty || editBookForm.controls['bookcategoryimg'].touched)">
                              <div *ngIf="editBookForm.controls['bookcategoryimg'].errors?.['required']; ">
@@ -183,8 +183,9 @@
                         <div>
                             <label for="booktypeimg">Type Image</label>
                             <div style="border: solid 2px black; padding: 15px; width: 292px;"  formControlName="bookcategoryimg" >
+                                <!-- <h5 *ngIf="!selectedTypeImage; else elseTypeBlock">{{booktypeImageUrl}}</h5> -->
                                 <h5 *ngIf="selectedTypeImage; else elseTypeBlock">{{selectedTypeImage}}</h5>
-                                <ng-template #elseTypeBlock>Type Image *</ng-template>
+                                <ng-template #elseTypeBlock>{{booktypeImageUrl}}</ng-template>
                              </div>
                              <div *ngIf="editBookForm.controls['booktypeimg'].invalid && (editBookForm.controls['booktypeimg'].dirty || editBookForm.controls['booktypeimg'].touched)">
                                  <div *ngIf="editBookForm.controls['booktypeimg'].errors?.['required']; ">

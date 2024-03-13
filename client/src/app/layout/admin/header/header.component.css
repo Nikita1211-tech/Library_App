@@ -48,7 +48,7 @@ input{
 }
 .header_col2{
     display: flex; 
-    gap: 16px;
+    gap: 40px;
 }
 .bell_icon{
     display: flex;
@@ -60,7 +60,7 @@ input{
 .header_col3 {
     display: flex; 
     align-items: center;
-    gap: 10px;
+    gap: 40px;
 }
 .header_col3 img{
     width: 48px;

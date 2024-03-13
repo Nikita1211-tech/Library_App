@@ -19,6 +19,7 @@ export class EditbookComponent{
   bookImageUrl: string | null = null;
   bookimg: string | null = null;
   booktypeImageUrl :  string | null = null;
+  bookCategoryImageUrl : string | null = null;
   selectedFile: File | null = null;
   selectedCategoryImage: string | null = null;
   selectedTypeImage: string | null = null;
@@ -88,9 +89,9 @@ export class EditbookComponent{
     })
     this.admin.getBookById(this.bookId).subscribe((books) => {
       this.books = books
-      this.bookImageUrl = books.img;
-      this.booktypeImageUrl = books.booktype_img
-      // this.bookCategoryImageUrl = books.bookcat_img;
+      this.bookImageUrl = books.img ? books.img.substring(8) : ''
+      this.booktypeImageUrl = books.booktype_img ? books.booktype_img.substring(8) : ''
+      this.bookCategoryImageUrl = books.bookcat_img ? books.bookcat_img.substring(8) : ''
       // this.bookTypeImageUrl = books.booktype_img;
       console.log(books)
       // console.log('Book Categories:', this.editBookForm.value.bookcategories);
@@ -128,22 +129,24 @@ export class EditbookComponent{
   //       console.log(file)
   //     }
   //   }
-    onFileSelected(event: any) {
-      if (event.target.files.length > 0) {
-        const file = event.target.files[0];
-        this.selectedFile = file.name;
-      }
-      console.log(this.selectedFile)
-    }
-    getImageUrl(): string | ArrayBuffer | null {
-      if (this.selectedFile) {
-        console.log(this.environment+this.selectedFile)
-        return this.environment+'uploads/'+this.selectedFile;
-      } else {
-        console.log(this.environment + this.bookimg)
-        return this.environment + this.bookimg;
-      }
-    }
+onFileSelected(event: any) {
+  if (event.target.files.length > 0) {
+    const file = event.target.files[0];
+    this.selectedFile = file.name;
+  }
+  console.log(this.selectedFile)
+  return this.selectedFile
+}
+getImageUrl(): string | ArrayBuffer | null {
+  if (this.selectedFile) {
+    // console.log(this.environment+this.selectedFile)
+    console.log(this.selectedFile)
+    return this.selectedFile.name;
+  } else {
+    console.log(this.environment + this.bookimg)
+    return this.bookimg;
+  }
+}
 getBookCategoryImage() {
   const selectedCategory = this.editBookForm.controls['bookcategories'].value;
   const category = this.bookcategories.find(cat => cat.name === selectedCategory);
@@ -176,25 +179,28 @@ getImageNameFromData(data: any): string {
   return ''; 
 }
 
-getImagePath(data: any): string {
+getImagePath(data: any): string{
   if (data && data.image) {
     return data.image; 
   }
   return ''; 
 }
 onEditBook() {
-  const updatedData = new FormData();
+  const formdata = new FormData();
   Object.keys(this.editBookForm.value).forEach(key => {
     const value = this.editBookForm.value[key];
     this.bookImageUrl = this.editBookForm.value[key];
-    updatedData.append(key, value);
+    formdata.append(key, value);
+    console.log(`${key}:`, value);
   });
+  // console.log('Updated data:', updatedData);
   // let value = this.addBookForm.value[key];
-  if (this.selectedFile) {
-    updatedData.append('bookimg', this.selectedFile);
-  }
-  this.admin.updateBook(this.bookId, updatedData)
-  console.log(updatedData);
+  // if (this.selectedFile) {
+  //   updatedData.append('bookimg', this.selectedFile);
+  // }
+  // console.log(this.selectedFile)
+  this.admin.updateBook(this.bookId, formdata)
+  // console.log(updatedData);
 }
 getBookCategory(){
   return this.admin.showbookcategory()

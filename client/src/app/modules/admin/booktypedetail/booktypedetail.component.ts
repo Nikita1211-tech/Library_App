@@ -49,8 +49,8 @@ export class BooktypedetailComponent {
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg']}), RxwebValidators.fileSize({maxSize:5242880 })])
     })
     this.edittypeform = new FormGroup({
-      type: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
-      image: new FormControl('', [RxwebValidators.extension({extensions:['png','jpg','jpeg']}), RxwebValidators.fileSize({maxSize: 5242880}) ])
+      type: new FormControl('', [Validators.pattern(/^[ A-Za-z./]*$/), Validators.minLength(3), Validators.maxLength(20)]),
+      image: new FormControl('', [RxwebValidators.fileSize({maxSize: 5242880}) ])
     })
   }
     
@@ -115,15 +115,16 @@ export class BooktypedetailComponent {
   }
    getImageUrl(): string | ArrayBuffer | null {
     if (this.selectedFile) {
-      console.log(this.environment+this.selectedFile.name)
+      // console.log(this.environment+this.selectedFile.name)
       console.log(this.selectedFile.name)
       return this.selectedFile.name;
     } else {
-      console.log(this.environment + this.booktypeimg)
+      // console.log(this.environment + this.booktypeimg)
       console.log(this.booktypeimg)
       let parts = this.booktypeimg?.split("\\");
       if (parts && parts.length > 0) {
         let fileName = parts[parts.length - 1];
+        console.log(fileName)
         return fileName;
       } else {
         return ""; 
@@ -151,12 +152,11 @@ export class BooktypedetailComponent {
     }
   }
   onEditingType(): void{
-    if(!this.edittypeform.valid) {
-      this.markFormGroupTouched(this.edittypeform);
-    } 
-    else{
+    // if(!this.edittypeform.valid) {
+    //   this.markFormGroupTouched(this.edittypeform);
+    // } 
+    // else{
       const formData = new FormData();
-      // const id = this.id
       Object.keys(this.edittypeform.value).forEach(key => {
         const value = this.edittypeform.value[key];
         formData.append(key, value);
@@ -164,9 +164,9 @@ export class BooktypedetailComponent {
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);
       }
+      console.log("Selected File is", this.selectedFile)
       this.admin.updatebooktype(formData, this.id)
     // }
-    }
 }
   markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {

@@ -29,9 +29,9 @@ button{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 92%;
-    justify-content: space-between;
-    /* position: fixed; */
+    height: 100vh;
+    /* justify-content: space-between; */
+    position: sticky;
 }
 .menuContainer{
     display: flex;

@@ -24,7 +24,8 @@
 }
 .mainContainer{
     padding: 20px ;
-    background-color: #EAEAEA;
+    background-color: #eaeaea93;
+    min-height: 100vh;
 }
 @media only screen and (max-width: 500px) {
     .navbar{

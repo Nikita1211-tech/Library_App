@@ -22,13 +22,13 @@ export class BookComponent {
   categories : Category[]=[];
   types: Type[]=[];
   booktypes = [
-    {name: 'Novel', abbrev: 'Novel'},
-    {name: 'Newspaper', abbrev: 'Newspaper'},
-    {name: 'Hypothetical', abbrev: 'Hypothetical'},
-    {name: 'Research', abbrev: 'Research'},
-    {name: 'Article', abbrev: 'Article'},
-    {name: 'Magazine', abbrev: 'Magazine'},
-    {name: 'Page 3', abbrev: 'Page 3'}
+    {name: 'Type1', abbrev: 'Type1'},
+    {name: 'Type2', abbrev: 'Type2'},
+    {name: 'Type3', abbrev: 'Type3'},
+    {name: 'Type4', abbrev: 'Type4'},
+    {name: 'Type5', abbrev: 'Type5'},
+    {name: 'Type6', abbrev: 'Type6'},
+    {name: 'Type7', abbrev: 'Type7'}
   ];
   visible: boolean = false;
   visibletypeform: boolean = false;
@@ -39,7 +39,7 @@ export class BookComponent {
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:["jpeg","jpg", "png"]}), RxwebValidators.fileSize({maxSize:5000000 })])
     })
     this.typeform = new FormGroup({
-      type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/),  Validators.minLength(3), Validators.maxLength(20)]),
+      type: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/),  Validators.minLength(3), Validators.maxLength(20)]),
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg']}), RxwebValidators.fileSize({maxSize:51000000 })])
 
     })

@@ -1,0 +1,288 @@
+.bk-shadow{
+    box-shadow: 4px 4px 12px  rgba(180, 179, 179, 0.315);
+    border: 1px solid #EAEAEA;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: (90vh, 90%);
+}
+h4{
+    font-size: 26px;
+    margin: 0px 0px 10px 0px;
+}
+p{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0px ;
+}
+a{
+    cursor: pointer;
+}
+.search_box{
+    padding: 10px;
+    border: solid 1px #ffffffc4;
+    background-color: #ebebeb;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+.search_box i{
+    /* width: 30px;
+    height: 30px; */
+    padding: 10px;
+}
+.book-search{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.bookcontainer-row2{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.bookdes{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 250px;
+}
+.bookdes img{
+    width: 250px;
+    height: 350px;
+}
+:host ::ng-deep .p-dialog{ 
+    background-color: white;
+    padding: 20px; 
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* width: 600px; */
+    /* height: 400px; */
+}
+:host ::ng-deep .ui-widget-overlay {
+    filter: blur(20px);
+}
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+.button-container {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.button-container a {
+    display: inline-block;
+    margin: 5px; 
+    padding: 5px; 
+}
+.image-container:hover .button-container {
+  opacity: 1;
+}
+.image-container:hover img{ 
+    opacity: 0.2;
+}
+/* .category-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 120px;
+    transition: width 0.3s; 
+} */
+.category-text:hover {
+    width: auto; 
+}
+.category-details{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+}
+.categoryform{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+/* ::ng-deep .ui-dialog .ui-dialog-title {
+    font-size: 34px !important; 
+} */
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 0px;
+}
+label{
+    font-size: 22px;
+}
+input[type="text"]{
+    padding: 15px;
+    background-color: transparent;
+    border: solid 1px black;
+    border-radius: 5px;
+    width:400px;
+    font-family: Poppins;
+}
+input[type="submit"]{
+    padding: 15px;
+    border: none;
+    background-color: #fb3453;
+    color: white;
+    border-radius: 5px;
+    width: 150px;
+    cursor: pointer;
+    font-family: Poppins;
+    font-size: 18px;
+}
+input[type="search"]{
+    padding: 10px;
+    background-color: #EAEAEA;
+    border: none;
+    font-family: Poppins;
+    width:400px;
+    border-radius: 10px;
+}
+.addcategory{
+    /* background-image: url(./../../../../assets/images/categoryimg.avif); */
+    background-position: start;
+    border: dashed 2px #fb3453;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+input[type="file"]::file-selector-button{
+    border: none;
+    color: black;
+    text-align: center;
+    background-color: #EAEAEA;
+    padding: 15px;
+    cursor: pointer;
+    font-family: Poppins;
+    border-radius: 10px;
+    font-size: 18px;
+    /* width: 400px; */
+}  
+.custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+    width: 130px;
+    padding: 15px;
+    border: 1px solid #68a900;
+    border-radius: 5px;
+    color: white;
+    background-color: #68a900;;
+}
+.custom-file-upload span{
+    font-size: 18px;
+}
+::placeholder{
+    font-size: 18px;
+    color: black;
+    font-family: Poppins;
+}
+/* .addcategory i{
+    width: 50px;
+} */
+button{
+    border: none;
+    background-color: #fb3453;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 150px;
+    font-family: Poppins;
+}
+.form-rules{
+    color: #FB3453;
+}
+/* Table classes starts  */
+.table-container{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height:200px;
+}
+.table-container::-webkit-scrollbar {
+    width: 10px;
+}
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+.table-container::-webkit-scrollbar-thumb {
+    background: #fb3453; 
+    border-radius: 10px;
+}
+.table-container::-webkit-scrollbar-corner {
+    background: transparent;
+}
+.table-container::-webkit-scrollbar-button {
+    display: none; 
+}
+table{
+    border-radius: 10px;
+    border: solid 1px #EAEAEA;
+    border-collapse: separate;
+    padding: 10px;
+    border-spacing: 10px 10px;
+    width: 100%;
+}
+tr{
+   width: 100%;
+}
+th{
+    font-size: 20px;
+    border-style: none;
+    text-align: left;
+    vertical-align: center;
+}
+td{
+    font-size: 18px;
+    border-style: none;
+    text-align: left;
+    vertical-align: center;
+}
+.table-head{
+    display: flex;
+    justify-content: space-between;
+}
+.table-button{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.table-button a {
+    background-color: #fb34521e;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+.reader-name{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+.reader-name img{
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position:  start;
+    border-radius: 50%;
+}

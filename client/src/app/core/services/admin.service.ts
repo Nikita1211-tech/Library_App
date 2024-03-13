@@ -68,8 +68,9 @@ addBook(formData: FormData, errorCallback: (error: any) => void): void {
       );
 }
 
-updateBook(id: number, updatedData: FormData){
-  this.http.put<any>(`${this.API_URL}/updatebook/${id}`, updatedData)
+updateBook(id: number, formdata: FormData){
+  console.log(`${this.API_URL}/updatebook/${id}`)
+  this.http.put<any>(`${this.API_URL}/updatebook/${id}`, formdata)
       // console.log(updatedData)
       // console.log(`${this.API_URL}/updatebook/${id}`);
 }
@@ -142,7 +143,7 @@ addbookcategory(formData: FormData, errorCallback: (error: any) => void): void {
         if(response){
 
           Swal.fire({
-            position: "top",
+            position: "top-right",
             icon: 'success',
             iconColor: '#fb3453',
             text: "Book category added successfully",
@@ -160,7 +161,7 @@ addbookcategory(formData: FormData, errorCallback: (error: any) => void): void {
         if(error){
 
           Swal.fire({
-            position: "top",
+            position: "top-right",
             icon: 'info',
             iconColor: '#fb3453',
             text: "Book category already exists",
@@ -179,7 +180,7 @@ updatebookcategory(formdata: FormData, id: number){
   .subscribe(response => {
     if(response){
       Swal.fire({
-        position: 'top',
+        position: 'top-right',
         icon: 'success',
         iconColor: '#fb3453',
         text: "Category updated successfully",
@@ -194,7 +195,7 @@ updatebookcategory(formdata: FormData, id: number){
   },(error) => {
     if(error){
       Swal.fire({
-        position: 'top',
+        position: 'top-right',
         iconColor: '#fb3453',
         title: 'Category already exists',
         icon: 'info',
@@ -223,7 +224,7 @@ addbooktype(formData: FormData, errorCallback: (error: any) => void){
    .subscribe(
     (response)=>{
       Swal.fire({
-        position: 'top',
+        position: 'top-right',
         icon: 'success',
         iconColor: '#fb3453',
         text: "Book type added successfully",
@@ -237,7 +238,7 @@ addbooktype(formData: FormData, errorCallback: (error: any) => void){
     },
     (error) => {
       Swal.fire({
-        position: 'top',
+        position: 'top-right',
         icon: 'info',
         iconColor: '#fb3453',
         text: "Book type already exists",
@@ -255,15 +256,15 @@ updatebooktype(formdata: FormData, id: number){
   .subscribe(response => {
     if(response){
       Swal.fire({
-        position: 'top',
+        position: 'top-right',
         title: 'Type updated successfully',
         icon: 'success',
         showCancelButton: false,
         showConfirmButton:false,
         timer: 1500
       }).then((result) => {
-        // window.location.reload();
-        this.router.navigate(['/booktypedetail'])
+        window.location.reload();
+        // this.router.navigate(['/booktypedetail'])
       });
 
     }
@@ -273,7 +274,7 @@ updatebooktype(formdata: FormData, id: number){
     console.log(error.message)
     if(error){
       Swal.fire({
-        position: 'top',
+        position: 'top-right',
         title: 'Type name already exists',
         icon: 'error',
         showCancelButton: false,

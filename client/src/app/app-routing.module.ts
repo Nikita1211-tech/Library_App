@@ -63,6 +63,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/admin/reports/reports.module').then(m => m.ReportsModule),
       },
       { 
+        path: 'bookdetail', 
+        loadChildren: () => import('./modules/admin/bookdetail/bookdetail.module').then(m => m.BookdetailModule) 
+      },
+      { 
         path: 'bookcategorydetail', 
         loadChildren: () => import('./modules/admin/bookcategorydetail/bookcategorydetail.module').then(m => m.BookcategorydetailModule) 
       },

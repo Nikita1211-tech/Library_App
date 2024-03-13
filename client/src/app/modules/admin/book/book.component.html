@@ -39,9 +39,9 @@
             <div style="display: flex; gap: 20px; align-items: center;">
                 <h4>Type</h4>
             </div>
-            <button (click)="showTypeDialog()" icon="pi pi-external-link" label="Show" type="button">
+            <!-- <button (click)="showTypeDialog()" icon="pi pi-external-link" label="Show" type="button">
                 Add Type
-            </button>
+            </button> -->
         </div>
         <div class="bookcontainer-row2">
             <div class="booktype" *ngFor="let type of types | slice:0:5; let i=index">
@@ -121,7 +121,7 @@
                     <div *ngIf="typeform.controls['type'].invalid && (typeform.controls['type'].dirty || typeform.controls['type'].touched)">
                         <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['required']">Name is
                             required.</div>
-                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['pattern']">Name cannot be alphanumeric.</div>
+                        <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['pattern']">Name must be alphanumeric.</div>
                         <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['minlength']">Name must be 3 to 20 characters long.</div>
                         <div class="form-validation form-rules" *ngIf="typeform.controls['type'].errors?.['maxlength']">Name must be 3 to 20 characters long.</div>
                     </div>

@@ -86,7 +86,7 @@ const Detail = (req,res) => {
 }
 const Books = async (req, res) => {
   try {
-    const books = await Book.findAll();
+    const books = (await Book.findAll({order: [['createdAt', 'DESC']]}));
     res.json(books);
   } catch (error) {
     console.error(error);
@@ -185,46 +185,47 @@ const Bookdesc = async(req,res) => {
 // }
 
 const Updatebook = async(req,res) => {
-  try {
-    console.log(req.file)
-    const bookid = req.params.book_id;
-    console.log(bookid)
-    const obj = { 
-      bookName: req.body.bookname, 
-      img: req.file.path, 
-      sellingprice: req.body.booksellingprice, 
-      costprice: req.body.bookcostprice,  
-      bookcat_img : req.body.bookcategoryimg, 
-      writerName: req.body.bookwriter, 
-      booktype_img : req.body.booktypeimg,
-      publishyear: req.body.publishyear,
-      booktypename: req.body.booktype,
-      category: req.body.bookcategories,
-      booksummary: req.body.summary
-    };
-    const book = await Book.findByPk(bookid);
-    if (!book) {
-      return res.status(404).json({ error: 'Category not found' });
-    }
-    book.bookName = req.body.bookname, 
-    book.img = req.body.img, 
-    book.sellingprice = req.body.booksellingprice, 
-    book.costprice = req.body.bookcostprice,  
-    book.bookcat_img = req.body.bookcategoryimg, 
-    book.writerName = req.body.bookwriter, 
-    book.booktype_img = req.body.booktypeimg,
-    book.publishyear = req.body.publishyear,
-    book.booktypename = req.body.booktype,
-    book.category = req.body.bookcategories,
-    book.booksummary = req.body.summary
-    console.log(book)
+  console.log('reached')
+  // try {
+  //   console.log(req.body)
+  //   const bookid = req.params.book_id;
+  //   console.log(bookid)
+  //   const obj = { 
+  //     bookName: req.body.bookname, 
+  //     img: req.files.path, 
+  //     sellingprice: req.body.booksellingprice, 
+  //     costprice: req.body.bookcostprice,  
+  //     bookcat_img : req.body.bookcategoryimg, 
+  //     writerName: req.body.bookwriter, 
+  //     booktype_img : req.body.booktypeimg,
+  //     publishyear: req.body.publishyear,
+  //     booktypename: req.body.booktype,
+  //     category: req.body.bookcategories,
+  //     booksummary: req.body.summary
+  //   };
+  //   const book = await Book.findByPk(bookid);
+  //   if (!book) {
+  //     return res.status(404).json({ error: 'Category not found' });
+  //   }
+  //   book.bookName = req.body.bookname, 
+  //   book.img = req.body.img, 
+  //   book.sellingprice = req.body.booksellingprice, 
+  //   book.costprice = req.body.bookcostprice,  
+  //   book.bookcat_img = req.body.bookcategoryimg, 
+  //   book.writerName = req.body.bookwriter, 
+  //   book.booktype_img = req.body.booktypeimg,
+  //   book.publishyear = req.body.publishyear,
+  //   book.booktypename = req.body.booktype,
+  //   book.category = req.body.bookcategories,
+  //   book.booksummary = req.body.summary
+  //   console.log(book)
     
-    await book.save();
-    res.status(200).json({ message: 'Category updated successfully' });
-  } catch (error) {
-    console.error('Error updating category:', error);
-    res.status(500).json({ error: 'Failed to update category' });
-  }
+  //   await book.save();
+  //   res.status(200).json({ message: 'Category updated successfully' });
+  // } catch (error) {
+  //   console.error('Error updating category:', error);
+  //   res.status(500).json({ error: 'Failed to update category' });
+  // }
 }
 
 const Deletebook = async (req, res) => {
@@ -252,7 +253,7 @@ const Bookcategory = async (req, res) => {
   const bookcategory = req.body.bookcategory;
 
   try {
-    const books = await Book.findAll({ where: { category: bookcategory } }); // Using findAll to get multiple books
+    const books = await Book.findAll({ where: { category: bookcategory } }); 
     console.log(books);
     
     if (books.length > 0) {
@@ -310,7 +311,7 @@ const Booktypes = async (req, res) => {
   const booktype = req.body.booktype;
 
   try {
-    const books = await Book.findAll({ where: { booktypename: booktype } }); // Using findAll to get multiple books
+    const books = await Book.findAll({ where: { booktypename: booktype } });
     console.log(books);
     
     if (books.length > 0) {
@@ -370,7 +371,7 @@ const Addbookcategory = async (req, res) => {
 
 const Showbookcategory = async (req,res) => {
   try {
-    const Bookcategory = await BookCategory.findAll();
+    const Bookcategory = await BookCategory.findAll({order: [['createdAt', 'DESC']]});
     console.log(BookCategory)
     return res.status(201).json(Bookcategory);
   } catch (error) {
@@ -480,24 +481,26 @@ const Updatebooktype = async(req,res) => {
     if (!type) {
       return res.status(404).json({ message: 'Type not found' });
     }
-    if (typename) {
+
+    if(typename && type.type !== typename) {
       const existingType = await Booktype.findOne({ where: { type: typename } });
       if (existingType && existingType.id !== typeid) {
         return res.status(400).json({ message: 'Type name already exists' });
       }
+      type.type = typename;
     }
-    type.type = typename;
-    if(image){
+    if(image) {
       type.image = image;
     }
+
     await type.save();
-    console.log(type)
-    res.status(200).json({ message: 'Type name updated successfully' });
+    res.status(200).json({ message: 'Type updated successfully'});
   } catch (error) {
     console.error('Error updating category:', error);
     res.status(500).json({ error: 'Failed to update category' });
   }
 }
+
 
 const Deletebookcategory = async (req, res) => {
   const bookId = req.params.book_id;
@@ -566,7 +569,7 @@ const Addbooktype = async (req, res) => {
 
 const Showbooktype = async (req,res) => {
   try {
-    const type = await Booktype.findAll();
+    const type = await Booktype.findAll({order: [['createdAt', 'DESC']]});
     return res.status(201).json(type);
   } catch (error) {
     return res.status(500).json({ message: error.message });

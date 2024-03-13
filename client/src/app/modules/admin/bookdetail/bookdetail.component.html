@@ -1,0 +1,36 @@
+<div class="bk-shadow">
+    <div class="book-search">
+        <div class="search_box">
+            <i class="fas fa-search fa-lg"></i>
+            <input type="search" placeholder="Search book">
+        </div>
+        <!-- <button icon="pi pi-external-link" label="Show">Book  <i class="fas fa-plus fa-md" style="color: white; margin-left: 10px;"></i></button> -->
+    </div>
+    <div class="bookcontainer" >
+        <div class="bookcontainer-row2">
+            <div class="bookdes" *ngFor="let book of books">
+                <div class="image-container">
+                    <img [src]="environment + book.img"  alt="Card image cap">
+                    <div class="button-container">
+                     <a [routerLink]="['/bookdescription/', book.id]"><i class="far fa-eye fa-2x" style="color: #fb3453;"></i></a>
+                     <a [href]="'/editbook/' + book.id"><i class="far fa-edit fa-2x" style="color: #68a900;"></i></a>
+                     <a (click)="confirmDelete(book.id)"><i class="fas fa-trash fa-2x" style="color: #fb3453;"></i></a>
+                    </div>  
+                 </div>
+                <div class="">
+                    <p class="category-text">{{book.bookName}}</p>
+                </div>
+            </div>
+            <!-- <div class="bookdes" (click)="showcategoryform()"> -->
+                <!-- <form action="">
+                    <label for="category"></label>
+                    <input type="text">
+                </form> -->
+                <!-- <div class="addcategory">
+                    <i class="fas fa-plus fa-lg" style="color: #fb3453;"></i>
+                    <button>Add New Category</button>
+                </div> -->
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
