@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="bookcontainer-row2">
-            <div class="bookdes" *ngFor="let category of categories | slice:0:5; let i=index">
+            <div class="bookdes" *ngFor="let category of categories.reverse() | slice:0:5; let i=index">
                 <img (click)="onClickCategory(category.category)" [src]="environment+category.image" alt="">
                 <div class="">
                     <p class="">{{category.category}}</p>
@@ -44,7 +44,7 @@
             </button> -->
         </div>
         <div class="bookcontainer-row2">
-            <div class="booktype" *ngFor="let type of types | slice:0:5; let i=index">
+            <div class="booktype" *ngFor="let type of types.reverse() | slice:0:5; let i=index">
                 <img class="" (click)="onClickType(type.type)" [src]="environment+type.image" alt="">
                 <div class="">
                     <p class="">{{type.type}}</p>
@@ -75,7 +75,7 @@
                     <div style="display: flex; gap: 10px; align-items: center;">
                         <label for="image" class="custom-file-upload" style="display: flex; flex-direction: column;text-align: center;">
                             <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
-                            <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
+                            <input type="file" id="image" name="image" formControlName="image" style="display: none;" required accept="image/png, image/jpeg, image/jpg">
                         </label>
                     </div>
                    </div>
@@ -131,7 +131,7 @@
                 <div style="display: flex; gap: 10px; align-items: center;">
                     <label for="image" class="custom-file-upload" style="display: flex; justify-content: center; align-items: center">
                         <span><i class="fas fa-upload" style="margin-right: 10px;"></i>Image</span>
-                        <input type="file" id="image" name="image" formControlName="image" style="display: none;" required>
+                        <input type="file" id="image" name="image" formControlName="image" style="display: none;" required accept="image/png, image/jpeg, image/jpg">
                     </label>
                 </div>
                 <!-- <label for="image">Upload Image</label>

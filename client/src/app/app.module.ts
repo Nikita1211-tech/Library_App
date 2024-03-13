@@ -14,7 +14,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
-import { PrimeIcons } from 'primeng/api';
+import { PrimeIcons, PrimeNGConfig, PrimeTemplate, SharedModule } from 'primeng/api';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { DropdownModule } from 'primeng/dropdown';
@@ -22,6 +22,11 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { UserHeaderComponent } from './layout/user/user-header/user-header.component';
 import { MainLayoutComponent } from './layout/user/main-layout/main-layout.component';
 import { NgxUiLoaderBlurredDirective, NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule, PB_DIRECTION, POSITION, SPINNER } from 'ngx-ui-loader';
+import { UserSidebarComponent } from './layout/user/user-sidebar/user-sidebar.component';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { RippleModule } from 'primeng/ripple';
+import { TimesIcon } from 'primeng/icons/times';
 
 // const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 //   bgsColor: "red",
@@ -40,6 +45,7 @@ import { NgxUiLoaderBlurredDirective, NgxUiLoaderConfig, NgxUiLoaderHttpModule, 
     AdminLayoutComponent,
     UserLayoutComponent,
     SidebarComponent,
+    UserSidebarComponent,
     HeaderComponent,
     CommonloginComponent,
     MainLayoutComponent,
@@ -50,6 +56,11 @@ import { NgxUiLoaderBlurredDirective, NgxUiLoaderConfig, NgxUiLoaderHttpModule, 
     BrowserAnimationsModule,
     SidebarModule,
     ButtonModule,
+    AvatarModule,
+    AvatarGroupModule,
+    RippleModule,
+    TimesIcon,
+    SharedModule,
     DropdownModule,
     MatButtonModule,
     MatInputModule,

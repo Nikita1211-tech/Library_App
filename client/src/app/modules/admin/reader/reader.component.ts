@@ -31,7 +31,9 @@ export class ReaderComponent implements OnInit{
         ]
       },
       options: {
-        aspectRatio:2,
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio:1.5,
         scales: {
           x: {
             grid: {
