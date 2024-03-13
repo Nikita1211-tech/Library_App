@@ -39,11 +39,11 @@ export class BookcategorydetailComponent implements OnInit{
     this.bookcategoryid = this.route.snapshot.params['id'];
     // console.log(this.bookcategoryid)
     this.categoryform = new FormGroup({
-      category: new FormControl('', [Validators.required, Validators.pattern(/^[ A-Za-z0-9./]*$/), Validators.minLength(3), Validators.maxLength(40)]),
+      category: new FormControl('', [Validators.required, Validators.pattern(/^[ A-Za-z0-9]*$/), Validators.minLength(3), Validators.maxLength(40)]),
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:["jpeg","jpg", "png"]}), RxwebValidators.fileSize({maxSize:5000000 })])
     })
     this.editcategoryform = new FormGroup({
-      category: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/),  Validators.minLength(6), Validators.maxLength(20)]),
+      category: new FormControl('', [Validators.required, Validators.pattern(/^[ A-Za-z0-9]*$/),  Validators.minLength(3), Validators.maxLength(20)]),
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg']}), RxwebValidators.fileSize({maxSize: 5242880}) ])
     })
   }
@@ -71,6 +71,9 @@ export class BookcategorydetailComponent implements OnInit{
   showDialog() {
     this.visible = true;
   }
+  closeDialog() {
+    this.visible = true;
+  }
   showEditDialog(id: number) {
     // console.log(id)
     this.visibleeditform = true;
@@ -84,6 +87,9 @@ export class BookcategorydetailComponent implements OnInit{
         image: category.image
       });
     })
+  }
+  closeEditDialog() {
+    this.visibleeditform = false;
   }
   onClickCategory(data: string): void{
     const bookcategory = data
@@ -160,12 +166,17 @@ export class BookcategorydetailComponent implements OnInit{
       this.markFormGroupTouched(this.editcategoryform);
     } 
     else{
+      const category = this.editcategoryform.value.category.trim()
+      // const imageInput = document.getElementById('image') as HTMLInputElement;
+      // if (!imageInput || !imageInput.files || !imageInput.files[0]) {
+      //   console.error('No image selected.');
+      //   return;
+      // }
       const formData = new FormData();
       console.log(this.id)
-      Object.keys(this.editcategoryform.value).forEach(key => {
-        const value = this.editcategoryform.value[key];
-        formData.append(key, value);
-      });
+      formData.append('category', category);
+      
+      // formData.append('image', imageInput.files[0]);
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);
       }

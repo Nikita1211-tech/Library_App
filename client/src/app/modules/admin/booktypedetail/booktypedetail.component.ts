@@ -9,10 +9,6 @@ import { Router } from '@angular/router';
 import { Type } from '../../../data/interfaces/category.interface';
 import Swal from 'sweetalert2';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
-// <<<<<<< HEAD
-// =======
-import { valueOrDefault } from 'chart.js/dist/helpers/helpers.core';
-// >>>>>>> 5ba9bc53eacad7098ba50c9f883126c50829dbbb
 
 @Component({
   selector: 'app-booktypedetail',
@@ -49,8 +45,8 @@ export class BooktypedetailComponent {
       image: new FormControl('', [Validators.required, RxwebValidators.extension({extensions:['png','jpg','jpeg']}), RxwebValidators.fileSize({maxSize:5242880 })])
     })
     this.edittypeform = new FormGroup({
-      type: new FormControl('', [Validators.pattern(/^[ A-Za-z./]*$/), Validators.minLength(3), Validators.maxLength(20)]),
-      image: new FormControl('', [RxwebValidators.fileSize({maxSize: 5242880}) ])
+      type: new FormControl('', [Validators.required, Validators.pattern(/^[ A-Za-z]*$/), Validators.minLength(3), Validators.maxLength(20)]),
+      image: new FormControl('', [Validators.required, RxwebValidators.fileSize({maxSize: 5242880}) ])
     })
   }
     
@@ -82,7 +78,9 @@ export class BooktypedetailComponent {
   showDialog() {
     this.visible = true;
   }
-  
+  // closeDialog(){
+  //   this.visible = false;
+  // }
   showEditDialog(id: number) {
     // console.log(id)
     this.visibleeditform = true;
@@ -97,7 +95,9 @@ export class BooktypedetailComponent {
       });
     })
   }
-
+  closeDialog() {
+    this.visibleeditform = false;
+  }
   onClickType(data: string): void{
     const booktype = data
     localStorage.setItem('booktype', booktype);
@@ -152,10 +152,10 @@ export class BooktypedetailComponent {
     }
   }
   onEditingType(): void{
-    // if(!this.edittypeform.valid) {
-    //   this.markFormGroupTouched(this.edittypeform);
-    // } 
-    // else{
+    if(!this.edittypeform.valid) {
+      this.markFormGroupTouched(this.edittypeform);
+    } 
+    else{
       const formData = new FormData();
       Object.keys(this.edittypeform.value).forEach(key => {
         const value = this.edittypeform.value[key];
@@ -166,8 +166,8 @@ export class BooktypedetailComponent {
       }
       console.log("Selected File is", this.selectedFile)
       this.admin.updatebooktype(formData, this.id)
-    // }
-}
+    }
+  }
   markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
       control.markAsTouched();

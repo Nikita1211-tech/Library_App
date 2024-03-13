@@ -488,11 +488,12 @@ const Updatebooktype = async(req,res) => {
         return res.status(400).json({ message: 'Type name already exists' });
       }
       type.type = typename;
+      // type.image = image;
     }
     if(image) {
       type.image = image;
     }
-
+    console.log(type)
     await type.save();
     res.status(200).json({ message: 'Type updated successfully'});
   } catch (error) {

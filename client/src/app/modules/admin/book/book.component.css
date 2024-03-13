@@ -79,6 +79,9 @@ button{
     padding: 20px; 
     border-radius: 5px;
 }
+.p-dialog .p-dialog-titlebar{
+    background: tomato; 
+}
 /* Modal class ends */
 .bookcontainer-row2{
     display: flex;

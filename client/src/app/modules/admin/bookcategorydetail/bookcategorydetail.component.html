@@ -36,16 +36,17 @@
     <!-- Modal of add category form-->
     <div class="card flex justify-content-center">
         <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
-        <p-dialog header="Add Category" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
+        <p-dialog [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
+            <h4 style="font-family: Poppins; color: black; font-size: 30px; margin: 0px;">Add Category</h4>
             <form [formGroup]="categoryform" (ngSubmit)="onAddingCategory()" class="form-control" id="categoryform">
                 <!-- <h4>Add Category</h4> -->
                     <div>
-                        <label for="category">Category Name</label><br><br>
+                        <label for="category" style="font-size: 22px; margin: 10px 0px 0px 0px;font-weight: 500;font-family: Poppins;color: black;">Category Name</label><br><br>
                         <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
                         <div *ngIf="categoryform.controls['category'].invalid && (categoryform.controls['category'].dirty || categoryform.controls['category'].touched)">
                             <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['required']">Category name is
                                 required.</div>
-                            <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['pattern']">Name must be alphanumeric.</div>
+                            <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['pattern']">Name must be alphanumeric</div>
                             <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['minlength']">Name must be 3 to 40 characters long</div>
                             <div class="form-validation form-rules" *ngIf="categoryform.controls['category'].errors?.['maxlength']">Name must be 3 to 40 characters long</div>
                         </div>
@@ -60,7 +61,7 @@
                             </div>
                             <!-- <label for="image">Upload Image</label>
                                 <input type="file" class="form-control" name="image" id="image"  formControlName="image" required> -->
-                            <input type="submit" value="Save">
+                            <input type="submit" value="Save" (click)="closeDialog()">
                         </div>
                         <div style="margin: 10px 0px 0px 0px;">
                             <p *ngIf="categoryform.get('image')?.value"><i class="fas fa-file-image fa-2x" style="color: #68a900;"></i> {{getImageFileName() }}</p>
@@ -77,17 +78,18 @@
     <!-- Modal of edit category Form  -->
     <div class="card flex justify-content-center">
         <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
-        <p-dialog header="Edit Category" [(visible)]="visibleeditform" [modal]="true" [draggable]="false" [resizable]="false">
+        <p-dialog [(visible)]="visibleeditform" [modal]="true" [draggable]="false" [resizable]="false">
+            <h4 style="font-family: Poppins; color: black; font-size: 30px; margin: 0px;">Edit Category</h4>
             <div class="editcategoryform" id="categoryform">
                 <form [formGroup]="editcategoryform" (ngSubmit)="onEditingCategory()" class="form-control" id="categoryform"  enctype="multipart/form-data">
-                    <label for="category">Category Name</label>
+                    <label for="category" style="font-size: 22px; margin: 10px 0px 0px 0px;font-weight: 500;font-family: Poppins;color: black;">Category Name</label>
                     <input type="text" class="form-control" name="category" id="category"  formControlName="category" placeholder="Enter category name" required>
                     <div *ngIf="editcategoryform.controls['category'].invalid && (editcategoryform.controls['category'].dirty || editcategoryform.controls['category'].touched)">
                         <div class="form-validation form-rules" *ngIf="editcategoryform.controls['category'].errors?.['required']">Category name is
                             required.</div>
                         <div class="form-validation form-rules" *ngIf="editcategoryform.controls['category'].errors?.['pattern']">Name must be alphanumeric.</div>
-                        <div class="form-validation form-rules" *ngIf="editcategoryform.controls['category'].errors?.['minlength']">Name must be 6 to 20 characters long</div>
-                        <div class="form-validation form-rules" *ngIf="editcategoryform.controls['category'].errors?.['maxlength']">Name must be 6 to 20 characters long</div>
+                        <div class="form-validation form-rules" *ngIf="editcategoryform.controls['category'].errors?.['minlength']">Name must be 3 to 20 characters long</div>
+                        <div class="form-validation form-rules" *ngIf="editcategoryform.controls['category'].errors?.['maxlength']">Name must be 3 to 20 characters long</div>
                     </div>
                     <!-- <h5 style="font-size: 22px; margin: 0px;font-weight: 500;">Image</h5> -->
                     <!-- <img *ngIf="selectedFile" [src]="getImageUrl()" alt="Uploaded Image" style="max-width: 100px; max-height: 100px;"> -->
@@ -105,7 +107,7 @@
                         </div>
                        </div>
                         <div>
-                             <input type="submit" value="Update">
+                             <input type="submit" value="Update" (click)="closeEditDialog()">
                         </div>
                     </div>
                     <div>

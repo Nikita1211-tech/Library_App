@@ -401,8 +401,9 @@ td{
 }
 .avatar{
     border: solid 1px;
+    opacity: 0.8;
     color: grey;
-    width: 400px;
+    width: 500px;
     height: 70%;
 }
 .image-shadow{

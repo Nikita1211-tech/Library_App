@@ -113,12 +113,13 @@
     <!-- Edit Type Modal  -->
     <div class="card flex justify-content-center">
         <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
-        <p-dialog header="Edit Category" [(visible)]="visibleeditform" [modal]="true" [draggable]="false"
+        <p-dialog [(visible)]="visibleeditform" [modal]="true" [draggable]="false"
             [resizable]="false">
+            <h4 style="font-family: Poppins; color: black; font-size: 30px; margin: 0px;">Edit Type</h4>
             <div class="edittypeform" id="typeform">
                 <form [formGroup]="edittypeform" (ngSubmit)="onEditingType()" class="form-control" id="categoryform"
                     enctype="multipart/form-data">
-                    <label for="type">Type</label>
+                    <label for="type" style="font-size: 22px; margin: 10px 0px 10px 0px;font-weight: 500;font-family: Poppins;color: black;">Type</label>
                     <input type="text" formControlName="type">
                     <!-- <h5 style="font-size: 22px; margin: 10px 0px 10px 0px;font-weight: 500;">Select Type</h5> -->
                     <!-- <select name="type" id="type" formControlName="type">
@@ -132,11 +133,11 @@
                     <div *ngIf="edittypeform.controls['type'].invalid && (edittypeform.controls['type'].dirty || edittypeform.controls['type'].touched)">
                         <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['required']">Type name is
                             required.</div>
-                        <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['pattern']">Name can contain only alphabets.</div>
+                        <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['pattern']">Invalid Name</div>
                         <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['minlength']">Name must be 3 to 20 characters long</div>
                         <div class="form-validation form-rules" *ngIf="edittypeform.controls['type'].errors?.['maxlength']">Name must be 3 to 20 characters long</div>
                     </div>
-                    <h5 style="font-size: 22px; margin: 10px 0px 10px 0px;font-weight: 500;">Image</h5>
+                    <h5 style="font-size: 22px; margin: 10px 0px 10px 0px;font-weight: 500;font-family: Poppins;color: black;">Image</h5>
                     <!-- <img *ngIf="selectedFile" [src]="getImageUrl()" alt="Uploaded Image" style="max-width: 100px; max-height: 100px;"> -->
 
                     <!-- Show pre-filled image if no new image is selected -->
@@ -147,7 +148,7 @@
                             <input type="file" id="image" name="image" (change)="onFileChange($event)"
                                 formControlName="image" style="display: none;" required>
                         </label>
-                        <input type="submit" value="Update">
+                        <input type="submit" value="Update" (click)="closeDialog()" [disabled]="!edittypeform.valid">
                     </div>
                     <div>
                         <p *ngIf="!selectedFile && edittypeform.get('image')?.value"><i class="fas fa-file-image fa-2x"

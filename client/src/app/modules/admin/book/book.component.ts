@@ -63,6 +63,9 @@ export class BookComponent {
   showDialog() {
     this.visible = true;
   }
+  closeDialog() {
+    this.visible = false;
+  }
   showTypeDialog() {
     this.visibletypeform = true;
   }
