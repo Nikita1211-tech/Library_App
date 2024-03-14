@@ -206,6 +206,7 @@ onAddBook() {
 }
 
 getBookById(){
+  console.log("Id")
   return this.admin.getBookById(this.bookId)
 }
 getBooks(){
