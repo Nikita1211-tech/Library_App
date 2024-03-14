@@ -76,6 +76,7 @@ router.put(
   upload.single("image"),
   Updatebookcategory
 );
+// hanges
 router.put("/updatebooktype/:id", upload.single("image"), Updatebooktype);
 router.delete("/deletebook/:book_id", Deletebook);
 router.delete("/deletebookcategory/:book_id", Deletebookcategory);
