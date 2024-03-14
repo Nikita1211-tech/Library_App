@@ -67,6 +67,7 @@ export class AddbookComponent {
     this.bookId = this.route.snapshot.params['id'];
     this.addBookForm =  new FormGroup({
     bookname: new FormControl('',[ Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/), Validators.minLength(3), Validators.maxLength(40)]),
+    book: new FormControl('', [ Validators.required, RxwebValidators.extension({extensions: [".png", ".jpg", ".jpeg"]}), RxwebValidators.fileSize({maxSize: 5242880})]),
     bookimg: new FormControl('', [ Validators.required, RxwebValidators.extension({extensions: [".png", ".jpg", ".jpeg"]}), RxwebValidators.fileSize({maxSize: 5242880})]),
     booksellingprice: new FormControl('', [ Validators.required]),
     bookcostprice: new FormControl('', Validators.required),
@@ -107,7 +108,7 @@ onFileSelected(event: any, controlName: string): void {
       this.bookImgPreview = reader.result;
       // this.bookTypeImgPreview = reader.result;
     };
-    console.log(this.bookImgPreview)
+    // console.log(this.bookImgPreview)
     // console.log(this.bookTypeImgPreview)
   }
   this.addBookForm.get(controlName)?.setValue(file);
@@ -181,6 +182,7 @@ onAddBook() {
       if (typeof value === 'string') {
         value = value.replace(/\s{2,}/g, ' ').trim(); 
       }
+      console.log(key, value)
       formData.append(key, value);
     });
     // const bookImgInput = this.addBookForm.get('bookimg');
